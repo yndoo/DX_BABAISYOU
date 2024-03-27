@@ -19,14 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ContentsCore.h">
+    <ClInclude Include="BABAISYOUCore.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="PreCompile.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ContentsCore.cpp">
+    <ClCompile Include="BABAISYOUCore.cpp">
       <SubType>
       </SubType>
     </ClCompile>

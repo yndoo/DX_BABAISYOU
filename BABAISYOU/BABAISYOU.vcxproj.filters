@@ -9,7 +9,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ContentsCore.h">
+    <ClInclude Include="BABAISYOUCore.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="PreCompile.h">
@@ -17,7 +17,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ContentsCore.cpp">
+    <ClCompile Include="BABAISYOUCore.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="PreCompile.cpp">
