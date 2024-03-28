@@ -5,6 +5,7 @@
 #include <EnginePlatform/EngineSound.h>
 #include <EngineCore/EngineTexture.h>
 #include "Level.h"
+#include "GameMode.h"
 
 UEngineCore::UEngineCore() 
 {
@@ -102,7 +103,7 @@ void UEngineCore::EngineFrameUpdate()
 	EngineDevice.RenderStart();
 	// 게임에 요소들을 그리고
 
-	// CurLevel->Render();
+	CurLevel->Render(DeltaTime);
 
 	// 억지로 그냥 그려본다.
 
@@ -112,9 +113,16 @@ void UEngineCore::EngineFrameUpdate()
 
 std::shared_ptr<ULevel> UEngineCore::NewLevelCreate(std::string& _Name, std::shared_ptr<AActor> _GameMode)
 {
+	std::shared_ptr <AGameMode> GameModePtr = std::dynamic_pointer_cast<AGameMode>(_GameMode);
+
+	if (nullptr == GameModePtr)
+	{
+		MsgBoxAssert("레벨의 첫 오브젝트가 GameMode를 상속받은 클래스가 아닙니다.");
+		return nullptr;
+	}
+
 	std::shared_ptr<ULevel> Level = std::make_shared<ULevel>();
 	Level->PushActor(_GameMode);
-	Level->BeginPlay();
 	Levels[_Name] = Level;
 	return Level;
 }
