@@ -7,6 +7,9 @@
     <Filter Include="PreComplie">
       <UniqueIdentifier>{ea21dac4-d46f-40e2-aac4-e49522bab733}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level">
+      <UniqueIdentifier>{f6d92700-15ec-4d18-8fcc-ad93605824a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BABAISYOUCore.h">
@@ -15,6 +18,9 @@
     <ClInclude Include="PreCompile.h">
       <Filter>PreComplie</Filter>
     </ClInclude>
+    <ClInclude Include="PlayGameMode.h">
+      <Filter>Level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -22,6 +28,9 @@
     </ClCompile>
     <ClCompile Include="PreCompile.cpp">
       <Filter>PreComplie</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayGameMode.cpp">
+      <Filter>Level</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

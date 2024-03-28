@@ -13,6 +13,24 @@
     <Filter Include="Device">
       <UniqueIdentifier>{f90ea477-9364-46e1-8faf-181fe9d2c2d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{2a6770c2-13bd-4c8f-a6e7-60112e130733}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Texture">
+      <UniqueIdentifier>{51702e4f-7a00-4cb1-b837-6536b4b3606a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Actor">
+      <UniqueIdentifier>{3a49f698-c2cd-40bd-bfbd-6857d0f90da6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component">
+      <UniqueIdentifier>{69b6ea50-155f-4701-a49c-2c9e23de93f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\Rendering">
+      <UniqueIdentifier>{d6cf3cbc-9156-4119-87dc-ba04912b170b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Actor\GameMode">
+      <UniqueIdentifier>{578f2e8f-f445-4ff4-b051-3e2a1a6496c0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -27,6 +45,33 @@
     <ClCompile Include="EngineGraphicDevice.cpp">
       <Filter>Device</Filter>
     </ClCompile>
+    <ClCompile Include="EngineTexture.cpp">
+      <Filter>Resources\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineRenderTarget.cpp">
+      <Filter>Resources\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Object\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="ActorComponent.cpp">
+      <Filter>Object\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneComponent.cpp">
+      <Filter>Object\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Object\Component\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="TickObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMode.cpp">
+      <Filter>Object\Actor\GameMode</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineCore.h">
@@ -40,6 +85,33 @@
     </ClInclude>
     <ClInclude Include="EngineGraphicDevice.h">
       <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineTexture.h">
+      <Filter>Resources\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineRenderTarget.h">
+      <Filter>Resources\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Object\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorComponent.h">
+      <Filter>Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneComponent.h">
+      <Filter>Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Object\Component\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="TickObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMode.h">
+      <Filter>Object\Actor\GameMode</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
