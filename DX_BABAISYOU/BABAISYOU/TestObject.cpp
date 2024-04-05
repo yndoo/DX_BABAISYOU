@@ -15,7 +15,7 @@ void ATestObject::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetActorScale3D(FVector(700.0f, 300.0f, 100.0f));
+	SetActorScale3D(FVector(700.0f, 700.0f, 100.0f));
 
 	// Renderer->SetSamplering(ETextureSampling::LINEAR);
 	Renderer->SetSprite("CuttingTest.png", 11);

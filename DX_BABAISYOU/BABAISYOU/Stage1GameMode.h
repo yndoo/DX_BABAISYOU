@@ -1,18 +1,21 @@
 #pragma once
+#include <EngineCore/GameMode.h>
 
-class Stage1GameMode
+class AStage1GameMode : public AGameMode
 {
+	GENERATED_BODY(AGameMode)
 public:
-	Stage1GameMode();
-	~Stage1GameMode();
+	AStage1GameMode();
+	~AStage1GameMode();
 
-	Stage1GameMode(const Stage1GameMode& _Other) = delete;
-	Stage1GameMode(Stage1GameMode&& _Other) noexcept = delete;
-	Stage1GameMode& operator=(const Stage1GameMode& _Other) = delete;
-	Stage1GameMode& operator=(Stage1GameMode&& _Other) noexcept = delete;
+	AStage1GameMode(const AStage1GameMode& _Other) = delete;
+	AStage1GameMode(AStage1GameMode&& _Other) noexcept = delete;
+	AStage1GameMode& operator=(const AStage1GameMode& _Other) = delete;
+	AStage1GameMode& operator=(AStage1GameMode&& _Other) noexcept = delete;
 protected:
 
 private:
-
+	void BeginPlay() override;
+	void Tick(float _DeltaTime);
 };
 

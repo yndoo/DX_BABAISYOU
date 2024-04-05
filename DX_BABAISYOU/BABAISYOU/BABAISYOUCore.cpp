@@ -2,6 +2,7 @@
 #include "BABAISYOUCore.h"
 #include "PlayGameMode.h"
 #include <EngineCore/EngineSprite.h>
+#include "Stage1GameMode.h"
 
 UBABAISYOUCore::UBABAISYOUCore() 
 {
@@ -32,6 +33,7 @@ void UBABAISYOUCore::Initialize()
 		}
 
 		UEngineSprite::CreateCutting("CuttingTest.png", 4, 3);
+		UEngineSprite::CreateCutting("Baba_Test.png", 21, 3);
 	}
 
 
@@ -48,6 +50,7 @@ void UBABAISYOUCore::Initialize()
 
 
 	GEngine->CreateLevel<APlayGameMode>("PlayLevel");
-	GEngine->ChangeLevel("PlayLevel");
+	GEngine->CreateLevel<AStage1GameMode>("Stage1Level");
+	GEngine->ChangeLevel("Stage1Level");
 	int a = 0;
 }

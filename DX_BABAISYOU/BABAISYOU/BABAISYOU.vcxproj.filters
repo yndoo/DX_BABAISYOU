@@ -39,6 +39,9 @@
     <ClInclude Include="Object.h">
       <Filter>Stage1Level\Object</Filter>
     </ClInclude>
+    <ClInclude Include="BabaObject.h">
+      <Filter>Stage1Level\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -57,6 +60,9 @@
       <Filter>Stage1Level</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">
+      <Filter>Stage1Level\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="BabaObject.cpp">
       <Filter>Stage1Level\Object</Filter>
     </ClCompile>
   </ItemGroup>
