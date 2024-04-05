@@ -4,11 +4,7 @@
 
 ATestObject::ATestObject()
 {
-	Renderer = CreateDefaultSubObject<URenderer>("Renderer");
-	Renderer->SetMesh("Rect");
-
-	Renderer->SetMaterial("2DImage");
-
+	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
 }
 
 ATestObject::~ATestObject()
@@ -19,12 +15,14 @@ void ATestObject::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetActorScale3D(FVector(100.0f, 100.0f, 100.0f));
+	SetActorScale3D(FVector(700.0f, 300.0f, 100.0f));
 
-	// 안해주면 터져야한다.
-	Renderer->Resources->SettingConstantBuffer("OutPutColor", Color);
-	// 내부에서 샘플러도 같이 찾을
-	Renderer->Resources->SettingTexture("Image", "CharIdle0.png", "POINT");
+	// Renderer->SetSamplering(ETextureSampling::LINEAR);
+	Renderer->SetSprite("CuttingTest.png", 11);
+
+	Renderer->CreateAnimation("Run", "CuttingTest.png", 0.1f);
+
+	Renderer->ChangeAnimation("Run");
 }
 
 void ATestObject::Tick(float _DeltaTime)

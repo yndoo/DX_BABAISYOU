@@ -7,11 +7,17 @@
     <Filter Include="PreComplie">
       <UniqueIdentifier>{ea21dac4-d46f-40e2-aac4-e49522bab733}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Level">
+    <Filter Include="TestLevel">
       <UniqueIdentifier>{f6d92700-15ec-4d18-8fcc-ad93605824a9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Level\Object">
+    <Filter Include="TestLevel\Object">
       <UniqueIdentifier>{13a21790-db3d-4334-9437-37da387cf452}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stage1Level">
+      <UniqueIdentifier>{f77e2612-9404-4c62-af24-af6690cbca16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stage1Level\Object">
+      <UniqueIdentifier>{54ae990f-5186-4401-85d0-8074b01c278c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -22,10 +28,16 @@
       <Filter>PreComplie</Filter>
     </ClInclude>
     <ClInclude Include="PlayGameMode.h">
-      <Filter>Level</Filter>
+      <Filter>TestLevel</Filter>
     </ClInclude>
     <ClInclude Include="TestObject.h">
-      <Filter>Level\Object</Filter>
+      <Filter>TestLevel\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage1GameMode.h">
+      <Filter>Stage1Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Stage1Level\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -36,10 +48,16 @@
       <Filter>PreComplie</Filter>
     </ClCompile>
     <ClCompile Include="PlayGameMode.cpp">
-      <Filter>Level</Filter>
+      <Filter>TestLevel</Filter>
     </ClCompile>
     <ClCompile Include="TestObject.cpp">
-      <Filter>Level\Object</Filter>
+      <Filter>TestLevel\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage1GameMode.cpp">
+      <Filter>Stage1Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Stage1Level\Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

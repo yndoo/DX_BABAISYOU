@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "BABAISYOUCore.h"
 #include "PlayGameMode.h"
+#include <EngineCore/EngineSprite.h>
 
 UBABAISYOUCore::UBABAISYOUCore() 
 {
@@ -20,14 +21,17 @@ void UBABAISYOUCore::Initialize()
 		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
 		for (UEngineFile& File : Files)
 		{
-			//File.Open(EIOOpenMode::Read, EIODataType::Binary);
-
-			//char Arr[100];
-			//File.Read(Arr, 100);
-
 			UEngineTexture::Load(File.GetFullPath());
 		}
-		// UEngineSound::SoundPlay("anipang_ingame_wav.wav");
+
+		std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			std::string Name = Directorys[i].GetFolderName();
+			UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
+		}
+
+		UEngineSprite::CreateCutting("CuttingTest.png", 4, 3);
 	}
 
 
@@ -38,14 +42,8 @@ void UBABAISYOUCore::Initialize()
 		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".wav" });
 		for (UEngineFile& File : Files)
 		{
-			//File.Open(EIOOpenMode::Read, EIODataType::Binary);
-
-			//char Arr[100];
-			//File.Read(Arr, 100);
-
 			UEngineSound::Load(File.GetFullPath());
 		}
-		// UEngineSound::SoundPlay("anipang_ingame_wav.wav");
 	}
 
 
