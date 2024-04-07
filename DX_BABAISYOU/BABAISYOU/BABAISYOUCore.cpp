@@ -49,7 +49,7 @@ void UBABAISYOUCore::Initialize()
 	}
 
 
-	GEngine->CreateLevel<APlayGameMode>("PlayLevel");
+	//GEngine->CreateLevel<APlayGameMode>("PlayLevel");
 	GEngine->CreateLevel<AStage1GameMode>("Stage1Level");
 	GEngine->ChangeLevel("Stage1Level");
 	int a = 0;
