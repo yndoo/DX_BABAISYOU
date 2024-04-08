@@ -33,7 +33,7 @@ void UBABAISYOUCore::Initialize()
 		}
 
 		UEngineSprite::CreateCutting("CuttingTest.png", 4, 3);
-		UEngineSprite::CreateCutting("Baba_Test.png", 21, 3);
+		UEngineSprite::CreateCutting("Baba_Test.png", 17, 3);
 	}
 
 
