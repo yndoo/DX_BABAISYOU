@@ -3,6 +3,7 @@
 #include "PlayGameMode.h"
 #include <EngineCore/EngineSprite.h>
 #include "Stage1GameMode.h"
+#include "SelectMapGameMode.h"
 
 UBABAISYOUCore::UBABAISYOUCore() 
 {
@@ -33,7 +34,8 @@ void UBABAISYOUCore::Initialize()
 		}
 
 		UEngineSprite::CreateCutting("CuttingTest.png", 4, 3);
-		UEngineSprite::CreateCutting("Baba_Test.png", 17, 3);
+		UEngineSprite::CreateCutting("BabaIdle.png", 17, 3);
+		UEngineSprite::CreateCutting("SelectMap_background.png", 3, 1);
 	}
 
 
@@ -51,6 +53,7 @@ void UBABAISYOUCore::Initialize()
 
 	//GEngine->CreateLevel<APlayGameMode>("PlayLevel");
 	GEngine->CreateLevel<AStage1GameMode>("Stage1Level");
-	GEngine->ChangeLevel("Stage1Level");
+	GEngine->CreateLevel<ASelectMapGameMode>("SelectMapLevel");
+	GEngine->ChangeLevel("SelectMapLevel");
 	int a = 0;
 }
