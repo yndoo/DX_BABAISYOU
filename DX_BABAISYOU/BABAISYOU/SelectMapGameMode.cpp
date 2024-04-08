@@ -21,11 +21,12 @@ void ASelectMapGameMode::BeginPlay()
 	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, -100.0f));
 
-	std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");
-	Back->SetActorLocation({ 0, 0, 500 });
-
 	std::shared_ptr<AMapSelecter> Selecter = GetWorld()->SpawnActor<AMapSelecter>("Selecter");
 	Selecter->SetActorLocation({ 0, 0, 400 });	//╬Й╟║╬уюс
+
+	std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");
+	Back->SetActorLocation({ 0, 0, 400 });
+
 }
 
 void ASelectMapGameMode::Tick(float _DeltaTime)
