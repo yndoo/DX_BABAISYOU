@@ -36,6 +36,7 @@ void UBABAISYOUCore::Initialize()
 		UEngineSprite::CreateCutting("CuttingTest.png", 4, 3);
 		UEngineSprite::CreateCutting("BabaIdle.png", 17, 3);
 		UEngineSprite::CreateCutting("SelectMap_background.png", 3, 1);
+		UEngineSprite::CreateCutting("Selecter.png", 3, 1);
 	}
 
 

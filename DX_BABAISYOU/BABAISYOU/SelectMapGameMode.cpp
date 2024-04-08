@@ -3,6 +3,7 @@
 #include <EngineCore/Camera.h>
 #include "Background.h"
 #include <EngineCore/EngineCore.h>
+#include "MapSelecter.h"
 
 ASelectMapGameMode::ASelectMapGameMode()
 {
@@ -22,6 +23,9 @@ void ASelectMapGameMode::BeginPlay()
 
 	std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");
 	Back->SetActorLocation({ 0, 0, 500 });
+
+	std::shared_ptr<AMapSelecter> Selecter = GetWorld()->SpawnActor<AMapSelecter>("Selecter");
+	Selecter->SetActorLocation({ 0, 0, 400 });	//╬Й╟║╬уюс
 }
 
 void ASelectMapGameMode::Tick(float _DeltaTime)

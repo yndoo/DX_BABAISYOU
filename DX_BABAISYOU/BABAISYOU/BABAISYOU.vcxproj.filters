@@ -54,6 +54,9 @@
     <ClInclude Include="Background.h">
       <Filter>SelectMapLevel\Object</Filter>
     </ClInclude>
+    <ClInclude Include="MapSelecter.h">
+      <Filter>SelectMapLevel\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -81,6 +84,9 @@
       <Filter>SelectMapLevel</Filter>
     </ClCompile>
     <ClCompile Include="Background.cpp">
+      <Filter>SelectMapLevel\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="MapSelecter.cpp">
       <Filter>SelectMapLevel\Object</Filter>
     </ClCompile>
   </ItemGroup>
