@@ -3,7 +3,7 @@
 #include "PlayGameMode.h"
 #include <EngineCore/EngineSprite.h>
 #include "Stage1GameMode.h"
-#include "SelectMapGameMode.h"
+#include "StageSelectGameMode.h"
 
 UBABAISYOUCore::UBABAISYOUCore() 
 {
