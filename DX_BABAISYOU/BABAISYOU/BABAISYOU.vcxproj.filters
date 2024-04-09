@@ -16,20 +16,20 @@
     <Filter Include="Stage1Level">
       <UniqueIdentifier>{f77e2612-9404-4c62-af24-af6690cbca16}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SelectMapLevel">
-      <UniqueIdentifier>{395f495a-7038-4bfd-ab60-858276009d86}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="SelectMapLevel\Object">
-      <UniqueIdentifier>{d1a0e5c5-709f-49b3-a21e-aaa5fc71b547}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Stage1Level\Object">
-      <UniqueIdentifier>{0f76dc36-a5a3-4455-85ba-dd766969afb8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Stage1Level\Object\PlayerObject">
-      <UniqueIdentifier>{54ae990f-5186-4401-85d0-8074b01c278c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Helper">
       <UniqueIdentifier>{7ac36892-ae70-4856-9b0b-ab099de39195}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{0f76dc36-a5a3-4455-85ba-dd766969afb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\PlayerObjects">
+      <UniqueIdentifier>{54ae990f-5186-4401-85d0-8074b01c278c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Parents">
+      <UniqueIdentifier>{cac896a0-052c-445c-beb5-7a9c7892a333}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageSelectLevel">
+      <UniqueIdentifier>{395f495a-7038-4bfd-ab60-858276009d86}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -48,22 +48,28 @@
     <ClInclude Include="Stage1GameMode.h">
       <Filter>Stage1Level</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerObject.h">
-      <Filter>Stage1Level\Object\PlayerObject</Filter>
-    </ClInclude>
-    <ClInclude Include="BabaObject.h">
-      <Filter>Stage1Level\Object\PlayerObject</Filter>
-    </ClInclude>
-    <ClInclude Include="SelectMapGameMode.h">
-      <Filter>SelectMapLevel</Filter>
-    </ClInclude>
-    <ClInclude Include="Background.h">
-      <Filter>SelectMapLevel\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="MapSelecter.h">
-      <Filter>SelectMapLevel\Object</Filter>
+    <ClInclude Include="StageSelectGameMode.h">
+      <Filter>StageSelectLevel</Filter>
     </ClInclude>
     <ClInclude Include="LerpMoveObject.h">
+      <Filter>Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="WallObject.h">
+      <Filter>Object\PlayerObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="StageSelecter.h">
+      <Filter>Object\PlayerObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="BabaObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerObject.h">
+      <Filter>Object\Parents</Filter>
+    </ClInclude>
+    <ClInclude Include="MapManager.h">
       <Filter>Helper</Filter>
     </ClInclude>
   </ItemGroup>
@@ -83,22 +89,28 @@
     <ClCompile Include="Stage1GameMode.cpp">
       <Filter>Stage1Level</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerObject.cpp">
-      <Filter>Stage1Level\Object\PlayerObject</Filter>
-    </ClCompile>
     <ClCompile Include="BabaObject.cpp">
-      <Filter>Stage1Level\Object\PlayerObject</Filter>
+      <Filter>Object\PlayerObjects</Filter>
     </ClCompile>
-    <ClCompile Include="SelectMapGameMode.cpp">
-      <Filter>SelectMapLevel</Filter>
-    </ClCompile>
-    <ClCompile Include="Background.cpp">
-      <Filter>SelectMapLevel\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="MapSelecter.cpp">
-      <Filter>SelectMapLevel\Object</Filter>
+    <ClCompile Include="StageSelectGameMode.cpp">
+      <Filter>StageSelectLevel</Filter>
     </ClCompile>
     <ClCompile Include="LerpMoveObject.cpp">
+      <Filter>Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="WallObject.cpp">
+      <Filter>Object\PlayerObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="StageSelecter.cpp">
+      <Filter>Object\PlayerObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerObject.cpp">
+      <Filter>Object\Parents</Filter>
+    </ClCompile>
+    <ClCompile Include="MapManager.cpp">
       <Filter>Helper</Filter>
     </ClCompile>
   </ItemGroup>

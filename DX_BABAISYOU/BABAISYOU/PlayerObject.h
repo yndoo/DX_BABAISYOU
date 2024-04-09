@@ -8,7 +8,7 @@
 // LerpMove 상속받고, 애니메이션 관련 기능들 추가됨
 class APlayerObject : public ALerpMoveObject
 {
-	GENERATED_BODY(AActor)
+	GENERATED_BODY(ALerpMoveObject)
 
 public:
 	APlayerObject();

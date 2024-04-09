@@ -1,17 +1,17 @@
 #include "PreCompile.h"
-#include "MapSelecter.h"
+#include "StageSelecter.h"
 
-AMapSelecter::AMapSelecter()
+AStageSelecter::AStageSelecter()
 {
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
-	//InputOn(); 부모에서 해줌
+	InputOn();
 }
 
-AMapSelecter::~AMapSelecter()
+AStageSelecter::~AStageSelecter()
 {
 }
 
-void AMapSelecter::BeginPlay()
+void AStageSelecter::BeginPlay()
 {
 	Super::BeginPlay();
 	SetActorScale3D(FVector(800.0f, 800.0f, 1.0f));
@@ -20,7 +20,7 @@ void AMapSelecter::BeginPlay()
 	Renderer->ChangeAnimation("Selecter");
 }
 
-void AMapSelecter::Tick(float _DeltaTime)
+void AStageSelecter::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 	

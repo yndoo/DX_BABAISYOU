@@ -1,9 +1,11 @@
 #include "PreCompile.h"
 #include "BabaObject.h"
+#include <EngineCore/EngineTexture.h>
 
 ABabaObject::ABabaObject()
 {
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
+	InputOn();	// 일단 켜둠
 }
 
 ABabaObject::~ABabaObject()
@@ -15,7 +17,7 @@ void ABabaObject::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetActorScale3D(FVector(400.0f, 400.0f, -100.0f));
+	SetActorScale3D(FVector(36.f, 36.f, -100.0f));	// 이미지 한 칸 크기 그대로
 	CreateObject4DirAnimations("BABA");
 
 	Renderer->ChangeAnimation("BABA_Right0");

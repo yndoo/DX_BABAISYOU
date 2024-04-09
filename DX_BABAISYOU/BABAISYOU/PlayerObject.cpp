@@ -3,7 +3,7 @@
 
 APlayerObject::APlayerObject()
 {
-	InputOn();
+
 }
 
 APlayerObject::~APlayerObject()

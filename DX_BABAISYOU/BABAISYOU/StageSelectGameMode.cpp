@@ -1,27 +1,28 @@
 #include "PreCompile.h"
-#include "SelectMapGameMode.h"
+#include "StageSelectGameMode.h"
 #include <EngineCore/Camera.h>
 #include "Background.h"
 #include <EngineCore/EngineCore.h>
-#include "MapSelecter.h"
+#include "StageSelecter.h"
 
-ASelectMapGameMode::ASelectMapGameMode()
+AStageSelectGameMode::AStageSelectGameMode()
 {
 	InputOn();
 }
 
-ASelectMapGameMode::~ASelectMapGameMode()
+AStageSelectGameMode::~AStageSelectGameMode()
 {
 }
 
-void ASelectMapGameMode::BeginPlay()
+void AStageSelectGameMode::BeginPlay()
 {
 	Super::BeginPlay();
+	Stage1MapSetting();
 
 	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, -100.0f));
 
-	std::shared_ptr<AMapSelecter> Selecter = GetWorld()->SpawnActor<AMapSelecter>("Selecter");
+	std::shared_ptr<AStageSelecter> Selecter = GetWorld()->SpawnActor<AStageSelecter>("Selecter");
 	Selecter->SetActorLocation({ 0, 0, 400 });	//얘가앞임
 
 	std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");
@@ -29,11 +30,16 @@ void ASelectMapGameMode::BeginPlay()
 
 }
 
-void ASelectMapGameMode::Tick(float _DeltaTime)
+void AStageSelectGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 	if (true == IsDown(VK_SPACE))
 	{
 		GEngine->ChangeLevel("Stage1Level");
 	}
+}
+
+void AStageSelectGameMode::Stage1MapSetting()
+{
+	//MapManager::Stage1로 체크용 맵 세팅
 }

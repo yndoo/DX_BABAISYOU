@@ -35,7 +35,8 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="MapSelecter.h">
+    <ClInclude Include="MapManager.h" />
+    <ClInclude Include="StageSelecter.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -45,7 +46,7 @@
     </ClInclude>
     <ClInclude Include="PlayGameMode.h" />
     <ClInclude Include="PreCompile.h" />
-    <ClInclude Include="SelectMapGameMode.h">
+    <ClInclude Include="StageSelectGameMode.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -54,6 +55,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TestObject.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="WallObject.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -75,7 +80,8 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="MapSelecter.cpp">
+    <ClCompile Include="MapManager.cpp" />
+    <ClCompile Include="StageSelecter.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -90,7 +96,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="SelectMapGameMode.cpp">
+    <ClCompile Include="StageSelectGameMode.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -99,6 +105,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TestObject.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="WallObject.cpp">
       <SubType>
       </SubType>
     </ClCompile>
