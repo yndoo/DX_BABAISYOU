@@ -1,8 +1,9 @@
 #pragma once
-#include "Object.h"
-class ABabaObject : public Object
+#include "PlayerObject.h"
+
+class ABabaObject : public APlayerObject
 {
-	GENERATED_BODY(Object)
+	GENERATED_BODY(APlayerObject)
 public:
 	ABabaObject();
 	~ABabaObject();
@@ -16,6 +17,6 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 private:
-	
+	void CreateBabaAnimations();
 };
 

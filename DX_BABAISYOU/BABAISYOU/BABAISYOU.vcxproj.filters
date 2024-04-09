@@ -16,14 +16,17 @@
     <Filter Include="Stage1Level">
       <UniqueIdentifier>{f77e2612-9404-4c62-af24-af6690cbca16}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Stage1Level\Object">
-      <UniqueIdentifier>{54ae990f-5186-4401-85d0-8074b01c278c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SelectMapLevel">
       <UniqueIdentifier>{395f495a-7038-4bfd-ab60-858276009d86}</UniqueIdentifier>
     </Filter>
     <Filter Include="SelectMapLevel\Object">
       <UniqueIdentifier>{d1a0e5c5-709f-49b3-a21e-aaa5fc71b547}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stage1Level\Object">
+      <UniqueIdentifier>{0f76dc36-a5a3-4455-85ba-dd766969afb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stage1Level\Object\PlayerObject">
+      <UniqueIdentifier>{54ae990f-5186-4401-85d0-8074b01c278c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -42,11 +45,11 @@
     <ClInclude Include="Stage1GameMode.h">
       <Filter>Stage1Level</Filter>
     </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Stage1Level\Object</Filter>
+    <ClInclude Include="PlayerObject.h">
+      <Filter>Stage1Level\Object\PlayerObject</Filter>
     </ClInclude>
     <ClInclude Include="BabaObject.h">
-      <Filter>Stage1Level\Object</Filter>
+      <Filter>Stage1Level\Object\PlayerObject</Filter>
     </ClInclude>
     <ClInclude Include="SelectMapGameMode.h">
       <Filter>SelectMapLevel</Filter>
@@ -74,11 +77,11 @@
     <ClCompile Include="Stage1GameMode.cpp">
       <Filter>Stage1Level</Filter>
     </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>Stage1Level\Object</Filter>
+    <ClCompile Include="PlayerObject.cpp">
+      <Filter>Stage1Level\Object\PlayerObject</Filter>
     </ClCompile>
     <ClCompile Include="BabaObject.cpp">
-      <Filter>Stage1Level\Object</Filter>
+      <Filter>Stage1Level\Object\PlayerObject</Filter>
     </ClCompile>
     <ClCompile Include="SelectMapGameMode.cpp">
       <Filter>SelectMapLevel</Filter>
