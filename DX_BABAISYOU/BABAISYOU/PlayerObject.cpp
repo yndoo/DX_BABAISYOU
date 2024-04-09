@@ -21,13 +21,25 @@ void APlayerObject::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 
 	Move(_DeltaTime);
+	if (true == IsMove)
+	{
+		LerpMove(_DeltaTime);
+	}
+	
 
-	if (true == IsPress('Z'))
+	if (true == IsPress('Z') && false == IsMove)
 	{
 		if (true == MoveStack.empty())
 		{
 			return;
 		}
+		IsMove = true;
+		InputCheck = true;
+
+		// 이동 : 현재 방향의 반대로 이동
+		ReverseMoveSetting(NewInputDir, _DeltaTime);
+		
+		// 애니메이션에 필요한 정보 : 이전 상태의 정보로 되돌리고 삭제
 		NewInputDir = MoveStack.top().second;
 		AnimationNumber = MoveStack.top().first;
 		MoveStack.pop();
@@ -36,8 +48,10 @@ void APlayerObject::Tick(float _DeltaTime)
 
 	if (true == InputCheck)
 	{
+		// 새로운 입력의 이동을 반영하기 전 정보를 넣음
+		MoveStack.push(std::make_pair(AnimationNumber, CurDir)); 
+
 		AnimationNumber = (AnimationNumber + 1) % 4;
-		MoveStack.push(std::make_pair(AnimationNumber, NewInputDir));
 	}
 }
 

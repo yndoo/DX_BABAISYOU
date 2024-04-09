@@ -51,9 +51,6 @@
     <ClInclude Include="StageSelectGameMode.h">
       <Filter>StageSelectLevel</Filter>
     </ClInclude>
-    <ClInclude Include="LerpMoveObject.h">
-      <Filter>Helper</Filter>
-    </ClInclude>
     <ClInclude Include="WallObject.h">
       <Filter>Object\PlayerObjects</Filter>
     </ClInclude>
@@ -69,14 +66,17 @@
     <ClInclude Include="MapManager.h">
       <Filter>Helper</Filter>
     </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Helper</Filter>
-    </ClInclude>
     <ClInclude Include="BabaObject.h">
       <Filter>Object\PlayerObjects</Filter>
     </ClInclude>
     <ClInclude Include="ContentsEnum.h">
       <Filter>Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="LerpMoveObject.h">
+      <Filter>Object\Parents</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Object\Parents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -101,9 +101,6 @@
     <ClCompile Include="StageSelectGameMode.cpp">
       <Filter>StageSelectLevel</Filter>
     </ClCompile>
-    <ClCompile Include="LerpMoveObject.cpp">
-      <Filter>Helper</Filter>
-    </ClCompile>
     <ClCompile Include="WallObject.cpp">
       <Filter>Object\PlayerObjects</Filter>
     </ClCompile>
@@ -119,8 +116,11 @@
     <ClCompile Include="MapManager.cpp">
       <Filter>Helper</Filter>
     </ClCompile>
+    <ClCompile Include="LerpMoveObject.cpp">
+      <Filter>Object\Parents</Filter>
+    </ClCompile>
     <ClCompile Include="Object.cpp">
-      <Filter>Helper</Filter>
+      <Filter>Object\Parents</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

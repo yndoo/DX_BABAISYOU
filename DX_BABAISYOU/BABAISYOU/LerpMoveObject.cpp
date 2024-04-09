@@ -47,8 +47,7 @@ void ALerpMoveObject::Move(float _DeltaTime)
 			InputCheck = true;
 		}
 	}
-	
-	LerpMove(_DeltaTime);
+	//LerpMove(_DeltaTime);
 }
 
 void ALerpMoveObject::AddNextActorLocation(FVector _Add)
@@ -75,4 +74,32 @@ void ALerpMoveObject::LerpMove(float _DeltaTime)
 FVector ALerpMoveObject::LerpCal(float _Time)
 {
 	return CurActorLocation * (1 - _Time) + NextActorLocation * _Time;
+}
+
+void ALerpMoveObject::ReverseMoveSetting(EInputDir _Dir, float _DeltaTime)
+{
+	IsMove = true;
+	// 애니메이션 "방향"은 이전꺼여야 함.
+	// 이동은 반대로.
+	switch (_Dir)
+	{
+	case EInputDir::Right:
+		AddNextActorLocation(FVector::Left * TileSize);
+		NewInputDir = EInputDir::Right;	
+		break;
+	case EInputDir::Left:
+		AddNextActorLocation(FVector::Right * TileSize);
+		NewInputDir = EInputDir::Left;
+		break;
+	case EInputDir::Up:
+		AddNextActorLocation(FVector::Down * TileSize);
+		NewInputDir = EInputDir::Up;
+		break;
+	case EInputDir::Down:
+		AddNextActorLocation(FVector::Up * TileSize);
+		NewInputDir = EInputDir::Down;
+		break;
+	default:
+		break;
+	}
 }
