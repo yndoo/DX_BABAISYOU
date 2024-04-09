@@ -13,9 +13,10 @@ public:
 	AStage1GameMode& operator=(const AStage1GameMode& _Other) = delete;
 	AStage1GameMode& operator=(AStage1GameMode&& _Other) noexcept = delete;
 protected:
-
-private:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime);
+
+private:
+	void Stage1MapSetting();
 };
 

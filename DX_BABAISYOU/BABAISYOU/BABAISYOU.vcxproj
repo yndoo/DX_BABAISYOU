@@ -31,11 +31,16 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ContentsEnum.h" />
     <ClInclude Include="LerpMoveObject.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="MapManager.h" />
+    <ClInclude Include="Object.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="StageSelecter.h">
       <SubType>
       </SubType>
@@ -81,6 +86,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MapManager.cpp" />
+    <ClCompile Include="Object.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="StageSelecter.cpp">
       <SubType>
       </SubType>

@@ -16,10 +16,7 @@ ABabaObject::~ABabaObject()
 void ABabaObject::BeginPlay()
 {
 	Super::BeginPlay();
-
-	SetActorScale3D(FVector(36.f, 36.f, -100.0f));	// 이미지 한 칸 크기 그대로
 	CreateObject4DirAnimations("BABA");
-
 	Renderer->ChangeAnimation("BABA_Right0");
 }
 
@@ -30,8 +27,7 @@ void ABabaObject::Tick(float _DeltaTime)
 	// 입력이 있었으면 -> 애니메이션 업데이트해야함
 	if (true == InputCheck)
 	{
-		InputCheck = false;
-		AnimationNumber = (AnimationNumber + 1) % 4;
+		InputCheck = false;	// Super먼저 돌기 때문에 여기서 false로 바꿔줌.
 		Renderer->ChangeAnimation(GetAnimationName("BABA", AnimationNumber));
 	}
 }

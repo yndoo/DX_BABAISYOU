@@ -1,5 +1,12 @@
 #pragma once
 
+enum class EMapObjects
+{
+	NONE,
+	BABA,
+	WALL,
+};
+
 class MapManager
 {
 public:

@@ -63,13 +63,19 @@
     <ClInclude Include="StageSelecter.h">
       <Filter>Object\PlayerObjects</Filter>
     </ClInclude>
-    <ClInclude Include="BabaObject.h">
-      <Filter>Object</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerObject.h">
       <Filter>Object\Parents</Filter>
     </ClInclude>
     <ClInclude Include="MapManager.h">
+      <Filter>Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="BabaObject.h">
+      <Filter>Object\PlayerObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsEnum.h">
       <Filter>Helper</Filter>
     </ClInclude>
   </ItemGroup>
@@ -111,6 +117,9 @@
       <Filter>Object\Parents</Filter>
     </ClCompile>
     <ClCompile Include="MapManager.cpp">
+      <Filter>Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
       <Filter>Helper</Filter>
     </ClCompile>
   </ItemGroup>

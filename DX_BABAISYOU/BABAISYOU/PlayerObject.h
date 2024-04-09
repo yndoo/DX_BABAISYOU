@@ -32,6 +32,7 @@ protected:
 	float AnimationInter = 0.2f;
 	EInputDir CurDir = EInputDir::Right;
 	std::vector<float> AnimationInterVec = { AnimationInter , AnimationInter , AnimationInter };
+	std::stack<std::pair<int, EInputDir>> MoveStack;	//되돌려질 스택이 필요함
 private:
 };
 

@@ -1,6 +1,5 @@
 #pragma once
 #include <EngineCore/GameMode.h>
-#include "MapManager.h"
 
 class AStageSelectGameMode : public AGameMode
 {
@@ -17,7 +16,6 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime);
 
-	void Stage1MapSetting();
 private:
 
 };

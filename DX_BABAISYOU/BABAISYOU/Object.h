@@ -1,0 +1,29 @@
+#pragma once
+#include <EngineCore/Actor.h>
+#include <stack>
+#include "ContentsEnum.h"
+
+/////////////////////
+// 엥???? 2차원 배열 관련은 일단 보류
+/////////////////////
+
+// 맵에 표시되는 모든 오브젝트
+class AObject : public AActor
+{
+	GENERATED_BODY(AActor)
+public:
+	AObject();
+	~AObject();
+
+	AObject(const AObject& _Other) = delete;
+	AObject(AObject&& _Other) noexcept = delete;
+	AObject& operator=(const AObject& _Other) = delete;
+	AObject& operator=(AObject&& _Other) noexcept = delete;
+
+protected:
+
+private:
+
+
+};
+

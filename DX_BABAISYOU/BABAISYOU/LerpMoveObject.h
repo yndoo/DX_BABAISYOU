@@ -1,19 +1,12 @@
 #pragma once
-#include <EngineCore/Actor.h>
+#include "Object.h"
+#include "ContentsEnum.h"
 
-enum class EInputDir
-{
-	None,
-	Right,
-	Left,
-	Up,
-	Down,
-};
 
 // 입력받아 이동하는 기능
-class ALerpMoveObject : public AActor
+class ALerpMoveObject : public AObject
 {
-	GENERATED_BODY(AActor)
+	GENERATED_BODY(AObject)
 public:
 	ALerpMoveObject();
 	~ALerpMoveObject();

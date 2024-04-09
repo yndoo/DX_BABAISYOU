@@ -15,7 +15,8 @@ void ABackground::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetActorScale3D(FVector(1024.0f, 1024.0f, 1.0f));
+	//SetActorScale3D(FVector(1280.0f * 1.3f, 720.0f * 2.45f, 1.0f));
+	SetActorScale3D(FVector(1280.0f * 1.3f * 0.9f, 720.0f * 2.45f * 0.8f, 1.0f));
 	FVector Test = GEngine->EngineWindow.GetWindowScale();
 	//FVector(1280.0f, 720.0f, 100.0f)
 	Renderer->SetSprite("SelectMap_background.png", 2);

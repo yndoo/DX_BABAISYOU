@@ -21,6 +21,24 @@ void APlayerObject::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 
 	Move(_DeltaTime);
+
+	if (true == IsPress('Z'))
+	{
+		if (true == MoveStack.empty())
+		{
+			return;
+		}
+		NewInputDir = MoveStack.top().second;
+		AnimationNumber = MoveStack.top().first;
+		MoveStack.pop();
+		return;
+	}
+
+	if (true == InputCheck)
+	{
+		AnimationNumber = (AnimationNumber + 1) % 4;
+		MoveStack.push(std::make_pair(AnimationNumber, NewInputDir));
+	}
 }
 
 bool APlayerObject::DirCheck()
