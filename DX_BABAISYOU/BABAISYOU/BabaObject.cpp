@@ -10,42 +10,26 @@ ABabaObject::~ABabaObject()
 {
 }
 
-void ABabaObject::CreateBabaAnimations()
-{
-	int j = 1;
-	for (int i = j; i < j + 4; i++)	//BabaIdle_Right0 ~ BabaIdle_Right3
-	{
-		Renderer->CreateAnimation("BabaIdle_Right" + std::to_string(i - j), "BabaIdle.png", BabaAnimationInterVec, { i, i + 17, i + 17 * 2 }, true);
-	}
-	j += 4;
-	for (int i = j; i < j + 4; i++)	//BabaIdle_Up0 ~ BabaIdle_Up3 
-	{
-		Renderer->CreateAnimation("BabaIdle_Up" + std::to_string(i - j), "BabaIdle.png", BabaAnimationInterVec, { i, i + 17, i + 17 * 2 }, true);
-	}
-	j += 4;
-	for (int i = j; i < j + 4; i++)	//BabaIdle_Left0 ~ BabaIdle_Left3
-	{
-		Renderer->CreateAnimation("BabaIdle_Left" + std::to_string(i - j), "BabaIdle.png", BabaAnimationInterVec, { i, i + 17, i + 17 * 2 }, true);
-	}
-	j += 4;
-	for (int i = j; i < j + 4; i++)	//BabaIdle_Down0 ~ BabaIdle_Down3
-	{
-		Renderer->CreateAnimation("BabaIdle_Down" + std::to_string(i - j), "BabaIdle.png", BabaAnimationInterVec, { i, i + 17, i + 17 * 2 }, true);
-	}
-}
 
 void ABabaObject::BeginPlay()
 {
 	Super::BeginPlay();
 
 	SetActorScale3D(FVector(400.0f, 400.0f, -100.0f));
-	CreateBabaAnimations();
+	CreateObject4DirAnimations("BABA");
 
-	Renderer->ChangeAnimation("BabaIdle_Right0");
+	Renderer->ChangeAnimation("BABA_Right0");
 }
 
 void ABabaObject::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
+	// 입력이 있었으면 -> 애니메이션 업데이트해야함
+	if (true == InputCheck)
+	{
+		InputCheck = false;
+		AnimationNumber = (AnimationNumber + 1) % 4;
+		Renderer->ChangeAnimation(GetAnimationName("BABA", AnimationNumber));
+	}
 }

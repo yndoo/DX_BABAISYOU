@@ -28,6 +28,9 @@
     <Filter Include="Stage1Level\Object\PlayerObject">
       <UniqueIdentifier>{54ae990f-5186-4401-85d0-8074b01c278c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Helper">
+      <UniqueIdentifier>{7ac36892-ae70-4856-9b0b-ab099de39195}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BABAISYOUCore.h">
@@ -60,6 +63,9 @@
     <ClInclude Include="MapSelecter.h">
       <Filter>SelectMapLevel\Object</Filter>
     </ClInclude>
+    <ClInclude Include="LerpMoveObject.h">
+      <Filter>Helper</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -91,6 +97,9 @@
     </ClCompile>
     <ClCompile Include="MapSelecter.cpp">
       <Filter>SelectMapLevel\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="LerpMoveObject.cpp">
+      <Filter>Helper</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

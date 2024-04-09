@@ -1,8 +1,8 @@
 #pragma once
-#include <EngineCore/Actor.h>
 #include <EngineCore/SpriteRenderer.h>
+#include "LerpMoveObject.h"
 
-class AMapSelecter : public AActor
+class AMapSelecter : public ALerpMoveObject
 {
 	GENERATED_BODY(AActor)
 public:

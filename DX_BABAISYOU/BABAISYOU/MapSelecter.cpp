@@ -4,7 +4,7 @@
 AMapSelecter::AMapSelecter()
 {
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
-	//InputOn();
+	//InputOn(); 부모에서 해줌
 }
 
 AMapSelecter::~AMapSelecter()
@@ -23,6 +23,6 @@ void AMapSelecter::BeginPlay()
 void AMapSelecter::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	AddActorRotation(FVector{ 0.f,0.f,0.f,0.1f });
-	int b = 0;
+	
+	Move(_DeltaTime);
 }
