@@ -21,14 +21,13 @@ Index2D AObject::PosToIndex(FVector _Pos)
 {
 	Index2D Index;
 
-	//_Pos -= WinScale.Half2D();	// øﬁ¬  ¿ß∑Œ ∂Ø±‚±‚
+	// ¿Œµ¶Ω∫ ¥Ÿ∞∞¿Ã øﬁ¬  ¿ß∑Œ ∂Ø±‚±‚
+	_Pos.X += WinScale.hX();	
+	_Pos.Y -= WinScale.hY();
 	_Pos += FVector(18, 18);	// «— ≈∏¿œ¿« ¡ﬂæ”¿∏∑Œ ∂Ø∞‹µ“
 
-	/*Index.X = WinScale.X / _Pos.X;
-	Index.Y = WinScale.Y / _Pos.Y;*/
-
 	Index.X = _Pos.X / 36;
-	Index.Y = _Pos.Y / 36;
+	Index.Y = -_Pos.Y / 36;
 
 	return Index;
 }
