@@ -40,6 +40,7 @@ void UBABAISYOUCore::Initialize()
 
 		UEngineSprite::CreateCutting("SelectMap_background.png", 3, 1);
 		UEngineSprite::CreateCutting("Selecter.png", 3, 1);
+		UEngineSprite::CreateCutting("testmap_back.png", 1, 1);
 	}
 
 

@@ -20,6 +20,8 @@ void ABabaObject::BeginPlay()
 
 	CreateObject4DirAnimations("BABA");
 	Renderer->ChangeAnimation("BABA_Right0");
+
+	SetActorLocation(IndexToPos(Index2D{0,0}));
 }
 
 void ABabaObject::Tick(float _DeltaTime)

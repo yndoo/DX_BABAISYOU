@@ -43,5 +43,6 @@ void ABackground::SelectStageSetting()
 void ABackground::Stage1Setting()
 {
 	// ╬Й╢б ©жема╝
-	Renderer->SetSprite("Back_One.png");
+	//Renderer->SetSprite("testmap_back_mini.png");
+ 	Renderer->SetSprite("testmap_back.png");
 }
