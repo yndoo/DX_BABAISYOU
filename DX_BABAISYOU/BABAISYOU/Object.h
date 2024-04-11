@@ -29,8 +29,9 @@ protected:
 	void BeginPlay() override;
 
 	Index2D PosToIndex(FVector _Pos);
+	FVector IndexToPos(Index2D _Index);
 private:
-	FVector WinScale = FVector::Zero;
+	FVector MapScale = FVector::Zero;
 
 };
 

@@ -4,6 +4,8 @@
 #include "BabaObject.h"
 #include "MapManager.h"
 #include "WallObject.h"
+#include "Background.h"
+#include "ContentsEnum.h"
 
 AStage1GameMode::AStage1GameMode()
 {
@@ -25,6 +27,13 @@ void AStage1GameMode::BeginPlay()
 	Baba->SetActorLocation(FVector(18, 18));
 	Baba->SetActorScale3D(FVector(36.f, 36.f, 0.0f));	// 이미지 한 칸 크기 그대로
 	Baba->BeginPosSetting();
+	Baba->SetOrder(ERenderOrder::FrontTile);
+
+	//std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");
+	//Back->SetActorLocation({ 0, 0, 400 });
+	//Back->SetActorScale3D({ 864,648,0 });
+	//Back->Stage1Setting();
+	//Back->SetOrder(ERenderOrder::Background);
 
 	//std::shared_ptr<AWallObject> WallTest = GetWorld()->SpawnActor<AWallObject>("Wall");
 	//WallTest->SetActorScale3D(FVector(36.f, 36.f, -100.0f));

@@ -14,20 +14,33 @@ AObject::~AObject()
 void AObject::BeginPlay()
 {
 	Super::BeginPlay();
-	WinScale = GEngine->EngineWindow.GetWindowScale();
+	MapScale = FVector(864, 648);
 }
 
 Index2D AObject::PosToIndex(FVector _Pos)
 {
 	Index2D Index;
 
-	// 인덱스 다같이 왼쪽 위로 땡기기
-	_Pos.X += WinScale.hX();	
-	_Pos.Y -= WinScale.hY();
-	_Pos += FVector(18, 18);	// 한 타일의 중앙으로 땡겨둠
+	// 인덱스 다같이 왼쪽 아래로 땡기려면 좌표를 오른쪽 위로 땡긴다고 생각하고 정리
+	_Pos.X += MapScale.hX();	
+	_Pos.Y += MapScale.hY();
 
 	Index.X = _Pos.X / 36;
-	Index.Y = -_Pos.Y / 36;
+	Index.Y = _Pos.Y / 36;
 
 	return Index;
+}
+
+FVector AObject::IndexToPos(Index2D _Index)
+{
+	FVector Pos = FVector::Zero;
+	Pos.X -= MapScale.hX();
+	Pos.Y -= MapScale.hY();
+
+	Pos.X += _Index.X * 36;
+	Pos.Y += _Index.Y * 36;
+
+	Pos += FVector(18, 18);
+
+	return Pos;
 }

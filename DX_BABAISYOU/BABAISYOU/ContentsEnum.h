@@ -12,7 +12,7 @@ enum class EInputDir
 enum class ERenderOrder
 {
 	NONE,
-	Background,
 	BackTile,
 	FrontTile,
+	Background,
 };

@@ -30,6 +30,7 @@ void AStageSelectGameMode::BeginPlay()
 	std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");
 	Back->SetActorLocation({ 0, 0, 400 });
 	Back->SetActorScale3D(FVector(1280.0f * 1.3f * 0.9f, 720.0f * 2.45f * 0.8f, 1.0f));
+	Back->SelectStageSetting();
 	//Back->SetOrder(ERenderOrder::Background);
 }
 

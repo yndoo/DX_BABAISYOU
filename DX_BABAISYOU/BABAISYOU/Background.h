@@ -13,6 +13,9 @@ public:
 	ABackground(ABackground&& _Other) noexcept = delete;
 	ABackground& operator=(const ABackground& _Other) = delete;
 	ABackground& operator=(ABackground&& _Other) noexcept = delete;
+
+	void SelectStageSetting();
+	void Stage1Setting();
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
