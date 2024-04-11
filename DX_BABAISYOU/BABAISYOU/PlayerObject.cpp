@@ -13,7 +13,13 @@ APlayerObject::~APlayerObject()
 void APlayerObject::BeginPlay()
 {
 	Super::BeginPlay();
-	//CurActorLocation = GetActorLocation();
+	BeginPosSetting();
+}
+
+void APlayerObject::BeginPosSetting()
+{
+	// 움직일 애들 Location 설정해주고나서 다시 해줘야함.
+	CurActorLocation = GetActorLocation();
 }
 
 void APlayerObject::Tick(float _DeltaTime)

@@ -24,6 +24,7 @@ void AStage1GameMode::BeginPlay()
 	std::shared_ptr<ABabaObject> Baba = GetWorld()->SpawnActor<ABabaObject>("Baba");
 	Baba->SetActorLocation(FVector(18, 18));
 	Baba->SetActorScale3D(FVector(36.f, 36.f, 0.0f));	// 이미지 한 칸 크기 그대로
+	Baba->BeginPosSetting();
 
 	//std::shared_ptr<AWallObject> WallTest = GetWorld()->SpawnActor<AWallObject>("Wall");
 	//WallTest->SetActorScale3D(FVector(36.f, 36.f, -100.0f));

@@ -18,6 +18,8 @@ public:
 	APlayerObject(APlayerObject&& _Other) noexcept = delete;
 	APlayerObject& operator=(const APlayerObject& _Other) = delete;
 	APlayerObject& operator=(APlayerObject&& _Other) noexcept = delete;
+
+	void BeginPosSetting();
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;

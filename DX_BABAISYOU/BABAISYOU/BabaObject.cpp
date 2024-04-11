@@ -30,7 +30,7 @@ void ABabaObject::Tick(float _DeltaTime)
 	{
 		Index2D Index = PosToIndex(GetActorLocation());
 		FVector Res = FVector(Index.X, Index.Y);
-		std::string Msg = std::format("Index : {}\n", FVector(Index.X, Index.Y).ToString());
+		std::string Msg = std::format("Index : {}\n", Res.ToString());
 		UEngineDebugMsgWindow::PushMsg(Msg);
 	}
 

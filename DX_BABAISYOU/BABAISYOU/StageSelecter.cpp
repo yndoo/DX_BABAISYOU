@@ -16,7 +16,7 @@ void AStageSelecter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//SetActorScale3D(FVector(36, 36, 1));
+	SetActorScale3D(FVector(36, 36, 1));
 
 	Renderer->SetSprite("Selecter.png");
 	Renderer->CreateAnimation("Selecter", "Selecter.png", 0.2f);
