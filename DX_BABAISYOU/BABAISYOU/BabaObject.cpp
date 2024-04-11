@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "BabaObject.h"
 #include <EngineCore/EngineTexture.h>
+#include <EngineCore/EngineDebugMsgWindow.h>
 
 ABabaObject::ABabaObject()
 {
@@ -16,6 +17,7 @@ ABabaObject::~ABabaObject()
 void ABabaObject::BeginPlay()
 {
 	Super::BeginPlay();
+
 	CreateObject4DirAnimations("BABA");
 	Renderer->ChangeAnimation("BABA_Right0");
 }
@@ -23,6 +25,19 @@ void ABabaObject::BeginPlay()
 void ABabaObject::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+
+	{
+		//Index2D Index = PosToIndex(GetActorLocation());
+		//FVector Res = FVector(Index.X, Index.Y);
+		/*std::string Msg = std::format("Index : {}\n", FVector(Index.X, Index.Y).ToString());
+		UEngineDebugMsgWindow::PushMsg(Msg);*/
+	}
+
+	{
+		std::string Msg = std::format("Pos : {}\n", GetActorLocation().ToString());
+		UEngineDebugMsgWindow::PushMsg(Msg);
+	}
 
 	// 입력이 있었으면 -> 애니메이션 업데이트해야함
 	if (true == InputCheck)

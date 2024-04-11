@@ -1,7 +1,7 @@
 #pragma once
 #include "Object.h"
 #include "ContentsEnum.h"
-
+#include <stack>
 
 // 입력에 의해 Lerp 이동하는 기능
 class ALerpMoveObject : public AObject
@@ -16,6 +16,8 @@ public:
 	ALerpMoveObject& operator=(const ALerpMoveObject& _Other) = delete;
 	ALerpMoveObject& operator=(ALerpMoveObject&& _Other) noexcept = delete;
 protected:
+	void BeginPlay() override;
+
 	void Move(float _DeltaTime);
 	void ReverseMoveSetting(EInputDir _Dir, float _DeltaTime);
 	void AddNextActorLocation(FVector _Add);

@@ -1,10 +1,10 @@
 #pragma once
 #include <EngineCore/SpriteRenderer.h>
-#include "LerpMoveObject.h"
+#include "PlayerObject.h"
 
-class AStageSelecter : public ALerpMoveObject
+class AStageSelecter : public APlayerObject
 {
-	GENERATED_BODY(AActor)
+	GENERATED_BODY(APlayerObject)
 public:
 	AStageSelecter();
 	~AStageSelecter();

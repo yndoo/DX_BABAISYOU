@@ -13,8 +13,9 @@ public:
 	AWallObject& operator=(const AWallObject& _Other) = delete;
 	AWallObject& operator=(AWallObject&& _Other) noexcept = delete;
 protected:
-
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
 private:
-
+	void CreateWallAnimations();
 };
 

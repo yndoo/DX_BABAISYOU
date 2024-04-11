@@ -3,13 +3,17 @@
 
 ALerpMoveObject::ALerpMoveObject()
 {
-	 InputOn();
+	 //InputOn();
 }
 
 ALerpMoveObject::~ALerpMoveObject()
 {
 }
 
+void ALerpMoveObject::BeginPlay()
+{
+	Super::BeginPlay();
+}
 
 void ALerpMoveObject::Move(float _DeltaTime)
 {

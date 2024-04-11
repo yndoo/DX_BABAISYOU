@@ -26,15 +26,18 @@ void UBABAISYOUCore::Initialize()
 			UEngineTexture::Load(File.GetFullPath());
 		}
 
-		std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
-		for (size_t i = 0; i < Directorys.size(); i++)
-		{
-			std::string Name = Directorys[i].GetFolderName();
-			UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
-		}
+		//std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+		//for (size_t i = 0; i < Directorys.size(); i++)
+		//{
+		//	std::string Name = Directorys[i].GetFolderName();
+		//	UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
+		//}
 
 		UEngineSprite::CreateCutting("CuttingTest.png", 4, 3);
+
 		UEngineSprite::CreateCutting("BABA.png", 17, 3);
+		UEngineSprite::CreateCutting("WALL.png", 18, 3);
+
 		UEngineSprite::CreateCutting("SelectMap_background.png", 3, 1);
 		UEngineSprite::CreateCutting("Selecter.png", 3, 1);
 	}

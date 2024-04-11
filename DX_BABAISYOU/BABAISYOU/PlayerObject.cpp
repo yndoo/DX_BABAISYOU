@@ -13,13 +13,13 @@ APlayerObject::~APlayerObject()
 void APlayerObject::BeginPlay()
 {
 	Super::BeginPlay();
-	CurActorLocation = GetActorLocation();
+	//CurActorLocation = GetActorLocation();
 }
 
 void APlayerObject::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-
+	DirCheck();
 	Move(_DeltaTime);
 	if (true == IsMove)
 	{

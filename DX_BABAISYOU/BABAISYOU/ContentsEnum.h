@@ -8,3 +8,11 @@ enum class EInputDir
 	Up,
 	Down,
 };
+
+enum class ERenderOrder
+{
+	NONE,
+	Background,
+	BackTile,
+	FrontTile,
+};
