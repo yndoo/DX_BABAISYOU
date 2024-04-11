@@ -26,11 +26,11 @@ public:
 	AObject& operator=(AObject&& _Other) noexcept = delete;
 
 protected:
-	//void BeginPlay() override;
+	void BeginPlay() override;
 
-	//Index2D PosToIndex(FVector _Pos);
+	Index2D PosToIndex(FVector _Pos);
 private:
-	//FVector WinScale = FVector::Zero;
+	FVector WinScale = FVector::Zero;
 
 };
 
