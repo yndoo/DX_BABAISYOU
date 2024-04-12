@@ -6,6 +6,7 @@
 AObject::AObject()
 {
 	Root = CreateDefaultSubObject<UDefaultSceneComponent>("RendererRoot");
+	Root->SetScale(FVector(100, 1, 1, 1));
 	SetRoot(Root);
 }
 
