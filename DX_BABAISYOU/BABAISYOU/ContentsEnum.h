@@ -16,3 +16,10 @@ enum class ERenderOrder
 	FrontTile,
 	Background,
 };
+
+enum class EMapObjects
+{
+	NONE,
+	BABA,
+	WALL,
+};

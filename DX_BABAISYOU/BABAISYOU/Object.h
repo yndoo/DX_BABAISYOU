@@ -33,14 +33,15 @@ public:
 		MapScale = _Scale;
 	}
 
+	Index2D CalPosToIndex(FVector _Pos);
+	FVector CalIndexToPos(Index2D _Index);
 protected:
 	void BeginPlay() override;
 
 	USpriteRenderer* Renderer = nullptr;
 	UDefaultSceneComponent* Root = nullptr;
 
-	Index2D PosToIndex(FVector _Pos);
-	FVector IndexToPos(Index2D _Index);
+
 private:
 	FVector MapScale = FVector::Zero;
 

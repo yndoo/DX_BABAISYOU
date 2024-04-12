@@ -6,6 +6,7 @@
 #include "WallObject.h"
 #include "Background.h"
 #include "ContentsEnum.h"
+#include "ContentsConstValue.h"
 
 AStage1GameMode::AStage1GameMode()
 {
@@ -24,15 +25,14 @@ void AStage1GameMode::BeginPlay()
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, -100.0f));
 
 	std::shared_ptr<ABabaObject> Baba = GetWorld()->SpawnActor<ABabaObject>("Baba");
-	//Baba->SetActorLocation(FVector(18, 18));
 	Baba->SetActorScale3D(FVector(36.f, 36.f, 0.0f));	// 이미지 한 칸 크기 그대로
 	Baba->BeginPosSetting();
 	Baba->SetOrder(ERenderOrder::FrontTile);
 
 
 	std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");
+	Back->SetActorScale3D(UContentsConstValue::Stage1MapScale);
 	Back->SetActorLocation({ 0, 0, 400 });
-	Back->SetActorScale3D({ 864,648,0 });
 	Back->Stage1Setting();
 	Back->SetOrder(ERenderOrder::Background);
 

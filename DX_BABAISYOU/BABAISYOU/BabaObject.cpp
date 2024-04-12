@@ -6,7 +6,6 @@
 
 ABabaObject::ABabaObject()
 {
-	//Root->SetScale(FVector(1000, 1, 1, 1));
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
 	Renderer->SetupAttachment(Root);
 
@@ -25,7 +24,7 @@ void ABabaObject::BeginPlay()
 	CreateObject4DirAnimations("BABA");
 	Renderer->ChangeAnimation("BABA_Right0");
 
-	SetActorLocation(IndexToPos(Index2D{0,0}));
+	SetActorLocation(CalIndexToPos(Index2D{0,0}));
 }
 
 void ABabaObject::Tick(float _DeltaTime)
@@ -34,12 +33,12 @@ void ABabaObject::Tick(float _DeltaTime)
 
 
 	{
-		Index2D Index = PosToIndex(GetActorLocation());
+		Index2D Index = CalPosToIndex(GetActorLocation());
 		FVector Res = FVector(Index.X, Index.Y);
 		std::string Msg = std::format("Index : {}\n", Res.ToString());
 		UEngineDebugMsgWindow::PushMsg(Msg);
 
-		FVector Pos = IndexToPos(Index);
+		FVector Pos = CalIndexToPos(Index);
 		std::string Msg2 = std::format("IndexToPos : {}\n", Pos.ToString());
 		UEngineDebugMsgWindow::PushMsg(Msg2);
 	}

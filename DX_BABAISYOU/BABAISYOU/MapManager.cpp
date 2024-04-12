@@ -1,4 +1,13 @@
 #include "PreCompile.h"
 #include "MapManager.h"
 
-int MapManager::Stage1[50][50] = {static_cast<int>(EMapObjects::NONE),};
+
+AObject* MapManager::Graph[40][20] = { nullptr, };
+
+MapManager::MapManager()
+{
+}
+
+MapManager::~MapManager()
+{
+}
