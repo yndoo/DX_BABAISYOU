@@ -14,6 +14,14 @@ struct Index2D
 	int Y;
 };
 
+class AObject;
+class ObjectInfo
+{
+public:
+	friend AObject;
+	EObjectType ObjType = EObjectType::None;
+};
+
 // 맵에 표시되는 모든 오브젝트
 class AObject : public AActor
 {
@@ -35,13 +43,14 @@ public:
 
 	Index2D CalPosToIndex(FVector _Pos);
 	FVector CalIndexToPos(Index2D _Index);
+	Index2D GetMaxIndex();
 protected:
 	void BeginPlay() override;
 
 	USpriteRenderer* Renderer = nullptr;
 	UDefaultSceneComponent* Root = nullptr;
 
-
+	ObjectInfo* Info = nullptr;
 private:
 	FVector MapScale = FVector::Zero;
 

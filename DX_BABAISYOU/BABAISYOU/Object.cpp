@@ -35,6 +35,11 @@ Index2D AObject::CalPosToIndex(FVector _Pos)
 
 FVector AObject::CalIndexToPos(Index2D _Index)
 {
+	if (MapScale.X == 0 && MapScale.Y == 0)
+	{
+		MsgBoxAssert("MapScale¿Ã 0, 0¿”");
+	}
+
 	FVector Pos = FVector::Zero;
 	Pos.X -= MapScale.hX();
 	Pos.Y -= MapScale.hY();
@@ -45,4 +50,13 @@ FVector AObject::CalIndexToPos(Index2D _Index)
 	Pos += FVector(UContentsConstValue::ITileX / 2, UContentsConstValue::ITileY / 2);
 
 	return Pos;
+}
+
+Index2D AObject::GetMaxIndex()
+{
+	Index2D Result;
+	Result.X = MapScale.iX() / UContentsConstValue::ITileX - 1;
+	Result.Y = MapScale.iY() / UContentsConstValue::ITileY - 1;
+
+	return Result;
 }

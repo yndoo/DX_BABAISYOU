@@ -2,7 +2,7 @@
 #include "MapManager.h"
 
 
-AObject* MapManager::Graph[40][20] = { nullptr, };
+std::list<std::shared_ptr<AObject>> MapManager::Graph[40][20] = {};
 
 MapManager::MapManager()
 {

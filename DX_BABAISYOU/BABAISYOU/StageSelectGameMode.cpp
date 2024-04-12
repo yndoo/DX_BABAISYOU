@@ -7,6 +7,7 @@
 #include "ContentsEnum.h"
 #include "ContentsConstValue.h"
 #include "Object.h"
+#include "MapManager.h"
 
 AStageSelectGameMode::AStageSelectGameMode()
 {
@@ -27,7 +28,7 @@ void AStageSelectGameMode::BeginPlay()
 	std::shared_ptr<AStageSelecter> Selecter = GetWorld()->SpawnActor<AStageSelecter>("Selecter");
 	Selecter->SetMapScale(UContentsConstValue::StageSelectMapScale);
 	Selecter->AddActorLocation(Selecter->CalIndexToPos(Index2D(0, 0)));
-	Selecter->SetActorScale3D({ 36, 36, 1 });
+	Selecter->SetActorScale3D(UContentsConstValue::TileScale);
 
 	std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");
 	Back->SetActorLocation({ 0, 0, 400 });

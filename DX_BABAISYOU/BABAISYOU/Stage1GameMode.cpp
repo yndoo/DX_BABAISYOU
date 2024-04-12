@@ -8,6 +8,8 @@
 #include "ContentsEnum.h"
 #include "ContentsConstValue.h"
 
+
+
 AStage1GameMode::AStage1GameMode()
 {
 }
@@ -22,13 +24,7 @@ void AStage1GameMode::BeginPlay()
 	Stage1MapSetting();
 
 	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
-	Camera->SetActorLocation(FVector(0.0f, 0.0f, -100.0f));
-
-	std::shared_ptr<ABabaObject> Baba = GetWorld()->SpawnActor<ABabaObject>("Baba");
-	Baba->SetActorScale3D(FVector(36.f, 36.f, 0.0f));	// 이미지 한 칸 크기 그대로
-	Baba->BeginPosSetting();
-	Baba->SetOrder(ERenderOrder::FrontTile);
-
+	Camera->SetActorLocation(FVector(0.0f, 0.0f, -200.0f));
 
 	std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");
 	Back->SetActorScale3D(UContentsConstValue::Stage1MapScale);
@@ -36,10 +32,10 @@ void AStage1GameMode::BeginPlay()
 	Back->Stage1Setting();
 	Back->SetOrder(ERenderOrder::Background);
 
-	//std::shared_ptr<AWallObject> WallTest = GetWorld()->SpawnActor<AWallObject>("Wall");
-	//WallTest->SetActorScale3D(FVector(36.f, 36.f, -100.0f));
+	Stage1MapSetting();	// 맵 오브젝트 세팅하는 곳
 
-	Stage1MapSetting();
+	std::list<std::shared_ptr<AObject>>* obj = MM->GetObjectList(0, 0);
+	int a = 0;
 }
 
 void AStage1GameMode::Tick(float _DeltaTime)
@@ -50,13 +46,25 @@ void AStage1GameMode::Tick(float _DeltaTime)
 
 void AStage1GameMode::Stage1MapSetting()
 {
-	// 테스트용
-	FVector Center = FVector(18, 18);
+	MM = std::make_shared<MapManager>();
+
+
+	std::shared_ptr<ABabaObject> Baba = GetWorld()->SpawnActor<ABabaObject>("Baba");
+	Baba->SetMapScale(UContentsConstValue::Stage1MapScale);
+	Baba->AddActorLocation(Baba->CalIndexToPos(Index2D(0, 0)));
+	Baba->SetActorScale3D(UContentsConstValue::TileScale);	// 이미지 한 칸 크기 그대로
+	Baba->BeginPosSetting();
+	Baba->SetOrder(ERenderOrder::FrontTile);
+
+	MM->SetObject(Baba, 0, 0);
+
 	for (int i = 1; i <= 9; i++)
 	{
 		std::shared_ptr<AWallObject> WallTest = GetWorld()->SpawnActor<AWallObject>("Wall");
-		WallTest->SetActorScale3D(FVector(36.f, 36.f, -100.0f));
-		Center = Center + FVector(36, 0, 0);
-		WallTest->SetActorLocation(Center);
+		WallTest->SetMapScale(UContentsConstValue::Stage1MapScale);
+		WallTest->SetActorScale3D(UContentsConstValue::TileScale);
+		WallTest->SetActorLocation(WallTest->CalIndexToPos(Index2D(i, i)));
+
+		MM->SetObject(WallTest, i, i);
 	}
 }

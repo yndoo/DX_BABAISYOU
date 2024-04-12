@@ -11,10 +11,17 @@ enum class EInputDir
 
 enum class ERenderOrder
 {
-	NONE,
+	None,
+	Background,
 	BackTile,
 	FrontTile,
-	Background,
+};
+
+enum class EObjectType
+{
+	None,
+	Text,
+	Tile,
 };
 
 enum class EMapObjects

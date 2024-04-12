@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "WallObject.h"
+#include <EngineCore/EngineDebugMsgWindow.h>
 
 AWallObject::AWallObject()
 {
@@ -22,6 +23,9 @@ void AWallObject::BeginPlay()
 void AWallObject::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	std::string Msg = std::format("Wall Pos : {}\n", GetActorLocation().ToString());
+	UEngineDebugMsgWindow::PushMsg(Msg);
 }
 
 void AWallObject::CreateWallAnimations()

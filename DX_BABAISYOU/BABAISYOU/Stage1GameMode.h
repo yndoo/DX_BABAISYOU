@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/GameMode.h>
+#include "MapManager.h"
 
 class AStage1GameMode : public AGameMode
 {
@@ -18,5 +19,7 @@ protected:
 
 private:
 	void Stage1MapSetting();
+
+	std::shared_ptr<MapManager> MM = nullptr;
 };
 
