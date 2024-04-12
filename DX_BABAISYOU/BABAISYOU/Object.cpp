@@ -1,7 +1,7 @@
 #include "PreCompile.h"
 #include "Object.h"
 #include <EngineCore/EngineCore.h>
-#include <EngineCore/DefaultSceneComponent.h>
+
 
 AObject::AObject()
 {

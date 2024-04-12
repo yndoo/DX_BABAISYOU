@@ -2,6 +2,7 @@
 #include <EngineCore/Actor.h>
 #include "ContentsEnum.h"
 #include <EngineCore/SpriteRenderer.h>
+#include <EngineCore/DefaultSceneComponent.h>
 
 /////////////////////
 // 엥???? 2차원 배열 관련은 일단 보류
