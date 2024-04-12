@@ -27,6 +27,12 @@ public:
 	AObject& operator=(const AObject& _Other) = delete;
 	AObject& operator=(AObject&& _Other) noexcept = delete;
 
+
+	void SetMapScale(FVector _Scale)
+	{
+		MapScale = _Scale;
+	}
+
 protected:
 	void BeginPlay() override;
 

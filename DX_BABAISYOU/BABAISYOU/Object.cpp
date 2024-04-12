@@ -1,13 +1,17 @@
 #include "PreCompile.h"
 #include "Object.h"
 #include <EngineCore/EngineCore.h>
+#include "ContentsConstValue.h"
 
 
 AObject::AObject()
 {
 	Root = CreateDefaultSubObject<UDefaultSceneComponent>("RendererRoot");
-	Root->SetScale(FVector(100, 1, 1, 1));
+	//Root->SetScale(FVector(100, 1, 1, 1));
 	SetRoot(Root);
+	AddActorScale3D(FVector(100, 1, 1, 1));
+	//SetActorScale3D(FVector(100, 1, 1, 1));
+	
 }
 
 AObject::~AObject()
@@ -17,7 +21,7 @@ AObject::~AObject()
 void AObject::BeginPlay()
 {
 	Super::BeginPlay();
-	MapScale = FVector(864, 648);
+	MapScale = ContentsConstValue::Stage1MapScale;	// 일단 하나만
 }
 
 Index2D AObject::PosToIndex(FVector _Pos)

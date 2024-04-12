@@ -87,6 +87,9 @@
     <ClInclude Include="Background.h">
       <Filter>Actor</Filter>
     </ClInclude>
+    <ClInclude Include="ContentsConstValue.h">
+      <Filter>Helper</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -130,6 +133,9 @@
     </ClCompile>
     <ClCompile Include="Background.cpp">
       <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentsConstValue.cpp">
+      <Filter>Helper</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

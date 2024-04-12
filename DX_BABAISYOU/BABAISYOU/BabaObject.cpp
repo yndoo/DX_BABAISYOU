@@ -6,6 +6,7 @@
 
 ABabaObject::ABabaObject()
 {
+	//Root->SetScale(FVector(1000, 1, 1, 1));
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
 	Renderer->SetupAttachment(Root);
 
