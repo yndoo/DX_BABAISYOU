@@ -24,13 +24,10 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
-	USpriteRenderer* Renderer = nullptr;
-
 	void CreateObject4DirAnimations(std::string _ObjectName);
 	bool DirCheck();
 	std::string GetAnimationName(std::string _ObjectName, int _AniNum);
 
-	
 	float AnimationInter = 0.2f;
 	EInputDir CurDir = EInputDir::Right;
 	std::vector<float> AnimationInterVec = { AnimationInter , AnimationInter , AnimationInter };

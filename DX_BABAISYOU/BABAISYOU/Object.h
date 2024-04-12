@@ -1,6 +1,7 @@
 #pragma once
 #include <EngineCore/Actor.h>
 #include "ContentsEnum.h"
+#include <EngineCore/SpriteRenderer.h>
 
 /////////////////////
 // 엥???? 2차원 배열 관련은 일단 보류
@@ -27,6 +28,9 @@ public:
 
 protected:
 	void BeginPlay() override;
+
+	USpriteRenderer* Renderer = nullptr;
+	UDefaultSceneComponent* Root = nullptr;
 
 	Index2D PosToIndex(FVector _Pos);
 	FVector IndexToPos(Index2D _Index);

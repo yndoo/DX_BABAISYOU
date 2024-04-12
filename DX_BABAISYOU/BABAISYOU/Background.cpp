@@ -2,10 +2,15 @@
 #include "Background.h"
 #include <EngineCore/EngineCore.h>
 #include <EngineCore/EngineDebugMsgWindow.h>
+#include <EngineCore/DefaultSceneComponent.h>
 
 ABackground::ABackground()
 {
+	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("Renderer");
+	SetRoot(Root);
+
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
+	Renderer->SetupAttachment(Root);
 }
 
 ABackground::~ABackground()
@@ -42,7 +47,5 @@ void ABackground::SelectStageSetting()
 
 void ABackground::Stage1Setting()
 {
-	// ╬Й╢б ©жема╝
-	//Renderer->SetSprite("testmap_back_mini.png");
- 	Renderer->SetSprite("testmap_back.png");
+  	Renderer->SetSprite("testmap_back.png");
 }

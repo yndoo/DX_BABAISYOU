@@ -2,10 +2,13 @@
 #include "BabaObject.h"
 #include <EngineCore/EngineTexture.h>
 #include <EngineCore/EngineDebugMsgWindow.h>
+#include <EngineCore/DefaultSceneComponent.h>
 
 ABabaObject::ABabaObject()
 {
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
+	Renderer->SetupAttachment(Root);
+
 	InputOn();	// ÀÏ´Ü ÄÑµÒ
 }
 

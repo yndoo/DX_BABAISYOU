@@ -1,10 +1,12 @@
 #include "PreCompile.h"
 #include "Object.h"
 #include <EngineCore/EngineCore.h>
+#include <EngineCore/DefaultSceneComponent.h>
 
 AObject::AObject()
 {
-	
+	Root = CreateDefaultSubObject<UDefaultSceneComponent>("RendererRoot");
+	SetRoot(Root);
 }
 
 AObject::~AObject()

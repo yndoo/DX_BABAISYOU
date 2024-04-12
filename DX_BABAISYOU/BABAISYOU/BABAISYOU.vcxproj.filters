@@ -22,14 +22,23 @@
     <Filter Include="Object">
       <UniqueIdentifier>{0f76dc36-a5a3-4455-85ba-dd766969afb8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\PlayerObjects">
-      <UniqueIdentifier>{54ae990f-5186-4401-85d0-8074b01c278c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\Parents">
-      <UniqueIdentifier>{cac896a0-052c-445c-beb5-7a9c7892a333}</UniqueIdentifier>
-    </Filter>
     <Filter Include="StageSelectLevel">
       <UniqueIdentifier>{395f495a-7038-4bfd-ab60-858276009d86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Obj-Level0">
+      <UniqueIdentifier>{3cfb7d6f-ce37-47a4-954d-59c5473efd5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Obj-Level1">
+      <UniqueIdentifier>{cac896a0-052c-445c-beb5-7a9c7892a333}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Obj-Level2">
+      <UniqueIdentifier>{fe958735-d8a5-4e44-8121-68bf88c7a61a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Obj-Level3">
+      <UniqueIdentifier>{54ae990f-5186-4401-85d0-8074b01c278c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor">
+      <UniqueIdentifier>{ed0d68bd-1e4f-42e6-9ebc-a625db5f86e4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -52,31 +61,31 @@
       <Filter>StageSelectLevel</Filter>
     </ClInclude>
     <ClInclude Include="WallObject.h">
-      <Filter>Object\PlayerObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Background.h">
-      <Filter>Object</Filter>
+      <Filter>Object\Obj-Level3</Filter>
     </ClInclude>
     <ClInclude Include="StageSelecter.h">
-      <Filter>Object\PlayerObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerObject.h">
-      <Filter>Object\Parents</Filter>
+      <Filter>Object\Obj-Level3</Filter>
     </ClInclude>
     <ClInclude Include="MapManager.h">
       <Filter>Helper</Filter>
     </ClInclude>
     <ClInclude Include="BabaObject.h">
-      <Filter>Object\PlayerObjects</Filter>
+      <Filter>Object\Obj-Level3</Filter>
     </ClInclude>
     <ClInclude Include="ContentsEnum.h">
       <Filter>Helper</Filter>
     </ClInclude>
     <ClInclude Include="LerpMoveObject.h">
-      <Filter>Object\Parents</Filter>
+      <Filter>Object\Obj-Level1</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
-      <Filter>Object\Parents</Filter>
+      <Filter>Object\Obj-Level0</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerObject.h">
+      <Filter>Object\Obj-Level2</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>Actor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -96,31 +105,31 @@
       <Filter>Stage1Level</Filter>
     </ClCompile>
     <ClCompile Include="BabaObject.cpp">
-      <Filter>Object\PlayerObjects</Filter>
+      <Filter>Object\Obj-Level3</Filter>
     </ClCompile>
     <ClCompile Include="StageSelectGameMode.cpp">
       <Filter>StageSelectLevel</Filter>
     </ClCompile>
     <ClCompile Include="WallObject.cpp">
-      <Filter>Object\PlayerObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="Background.cpp">
-      <Filter>Object</Filter>
+      <Filter>Object\Obj-Level3</Filter>
     </ClCompile>
     <ClCompile Include="StageSelecter.cpp">
-      <Filter>Object\PlayerObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerObject.cpp">
-      <Filter>Object\Parents</Filter>
+      <Filter>Object\Obj-Level3</Filter>
     </ClCompile>
     <ClCompile Include="MapManager.cpp">
       <Filter>Helper</Filter>
     </ClCompile>
     <ClCompile Include="LerpMoveObject.cpp">
-      <Filter>Object\Parents</Filter>
+      <Filter>Object\Obj-Level1</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">
-      <Filter>Object\Parents</Filter>
+      <Filter>Object\Obj-Level0</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerObject.cpp">
+      <Filter>Object\Obj-Level2</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>Actor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

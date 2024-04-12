@@ -29,6 +29,7 @@ void AStage1GameMode::BeginPlay()
 	Baba->BeginPosSetting();
 	Baba->SetOrder(ERenderOrder::FrontTile);
 
+
 	std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");
 	Back->SetActorLocation({ 0, 0, 400 });
 	Back->SetActorScale3D({ 864,648,0 });

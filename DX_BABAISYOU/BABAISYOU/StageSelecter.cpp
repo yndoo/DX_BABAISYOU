@@ -1,10 +1,13 @@
 #include "PreCompile.h"
 #include "StageSelecter.h"
 #include <EngineCore/EngineDebugMsgWindow.h>
+#include <EngineCore/DefaultSceneComponent.h>
 
 AStageSelecter::AStageSelecter()
 {
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
+	Renderer->SetupAttachment(Root);
+
 	InputOn();
 }
 

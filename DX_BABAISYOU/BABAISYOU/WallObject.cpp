@@ -4,6 +4,7 @@
 AWallObject::AWallObject()
 {
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
+	Renderer->SetupAttachment(Root);
 }
 
 AWallObject::~AWallObject()
