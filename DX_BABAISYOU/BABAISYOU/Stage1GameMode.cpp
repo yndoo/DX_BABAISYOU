@@ -50,9 +50,12 @@ void AStage1GameMode::Stage1MapSetting()
 
 
 	std::shared_ptr<ABabaObject> Baba = GetWorld()->SpawnActor<ABabaObject>("Baba");
+	// 얘네는 같은 게임모드인 모든 Object 같이 세팅해야하는 것들
 	Baba->SetMapScale(UContentsConstValue::Stage1MapScale);
-	Baba->AddActorLocation(Baba->CalIndexToPos(Index2D(0, 0)));
+	Baba->SetMaxIndex();	
 	Baba->SetActorScale3D(UContentsConstValue::TileScale);	// 이미지 한 칸 크기 그대로
+
+	Baba->AddActorLocation(Baba->CalIndexToPos(Index2D(0, 0)));
 	Baba->BeginPosSetting();
 	Baba->SetOrder(ERenderOrder::FrontTile);
 
@@ -62,8 +65,10 @@ void AStage1GameMode::Stage1MapSetting()
 	{
 		std::shared_ptr<AWallObject> WallTest = GetWorld()->SpawnActor<AWallObject>("Wall");
 		WallTest->SetMapScale(UContentsConstValue::Stage1MapScale);
+		WallTest->SetMaxIndex();
 		WallTest->SetActorScale3D(UContentsConstValue::TileScale);
 		WallTest->SetActorLocation(WallTest->CalIndexToPos(Index2D(i, i)));
+		WallTest->BeginPosSetting();
 
 		MM->SetObject(WallTest, i, i);
 	}

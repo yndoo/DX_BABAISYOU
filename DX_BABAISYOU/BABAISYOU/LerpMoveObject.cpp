@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "LerpMoveObject.h"
+#include "ContentsConstValue.h"
 
 ALerpMoveObject::ALerpMoveObject()
 {
@@ -48,10 +49,20 @@ void ALerpMoveObject::Move(float _DeltaTime)
 		}
 		if (true == IsMove)
 		{
+			Index2D Idx = CalPosToIndex(NextActorLocation);
+			Index2D MaxIdx = Index2D(UContentsConstValue::MaxIndexX, UContentsConstValue::MaxIndexY);
+			if (Idx.X < 0 || Idx.Y < 0 || Idx.X > MaxIdx.X || Idx.Y > MaxIdx.Y)
+			{
+				IsMove = false;
+				return;
+			}
+
 			InputCheck = true;
 		}
 	}
 	//LerpMove(_DeltaTime);
+
+
 }
 
 void ALerpMoveObject::AddNextActorLocation(FVector _Add)

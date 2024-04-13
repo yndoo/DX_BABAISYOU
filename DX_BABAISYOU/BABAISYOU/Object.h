@@ -44,6 +44,7 @@ public:
 	Index2D CalPosToIndex(FVector _Pos);
 	FVector CalIndexToPos(Index2D _Index);
 	Index2D GetMaxIndex();
+	void SetMaxIndex();
 protected:
 	void BeginPlay() override;
 

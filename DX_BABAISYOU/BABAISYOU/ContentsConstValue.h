@@ -1,4 +1,7 @@
 #pragma once
+
+ // 컨텐츠 영역에서 전역으로 사용할 변수들
+
 class UContentsConstValue
 {
 public:
@@ -11,6 +14,9 @@ public:
 	static const float TileY;
 	static const int ITileX;
 	static const int ITileY;
+
+	static int MaxIndexX;
+	static int MaxIndexY;
 
 };
 

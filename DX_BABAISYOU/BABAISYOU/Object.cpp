@@ -60,3 +60,11 @@ Index2D AObject::GetMaxIndex()
 
 	return Result;
 }
+
+void AObject::SetMaxIndex()
+{
+	Index2D MaxIndex = GetMaxIndex();
+
+	UContentsConstValue::MaxIndexX = MaxIndex.X;
+	UContentsConstValue::MaxIndexY = MaxIndex.Y;
+}
