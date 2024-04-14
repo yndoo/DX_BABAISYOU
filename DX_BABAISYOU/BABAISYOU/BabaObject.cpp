@@ -31,6 +31,8 @@ void ABabaObject::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
+	Index2D Test = CalPosToIndex(GetActorLocation());
+	int a = 0;
 
 	{
 		Index2D Index = CalPosToIndex(GetActorLocation());

@@ -27,8 +27,11 @@ Index2D AObject::CalPosToIndex(FVector _Pos)
 	_Pos.X += MapScale.hX();	
 	_Pos.Y += MapScale.hY();
 
+	_Pos -= FVector(UContentsConstValue::ITileX / 2, UContentsConstValue::ITileY / 2);
+
 	Index.X = _Pos.X / UContentsConstValue::ITileX;
 	Index.Y = _Pos.Y / UContentsConstValue::ITileY;
+
 
 	return Index;
 }

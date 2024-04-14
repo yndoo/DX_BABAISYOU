@@ -16,6 +16,11 @@ void ALerpMoveObject::BeginPlay()
 	Super::BeginPlay();
 }
 
+void ALerpMoveObject::Tick(float _DeltaTime)
+{
+	Super::Tick(_DeltaTime);
+}
+
 void ALerpMoveObject::Move(float _DeltaTime)
 {
 	if (false == IsMove)
@@ -54,6 +59,7 @@ void ALerpMoveObject::Move(float _DeltaTime)
 			if (Idx.X < 0 || Idx.Y < 0 || Idx.X > MaxIdx.X || Idx.Y > MaxIdx.Y)
 			{
 				IsMove = false;
+				NewInputDir = CurDir;	// 입력 적용 안 된 경우 NewInputDir 다시 되돌려놔야함
 				return;
 			}
 

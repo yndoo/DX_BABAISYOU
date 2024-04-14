@@ -17,6 +17,7 @@ public:
 	ALerpMoveObject& operator=(ALerpMoveObject&& _Other) noexcept = delete;
 protected:
 	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
 
 	void Move(float _DeltaTime);
 	void ReverseMoveSetting(EInputDir _Dir, float _DeltaTime);
@@ -24,7 +25,8 @@ protected:
 	void LerpMove(float _DeltaTime);
 	FVector LerpCal(float _Time);
 
-	EInputDir NewInputDir = EInputDir::Right;
+	EInputDir NewInputDir = EInputDir::Right;	
+	EInputDir CurDir = EInputDir::Right;
 	FVector CurActorLocation = FVector::Zero;
 	FVector NextActorLocation = FVector::Zero;
 	float LerpTime = 0.f;
