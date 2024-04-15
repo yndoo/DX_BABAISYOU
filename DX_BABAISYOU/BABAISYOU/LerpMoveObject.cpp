@@ -103,16 +103,18 @@ void ALerpMoveObject::InputMove(float _DeltaTime)
 		}
 		if (true == IsMove)
 		{
+			// 1. 벽에 안 막히는 지 확인
+			// 2. 이동할 곳의 방향에 옮길 수 없는 오브젝트가 하나라도 있는 지 확인해야 함.
 			Index2D Idx = CalPosToIndex(NextActorLocation);
-			Index2D MaxIdx = Index2D(UContentsConstValue::MaxIndexX, UContentsConstValue::MaxIndexY);
-			if (Idx.X < 0 || Idx.Y < 0 || Idx.X > MaxIdx.X || Idx.Y > MaxIdx.Y)
+			if (true == IndexRangeOverCheck(Idx) || false == PushCheck(Idx, NewInputDir))
 			{
-				// 이동 막힌 입력도 스택에 넣어줌.
+				// 이동 막힌 입력도 스택에 넣어줌. (아무도 이동 안 한거면 넣을 필요가 없는데...)
 				MoveStack.push(std::make_tuple(AnimationNumber, CurDir, false));
 				IsMove = false;
 				NewInputDir = CurDir;	// 입력 적용 안 된 경우 NewInputDir 다시 되돌려놔야함
 				return;
 			}
+
 			// 입력 적용 OK
 			EachInputCheck = true;
 		}
@@ -186,6 +188,7 @@ void ALerpMoveObject::ReverseMoveSetting(EInputDir _Dir, float _DeltaTime, bool 
 	}
 }
 
+// 나를 _Cur위치에서 지우고 _Next위치로 옮겨주는 함수.
 void ALerpMoveObject::CurToNext(FVector _Cur, FVector _Next)
 {
 	Index2D CurI = CalPosToIndex(_Cur);
@@ -195,7 +198,7 @@ void ALerpMoveObject::CurToNext(FVector _Cur, FVector _Next)
 	std::list<AObject*>::iterator Iter;
 	for (Iter = ObjLst.begin(); Iter != ObjLst.end(); Iter++)
 	{
-		if (*Iter == static_cast<AObject*>(this))
+		if (*Iter == static_cast<AObject*>(this))	
 		{
 			GMapManager->Graph[CurI.X][CurI.Y].remove(this);
 			break;

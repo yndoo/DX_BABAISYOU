@@ -58,12 +58,12 @@ void AStage1GameMode::Stage1MapSetting()
 	Baba2->SetMaxIndex();
 	Baba2->SetActorScale3D(UContentsConstValue::TileScale);	// 이미지 한 칸 크기 그대로
 
-	Baba2->AddActorLocation(Baba2->CalIndexToPos(Index2D(20, 0)));
+	Baba2->AddActorLocation(Baba2->CalIndexToPos(Index2D(1, 0)));
 	Baba2->BeginPosSetting();
 	Baba2->SetOrder(ERenderOrder::FrontTile);
 
 	GMapManager->SetObject(Baba.get(), 0, 0);
-	GMapManager->SetObject(Baba2.get(), 20, 0);
+	GMapManager->SetObject(Baba2.get(), 1, 0);
 
 	for (int i = 1; i <= 9; i++)
 	{
@@ -73,7 +73,7 @@ void AStage1GameMode::Stage1MapSetting()
 		WallTest->SetActorScale3D(UContentsConstValue::TileScale);
 		WallTest->SetActorLocation(WallTest->CalIndexToPos(Index2D(i, i)));
 		WallTest->BeginPosSetting();
-
+		WallTest->Info->Objective = EObjectiveType::STOP;
 		GMapManager->SetObject(WallTest.get(), i, i);
 	}
 }

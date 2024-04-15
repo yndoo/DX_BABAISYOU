@@ -19,7 +19,8 @@ class ObjectInfo
 {
 public:
 	friend AObject;
-	EObjectType ObjType = EObjectType::None;
+	ETileType TileType = ETileType::None;
+	EObjectiveType Objective = EObjectiveType::NONE;
 };
 
 // 맵에 표시되는 모든 오브젝트
@@ -44,14 +45,16 @@ public:
 	Index2D CalPosToIndex(FVector _Pos);
 	FVector CalIndexToPos(Index2D _Index);
 	Index2D GetMaxIndex();
+	bool IndexRangeOverCheck(Index2D Idx);
 	void SetMaxIndex();
+	bool PushCheck(Index2D _Next, EInputDir _Dir);	// _Next가 다 PUSH 타입인 지 체크
+
+	ObjectInfo* Info = nullptr;
 protected:
 	void BeginPlay() override;
 
 	USpriteRenderer* Renderer = nullptr;
 	UDefaultSceneComponent* Root = nullptr;
-
-	ObjectInfo* Info = nullptr;
 private:
 	FVector MapScale = FVector::Zero;
 
