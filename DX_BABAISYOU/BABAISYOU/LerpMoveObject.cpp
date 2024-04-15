@@ -30,33 +30,28 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 		LerpMove(_DeltaTime);
 	}
 
-	//if (true == IsMove && true == LerpStarted)
-	//{
-	//	MoveStack.push(std::make_tuple(AnimationNumber, CurDir, false));
-	//}
-	//if (true == IsMove)
-	//{
-	//	MoveStack.push(std::make_tuple(AnimationNumber, CurDir, true));
-	//	LerpMove(_DeltaTime);
-	//}
-
-	if (true == IsPress('Z') && false == IsMove)
+	if (true == IsDown('Z') && false == IsMove)
 	{
 		if (true == MoveStack.empty())
 		{
 			return;
 		}
-		bool CanGoBack = get<2>(MoveStack.top());		// 튜플 세 번째 원소	
-		if (false == get<2>(MoveStack.top()))
-		{
-			return;
-		}
-
+		
 		IsMove = true;
 		EachInputCheck = true;
 
+		bool CanGoBack = get<2>(MoveStack.top());		// 튜플 세 번째 원소	
+		if (false == get<2>(MoveStack.top()))
+		{
+			// 뒤로 돌아갈 수 없는 롤백은 false로 넘기면 된다.
+			ReverseMoveSetting(NewInputDir, _DeltaTime, false);
+			MoveStack.pop();
+			return;
+		}
+
+
 		// 이동 : 현재 방향의 반대로 이동
-		ReverseMoveSetting(NewInputDir, _DeltaTime);
+		ReverseMoveSetting(NewInputDir, _DeltaTime, true);
 
 		// 애니메이션에 필요한 정보 : 이전 상태의 정보로 되돌리고 삭제
 		NewInputDir = get<1>(MoveStack.top());		// 튜플 두 번째 원소	
@@ -68,6 +63,7 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 	if (true == EachInputCheck)
 	{
 		MoveStack.push(std::make_tuple(AnimationNumber, CurDir, true));
+		int a = 0;
 	}
 
 }
@@ -76,28 +72,28 @@ void ALerpMoveObject::InputMove(float _DeltaTime)
 {
 	if (false == IsMove)
 	{
-		if (true == IsPress(VK_LEFT))
+		if (true == IsDown(VK_LEFT))
 		{
 			AddNextActorLocation(FVector::Left * TileSize);
 			NewInputDir = EInputDir::Left;
 			IsMove = true;
 		}
 
-		if (true == IsPress(VK_RIGHT))
+		if (true == IsDown(VK_RIGHT))
 		{
 			AddNextActorLocation(FVector::Right * TileSize);
 			NewInputDir = EInputDir::Right;
 			IsMove = true;
 		}
 
-		if (true == IsPress(VK_UP))
+		if (true == IsDown(VK_UP))
 		{
 			AddNextActorLocation(FVector::Up * TileSize);
 			NewInputDir = EInputDir::Up;
 			IsMove = true;
 		}
 
-		if (true == IsPress(VK_DOWN))
+		if (true == IsDown(VK_DOWN))
 		{
 			AddNextActorLocation(FVector::Down * TileSize);
 			NewInputDir = EInputDir::Down;
@@ -109,13 +105,14 @@ void ALerpMoveObject::InputMove(float _DeltaTime)
 			Index2D MaxIdx = Index2D(UContentsConstValue::MaxIndexX, UContentsConstValue::MaxIndexY);
 			if (Idx.X < 0 || Idx.Y < 0 || Idx.X > MaxIdx.X || Idx.Y > MaxIdx.Y)
 			{
+				// 이동 막힌 입력도 스택에 넣어줌.
+				MoveStack.push(std::make_tuple(AnimationNumber, CurDir, false));
 				IsMove = false;
 				NewInputDir = CurDir;	// 입력 적용 안 된 경우 NewInputDir 다시 되돌려놔야함
 				return;
 			}
 			// 입력 적용 OK
 			EachInputCheck = true;
-			LerpStarted = true;
 		}
 	}
 	//LerpMove(_DeltaTime);
@@ -130,7 +127,6 @@ void ALerpMoveObject::LerpMove(float _DeltaTime)
 {
 	if (LerpTime <= 1.f && true == IsMove)
 	{
-		LerpStarted = false;	// 한 번 왔으니까 꺼줌
 		LerpTime += _DeltaTime * 3;
 		SetActorLocation(LerpCal(LerpTime));
 	}
@@ -148,9 +144,16 @@ FVector ALerpMoveObject::LerpCal(float _Time)
 	return CurActorLocation * (1 - _Time) + NextActorLocation * _Time;
 }
 
-void ALerpMoveObject::ReverseMoveSetting(EInputDir _Dir, float _DeltaTime)
+void ALerpMoveObject::ReverseMoveSetting(EInputDir _Dir, float _DeltaTime, bool _CanMove)
 {
 	IsMove = true;
+
+	if (false == _CanMove)
+	{
+		AddNextActorLocation(FVector::Zero);
+		return;
+	}
+
 	// 애니메이션 "방향"은 이전꺼여야 함.
 	// 이동은 반대로.
 	switch (_Dir)
