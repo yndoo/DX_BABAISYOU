@@ -33,7 +33,8 @@ protected:
 	float LerpTime = 0.f;
 	float TileSize = 36.f;		// 1920*1080 환경에서는 한 타일 54*54
 	bool IsMove = false;		// 움직이는 중인지 나타내는 변수
-	bool EachInputCheck = false;	// Input이 있었으면 애니메이션을 갱신 (각 Object 단위)
+	bool EachInputCheck = false;	// 이동 Input이 있었으면 애니메이션을 갱신 (각 Object 단위)
+	bool ZInputCheck = false;	// Z Input이 있었으면 애니메이션 넘기지 말기.
 	int AnimationNumber = 0;
 	//되돌려질 스택이 필요함
 	std::stack<std::tuple <int, EInputDir, bool >> MoveStack;	// AnimationNumber, InputDir, IsMove

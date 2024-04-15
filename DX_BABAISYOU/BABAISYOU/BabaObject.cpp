@@ -51,7 +51,7 @@ void ABabaObject::Tick(float _DeltaTime)
 	}
 
 	// 입력이 있었으면 -> 애니메이션 업데이트해야함
-	if (true == EachInputCheck)
+	if (true == EachInputCheck || true == ZInputCheck)
 	{
 		EachInputCheck = false;	// Super먼저 돌기 때문에 여기서 false로 바꿔줌.
 		Renderer->ChangeAnimation(GetAnimationName("BABA", AnimationNumber));

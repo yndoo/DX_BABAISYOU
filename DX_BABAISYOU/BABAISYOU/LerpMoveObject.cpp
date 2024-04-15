@@ -38,7 +38,7 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 		}
 		
 		IsMove = true;
-		EachInputCheck = true;
+		ZInputCheck = true;
 
 		bool CanGoBack = get<2>(MoveStack.top());		// 튜플 세 번째 원소	
 		if (false == get<2>(MoveStack.top()))
