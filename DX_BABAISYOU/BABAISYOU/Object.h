@@ -47,7 +47,10 @@ public:
 	Index2D GetMaxIndex();
 	bool IndexRangeOverCheck(Index2D Idx);
 	void SetMaxIndex();
-	bool PushCheck(Index2D _Next, EInputDir _Dir);	// _Next가 다 PUSH 타입인 지 체크
+	void CurToNext(FVector _Cur, FVector _Next);
+	bool CanGoNextTile(Index2D _Next, EInputDir _Dir);		// _Dir 방향의 _Next칸에 갈 수 있는지 체크하는 함수
+	bool CanGoNextAll(Index2D _Next, EInputDir _Dir);		// _Dir 방향의 _Next칸에 쭉 갈 수 있는지 체크하는 함수
+	void AllPushNextTile(Index2D _Next, EInputDir _Dir);	// _Dir 방향의 _Next칸에 밀기
 
 	ObjectInfo* Info = nullptr;
 protected:

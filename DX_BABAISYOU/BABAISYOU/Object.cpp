@@ -74,6 +74,27 @@ void AObject::SetMaxIndex()
 	UContentsConstValue::MaxIndexY = MaxIndex.Y;
 }
 
+// 나를 _Cur위치에서 지우고 _Next위치로 옮겨주는 함수.
+void AObject::CurToNext(FVector _Cur, FVector _Next)
+{
+	Index2D CurI = CalPosToIndex(_Cur);
+	Index2D NxtI = CalPosToIndex(_Next);
+
+	std::list<AObject*> ObjLst = GMapManager->Graph[CurI.X][CurI.Y];
+	std::list<AObject*>::iterator Iter;
+	for (Iter = ObjLst.begin(); Iter != ObjLst.end(); Iter++)
+	{
+		if (*Iter == static_cast<AObject*>(this))
+		{
+			GMapManager->Graph[CurI.X][CurI.Y].remove(this);
+			break;
+		}
+	}
+
+	GMapManager->Graph[NxtI.X][NxtI.Y].push_back(static_cast<AObject*>(this));
+}
+
+
 // 범위 넘어가는지 체크. true : 넘어감
 bool AObject::IndexRangeOverCheck(Index2D Idx)
 {
@@ -85,51 +106,125 @@ bool AObject::IndexRangeOverCheck(Index2D Idx)
 	return false;
 }
 
-// _Dir 방향의 _Next칸에 목적어 타입이 PUSH인 애가 있으면 쭉 그 방향 체크
-bool AObject::PushCheck(Index2D _Next, EInputDir _Dir)
+// _Dir 방향의 _Next칸에 갈 수 있는지 체크하는 함수
+bool AObject::CanGoNextTile(Index2D _Next, EInputDir _Dir)
 {
+	// 못 옮기는 경우 1. 벽 넘어감
+	if (true == IndexRangeOverCheck(_Next))
+	{
+		return false;
+	}
+
 	std::list<AObject*> ObjLst = GMapManager->Graph[_Next.X][_Next.Y];
 	std::list<AObject*>::iterator Iter;
 	for (Iter = ObjLst.begin(); Iter != ObjLst.end(); Iter++)
 	{
+		// 못 옮기는 경우 2. 못 옮기는 블록.
 		if ((*Iter)->Info->Objective == EObjectiveType::STOP)
 		{
 			return false;
 		}
 		if ((*Iter)->Info->Objective == EObjectiveType::PUSH)
 		{
-			Index2D NextNext = _Next;
-			switch (_Dir)
-			{
-			case EInputDir::Right:
-				NextNext.X += 1;
-				break;
-			case EInputDir::Left:
-				NextNext.X -= 1;
-				break;
-			case EInputDir::Up:
-				NextNext.Y -= 1;
-				break;
-			case EInputDir::Down:
-				NextNext.Y -= 1;
-				break;
-			default:
-				break;
-			}
+			// PUSH인 애는 어캄?
+			// AllPushNextTile 결과가 true면 밀어주고 끝?
+		}
+	}
 
-			// 못 옮기는 경우 1. 벽 넘어감
-			if (true == IndexRangeOverCheck(NextNext))	
-			{
-				return false;
-			}
-			// 못 옮기는 경우 2. 다음 블록이 못 옮기는 블록.
-			if (false == (*Iter)->PushCheck(NextNext, _Dir))
+	// 위에서 하나도 안 걸렸으면 이동 가능.
+	return true;
+}
+
+// _Dir 방향의 _Next칸에 쭉 갈 수 있는지 "체크"하는 함수
+bool AObject::CanGoNextAll(Index2D _Next, EInputDir _Dir)
+{
+	Index2D NextNext = _Next;
+	switch (_Dir)
+	{
+	case EInputDir::Right:
+		NextNext.X += 1;
+		break;
+	case EInputDir::Left:
+		NextNext.X -= 1;
+		break;
+	case EInputDir::Up:
+		NextNext.Y -= 1;
+		break;
+	case EInputDir::Down:
+		NextNext.Y -= 1;
+		break;
+	default:
+		break;
+	}
+
+	// 못 옮기는 경우 1. 벽 넘어감
+	if (true == IndexRangeOverCheck(NextNext))
+	{
+		return false;
+	}
+
+	// _Next에 갈 수 없는지 하나씩 보고 체크해야 함
+	std::list<AObject*> ObjLst = GMapManager->Graph[_Next.X][_Next.Y];
+	std::list<AObject*>::iterator Iter;
+	for (Iter = ObjLst.begin(); Iter != ObjLst.end(); Iter++)
+	{
+		// 못 옮기는 경우 2. 다음 블록이 못 옮기는 블록.
+		if ((*Iter)->Info->Objective == EObjectiveType::STOP)
+		{
+			return false;
+		}
+		if ((*Iter)->Info->Objective == EObjectiveType::PUSH)
+		{
+			// PUSH인 애는 그 옆도 계속 체크.
+			if (false == (*Iter)->CanGoNextAll(NextNext, _Dir))
 			{
 				return false;
 			}
 		}
 	}
 
-	// 하나도 안 걸렸으면 PUSH 가능.
+	// 하나도 안 걸렸으면 이동 가능.
 	return true;
+}
+
+// _Dir 방향의 _Next칸에 밀기(진짜 밀기 행동)(밀 수 있는 경우에만 사용해야 함)
+void AObject::AllPushNextTile(Index2D _Next, EInputDir _Dir)
+{
+	Index2D NextNext = _Next;
+	switch (_Dir)
+	{
+	case EInputDir::Right:
+		NextNext.X += 1;
+		break;
+	case EInputDir::Left:
+		NextNext.X -= 1;
+		break;
+	case EInputDir::Up:
+		NextNext.Y -= 1;
+		break;
+	case EInputDir::Down:
+		NextNext.Y -= 1;
+		break;
+	default:
+		break;
+	}
+
+	// 얘는 벽넘어가는거 말고는 언제 막아줘야하지?
+	if (true == IndexRangeOverCheck(NextNext))
+	{
+		return;
+	}
+
+	std::list<AObject*> ObjLst = GMapManager->Graph[_Next.X][_Next.Y];
+	std::list<AObject*>::iterator Iter;
+	for (Iter = ObjLst.begin(); Iter != ObjLst.end(); Iter++)
+	{
+		// PUSH인 애는 그 옆도 계속 밀어주기.
+		if ((*Iter)->Info->Objective == EObjectiveType::PUSH)
+		{
+			(*Iter)->AllPushNextTile(NextNext, _Dir);
+		}
+	}
+
+	CurToNext(CalIndexToPos(_Next), CalIndexToPos(NextNext));
 }

@@ -25,7 +25,6 @@ protected:
 	void AddNextActorLocation(FVector _Add);
 	void LerpMove(float _DeltaTime);
 	FVector LerpCal(float _Time);
-	void CurToNext(FVector _Cur, FVector _Next);
 
 	EInputDir NewInputDir = EInputDir::Right;	
 	EInputDir CurDir = EInputDir::Right;
