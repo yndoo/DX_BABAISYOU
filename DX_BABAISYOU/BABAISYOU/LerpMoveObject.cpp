@@ -197,7 +197,6 @@ void ALerpMoveObject::CurToNext(FVector _Cur, FVector _Next)
 	{
 		if (*Iter == static_cast<AObject*>(this))
 		{
- 			//GMapManager->Graph[CurI.X][CurI.Y].erase(Iter);
 			GMapManager->Graph[CurI.X][CurI.Y].remove(this);
 			break;
 		}

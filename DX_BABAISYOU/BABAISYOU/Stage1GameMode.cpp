@@ -80,11 +80,10 @@ void AStage1GameMode::Stage1MapSetting()
 
 void AStage1GameMode::DebugGMM()
 {
-
 	for (int y = 19; y >= 0; y--)		// 세로
 	{
 		std::string Msg = "";
-		for (int x = 0; x < 23; x++)	// 가로
+		for (int x = 0; x < 24; x++)	// 가로
 		{
 			int ss = GMapManager->Graph[x][y].size();
 
