@@ -74,6 +74,7 @@ void AStage1GameMode::Stage1MapSetting()
 		WallTest->SetActorLocation(WallTest->CalIndexToPos(Index2D(i, i)));
 		WallTest->BeginPosSetting();
 		WallTest->Info->Objective = EObjectiveType::STOP;
+		//WallTest->Info->Objective = EObjectiveType::PUSH;
 		GMapManager->SetObject(WallTest.get(), i, i);
 	}
 }
