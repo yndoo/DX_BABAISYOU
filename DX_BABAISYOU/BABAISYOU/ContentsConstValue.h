@@ -17,6 +17,5 @@ public:
 
 	static int MaxIndexX;
 	static int MaxIndexY;
-
 };
 

@@ -41,10 +41,10 @@ void AStageSelecter::Tick(float _DeltaTime)
 		UEngineDebugMsgWindow::PushMsg(Msg);
 	}
 
-	if (true == InputCheck)
+	if (true == EachInputCheck)
 	{
 		// Super먼저 돌기 때문에 여기서 false로 바꿔줌.
 		// Selecter는 InputCheck 필요 없음.
-		InputCheck = false;	
+		EachInputCheck = false;	
 	}
 }

@@ -3,7 +3,6 @@
 #include <EngineCore/EngineCore.h>
 #include "ContentsConstValue.h"
 
-
 AObject::AObject()
 {
 	Root = CreateDefaultSubObject<UDefaultSceneComponent>("RendererRoot");

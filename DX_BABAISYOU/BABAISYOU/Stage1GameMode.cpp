@@ -48,17 +48,6 @@ void AStage1GameMode::Stage1MapSetting()
 {
 	MM = std::make_shared<MapManager>();
 
-
-	std::shared_ptr<ABabaObject> Baba = GetWorld()->SpawnActor<ABabaObject>("Baba");
-	// 얘네는 같은 게임모드인 모든 Object 같이 세팅해야하는 것들
-	Baba->SetMapScale(UContentsConstValue::Stage1MapScale);
-	Baba->SetMaxIndex();	
-	Baba->SetActorScale3D(UContentsConstValue::TileScale);	// 이미지 한 칸 크기 그대로
-
-	Baba->AddActorLocation(Baba->CalIndexToPos(Index2D(0, 0)));
-	Baba->BeginPosSetting();
-	Baba->SetOrder(ERenderOrder::FrontTile);
-
 	std::shared_ptr<ABabaObject> Baba2 = GetWorld()->SpawnActor<ABabaObject>("Baba");
 	// 얘네는 같은 게임모드인 모든 Object 같이 세팅해야하는 것들
 	Baba2->SetMapScale(UContentsConstValue::Stage1MapScale);
@@ -68,6 +57,18 @@ void AStage1GameMode::Stage1MapSetting()
 	Baba2->AddActorLocation(Baba2->CalIndexToPos(Index2D(20, 0)));
 	Baba2->BeginPosSetting();
 	Baba2->SetOrder(ERenderOrder::FrontTile);
+	//Baba2->SetName("ttttttttttttttt");
+
+
+	std::shared_ptr<ABabaObject> Baba = GetWorld()->SpawnActor<ABabaObject>("Baba");
+	// 얘네는 같은 게임모드인 모든 Object 같이 세팅해야하는 것들
+	Baba->SetMapScale(UContentsConstValue::Stage1MapScale);
+	Baba->SetMaxIndex();
+	Baba->SetActorScale3D(UContentsConstValue::TileScale);	// 이미지 한 칸 크기 그대로
+
+	Baba->AddActorLocation(Baba->CalIndexToPos(Index2D(0, 0)));
+	Baba->BeginPosSetting();
+	Baba->SetOrder(ERenderOrder::FrontTile);
 
 	MM->SetObject(Baba, 0, 0);
 

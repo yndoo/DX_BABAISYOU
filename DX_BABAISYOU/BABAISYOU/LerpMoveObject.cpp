@@ -2,6 +2,10 @@
 #include "LerpMoveObject.h"
 #include "ContentsConstValue.h"
 
+//int ALerpMoveObject::SomeMoveCnt = 0;
+//int ALerpMoveObject::SomeStayCnt = 0;
+//int ALerpMoveObject::CurLerpObjCnt = 0;
+
 ALerpMoveObject::ALerpMoveObject()
 {
 	 //InputOn();
@@ -19,9 +23,56 @@ void ALerpMoveObject::BeginPlay()
 void ALerpMoveObject::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	InputMove(_DeltaTime);
+	if (true == IsMove)
+	{
+		LerpMove(_DeltaTime);
+	}
+
+	//if (true == IsMove && true == LerpStarted)
+	//{
+	//	MoveStack.push(std::make_tuple(AnimationNumber, CurDir, false));
+	//}
+	//if (true == IsMove)
+	//{
+	//	MoveStack.push(std::make_tuple(AnimationNumber, CurDir, true));
+	//	LerpMove(_DeltaTime);
+	//}
+
+	if (true == IsPress('Z') && false == IsMove)
+	{
+		if (true == MoveStack.empty())
+		{
+			return;
+		}
+		bool CanGoBack = get<2>(MoveStack.top());		// 튜플 세 번째 원소	
+		if (false == get<2>(MoveStack.top()))
+		{
+			return;
+		}
+
+		IsMove = true;
+		EachInputCheck = true;
+
+		// 이동 : 현재 방향의 반대로 이동
+		ReverseMoveSetting(NewInputDir, _DeltaTime);
+
+		// 애니메이션에 필요한 정보 : 이전 상태의 정보로 되돌리고 삭제
+		NewInputDir = get<1>(MoveStack.top());		// 튜플 두 번째 원소	
+		AnimationNumber = get<0>(MoveStack.top());	// 튜플 첫 번째 원소
+		MoveStack.pop();
+		return;
+	}
+
+	if (true == EachInputCheck)
+	{
+		MoveStack.push(std::make_tuple(AnimationNumber, CurDir, true));
+	}
+
 }
 
-void ALerpMoveObject::Move(float _DeltaTime)
+void ALerpMoveObject::InputMove(float _DeltaTime)
 {
 	if (false == IsMove)
 	{
@@ -62,13 +113,12 @@ void ALerpMoveObject::Move(float _DeltaTime)
 				NewInputDir = CurDir;	// 입력 적용 안 된 경우 NewInputDir 다시 되돌려놔야함
 				return;
 			}
-
-			InputCheck = true;
+			// 입력 적용 OK
+			EachInputCheck = true;
+			LerpStarted = true;
 		}
 	}
 	//LerpMove(_DeltaTime);
-
-
 }
 
 void ALerpMoveObject::AddNextActorLocation(FVector _Add)
@@ -80,7 +130,8 @@ void ALerpMoveObject::LerpMove(float _DeltaTime)
 {
 	if (LerpTime <= 1.f && true == IsMove)
 	{
-		LerpTime += _DeltaTime * 4;
+		LerpStarted = false;	// 한 번 왔으니까 꺼줌
+		LerpTime += _DeltaTime * 3;
 		SetActorLocation(LerpCal(LerpTime));
 	}
 	else
@@ -121,6 +172,7 @@ void ALerpMoveObject::ReverseMoveSetting(EInputDir _Dir, float _DeltaTime)
 		NewInputDir = EInputDir::Down;
 		break;
 	default:
+		AddNextActorLocation(FVector::Zero);
 		break;
 	}
 }
