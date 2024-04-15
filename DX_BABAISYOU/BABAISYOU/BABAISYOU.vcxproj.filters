@@ -7,23 +7,11 @@
     <Filter Include="PreComplie">
       <UniqueIdentifier>{ea21dac4-d46f-40e2-aac4-e49522bab733}</UniqueIdentifier>
     </Filter>
-    <Filter Include="TestLevel">
-      <UniqueIdentifier>{f6d92700-15ec-4d18-8fcc-ad93605824a9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="TestLevel\Object">
-      <UniqueIdentifier>{13a21790-db3d-4334-9437-37da387cf452}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Stage1Level">
-      <UniqueIdentifier>{f77e2612-9404-4c62-af24-af6690cbca16}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Helper">
       <UniqueIdentifier>{7ac36892-ae70-4856-9b0b-ab099de39195}</UniqueIdentifier>
     </Filter>
     <Filter Include="Object">
       <UniqueIdentifier>{0f76dc36-a5a3-4455-85ba-dd766969afb8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="StageSelectLevel">
-      <UniqueIdentifier>{395f495a-7038-4bfd-ab60-858276009d86}</UniqueIdentifier>
     </Filter>
     <Filter Include="Object\Obj-Level0">
       <UniqueIdentifier>{3cfb7d6f-ce37-47a4-954d-59c5473efd5e}</UniqueIdentifier>
@@ -40,6 +28,21 @@
     <Filter Include="Actor">
       <UniqueIdentifier>{ed0d68bd-1e4f-42e6-9ebc-a625db5f86e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameMode">
+      <UniqueIdentifier>{c37350ce-309f-4a01-b091-402f1673d84d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameMode\Stage1Level">
+      <UniqueIdentifier>{f77e2612-9404-4c62-af24-af6690cbca16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameMode\StageSelectLevel">
+      <UniqueIdentifier>{395f495a-7038-4bfd-ab60-858276009d86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameMode\TestLevel">
+      <UniqueIdentifier>{f6d92700-15ec-4d18-8fcc-ad93605824a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameMode\TestLevel\Object">
+      <UniqueIdentifier>{13a21790-db3d-4334-9437-37da387cf452}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BABAISYOUCore.h">
@@ -49,16 +52,16 @@
       <Filter>PreComplie</Filter>
     </ClInclude>
     <ClInclude Include="PlayGameMode.h">
-      <Filter>TestLevel</Filter>
+      <Filter>GameMode\TestLevel</Filter>
     </ClInclude>
     <ClInclude Include="TestObject.h">
-      <Filter>TestLevel\Object</Filter>
+      <Filter>GameMode\TestLevel\Object</Filter>
     </ClInclude>
     <ClInclude Include="Stage1GameMode.h">
-      <Filter>Stage1Level</Filter>
+      <Filter>GameMode\Stage1Level</Filter>
     </ClInclude>
     <ClInclude Include="StageSelectGameMode.h">
-      <Filter>StageSelectLevel</Filter>
+      <Filter>GameMode\StageSelectLevel</Filter>
     </ClInclude>
     <ClInclude Include="WallObject.h">
       <Filter>Object\Obj-Level3</Filter>
@@ -90,6 +93,9 @@
     <ClInclude Include="MapManager.h">
       <Filter>Helper</Filter>
     </ClInclude>
+    <ClInclude Include="BABAGameMode.h">
+      <Filter>GameMode</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -99,19 +105,19 @@
       <Filter>PreComplie</Filter>
     </ClCompile>
     <ClCompile Include="PlayGameMode.cpp">
-      <Filter>TestLevel</Filter>
+      <Filter>GameMode\TestLevel</Filter>
     </ClCompile>
     <ClCompile Include="TestObject.cpp">
-      <Filter>TestLevel\Object</Filter>
+      <Filter>GameMode\TestLevel\Object</Filter>
     </ClCompile>
     <ClCompile Include="Stage1GameMode.cpp">
-      <Filter>Stage1Level</Filter>
+      <Filter>GameMode\Stage1Level</Filter>
     </ClCompile>
     <ClCompile Include="BabaObject.cpp">
       <Filter>Object\Obj-Level3</Filter>
     </ClCompile>
     <ClCompile Include="StageSelectGameMode.cpp">
-      <Filter>StageSelectLevel</Filter>
+      <Filter>GameMode\StageSelectLevel</Filter>
     </ClCompile>
     <ClCompile Include="WallObject.cpp">
       <Filter>Object\Obj-Level3</Filter>
@@ -136,6 +142,9 @@
     </ClCompile>
     <ClCompile Include="MapManager.cpp">
       <Filter>Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="BABAGameMode.cpp">
+      <Filter>GameMode</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

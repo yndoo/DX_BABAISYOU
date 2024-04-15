@@ -1,8 +1,8 @@
 #include "PreCompile.h"
 #include "StageSelectGameMode.h"
 #include <EngineCore/Camera.h>
-#include "Background.h"
 #include <EngineCore/EngineCore.h>
+#include "Background.h"
 #include "StageSelecter.h"
 #include "ContentsEnum.h"
 #include "ContentsConstValue.h"

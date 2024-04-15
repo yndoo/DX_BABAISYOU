@@ -1,10 +1,11 @@
 #pragma once
-#include <EngineCore/GameMode.h>
-#include "MapManager.h"
 
-class AStage1GameMode : public AGameMode
+#include "MapManager.h"
+#include "BABAGameMode.h"
+
+class AStage1GameMode : public BABAGameMode
 {
-	GENERATED_BODY(AGameMode)
+	GENERATED_BODY(BABAGameMode)
 public:
 	AStage1GameMode();
 	~AStage1GameMode();
@@ -17,9 +18,9 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime);
 
+	void DebugGMM();
 private:
 	void Stage1MapSetting();
 
-	std::shared_ptr<MapManager> MM = nullptr;
 };
 

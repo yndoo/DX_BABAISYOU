@@ -1,6 +1,8 @@
 #include "PreCompile.h"
 #include "LerpMoveObject.h"
 #include "ContentsConstValue.h"
+#include "MapManager.h"
+#include <EngineCore/EngineDebugMsgWindow.h>
 
 //int ALerpMoveObject::SomeMoveCnt = 0;
 //int ALerpMoveObject::SomeStayCnt = 0;
@@ -135,6 +137,10 @@ void ALerpMoveObject::LerpMove(float _DeltaTime)
 		IsMove = false;
 		LerpTime = 0.f;
 		SetActorLocation(NextActorLocation);
+
+		// GMapManager->Graph에서 옮겨주기
+		CurToNext(CurActorLocation, NextActorLocation);
+
 		CurActorLocation = NextActorLocation;
 	}
 }
@@ -178,4 +184,24 @@ void ALerpMoveObject::ReverseMoveSetting(EInputDir _Dir, float _DeltaTime, bool 
 		AddNextActorLocation(FVector::Zero);
 		break;
 	}
+}
+
+void ALerpMoveObject::CurToNext(FVector _Cur, FVector _Next)
+{
+	Index2D CurI = CalPosToIndex(_Cur);
+	Index2D NxtI = CalPosToIndex(_Next);
+
+	std::list<AObject*> ObjLst = GMapManager->Graph[CurI.X][CurI.Y];
+	std::list<AObject*>::iterator Iter;
+	for (Iter = ObjLst.begin(); Iter != ObjLst.end(); Iter++)
+	{
+		if (*Iter == static_cast<AObject*>(this))
+		{
+ 			//GMapManager->Graph[CurI.X][CurI.Y].erase(Iter);
+			GMapManager->Graph[CurI.X][CurI.Y].remove(this);
+			break;
+		}
+	}
+
+	GMapManager->Graph[NxtI.X][NxtI.Y].push_back(static_cast<AObject*>(this));
 }

@@ -1,9 +1,9 @@
 #pragma once
-#include <EngineCore/GameMode.h>
+#include "BABAGameMode.h"
 
-class AStageSelectGameMode : public AGameMode
+class AStageSelectGameMode : public BABAGameMode
 {
-	GENERATED_BODY(AGameMode)
+	GENERATED_BODY(BABAGameMode)
 public:
 	AStageSelectGameMode();
 	~AStageSelectGameMode();

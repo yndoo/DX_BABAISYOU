@@ -23,8 +23,6 @@ void ABabaObject::BeginPlay()
 
 	CreateObject4DirAnimations("BABA");
 	Renderer->ChangeAnimation("BABA_Right0");
-
-	//SetActorLocation(CalIndexToPos(Index2D{0,0}));
 }
 
 void ABabaObject::Tick(float _DeltaTime)
@@ -34,21 +32,21 @@ void ABabaObject::Tick(float _DeltaTime)
 	Index2D Test = CalPosToIndex(GetActorLocation());
 	int a = 0;
 
-	{
+	//{
 		Index2D Index = CalPosToIndex(GetActorLocation());
 		FVector Res = FVector(Index.X, Index.Y);
 		std::string Msg = std::format("Index : {}\n", Res.ToString());
 		UEngineDebugMsgWindow::PushMsg(Msg);
 
-		FVector Pos = CalIndexToPos(Index);
-		std::string Msg2 = std::format("IndexToPos : {}\n", Pos.ToString());
-		UEngineDebugMsgWindow::PushMsg(Msg2);
-	}
+	//	FVector Pos = CalIndexToPos(Index);
+	//	std::string Msg2 = std::format("IndexToPos : {}\n", Pos.ToString());
+	//	UEngineDebugMsgWindow::PushMsg(Msg2);
+	//}
 
-	{
-		std::string Msg = std::format("Pos : {}\n", GetActorLocation().ToString());
-		UEngineDebugMsgWindow::PushMsg(Msg);
-	}
+	//{
+	//	std::string Msg = std::format("Pos : {}\n", GetActorLocation().ToString());
+	//	UEngineDebugMsgWindow::PushMsg(Msg);
+	//}
 
 	// 입력이 있었으면 -> 애니메이션 업데이트해야함
 	if (true == EachInputCheck || true == ZInputCheck)

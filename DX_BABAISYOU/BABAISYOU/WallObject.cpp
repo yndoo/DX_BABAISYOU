@@ -24,8 +24,8 @@ void AWallObject::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	std::string Msg = std::format("Wall Pos : {}\n", GetActorLocation().ToString());
-	UEngineDebugMsgWindow::PushMsg(Msg);
+	//std::string Msg = std::format("Wall Pos : {}\n", GetActorLocation().ToString());
+	//UEngineDebugMsgWindow::PushMsg(Msg);
 }
 
 void AWallObject::CreateWallAnimations()

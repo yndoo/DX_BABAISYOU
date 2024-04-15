@@ -7,7 +7,7 @@
 #include "Background.h"
 #include "ContentsEnum.h"
 #include "ContentsConstValue.h"
-
+#include <EngineCore/EngineDebugMsgWindow.h>
 
 
 AStage1GameMode::AStage1GameMode()
@@ -21,7 +21,7 @@ AStage1GameMode::~AStage1GameMode()
 void AStage1GameMode::BeginPlay()
 {
 	Super::BeginPlay();
-	Stage1MapSetting();
+	Stage1MapSetting();	// 맵 오브젝트 세팅하는 곳
 
 	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, -200.0f));
@@ -31,35 +31,16 @@ void AStage1GameMode::BeginPlay()
 	Back->SetActorLocation({ 0, 0, 400 });
 	Back->Stage1Setting();
 	Back->SetOrder(ERenderOrder::Background);
-
-	Stage1MapSetting();	// 맵 오브젝트 세팅하는 곳
-
-	std::list<std::shared_ptr<AObject>>* obj = MM->GetObjectList(0, 0);
-	int a = 0;
 }
 
 void AStage1GameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-
+	DebugGMM();
 }
 
 void AStage1GameMode::Stage1MapSetting()
 {
-	MM = std::make_shared<MapManager>();
-
-	std::shared_ptr<ABabaObject> Baba2 = GetWorld()->SpawnActor<ABabaObject>("Baba");
-	// 얘네는 같은 게임모드인 모든 Object 같이 세팅해야하는 것들
-	Baba2->SetMapScale(UContentsConstValue::Stage1MapScale);
-	Baba2->SetMaxIndex();
-	Baba2->SetActorScale3D(UContentsConstValue::TileScale);	// 이미지 한 칸 크기 그대로
-		
-	Baba2->AddActorLocation(Baba2->CalIndexToPos(Index2D(20, 0)));
-	Baba2->BeginPosSetting();
-	Baba2->SetOrder(ERenderOrder::FrontTile);
-	//Baba2->SetName("ttttttttttttttt");
-
-
 	std::shared_ptr<ABabaObject> Baba = GetWorld()->SpawnActor<ABabaObject>("Baba");
 	// 얘네는 같은 게임모드인 모든 Object 같이 세팅해야하는 것들
 	Baba->SetMapScale(UContentsConstValue::Stage1MapScale);
@@ -70,7 +51,19 @@ void AStage1GameMode::Stage1MapSetting()
 	Baba->BeginPosSetting();
 	Baba->SetOrder(ERenderOrder::FrontTile);
 
-	MM->SetObject(Baba, 0, 0);
+
+	std::shared_ptr<ABabaObject> Baba2 = GetWorld()->SpawnActor<ABabaObject>("Baba");
+	// 얘네는 같은 게임모드인 모든 Object 같이 세팅해야하는 것들
+	Baba2->SetMapScale(UContentsConstValue::Stage1MapScale);
+	Baba2->SetMaxIndex();
+	Baba2->SetActorScale3D(UContentsConstValue::TileScale);	// 이미지 한 칸 크기 그대로
+
+	Baba2->AddActorLocation(Baba2->CalIndexToPos(Index2D(20, 0)));
+	Baba2->BeginPosSetting();
+	Baba2->SetOrder(ERenderOrder::FrontTile);
+
+	GMapManager->SetObject(Baba.get(), 0, 0);
+	GMapManager->SetObject(Baba2.get(), 20, 0);
 
 	for (int i = 1; i <= 9; i++)
 	{
@@ -81,6 +74,23 @@ void AStage1GameMode::Stage1MapSetting()
 		WallTest->SetActorLocation(WallTest->CalIndexToPos(Index2D(i, i)));
 		WallTest->BeginPosSetting();
 
-		MM->SetObject(WallTest, i, i);
+		GMapManager->SetObject(WallTest.get(), i, i);
+	}
+}
+
+void AStage1GameMode::DebugGMM()
+{
+
+	for (int y = 19; y >= 0; y--)		// 세로
+	{
+		std::string Msg = "";
+		for (int x = 0; x < 23; x++)	// 가로
+		{
+			int ss = GMapManager->Graph[x][y].size();
+
+			Msg += std::format("{} ", std::to_string(ss));
+		}
+		Msg += "\n";
+		UEngineDebugMsgWindow::PushMsg(Msg);
 	}
 }
