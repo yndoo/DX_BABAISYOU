@@ -249,6 +249,26 @@ void AObject::AllPushNextTile(Index2D _Next, EInputDir _Dir)
 	for (auto PO : PushList)
 	{
 		PO.first->CurToNext(CalIndexToPos(_Next), CalIndexToPos(PO.second));
-		PO.first->CurDir = _Dir;
+		PO.first->NewInputDir = _Dir;
 	}
+}
+
+void AObject::PushTrueHistory()
+{
+	MoveStack.push(std::make_tuple(AnimationNumber, NewInputDir, true));
+}
+
+void AObject::PushFalseHistory()
+{
+	MoveStack.push(std::make_tuple(AnimationNumber, NewInputDir, false));
+}
+
+bool AObject::DirCheck()
+{
+	if (CurDir != NewInputDir)
+	{
+		CurDir = NewInputDir;
+		return true;
+	}
+	return false;
 }

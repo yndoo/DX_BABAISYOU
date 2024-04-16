@@ -74,15 +74,25 @@ public:
 	bool CanGoNextAll(Index2D _Next, EInputDir _Dir);		// _Dir 방향의 _Next칸에 쭉 갈 수 있는지 체크하는 함수
 	void AllPushNextTile(Index2D _Next, EInputDir _Dir);	// _Dir 방향의 _Next칸에 밀기
 
+	void PushTrueHistory();
+	void PushFalseHistory();
+
 	ObjectInfo* Info = nullptr;
+
+	bool EachMoveCheck_ForStack = false;	// 이동 있었으면 스택에 true로, 없었으면 false로 들어가기 위한 변수
 protected:
 	void BeginPlay() override;
 	//void Tick(float _DeltaTime) override;
+	bool DirCheck();
 
 	USpriteRenderer* Renderer = nullptr;
 	UDefaultSceneComponent* Root = nullptr;
-
 	EInputDir CurDir = EInputDir::Right;
+	EInputDir NewInputDir = EInputDir::Right;
+	int AnimationNumber = 0;
+
+	//되돌려질 스택이 필요함
+	std::stack<std::tuple <int, EInputDir, bool >> MoveStack;	// AnimationNumber, InputDir, IsMove
 private:
 	FVector MapScale = FVector::Zero;
 

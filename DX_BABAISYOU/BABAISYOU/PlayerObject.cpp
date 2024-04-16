@@ -34,16 +34,6 @@ void APlayerObject::Tick(float _DeltaTime)
 	}
 }
 
-bool APlayerObject::DirCheck()
-{
-	if (CurDir != NewInputDir)
-	{
-		CurDir = NewInputDir;
-		return true;
-	}
-	return false;
-}
-
 std::string APlayerObject::GetAnimationName(std::string _ObjectName, int _AniNum)
 {
 	DirCheck();

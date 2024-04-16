@@ -13,3 +13,4 @@ const int UContentsConstValue::ITileY = 36;
 
 int UContentsConstValue::MaxIndexX = 0;
 int UContentsConstValue::MaxIndexY = 0;
+int UContentsConstValue::InputCount = 0;

@@ -32,9 +32,10 @@ void ALerpMoveObject::Update(float _DeltaTime)
 		if (Cur != Before)
 		{
 			IsMove = true;
+			EachMoveCheck_ForStack = true;
 			AddNextActorLocation(CalIndexToPos(Cur) - CalIndexToPos(Before));
-
-			MoveStack.push(std::make_tuple(AnimationNumber, CurDir, true));
+			//NewInputDir = CurDir;
+			//PushTrueHistory();
 		}
 	}
 }
@@ -81,7 +82,7 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 		// 이동 : 현재 방향의 반대로 이동
 		if (Info->Objective == EObjectiveType::YOU)	// Input있는애는 이렇게
 		{
-			ReverseMoveSetting(NewInputDir, _DeltaTime, true);
+			ReverseMoveSetting(get<1>(MoveStack.top()), _DeltaTime, true);
 		}
 		else
 		{
@@ -89,18 +90,21 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 		}
 
 		// 애니메이션에 필요한 정보 : 이전 상태의 정보로 되돌리고 삭제
-		NewInputDir = get<1>(MoveStack.top());		// 튜플 두 번째 원소	
+		CurDir = get<1>(MoveStack.top());		// 튜플 두 번째 원소	
 		AnimationNumber = get<0>(MoveStack.top());	// 튜플 첫 번째 원소
 		MoveStack.pop();
 		return;
 	}
 
-	if (true == EachInputCheck)
-	{
-		MoveStack.push(std::make_tuple(AnimationNumber, CurDir, true));
-		int a = 0;
-	}
+	//if (true == EachInputCheck)
+	//{
+	//	PushTrueHistory();
+	//	int a = 0;
+	//}
 
+
+	//EachMoveCheck_ForStack = EachInputCheck;
+	DirCheck();
 }
 
 void ALerpMoveObject::InputMove(float _DeltaTime)
@@ -142,7 +146,7 @@ void ALerpMoveObject::InputMove(float _DeltaTime)
 			if (false == CanGoNextTile(Idx, NewInputDir)) // STOP블록이거나 벽이면 막힘
 			{
 				// 이동 막힌 입력도 스택에 넣어줌. (아무도 이동 안 한거면 넣을 필요가 없는데...)
-				MoveStack.push(std::make_tuple(AnimationNumber, CurDir, false));
+				//PushFalseHistory();
 				IsMove = false;
 				NewInputDir = CurDir;	// 입력 적용 안 된 경우 NewInputDir 다시 되돌려놔야함
 				return;
@@ -157,7 +161,7 @@ void ALerpMoveObject::InputMove(float _DeltaTime)
 				else
 				{
 					// 이동 막힌 입력도 스택에 넣어줌. (아무도 이동 안 한거면 넣을 필요가 없는데...)
-					MoveStack.push(std::make_tuple(AnimationNumber, CurDir, false));
+					//PushFalseHistory();
 					IsMove = false;
 					NewInputDir = CurDir;	// 입력 적용 안 된 경우 NewInputDir 다시 되돌려놔야함
 					return;
@@ -165,6 +169,9 @@ void ALerpMoveObject::InputMove(float _DeltaTime)
 			}
 
 			// 입력 적용 OK
+			//CurDir = NewInputDir;
+			UContentsConstValue::InputCount++;
+			EachMoveCheck_ForStack = true;
 			EachInputCheck = true;
 		}
 	}
@@ -186,6 +193,7 @@ void ALerpMoveObject::LerpMove(float _DeltaTime)
 	else
 	{
 		IsMove = false;
+		EachMoveCheck_ForStack = false;
 		LerpTime = 0.f;
 		SetActorLocation(NextActorLocation);
 
@@ -217,19 +225,23 @@ void ALerpMoveObject::ReverseMoveSetting(EInputDir _Dir, float _DeltaTime, bool 
 	{
 	case EInputDir::Right:
 		AddNextActorLocation(FVector::Left * TileSize);
-		NewInputDir = EInputDir::Right;	
+		//NewInputDir = EInputDir::Right;	
+		CurDir = EInputDir::Right;
 		break;
 	case EInputDir::Left:
 		AddNextActorLocation(FVector::Right * TileSize);
-		NewInputDir = EInputDir::Left;
+		//NewInputDir = EInputDir::Left;
+		CurDir = EInputDir::Left;
 		break;
 	case EInputDir::Up:
 		AddNextActorLocation(FVector::Down * TileSize);
-		NewInputDir = EInputDir::Up;
+		//NewInputDir = EInputDir::Up;
+		CurDir = EInputDir::Up;
 		break;
 	case EInputDir::Down:
 		AddNextActorLocation(FVector::Up * TileSize);
-		NewInputDir = EInputDir::Down;
+		//NewInputDir = EInputDir::Down;
+		CurDir = EInputDir::Down;
 		break;
 	default:
 		AddNextActorLocation(FVector::Zero);

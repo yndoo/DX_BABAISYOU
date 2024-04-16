@@ -17,5 +17,6 @@ public:
 
 	static int MaxIndexX;
 	static int MaxIndexY;
+	static int InputCount;
 };
 

@@ -19,11 +19,12 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 	virtual void DebugGMM();
+	void StackUpdate();
 	//void Update(float _DeltaTime);
 
 	std::shared_ptr<MapManager> MM = nullptr;
 	std::list<AObject*> AllObjects;	// 해당 레벨 모든 오브젝트 들고있음. 이거로 Update 하자..
 private:
-
+	int BeforeInputCount = 0;
 };
 

@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "BABAGameMode.h"
 #include <EngineCore/EngineDebugMsgWindow.h>
+#include "ContentsConstValue.h"
 
 BABAGameMode::BABAGameMode()
 {
@@ -18,8 +19,28 @@ void BABAGameMode::BeginPlay()
 void BABAGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	StackUpdate();
 }
 
+void BABAGameMode::StackUpdate()
+{
+	if (BeforeInputCount != UContentsConstValue::InputCount)
+	{
+		// 모든 오브젝트 움직인 애, 안 움직인 애 구분해서 Stack에 넣어줘야 함
+		for (auto Obj : AllObjects)
+		{
+			if (Obj->EachMoveCheck_ForStack == true)
+			{
+				Obj->PushTrueHistory();
+			}
+			else 
+			{
+				Obj->PushFalseHistory();
+			}
+		}
+		BeforeInputCount = UContentsConstValue::InputCount;
+	}
+}
 //void BABAGameMode::Update(float _DeltaTime)
 //{
 //	// 위치 변화가 있는 애들 SetLocation 다시 해주기
