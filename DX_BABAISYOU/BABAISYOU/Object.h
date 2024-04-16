@@ -87,8 +87,8 @@ protected:
 
 	USpriteRenderer* Renderer = nullptr;
 	UDefaultSceneComponent* Root = nullptr;
-	EInputDir CurDir = EInputDir::Right;
-	EInputDir NewInputDir = EInputDir::Right;
+	EInputDir CurDir = EInputDir::Right;		// 주로 애니메이션에 사용
+	EInputDir NewInputDir = EInputDir::Right;	// 새로운 이동 방향에 사용
 	int AnimationNumber = 0;
 
 	//되돌려질 스택이 필요함

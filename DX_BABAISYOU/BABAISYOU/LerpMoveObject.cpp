@@ -225,23 +225,19 @@ void ALerpMoveObject::ReverseMoveSetting(EInputDir _Dir, float _DeltaTime, bool 
 	{
 	case EInputDir::Right:
 		AddNextActorLocation(FVector::Left * TileSize);
-		//NewInputDir = EInputDir::Right;	
-		CurDir = EInputDir::Right;
+		NewInputDir = EInputDir::Right;	
 		break;
 	case EInputDir::Left:
 		AddNextActorLocation(FVector::Right * TileSize);
-		//NewInputDir = EInputDir::Left;
-		CurDir = EInputDir::Left;
+		NewInputDir = EInputDir::Left;
 		break;
 	case EInputDir::Up:
 		AddNextActorLocation(FVector::Down * TileSize);
-		//NewInputDir = EInputDir::Up;
-		CurDir = EInputDir::Up;
+		NewInputDir = EInputDir::Up;
 		break;
 	case EInputDir::Down:
 		AddNextActorLocation(FVector::Up * TileSize);
-		//NewInputDir = EInputDir::Down;
-		CurDir = EInputDir::Down;
+		NewInputDir = EInputDir::Down;
 		break;
 	default:
 		AddNextActorLocation(FVector::Zero);

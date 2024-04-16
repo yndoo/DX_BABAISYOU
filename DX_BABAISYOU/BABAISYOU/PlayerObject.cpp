@@ -39,7 +39,7 @@ std::string APlayerObject::GetAnimationName(std::string _ObjectName, int _AniNum
 	DirCheck();
 
 	std::string AniDir = "";
-	switch (NewInputDir) {
+	switch (CurDir) {
 	case EInputDir::Right:
 		AniDir = "_Right";
 		break;
