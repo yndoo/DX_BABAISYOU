@@ -12,6 +12,24 @@ struct Index2D
 {
 	int X;
 	int Y;
+
+	Index2D operator -(const Index2D _Other)
+	{
+		Index2D Result = Index2D(0, 0);
+		Result.X = X - _Other.X;
+		Result.Y = Y - _Other.Y;
+
+		return Result;
+	}
+
+	bool operator!=(const Index2D _Other) const
+	{
+		if (X != _Other.X || Y != _Other.Y)
+		{
+			return true;
+		}
+		return false;
+	}
 };
 
 class AObject;
@@ -59,9 +77,12 @@ public:
 	ObjectInfo* Info = nullptr;
 protected:
 	void BeginPlay() override;
+	//void Tick(float _DeltaTime) override;
 
 	USpriteRenderer* Renderer = nullptr;
 	UDefaultSceneComponent* Root = nullptr;
+
+	EInputDir CurDir = EInputDir::Right;
 private:
 	FVector MapScale = FVector::Zero;
 

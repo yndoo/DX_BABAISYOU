@@ -19,10 +19,10 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 	virtual void DebugGMM();
-	virtual void Update(float _DeltaTime);
+	//void Update(float _DeltaTime);
 
 	std::shared_ptr<MapManager> MM = nullptr;
-	std::list<AObject*> AllObject;	// 해당 레벨 모든 오브젝트 들고있음. 이거로 Update 하자..
+	std::list<AObject*> AllObjects;	// 해당 레벨 모든 오브젝트 들고있음. 이거로 Update 하자..
 private:
 
 };

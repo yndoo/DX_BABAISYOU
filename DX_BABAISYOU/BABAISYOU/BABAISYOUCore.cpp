@@ -45,14 +45,14 @@ void UBABAISYOUCore::Initialize()
 
 
 	{
-		UEngineDirectory Dir;
-		Dir.MoveToSearchChild("ContentsResources");
-		Dir.Move("Sound");
-		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".wav" });
-		for (UEngineFile& File : Files)
-		{
-			UEngineSound::Load(File.GetFullPath());
-		}
+		//UEngineDirectory Dir;
+		//Dir.MoveToSearchChild("ContentsResources");
+		//Dir.Move("Sound");
+		//std::vector<UEngineFile> Files = Dir.GetAllFile({ ".wav" });
+		//for (UEngineFile& File : Files)
+		//{
+		//	UEngineSound::Load(File.GetFullPath());
+		//}
 	}
 
 

@@ -20,6 +20,7 @@ void APlayerObject::BeginPosSetting()
 {
 	// 움직일 애들 Location 설정해주고나서 다시 해줘야함.
 	CurActorLocation = GetActorLocation();
+	Info->CurIdx = CalPosToIndex(CurActorLocation);
 }
 
 void APlayerObject::Tick(float _DeltaTime)

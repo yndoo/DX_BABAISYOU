@@ -20,10 +20,22 @@ void BABAGameMode::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 }
 
-void BABAGameMode::Update(float _DeltaTime)
-{
-	// 위치 변화가 있는 애들 SetLocation 다시 해주기
-}
+//void BABAGameMode::Update(float _DeltaTime)
+//{
+//	// 위치 변화가 있는 애들 SetLocation 다시 해주기
+//	// Info의 CurIdx는 GMM 바뀔 때 저장해줌.
+//	for (auto Obj : AllObjects)
+//	{
+//		Index2D Cur = Obj->Info->CurIdx;
+//		Index2D Before = Obj->CalPosToIndex(Obj->GetActorLocation());
+//		if (Cur != Before)
+//		{
+//			//GMapManager->Graph[Before.X][Before.Y].remove(Obj);
+//			//GMapManager->Graph[Cur.X][Cur.Y].push_back(Obj);
+//			//Obj->
+//		}
+//	}
+//}
 
 void BABAGameMode::DebugGMM()
 {

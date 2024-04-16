@@ -10,7 +10,7 @@
 
 ALerpMoveObject::ALerpMoveObject()
 {
-	 //InputOn();
+	 InputOn();
 }
 
 ALerpMoveObject::~ALerpMoveObject()
@@ -22,11 +22,37 @@ void ALerpMoveObject::BeginPlay()
 	Super::BeginPlay();
 }
 
+// 입력 외에 위치 변화가 있는 애들 진짜 행동으로 움직여주는 함수 (Push 당한 애들 등등)
+void ALerpMoveObject::Update(float _DeltaTime)
+{
+	if (false == IsMove)
+	{
+		Index2D Cur = Info->CurIdx;
+		Index2D Before = CalPosToIndex(GetActorLocation());
+		if (Cur != Before)
+		{
+			IsMove = true;
+			AddNextActorLocation(CalIndexToPos(Cur) - CalIndexToPos(Before));
+
+			MoveStack.push(std::make_tuple(AnimationNumber, CurDir, true));
+		}
+	}
+}
+
 void ALerpMoveObject::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	InputMove(_DeltaTime);
+	// Input이동은 안 되지만 Z는 되어야 하는 경우가 있음. YOU인 경우에만 InputMove
+	if (false == IsMove)
+	{
+		Update(_DeltaTime);
+		if (Info->Objective == EObjectiveType::YOU)
+		{
+			InputMove(_DeltaTime);
+		}
+	}
+
 	if (true == IsMove)
 	{
 		LerpMove(_DeltaTime);
@@ -53,7 +79,14 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 
 
 		// 이동 : 현재 방향의 반대로 이동
-		ReverseMoveSetting(NewInputDir, _DeltaTime, true);
+		if (Info->Objective == EObjectiveType::YOU)	// Input있는애는 이렇게
+		{
+			ReverseMoveSetting(NewInputDir, _DeltaTime, true);
+		}
+		else
+		{
+			ReverseMoveSetting(get<1>(MoveStack.top()), _DeltaTime, true);
+		}
 
 		// 애니메이션에 필요한 정보 : 이전 상태의 정보로 되돌리고 삭제
 		NewInputDir = get<1>(MoveStack.top());		// 튜플 두 번째 원소	

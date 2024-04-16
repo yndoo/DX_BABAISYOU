@@ -76,12 +76,16 @@ void AObject::SetMaxIndex()
 	UContentsConstValue::MaxIndexY = MaxIndex.Y;
 }
 
-// 나를 _Cur위치에서 지우고 _Next위치로 옮겨주는 함수.
+// 나를 _Cur위치에서 지우고 _Next위치로 데이터 상 옮겨주는 함수. 
 void AObject::CurToNext(FVector _Cur, FVector _Next)
 {
 	Index2D CurI = CalPosToIndex(_Cur);
 	Index2D NxtI = CalPosToIndex(_Next);
 
+	// Info 바꿔주기
+	Info->CurIdx = NxtI;
+
+	// GMM의 Graph 원래 있던 곳에서 지우기
 	std::list<AObject*> ObjLst = GMapManager->Graph[CurI.X][CurI.Y];
 	std::list<AObject*>::iterator Iter;
 	for (Iter = ObjLst.begin(); Iter != ObjLst.end(); Iter++)
@@ -93,6 +97,7 @@ void AObject::CurToNext(FVector _Cur, FVector _Next)
 		}
 	}
 
+	// GMM의 Graph 새 위치에 넣어주기
 	GMapManager->Graph[NxtI.X][NxtI.Y].push_back(static_cast<AObject*>(this));
 }
 
@@ -244,5 +249,6 @@ void AObject::AllPushNextTile(Index2D _Next, EInputDir _Dir)
 	for (auto PO : PushList)
 	{
 		PO.first->CurToNext(CalIndexToPos(_Next), CalIndexToPos(PO.second));
+		PO.first->CurDir = _Dir;
 	}
 }
