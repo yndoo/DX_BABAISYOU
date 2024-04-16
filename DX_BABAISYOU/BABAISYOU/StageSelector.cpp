@@ -1,9 +1,9 @@
 #include "PreCompile.h"
-#include "StageSelecter.h"
+#include "StageSelector.h"
 #include <EngineCore/EngineDebugMsgWindow.h>
 #include <EngineCore/DefaultSceneComponent.h>
 
-AStageSelecter::AStageSelecter()
+AStageSelector::AStageSelector()
 {
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
 	Renderer->SetupAttachment(Root);
@@ -11,23 +11,23 @@ AStageSelecter::AStageSelecter()
 	InputOn();
 }
 
-AStageSelecter::~AStageSelecter()
+AStageSelector::~AStageSelector()
 {
 }
 
-void AStageSelecter::BeginPlay()
+void AStageSelector::BeginPlay()
 {
 	Super::BeginPlay();
 
 	SetActorScale3D(FVector(36, 36, 1));
 
-	Renderer->SetSprite("Selecter.png");
-	Renderer->CreateAnimation("Selecter", "Selecter.png", 0.2f);
-	Renderer->ChangeAnimation("Selecter");
+	Renderer->SetSprite("Selector.png");
+	Renderer->CreateAnimation("Selector", "Selector.png", 0.2f);
+	Renderer->ChangeAnimation("Selector");
 	bool Test = Renderer->IsActive();
 }
 
-void AStageSelecter::Tick(float _DeltaTime)
+void AStageSelector::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
@@ -44,7 +44,7 @@ void AStageSelecter::Tick(float _DeltaTime)
 	if (true == EachInputCheck)
 	{
 		// Super먼저 돌기 때문에 여기서 false로 바꿔줌.
-		// Selecter는 InputCheck 필요 없음.
+		// Selector는 InputCheck 필요 없음.
 		EachInputCheck = false;	
 	}
 }

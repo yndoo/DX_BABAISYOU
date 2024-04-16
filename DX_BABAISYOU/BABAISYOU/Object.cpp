@@ -8,6 +8,8 @@ AObject::AObject()
 {
 	Root = CreateDefaultSubObject<UDefaultSceneComponent>("RendererRoot");
 	SetRoot(Root);
+
+	//Root->AddScale(FVector(54, 54, 1));
 }
 
 AObject::~AObject()
@@ -106,7 +108,7 @@ bool AObject::IndexRangeOverCheck(Index2D Idx)
 	return false;
 }
 
-// _Dir 방향의 _Next칸에 갈 수 있는지 체크하는 함수
+// _Dir 방향의 _Next칸에 갈 수 있는지 체크하는 함수 (Next가 STOP인지 봐주는 함수이기도 함)
 bool AObject::CanGoNextTile(Index2D _Next, EInputDir _Dir)
 {
 	// 못 옮기는 경우 1. 벽 넘어감
@@ -135,30 +137,11 @@ bool AObject::CanGoNextTile(Index2D _Next, EInputDir _Dir)
 	return true;
 }
 
-// _Dir 방향의 _Next칸에 쭉 갈 수 있는지 "체크"하는 함수
+// _Dir 방향의 _Next칸에 쭉 밀 수 있는지 "체크"하는 함수
 bool AObject::CanGoNextAll(Index2D _Next, EInputDir _Dir)
 {
-	Index2D NextNext = _Next;
-	switch (_Dir)
-	{
-	case EInputDir::Right:
-		NextNext.X += 1;
-		break;
-	case EInputDir::Left:
-		NextNext.X -= 1;
-		break;
-	case EInputDir::Up:
-		NextNext.Y -= 1;
-		break;
-	case EInputDir::Down:
-		NextNext.Y -= 1;
-		break;
-	default:
-		break;
-	}
-
 	// 못 옮기는 경우 1. 벽 넘어감
-	if (true == IndexRangeOverCheck(NextNext))
+	if (true == IndexRangeOverCheck(_Next))
 	{
 		return false;
 	}
@@ -176,6 +159,25 @@ bool AObject::CanGoNextAll(Index2D _Next, EInputDir _Dir)
 		if ((*Iter)->Info->Objective == EObjectiveType::PUSH)
 		{
 			// PUSH인 애는 그 옆도 계속 체크.
+			Index2D NextNext = _Next;
+			switch (_Dir)
+			{
+			case EInputDir::Right:
+				NextNext.X += 1;
+				break;
+			case EInputDir::Left:
+				NextNext.X -= 1;
+				break;
+			case EInputDir::Up:
+				NextNext.Y += 1;
+				break;
+			case EInputDir::Down:
+				NextNext.Y -= 1;
+				break;
+			default:
+				break;
+			}
+
 			if (false == (*Iter)->CanGoNextAll(NextNext, _Dir))
 			{
 				return false;
@@ -187,33 +189,26 @@ bool AObject::CanGoNextAll(Index2D _Next, EInputDir _Dir)
 	return true;
 }
 
+// 옆 칸이 PUSH인지 확인하는 함수
+bool AObject::IsNextPUSH(Index2D _Next)
+{
+	std::list<AObject*> ObjLst = GMapManager->Graph[_Next.X][_Next.Y];
+	std::list<AObject*>::iterator Iter;
+	for (Iter = ObjLst.begin(); Iter != ObjLst.end(); Iter++)
+	{
+		if ((*Iter)->Info->Objective == EObjectiveType::PUSH)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
 // _Dir 방향의 _Next칸에 밀기(진짜 밀기 행동)(밀 수 있는 경우에만 사용해야 함)
 void AObject::AllPushNextTile(Index2D _Next, EInputDir _Dir)
 {
-	Index2D NextNext = _Next;
-	switch (_Dir)
-	{
-	case EInputDir::Right:
-		NextNext.X += 1;
-		break;
-	case EInputDir::Left:
-		NextNext.X -= 1;
-		break;
-	case EInputDir::Up:
-		NextNext.Y -= 1;
-		break;
-	case EInputDir::Down:
-		NextNext.Y -= 1;
-		break;
-	default:
-		break;
-	}
-
-	// 얘는 벽넘어가는거 말고는 언제 막아줘야하지?
-	if (true == IndexRangeOverCheck(NextNext))
-	{
-		return;
-	}
+	std::list<std::pair<AObject*, Index2D>> PushList;
 
 	std::list<AObject*> ObjLst = GMapManager->Graph[_Next.X][_Next.Y];
 	std::list<AObject*>::iterator Iter;
@@ -222,9 +217,32 @@ void AObject::AllPushNextTile(Index2D _Next, EInputDir _Dir)
 		// PUSH인 애는 그 옆도 계속 밀어주기.
 		if ((*Iter)->Info->Objective == EObjectiveType::PUSH)
 		{
+			Index2D NextNext = _Next;
+			switch (_Dir)
+			{
+			case EInputDir::Right:
+				NextNext.X += 1;
+				break;
+			case EInputDir::Left:
+				NextNext.X -= 1;
+				break;
+			case EInputDir::Up:
+				NextNext.Y += 1;
+				break;
+			case EInputDir::Down:
+				NextNext.Y -= 1;
+				break;
+			default:
+				break;
+			}
+
+			PushList.push_back(std::make_pair(*Iter, NextNext));
 			(*Iter)->AllPushNextTile(NextNext, _Dir);
 		}
 	}
 
-	CurToNext(CalIndexToPos(_Next), CalIndexToPos(NextNext));
+	for (auto PO : PushList)
+	{
+		PO.first->CurToNext(CalIndexToPos(_Next), CalIndexToPos(PO.second));
+	}
 }

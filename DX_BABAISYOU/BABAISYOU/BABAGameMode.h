@@ -1,6 +1,7 @@
 #pragma once
 #include <EngineCore/GameMode.h>
 #include "MapManager.h"
+#include "Object.h"
 
 class BABAGameMode : public AGameMode
 {
@@ -15,9 +16,13 @@ public:
 	BABAGameMode& operator=(BABAGameMode&& _Other) noexcept = delete;
 protected:
 	void BeginPlay() override;
-	void Tick(float _DeltaTime);
+	void Tick(float _DeltaTime) override;
+
+	virtual void DebugGMM();
+	virtual void Update(float _DeltaTime);
 
 	std::shared_ptr<MapManager> MM = nullptr;
+	std::list<AObject*> AllObject;	// 해당 레벨 모든 오브젝트 들고있음. 이거로 Update 하자..
 private:
 
 };

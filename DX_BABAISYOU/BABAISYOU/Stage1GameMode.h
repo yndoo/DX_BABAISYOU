@@ -16,9 +16,9 @@ public:
 	AStage1GameMode& operator=(AStage1GameMode&& _Other) noexcept = delete;
 protected:
 	void BeginPlay() override;
-	void Tick(float _DeltaTime);
+	void Tick(float _DeltaTime) override;
+	void DebugGMM() override;
 
-	void DebugGMM();
 private:
 	void Stage1MapSetting();
 

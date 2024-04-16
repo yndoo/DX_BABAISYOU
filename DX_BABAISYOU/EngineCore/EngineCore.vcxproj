@@ -332,6 +332,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="TileRenderer.h" />
     <ClInclude Include="WorldObject.h">
       <SubType>
       </SubType>
@@ -500,6 +501,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="TileRenderer.cpp" />
     <ClCompile Include="WorldObject.cpp">
       <SubType>
       </SubType>

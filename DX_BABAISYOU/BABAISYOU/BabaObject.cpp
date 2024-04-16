@@ -52,6 +52,7 @@ void ABabaObject::Tick(float _DeltaTime)
 	if (true == EachInputCheck || true == ZInputCheck)
 	{
 		EachInputCheck = false;	// Super먼저 돌기 때문에 여기서 false로 바꿔줌.
+		ZInputCheck = false;
 		Renderer->ChangeAnimation(GetAnimationName("BABA", AnimationNumber));
 	}
 }

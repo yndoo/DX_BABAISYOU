@@ -106,7 +106,7 @@ void ALerpMoveObject::InputMove(float _DeltaTime)
 			// 1. 벽에 안 막히는 지 확인
 			// 2. 이동할 곳의 방향에 옮길 수 없는 오브젝트가 하나라도 있는 지 확인해야 함.
 			Index2D Idx = CalPosToIndex(NextActorLocation);
-			if (false == CanGoNextTile(Idx, NewInputDir))
+			if (false == CanGoNextTile(Idx, NewInputDir)) // STOP블록이거나 벽이면 막힘
 			{
 				// 이동 막힌 입력도 스택에 넣어줌. (아무도 이동 안 한거면 넣을 필요가 없는데...)
 				MoveStack.push(std::make_tuple(AnimationNumber, CurDir, false));
@@ -114,11 +114,22 @@ void ALerpMoveObject::InputMove(float _DeltaTime)
 				NewInputDir = CurDir;	// 입력 적용 안 된 경우 NewInputDir 다시 되돌려놔야함
 				return;
 			}
-			// 밀기 아직 안됨
-			//if (true == CanGoNextAll(Idx, NewInputDir))
-			//{
-			//	AllPushNextTile(Idx, NewInputDir);
-			//}
+			// PUSH있으면 밀기
+			if (true == IsNextPUSH(Idx))
+			{
+				if (true == CanGoNextAll(Idx, NewInputDir))
+				{
+					AllPushNextTile(Idx, NewInputDir);
+				}
+				else
+				{
+					// 이동 막힌 입력도 스택에 넣어줌. (아무도 이동 안 한거면 넣을 필요가 없는데...)
+					MoveStack.push(std::make_tuple(AnimationNumber, CurDir, false));
+					IsMove = false;
+					NewInputDir = CurDir;	// 입력 적용 안 된 경우 NewInputDir 다시 되돌려놔야함
+					return;
+				}
+			}
 
 			// 입력 적용 OK
 			EachInputCheck = true;

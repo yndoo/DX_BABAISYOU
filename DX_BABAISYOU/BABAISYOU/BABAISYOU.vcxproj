@@ -52,7 +52,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="StageSelecter.h">
+    <ClInclude Include="StageSelector.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -112,7 +112,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="StageSelecter.cpp">
+    <ClCompile Include="StageSelector.cpp">
       <SubType>
       </SubType>
     </ClCompile>

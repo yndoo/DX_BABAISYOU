@@ -3,7 +3,7 @@
 #include <EngineCore/Camera.h>
 #include <EngineCore/EngineCore.h>
 #include "Background.h"
-#include "StageSelecter.h"
+#include "StageSelector.h"
 #include "ContentsEnum.h"
 #include "ContentsConstValue.h"
 #include "Object.h"
@@ -25,10 +25,10 @@ void AStageSelectGameMode::BeginPlay()
 	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, -100.0f));
 
-	std::shared_ptr<AStageSelecter> Selecter = GetWorld()->SpawnActor<AStageSelecter>("Selecter");
-	Selecter->SetMapScale(UContentsConstValue::StageSelectMapScale);
-	Selecter->AddActorLocation(Selecter->CalIndexToPos(Index2D(0, 0)));
-	Selecter->SetActorScale3D(UContentsConstValue::TileScale);
+	std::shared_ptr<AStageSelector> Selector = GetWorld()->SpawnActor<AStageSelector>("Selector");
+	Selector->SetMapScale(UContentsConstValue::StageSelectMapScale);
+	Selector->AddActorLocation(Selector->CalIndexToPos(Index2D(0, 0)));
+	Selector->SetActorScale3D(UContentsConstValue::TileScale);
 
 	std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");
 	Back->SetActorLocation({ 0, 0, 400 });

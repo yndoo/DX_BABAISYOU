@@ -50,6 +50,7 @@ void AStage1GameMode::Stage1MapSetting()
 	Baba->AddActorLocation(Baba->CalIndexToPos(Index2D(0, 0)));
 	Baba->BeginPosSetting();
 	Baba->SetOrder(ERenderOrder::FrontTile);
+	AllObject.push_back(Baba.get());
 
 
 	std::shared_ptr<ABabaObject> Baba2 = GetWorld()->SpawnActor<ABabaObject>("Baba");
@@ -61,6 +62,7 @@ void AStage1GameMode::Stage1MapSetting()
 	Baba2->AddActorLocation(Baba2->CalIndexToPos(Index2D(1, 0)));
 	Baba2->BeginPosSetting();
 	Baba2->SetOrder(ERenderOrder::FrontTile);
+	AllObject.push_back(Baba2.get());
 
 	GMapManager->SetObject(Baba.get(), 0, 0);
 	GMapManager->SetObject(Baba2.get(), 1, 0);
@@ -73,9 +75,11 @@ void AStage1GameMode::Stage1MapSetting()
 		WallTest->SetActorScale3D(UContentsConstValue::TileScale);
 		WallTest->SetActorLocation(WallTest->CalIndexToPos(Index2D(i, i)));
 		WallTest->BeginPosSetting();
-		WallTest->Info->Objective = EObjectiveType::STOP;
-		//WallTest->Info->Objective = EObjectiveType::PUSH;
+		//WallTest->Info->Objective = EObjectiveType::STOP;
+		WallTest->Info->Objective = EObjectiveType::PUSH;
+
 		GMapManager->SetObject(WallTest.get(), i, i);
+		AllObject.push_back(WallTest.get());
 	}
 }
 
