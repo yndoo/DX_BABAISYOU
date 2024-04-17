@@ -26,7 +26,6 @@ void APlayerObject::BeginPosSetting()
 void APlayerObject::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	DirCheck();
 
 	if (true == EachInputCheck)
 	{

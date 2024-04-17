@@ -90,27 +90,22 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 		}
 
 		// 애니메이션에 필요한 정보 : 이전 상태의 정보로 되돌리고 삭제
-		CurDir = get<1>(MoveStack.top());		// 튜플 두 번째 원소	
-		AnimationNumber = get<0>(MoveStack.top());	// 튜플 첫 번째 원소
+		//CurDir = get<1>(MoveStack.top());		// 튜플 두 번째 원소	
+		//AnimationNumber = get<0>(MoveStack.top());	// 튜플 첫 번째 원소
+		AnimationNumber = AnimationStack.top().first;
+		NewInputDir = AnimationStack.top().second;
 		MoveStack.pop();
+		AnimationStack.pop();
 		return;
 	}
-
-	//if (true == EachInputCheck)
-	//{
-	//	PushTrueHistory();
-	//	int a = 0;
-	//}
-
-
-	//EachMoveCheck_ForStack = EachInputCheck;
-	DirCheck();
 }
 
 void ALerpMoveObject::InputMove(float _DeltaTime)
 {
 	if (false == IsMove)
 	{
+		BeforeDir = CurDir;
+
 		if (true == IsDown(VK_LEFT))
 		{
 			AddNextActorLocation(FVector::Left * TileSize);

@@ -87,12 +87,14 @@ protected:
 
 	USpriteRenderer* Renderer = nullptr;
 	UDefaultSceneComponent* Root = nullptr;
-	EInputDir CurDir = EInputDir::Right;		// 주로 애니메이션에 사용
-	EInputDir NewInputDir = EInputDir::Right;	// 새로운 이동 방향에 사용
+	EInputDir CurDir = EInputDir::Right;		// 현재 방향
+	EInputDir NewInputDir = EInputDir::Right;	// 새로 입력받는 이동 방향
+	EInputDir BeforeDir = EInputDir::Right;		// 이동 전 방향 -> 제일 나중에 업데이트되는 방향 
 	int AnimationNumber = 0;
 
-	//되돌려질 스택이 필요함
-	std::stack<std::tuple <int, EInputDir, bool >> MoveStack;	// AnimationNumber, InputDir, IsMove
+	// 롤백 기능을 위해 스택이 필요함
+	std::stack<std::tuple<int, EInputDir, bool >> MoveStack;	// AnimationNumber, InputDir, IsMove 행동 스택
+	std::stack<std::pair<int, EInputDir>> AnimationStack;		// AnimationNumber, AnimationDir 애니메이션 스택
 private:
 	FVector MapScale = FVector::Zero;
 
