@@ -46,12 +46,47 @@ void UTileRenderer::CreateTileMap(std::string_view _TileSet, float4 _TileSize, i
 	}
 }
 
+float4 UTileRenderer::ConvertTileIndex(float4 _WorldXY)
+{
+	_WorldXY.X /= TileSize.X;
+	_WorldXY.Y /= TileSize.Y;
+	return _WorldXY;
+}
+
+void UTileRenderer::SetTile(float4 _WorldXY, int _Index)
+{
+	_WorldXY.X /= TileSize.X;
+	_WorldXY.Y /= TileSize.Y;
+
+	SetTile(_WorldXY.iX(), _WorldXY.iY(), _Index);
+}
+
 void UTileRenderer::SetTile(int _X, int _Y, int _Index)
 {
+	if (0 > _Y)
+	{
+		return;
+	}
+
+	if (0 > _X)
+	{
+		return;
+	}
+
+	if (Tiles.size() <= _Y)
+	{
+		return;
+	}
+
+	if (Tiles[0].size() <= _X)
+	{
+		return;
+	}
+
 	Tiles[_Y][_X] = _Index;
 }
 
-void UTileRenderer::Render(float _DeltaTime)
+bool UTileRenderer::Render(float _DeltaTime)
 {
 	RenderingSetting();
 
@@ -67,6 +102,7 @@ void UTileRenderer::Render(float _DeltaTime)
 			CuttingDataValue.CuttingSize = Info.CuttingSize;
 
 			float4 CurPos = { TileSize.X* x, TileSize.Y* y };
+			CurPos += TileSize.Half2D();
 
 			Transform.SetPosition(StartPos + CurPos);
 			Transform.SetScale(TileSize);
@@ -76,5 +112,7 @@ void UTileRenderer::Render(float _DeltaTime)
 			GetMesh()->IndexedDraw();
 		}
 	}
+
+	return true;
 }
 

@@ -258,6 +258,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EngineStruct.h" />
     <ClInclude Include="EngineTexture.h">
       <SubType>
       </SubType>
@@ -284,6 +285,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ActorComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RenderUnit.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -333,6 +338,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TileRenderer.h" />
+    <ClInclude Include="Image.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Widget.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="WorldObject.h">
       <SubType>
       </SubType>
@@ -425,6 +438,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EngineStruct.cpp" />
     <ClCompile Include="EngineTexture.cpp">
       <SubType>
       </SubType>
@@ -454,6 +468,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ActorComponent.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="RenderUnit.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -502,6 +520,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TileRenderer.cpp" />
+    <ClCompile Include="Image.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Widget.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="WorldObject.cpp">
       <SubType>
       </SubType>
