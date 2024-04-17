@@ -21,16 +21,20 @@ enum class ETileType
 {
 	None,
 	Player,
-	Verb,
-	Text,
-	Tile,
+	Subject,	//주어
+	Verb,		//동사	
+	Objective,	//목적어
+	Tile,		//보류
 };
 
 // 모든 오브젝트 종류
 enum class EObjectType	
 {
 	NONE,
-	// 목적어들
+	// 그림들
+	BABA,
+	WALL,
+	// 목적어들 (무조건 TEXT)
 	YOU,
 	WIN,
 	STOP,

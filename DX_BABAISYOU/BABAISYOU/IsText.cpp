@@ -1,17 +1,17 @@
 #include "PreCompile.h"
-#include "IsVerb.h"
+#include "IsText.h"
 
-AIsVerb::AIsVerb()
+AIsText::AIsText()
 {
-	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
-	Renderer->SetupAttachment(Root);
+	Info->TileType = ETileType::Verb;
+	Info->MyType = EObjectType::IS;
 }
 
-AIsVerb::~AIsVerb()
+AIsText::~AIsText()
 {
 }
 
-void AIsVerb::BeginPlay()
+void AIsText::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -21,7 +21,7 @@ void AIsVerb::BeginPlay()
 	AniONOFF();
 }
 
-void AIsVerb::Tick(float _DeltaTime)
+void AIsText::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
@@ -31,7 +31,7 @@ void AIsVerb::Tick(float _DeltaTime)
 	}
 }
 
-void AIsVerb::AniONOFF()
+void AIsText::AniONOFF()
 {
 	if (ON)
 	{

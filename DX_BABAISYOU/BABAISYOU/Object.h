@@ -35,7 +35,7 @@ public:
 	friend AObject;
 
 	ETileType TileType = ETileType::None;
-	EObjectType ObjectiveType = EObjectType::NONE;	// 나한테 걸려있는 목적어 타입(원래는 복수 목적어가 가능해야 함. 일단 보류..)
+	EObjectType ObjectiveType = EObjectType::NONE;	// 나한테 걸려있는 목적어 타입(원래는 복수 목적어가 가능해야 함. 복수는 일단 보류..)
 	EObjectType MyType = EObjectType::NONE;
 
 	Index2D CurIndex = Index2D(-1, -1);

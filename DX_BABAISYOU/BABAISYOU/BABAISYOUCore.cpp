@@ -37,7 +37,9 @@ void UBABAISYOUCore::Initialize()
 
 		UEngineSprite::CreateCutting("BABA.png", 17, 3);
 		UEngineSprite::CreateCutting("WALL.png", 18, 3);
+		UEngineSprite::CreateCutting("BABAText.png", 2, 3);
 		UEngineSprite::CreateCutting("IS.png", 2, 3);
+		UEngineSprite::CreateCutting("YOU.png", 3, 3);
 
 		UEngineSprite::CreateCutting("SelectMap_background.png", 3, 1);
 		UEngineSprite::CreateCutting("Selector.png", 3, 1);

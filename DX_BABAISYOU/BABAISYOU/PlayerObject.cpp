@@ -3,7 +3,8 @@
 
 APlayerObject::APlayerObject()
 {
-
+	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
+	Renderer->SetupAttachment(Root);
 }
 
 APlayerObject::~APlayerObject()

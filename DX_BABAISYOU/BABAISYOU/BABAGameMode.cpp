@@ -19,26 +19,31 @@ void BABAGameMode::BeginPlay()
 void BABAGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	StackUpdate();
+
+	// 변화 발생 시
+	if (BeforeInputCount != UContentsConstValue::InputCount)
+	{
+		StackUpdate();
+		// 문장검사
+		//SentenceUpdate();
+
+		BeforeInputCount = UContentsConstValue::InputCount;
+	}
 }
 
 void BABAGameMode::StackUpdate()
 {
-	if (BeforeInputCount != UContentsConstValue::InputCount)
+	// 모든 오브젝트 움직인 애, 안 움직인 애 구분해서 Stack에 넣어줘야 함
+	for (auto Obj : AllObjects)
 	{
-		// 모든 오브젝트 움직인 애, 안 움직인 애 구분해서 Stack에 넣어줘야 함
-		for (auto Obj : AllObjects)
+		if (Obj->EachMoveCheck_ForStack == true)
 		{
-			if (Obj->EachMoveCheck_ForStack == true)
-			{
-				Obj->PushTrueHistory();
-			}
-			else 
-			{
-				Obj->PushFalseHistory();
-			}
+			Obj->PushTrueHistory();
 		}
-		BeforeInputCount = UContentsConstValue::InputCount;
+		else
+		{
+			Obj->PushFalseHistory();
+		}
 	}
 }
 //void BABAGameMode::Update(float _DeltaTime)

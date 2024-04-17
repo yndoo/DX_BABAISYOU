@@ -31,6 +31,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="BabaText.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Background.h">
       <SubType>
       </SubType>
@@ -40,7 +44,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ContentsEnum.h" />
-    <ClInclude Include="IsVerb.h">
+    <ClInclude Include="IsText.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -78,11 +82,15 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="VerbObject.h">
+    <ClInclude Include="TextObject.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="WallObject.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="YouText.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -100,6 +108,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="BabaText.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Background.cpp">
       <SubType>
       </SubType>
@@ -108,7 +120,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="IsVerb.cpp">
+    <ClCompile Include="IsText.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -151,11 +163,15 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="VerbObject.cpp">
+    <ClCompile Include="TextObject.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="WallObject.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="YouText.cpp">
       <SubType>
       </SubType>
     </ClCompile>

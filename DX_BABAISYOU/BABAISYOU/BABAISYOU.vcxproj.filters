@@ -46,7 +46,13 @@
     <Filter Include="Object\Obj-Level3\PlayerObject">
       <UniqueIdentifier>{6e643e94-19ad-4c0f-a3cc-87d3c747805b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\Obj-Level3\VerbObject">
+    <Filter Include="Object\Obj-Level3\ObjectiveText">
+      <UniqueIdentifier>{e67ae4e7-3b71-4775-a174-ebcfe22130a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Obj-Level3\SubjectText">
+      <UniqueIdentifier>{eb3eac2d-9659-445f-833d-34d4dd993161}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Obj-Level3\VerbText">
       <UniqueIdentifier>{f0be1226-84af-4afa-81dd-1b0ddf534537}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -102,11 +108,17 @@
     <ClInclude Include="StageSelector.h">
       <Filter>Object\Obj-Level3\PlayerObject</Filter>
     </ClInclude>
-    <ClInclude Include="VerbObject.h">
+    <ClInclude Include="TextObject.h">
       <Filter>Object\Obj-Level2</Filter>
     </ClInclude>
-    <ClInclude Include="IsVerb.h">
-      <Filter>Object\Obj-Level3\VerbObject</Filter>
+    <ClInclude Include="IsText.h">
+      <Filter>Object\Obj-Level3\VerbText</Filter>
+    </ClInclude>
+    <ClInclude Include="BabaText.h">
+      <Filter>Object\Obj-Level3\SubjectText</Filter>
+    </ClInclude>
+    <ClInclude Include="YouText.h">
+      <Filter>Object\Obj-Level3\ObjectiveText</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -158,11 +170,17 @@
     <ClCompile Include="WallObject.cpp">
       <Filter>Object\Obj-Level3\PlayerObject</Filter>
     </ClCompile>
-    <ClCompile Include="VerbObject.cpp">
+    <ClCompile Include="TextObject.cpp">
       <Filter>Object\Obj-Level2</Filter>
     </ClCompile>
-    <ClCompile Include="IsVerb.cpp">
-      <Filter>Object\Obj-Level3\VerbObject</Filter>
+    <ClCompile Include="IsText.cpp">
+      <Filter>Object\Obj-Level3\VerbText</Filter>
+    </ClCompile>
+    <ClCompile Include="BabaText.cpp">
+      <Filter>Object\Obj-Level3\SubjectText</Filter>
+    </ClCompile>
+    <ClCompile Include="YouText.cpp">
+      <Filter>Object\Obj-Level3\ObjectiveText</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -5,7 +5,9 @@
 #include "MapManager.h"
 #include "WallObject.h"
 #include "Background.h"
-#include "IsVerb.h"
+#include "IsText.h"
+#include "BabaText.h"
+#include "YouText.h"
 #include "ContentsEnum.h"
 #include "ContentsConstValue.h"
 #include <EngineCore/EngineDebugMsgWindow.h>
@@ -53,7 +55,7 @@ void AStage1GameMode::Stage1MapSetting()
 	Baba->AddActorLocation(Baba->CalIndexToPos(Index2D(0, 0)));
 	Baba->BeginPosSetting();
 	Baba->SetOrder(ERenderOrder::FrontTile);
-	Baba->Info->ObjectiveType = EObjectType::YOU;
+	Baba->Info->ObjectiveType = EObjectType::YOU;	//임시 테스트임
 
 
 	std::shared_ptr<ABabaObject> Baba2 = GetWorld()->SpawnActor<ABabaObject>("Baba");
@@ -67,10 +69,9 @@ void AStage1GameMode::Stage1MapSetting()
 	Baba2->AddActorLocation(Baba2->CalIndexToPos(Index2D(1, 0)));
 	Baba2->BeginPosSetting();
 	Baba2->SetOrder(ERenderOrder::FrontTile);
-	Baba2->Info->ObjectiveType = EObjectType::YOU;
 
 
-	std::shared_ptr<AIsVerb> IS = GetWorld()->SpawnActor<AIsVerb>("IS");
+	std::shared_ptr<AIsText> IS = GetWorld()->SpawnActor<AIsText>("IS");
 	IS->SetMapScale(UContentsConstValue::Stage1MapScale);
 	IS->SetMaxIndex();
 	//IS->SetActorScale3D(UContentsConstValue::TileScale);	// 이미지 한 칸 크기 그대로
@@ -80,7 +81,24 @@ void AStage1GameMode::Stage1MapSetting()
 	IS->AddActorLocation(IS->CalIndexToPos(Index2D(10, 3)));
 	IS->BeginPosSetting();
 	IS->SetOrder(ERenderOrder::FrontTile);
-	IS->Info->MyType = EObjectType::IS;
+
+	std::shared_ptr<ABabaText> BaText = GetWorld()->SpawnActor<ABabaText>("BabaText");
+	BaText->SetMapScale(UContentsConstValue::Stage1MapScale);
+	BaText->SetMaxIndex();
+	AllObjects.push_back(BaText.get());
+	GMapManager->SetObject(BaText.get(), 10, 4);
+	BaText->AddActorLocation(BaText->CalIndexToPos(Index2D(10, 4)));
+	BaText->BeginPosSetting();
+	BaText->SetOrder(ERenderOrder::FrontTile);
+
+	std::shared_ptr<AYouText> YOU = GetWorld()->SpawnActor<AYouText>("YOUText");
+	YOU->SetMapScale(UContentsConstValue::Stage1MapScale);
+	YOU->SetMaxIndex();
+	AllObjects.push_back(YOU.get());
+	GMapManager->SetObject(YOU.get(), 10, 2);
+	YOU->AddActorLocation(YOU->CalIndexToPos(Index2D(10, 2)));
+	YOU->BeginPosSetting();
+	YOU->SetOrder(ERenderOrder::FrontTile);
 
 	for (int i = 1; i <= 9; i++)
 	{

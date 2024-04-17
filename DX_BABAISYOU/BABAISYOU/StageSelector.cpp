@@ -5,9 +5,6 @@
 
 AStageSelector::AStageSelector()
 {
-	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
-	Renderer->SetupAttachment(Root);
-
 	InputOn();
 }
 

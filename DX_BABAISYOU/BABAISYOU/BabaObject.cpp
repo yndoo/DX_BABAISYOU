@@ -6,10 +6,8 @@
 
 ABabaObject::ABabaObject()
 {
-	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
-	Renderer->SetupAttachment(Root);
-
 	InputOn();	// ÀÏ´Ü ÄÑµÒ
+	Info->MyType = EObjectType::BABA;
 }
 
 ABabaObject::~ABabaObject()
