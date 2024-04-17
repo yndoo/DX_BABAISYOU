@@ -17,7 +17,6 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
-	bool SentenceON = false; // 문장이 만들어지면 켜져야 함.
 private:
 
 };

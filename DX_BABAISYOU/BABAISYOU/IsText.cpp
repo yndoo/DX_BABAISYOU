@@ -27,6 +27,7 @@ void AIsText::Tick(float _DeltaTime)
 
 	if (ON != SentenceON)
 	{
+		ON = SentenceON;
 		AniONOFF();
 	}
 }

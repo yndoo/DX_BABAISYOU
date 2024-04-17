@@ -19,9 +19,16 @@ void ABabaText::BeginPlay()
 	Renderer->CreateAnimation("BABATEXT_Purple", "BABAText.png", AnimationInterVec, { 0, 2, 4 }, true);
 	Renderer->CreateAnimation("BABATEXT_Pink", "BABAText.png", AnimationInterVec, { 1, 3, 5 }, true);
 	Renderer->ChangeAnimation("BABATEXT_Pink");
+
+	CurObjType = Info->ObjectiveType;
 }
 
 void ABabaText::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	if (CurObjType != Info->ObjectiveType)
+	{
+		CurObjType = Info->ObjectiveType;
+	}
 }

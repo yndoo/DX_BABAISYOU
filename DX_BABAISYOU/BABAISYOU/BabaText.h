@@ -17,6 +17,6 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 private:
-
+	EObjectType CurObjType = EObjectType::NONE;
 };
 
