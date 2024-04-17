@@ -27,7 +27,7 @@ void APlayerObject::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	if (true == EachInputCheck)
+	if (true == EachInputCheck && Info->Objective == EObjectiveType::YOU)
 	{
 		AnimationNumber = (AnimationNumber + 1) % 4;
 	}

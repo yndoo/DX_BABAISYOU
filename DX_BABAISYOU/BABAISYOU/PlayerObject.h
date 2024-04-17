@@ -4,7 +4,6 @@
 
 
 // 플레이어가 될 수 있는 오브젝트들 (ex : BABA, ROCK, ... 의 이미지 오브젝트들)
-// LerpMove 상속받고, 애니메이션 관련 기능들 추가됨
 class APlayerObject : public ALerpMoveObject
 {
 	GENERATED_BODY(ALerpMoveObject)
@@ -25,10 +24,6 @@ protected:
 
 	void CreateObject4DirAnimations(std::string _ObjectName);
 	std::string GetAnimationName(std::string _ObjectName, int _AniNum);
-
-	float AnimationInter = 0.2f;
-	
-	std::vector<float> AnimationInterVec = { AnimationInter , AnimationInter , AnimationInter };
 private:
 };
 

@@ -20,6 +20,8 @@ enum class ERenderOrder
 enum class ETileType
 {
 	None,
+	Player,
+	Verb,
 	Text,
 	Tile,
 };

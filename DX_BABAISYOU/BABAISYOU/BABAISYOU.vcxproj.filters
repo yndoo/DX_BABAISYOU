@@ -43,6 +43,9 @@
     <Filter Include="GameMode\TestLevel\Object">
       <UniqueIdentifier>{13a21790-db3d-4334-9437-37da387cf452}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Obj-Level3\PlayerObject">
+      <UniqueIdentifier>{6e643e94-19ad-4c0f-a3cc-87d3c747805b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BABAISYOUCore.h">
@@ -62,15 +65,6 @@
     </ClInclude>
     <ClInclude Include="StageSelectGameMode.h">
       <Filter>GameMode\StageSelectLevel</Filter>
-    </ClInclude>
-    <ClInclude Include="WallObject.h">
-      <Filter>Object\Obj-Level3</Filter>
-    </ClInclude>
-    <ClInclude Include="StageSelector.h">
-      <Filter>Object\Obj-Level3</Filter>
-    </ClInclude>
-    <ClInclude Include="BabaObject.h">
-      <Filter>Object\Obj-Level3</Filter>
     </ClInclude>
     <ClInclude Include="ContentsEnum.h">
       <Filter>Helper</Filter>
@@ -96,6 +90,18 @@
     <ClInclude Include="BABAGameMode.h">
       <Filter>GameMode</Filter>
     </ClInclude>
+    <ClInclude Include="WallObject.h">
+      <Filter>Object\Obj-Level3\PlayerObject</Filter>
+    </ClInclude>
+    <ClInclude Include="BabaObject.h">
+      <Filter>Object\Obj-Level3\PlayerObject</Filter>
+    </ClInclude>
+    <ClInclude Include="StageSelector.h">
+      <Filter>Object\Obj-Level3\PlayerObject</Filter>
+    </ClInclude>
+    <ClInclude Include="VerbObject.h">
+      <Filter>Object\Obj-Level2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -113,17 +119,8 @@
     <ClCompile Include="Stage1GameMode.cpp">
       <Filter>GameMode\Stage1Level</Filter>
     </ClCompile>
-    <ClCompile Include="BabaObject.cpp">
-      <Filter>Object\Obj-Level3</Filter>
-    </ClCompile>
     <ClCompile Include="StageSelectGameMode.cpp">
       <Filter>GameMode\StageSelectLevel</Filter>
-    </ClCompile>
-    <ClCompile Include="WallObject.cpp">
-      <Filter>Object\Obj-Level3</Filter>
-    </ClCompile>
-    <ClCompile Include="StageSelector.cpp">
-      <Filter>Object\Obj-Level3</Filter>
     </ClCompile>
     <ClCompile Include="LerpMoveObject.cpp">
       <Filter>Object\Obj-Level1</Filter>
@@ -145,6 +142,18 @@
     </ClCompile>
     <ClCompile Include="BABAGameMode.cpp">
       <Filter>GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="BabaObject.cpp">
+      <Filter>Object\Obj-Level3\PlayerObject</Filter>
+    </ClCompile>
+    <ClCompile Include="StageSelector.cpp">
+      <Filter>Object\Obj-Level3\PlayerObject</Filter>
+    </ClCompile>
+    <ClCompile Include="WallObject.cpp">
+      <Filter>Object\Obj-Level3\PlayerObject</Filter>
+    </ClCompile>
+    <ClCompile Include="VerbObject.cpp">
+      <Filter>Object\Obj-Level2</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

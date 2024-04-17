@@ -113,34 +113,29 @@ bool AObject::IndexRangeOverCheck(Index2D Idx)
 	return false;
 }
 
-// _Dir 방향의 _Next칸에 갈 수 있는지 체크하는 함수 (Next가 STOP인지 봐주는 함수이기도 함)
-bool AObject::CanGoNextTile(Index2D _Next, EInputDir _Dir)
-{
-	// 못 옮기는 경우 1. 벽 넘어감
-	if (true == IndexRangeOverCheck(_Next))
-	{
-		return false;
-	}
-
-	std::list<AObject*> ObjLst = GMapManager->Graph[_Next.X][_Next.Y];
-	std::list<AObject*>::iterator Iter;
-	for (Iter = ObjLst.begin(); Iter != ObjLst.end(); Iter++)
-	{
-		// 못 옮기는 경우 2. 못 옮기는 블록.
-		if ((*Iter)->Info->Objective == EObjectiveType::STOP)
-		{
-			return false;
-		}
-		if ((*Iter)->Info->Objective == EObjectiveType::PUSH)
-		{
-			// PUSH인 애는 어캄?
-			// AllPushNextTile 결과가 true면 밀어주고 끝?
-		}
-	}
-
-	// 위에서 하나도 안 걸렸으면 이동 가능.
-	return true;
-}
+//// _Dir 방향의 _Next칸에 갈 수 있는지 체크하는 함수 (Next가 STOP인지 봐주는 함수이기도 함) 한 칸만 확인하는 건 의미가 없는 것 같아서 지움
+//bool AObject::CanGoNextTile(Index2D _Next, EInputDir _Dir)
+//{
+//	// 못 옮기는 경우 1. 벽 넘어감
+//	if (true == IndexRangeOverCheck(_Next))
+//	{
+//		return false;
+//	}
+//
+//	std::list<AObject*> ObjLst = GMapManager->Graph[_Next.X][_Next.Y];
+//	std::list<AObject*>::iterator Iter;
+//	for (Iter = ObjLst.begin(); Iter != ObjLst.end(); Iter++)
+//	{
+//		// 못 옮기는 경우 2. 못 옮기는 블록.
+//		if ((*Iter)->Info->Objective == EObjectiveType::STOP)
+//		{
+//			return false;
+//		}
+//	}
+//
+//	// 위에서 하나도 안 걸렸으면 이동 가능.
+//	return true;
+//}
 
 // _Dir 방향의 _Next칸에 쭉 밀 수 있는지 "체크"하는 함수
 bool AObject::CanGoNextAll(Index2D _Next, EInputDir _Dir)
@@ -161,7 +156,7 @@ bool AObject::CanGoNextAll(Index2D _Next, EInputDir _Dir)
 		{
 			return false;
 		}
-		if ((*Iter)->Info->Objective == EObjectiveType::PUSH)
+		if ((*Iter)->Info->Objective == EObjectiveType::PUSH || (*Iter)->Info->Objective == EObjectiveType::YOU)
 		{
 			// PUSH인 애는 그 옆도 계속 체크.
 			Index2D NextNext = _Next;

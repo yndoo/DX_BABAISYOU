@@ -70,7 +70,7 @@ public:
 	void SetMaxIndex();
 	void CurToNext(FVector _Cur, FVector _Next);
 	bool IsNextPUSH(Index2D _Next);
-	bool CanGoNextTile(Index2D _Next, EInputDir _Dir);		// _Dir 방향의 _Next칸에 갈 수 있는지 체크하는 함수
+	//bool CanGoNextTile(Index2D _Next, EInputDir _Dir);		// _Dir 방향의 _Next칸에 갈 수 있는지 체크하는 함수
 	bool CanGoNextAll(Index2D _Next, EInputDir _Dir);		// _Dir 방향의 _Next칸에 쭉 갈 수 있는지 체크하는 함수
 	void AllPushNextTile(Index2D _Next, EInputDir _Dir);	// _Dir 방향의 _Next칸에 밀기
 
@@ -95,6 +95,10 @@ protected:
 	// 롤백 기능을 위해 스택이 필요함
 	std::stack<std::pair<EInputDir, bool >> MoveStack;		// InputDir, IsMove 행동 스택
 	std::stack<std::pair<int, EInputDir>> AnimationStack;	// AnimationNumber, AnimationDir 애니메이션 스택
+
+	// 바바이즈유의 모든 오브젝트는 3개씩 애니메이션함.
+	float AnimationInter = 0.2f;
+	std::vector<float> AnimationInterVec = { AnimationInter , AnimationInter , AnimationInter };
 private:
 	FVector MapScale = FVector::Zero;
 

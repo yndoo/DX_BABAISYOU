@@ -130,7 +130,7 @@ void ALerpMoveObject::InputMove(float _DeltaTime)
 			// 1. 벽에 안 막히는 지 확인
 			// 2. 이동할 곳의 방향에 옮길 수 없는 오브젝트가 하나라도 있는 지 확인해야 함.
 			Index2D Idx = CalPosToIndex(NextActorLocation);
-			if (false == CanGoNextTile(Idx, NewInputDir)) // STOP블록이거나 벽이면 막힘
+			if (false == CanGoNextAll(Idx, NewInputDir)) // STOP블록이거나 벽이면 막힘
 			{
 				IsMove = false;
 				NewInputDir = CurDir;	// 입력 적용 안 된 경우 NewInputDir 다시 되돌려놔야함
