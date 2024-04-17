@@ -4,10 +4,6 @@
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
 
-/////////////////////
-// 엥???? 2차원 배열 관련은 일단 보류
-/////////////////////
-
 struct Index2D
 {
 	int X;
@@ -39,9 +35,10 @@ public:
 	friend AObject;
 
 	ETileType TileType = ETileType::None;
-	EObjectiveType Objective = EObjectiveType::NONE;
+	EObjectType ObjectiveType = EObjectType::NONE;	// 나한테 걸려있는 목적어 타입(원래는 복수 목적어가 가능해야 함. 일단 보류..)
+	EObjectType MyType = EObjectType::NONE;
 
-	Index2D CurIdx = Index2D(-1, -1);
+	Index2D CurIndex = Index2D(-1, -1);
 };
 
 // 맵에 표시되는 모든 오브젝트
@@ -63,6 +60,7 @@ public:
 		MapScale = _Scale;
 	}
 
+	void BeginPosSetting();
 	Index2D CalPosToIndex(FVector _Pos);
 	FVector CalIndexToPos(Index2D _Index);
 	Index2D GetMaxIndex();
@@ -70,7 +68,6 @@ public:
 	void SetMaxIndex();
 	void CurToNext(FVector _Cur, FVector _Next);
 	bool IsNextPUSH(Index2D _Next);
-	//bool CanGoNextTile(Index2D _Next, EInputDir _Dir);		// _Dir 방향의 _Next칸에 갈 수 있는지 체크하는 함수
 	bool CanGoNextAll(Index2D _Next, EInputDir _Dir);		// _Dir 방향의 _Next칸에 쭉 갈 수 있는지 체크하는 함수
 	void AllPushNextTile(Index2D _Next, EInputDir _Dir);	// _Dir 방향의 _Next칸에 밀기
 
@@ -79,6 +76,7 @@ public:
 
 	ObjectInfo* Info = nullptr;
 
+	FVector CurActorLocation = FVector::Zero;
 	bool EachMoveCheck_ForStack = false;	// 이동 있었으면 스택에 true로, 없었으면 false로 들어가기 위한 변수
 protected:
 	void BeginPlay() override;

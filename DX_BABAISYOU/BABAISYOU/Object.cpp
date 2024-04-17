@@ -3,13 +3,16 @@
 #include <EngineCore/EngineCore.h>
 #include "ContentsConstValue.h"
 #include "MapManager.h"
+#include  <map>
 
 AObject::AObject()
 {
 	Root = CreateDefaultSubObject<UDefaultSceneComponent>("RendererRoot");
 	SetRoot(Root);
 
-	//Root->AddScale(FVector(54, 54, 1));
+	Root->AddScale(FVector(54, 54, 1));
+
+	Info = new ObjectInfo();
 }
 
 AObject::~AObject()
@@ -19,8 +22,13 @@ AObject::~AObject()
 void AObject::BeginPlay()
 {
 	Super::BeginPlay();
+}
 
-	Info = new ObjectInfo();
+void AObject::BeginPosSetting()
+{
+	// 움직일 애들 Location 설정해주고나서 다시 해줘야함.
+	CurActorLocation = GetActorLocation();
+	Info->CurIndex = CalPosToIndex(CurActorLocation);
 }
 
 Index2D AObject::CalPosToIndex(FVector _Pos)
@@ -79,16 +87,16 @@ void AObject::SetMaxIndex()
 // 나를 _Cur위치에서 지우고 _Next위치로 데이터 상 옮겨주는 함수. 
 void AObject::CurToNext(FVector _Cur, FVector _Next)
 {
-	Index2D CurI = CalPosToIndex(_Cur);
+	Index2D CurI = Info->CurIndex;
 	Index2D NxtI = CalPosToIndex(_Next);
 
 	// Info 바꿔주기
-	Info->CurIdx = NxtI;
+	Info->CurIndex = NxtI;
 
 	// GMM의 Graph 원래 있던 곳에서 지우기
-	std::list<AObject*> ObjLst = GMapManager->Graph[CurI.X][CurI.Y];
+	//std::list<AObject*> ObjLst = GMapManager->Graph[CurI.X][CurI.Y];
 	std::list<AObject*>::iterator Iter;
-	for (Iter = ObjLst.begin(); Iter != ObjLst.end(); Iter++)
+	for (Iter = GMapManager->Graph[CurI.X][CurI.Y].begin(); Iter != GMapManager->Graph[CurI.X][CurI.Y].end(); Iter++)
 	{
 		if (*Iter == static_cast<AObject*>(this))
 		{
@@ -113,30 +121,6 @@ bool AObject::IndexRangeOverCheck(Index2D Idx)
 	return false;
 }
 
-//// _Dir 방향의 _Next칸에 갈 수 있는지 체크하는 함수 (Next가 STOP인지 봐주는 함수이기도 함) 한 칸만 확인하는 건 의미가 없는 것 같아서 지움
-//bool AObject::CanGoNextTile(Index2D _Next, EInputDir _Dir)
-//{
-//	// 못 옮기는 경우 1. 벽 넘어감
-//	if (true == IndexRangeOverCheck(_Next))
-//	{
-//		return false;
-//	}
-//
-//	std::list<AObject*> ObjLst = GMapManager->Graph[_Next.X][_Next.Y];
-//	std::list<AObject*>::iterator Iter;
-//	for (Iter = ObjLst.begin(); Iter != ObjLst.end(); Iter++)
-//	{
-//		// 못 옮기는 경우 2. 못 옮기는 블록.
-//		if ((*Iter)->Info->Objective == EObjectiveType::STOP)
-//		{
-//			return false;
-//		}
-//	}
-//
-//	// 위에서 하나도 안 걸렸으면 이동 가능.
-//	return true;
-//}
-
 // _Dir 방향의 _Next칸에 쭉 밀 수 있는지 "체크"하는 함수
 bool AObject::CanGoNextAll(Index2D _Next, EInputDir _Dir)
 {
@@ -147,16 +131,16 @@ bool AObject::CanGoNextAll(Index2D _Next, EInputDir _Dir)
 	}
 
 	// _Next에 갈 수 없는지 하나씩 보고 체크해야 함
-	std::list<AObject*> ObjLst = GMapManager->Graph[_Next.X][_Next.Y];
+	//std::list<AObject*> ObjLst = GMapManager->Graph[_Next.X][_Next.Y];
 	std::list<AObject*>::iterator Iter;
-	for (Iter = ObjLst.begin(); Iter != ObjLst.end(); Iter++)
+	for (Iter = GMapManager->Graph[_Next.X][_Next.Y].begin(); Iter != GMapManager->Graph[_Next.X][_Next.Y].end(); Iter++)
 	{
 		// 못 옮기는 경우 2. 다음 블록이 못 옮기는 블록.
-		if ((*Iter)->Info->Objective == EObjectiveType::STOP)
+		if ((*Iter)->Info->ObjectiveType == EObjectType::STOP)
 		{
 			return false;
 		}
-		if ((*Iter)->Info->Objective == EObjectiveType::PUSH || (*Iter)->Info->Objective == EObjectiveType::YOU)
+		if ((*Iter)->Info->ObjectiveType == EObjectType::PUSH || (*Iter)->Info->ObjectiveType == EObjectType::YOU)
 		{
 			// PUSH인 애는 그 옆도 계속 체크.
 			Index2D NextNext = _Next;
@@ -192,11 +176,11 @@ bool AObject::CanGoNextAll(Index2D _Next, EInputDir _Dir)
 // 옆 칸이 PUSH인지 확인하는 함수
 bool AObject::IsNextPUSH(Index2D _Next)
 {
-	std::list<AObject*> ObjLst = GMapManager->Graph[_Next.X][_Next.Y];
+	//std::list<AObject*> ObjLst = GMapManager->Graph[_Next.X][_Next.Y];
 	std::list<AObject*>::iterator Iter;
-	for (Iter = ObjLst.begin(); Iter != ObjLst.end(); Iter++)
+	for (Iter = GMapManager->Graph[_Next.X][_Next.Y].begin(); Iter != GMapManager->Graph[_Next.X][_Next.Y].end(); Iter++)
 	{
-		if ((*Iter)->Info->Objective == EObjectiveType::PUSH)
+		if ((*Iter)->Info->ObjectiveType == EObjectType::PUSH)
 		{
 			return true;
 		}
@@ -209,13 +193,14 @@ bool AObject::IsNextPUSH(Index2D _Next)
 void AObject::AllPushNextTile(Index2D _Next, EInputDir _Dir)
 {
 	std::list<std::pair<AObject*, Index2D>> PushList;
+	//std::map<AObject*, Index2D> PushList;
 
-	std::list<AObject*> ObjLst = GMapManager->Graph[_Next.X][_Next.Y];
+	//std::list<AObject*> ObjLst = GMapManager->Graph[_Next.X][_Next.Y];
 	std::list<AObject*>::iterator Iter;
-	for (Iter = ObjLst.begin(); Iter != ObjLst.end(); Iter++)
+	for (Iter = GMapManager->Graph[_Next.X][_Next.Y].begin(); Iter != GMapManager->Graph[_Next.X][_Next.Y].end(); Iter++)
 	{
 		// PUSH인 애는 그 옆도 계속 밀어주기.
-		if ((*Iter)->Info->Objective == EObjectiveType::PUSH)
+		if ((*Iter)->Info->ObjectiveType == EObjectType::PUSH)
 		{
 			Index2D NextNext = _Next;
 			switch (_Dir)
@@ -237,6 +222,7 @@ void AObject::AllPushNextTile(Index2D _Next, EInputDir _Dir)
 			}
 
 			PushList.push_back(std::make_pair(*Iter, NextNext));
+			//PushList[*Iter] = NextNext;
 			(*Iter)->AllPushNextTile(NextNext, _Dir);
 		}
 	}

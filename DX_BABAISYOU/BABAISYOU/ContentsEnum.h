@@ -26,20 +26,23 @@ enum class ETileType
 	Tile,
 };
 
-enum class EMapObjects
+// 모든 오브젝트 종류
+enum class EObjectType	
 {
 	NONE,
-	BABA,
-	WALL,
-};
-
-// 인게임에서 배경색 칠해져있는 텍스트 네모 타일들(목적어들)
-enum class EObjectiveType	
-{
-	NONE,
+	// 목적어들
 	YOU,
 	WIN,
 	STOP,
 	PUSH,
+	// 동사들
+	IS,
+	// 주어들
+	BABATEXT,
+	WALLTEXT,
+};
+
+enum class EMyType
+{
 
 };

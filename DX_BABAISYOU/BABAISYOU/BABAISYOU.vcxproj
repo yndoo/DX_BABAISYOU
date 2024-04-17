@@ -40,6 +40,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ContentsEnum.h" />
+    <ClInclude Include="IsVerb.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="LerpMoveObject.h">
       <SubType>
       </SubType>
@@ -101,6 +105,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ContentsConstValue.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="IsVerb.cpp">
       <SubType>
       </SubType>
     </ClCompile>

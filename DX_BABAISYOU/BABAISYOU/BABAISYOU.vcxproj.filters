@@ -46,6 +46,9 @@
     <Filter Include="Object\Obj-Level3\PlayerObject">
       <UniqueIdentifier>{6e643e94-19ad-4c0f-a3cc-87d3c747805b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Obj-Level3\VerbObject">
+      <UniqueIdentifier>{f0be1226-84af-4afa-81dd-1b0ddf534537}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BABAISYOUCore.h">
@@ -102,6 +105,9 @@
     <ClInclude Include="VerbObject.h">
       <Filter>Object\Obj-Level2</Filter>
     </ClInclude>
+    <ClInclude Include="IsVerb.h">
+      <Filter>Object\Obj-Level3\VerbObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -154,6 +160,9 @@
     </ClCompile>
     <ClCompile Include="VerbObject.cpp">
       <Filter>Object\Obj-Level2</Filter>
+    </ClCompile>
+    <ClCompile Include="IsVerb.cpp">
+      <Filter>Object\Obj-Level3\VerbObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

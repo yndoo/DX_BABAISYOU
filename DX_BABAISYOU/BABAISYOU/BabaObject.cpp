@@ -35,7 +35,7 @@ void ABabaObject::Tick(float _DeltaTime)
 	//{
 		Index2D Index = CalPosToIndex(GetActorLocation());
 		FVector Res = FVector(Index.X, Index.Y);
-		FVector Res2 = FVector(this->Info->CurIdx.X, this->Info->CurIdx.Y);
+		FVector Res2 = FVector(this->Info->CurIndex.X, this->Info->CurIndex.Y);
 		std::string Msg = std::format("Loc_Index : {}, Info_Index : {} \n", Res.ToString(), Res2.ToString());
 		UEngineDebugMsgWindow::PushMsg(Msg);
 

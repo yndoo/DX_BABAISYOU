@@ -36,7 +36,6 @@ protected:
 	void LerpMove(float _DeltaTime);
 	FVector LerpCal(float _Time);
 
-	FVector CurActorLocation = FVector::Zero;
 	FVector NextActorLocation = FVector::Zero;
 	float LerpTime = 0.f;
 	float TileSize = 36.f;					// 1920*1080 환경에서는 한 타일 54*54

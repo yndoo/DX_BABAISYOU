@@ -5,6 +5,7 @@
 #include "MapManager.h"
 #include "WallObject.h"
 #include "Background.h"
+#include "IsVerb.h"
 #include "ContentsEnum.h"
 #include "ContentsConstValue.h"
 #include <EngineCore/EngineDebugMsgWindow.h>
@@ -45,40 +46,52 @@ void AStage1GameMode::Stage1MapSetting()
 	// 얘네는 같은 게임모드인 모든 Object 같이 세팅해야하는 것들
 	Baba->SetMapScale(UContentsConstValue::Stage1MapScale);
 	Baba->SetMaxIndex();
-	Baba->SetActorScale3D(UContentsConstValue::TileScale);	// 이미지 한 칸 크기 그대로
+	//Baba->SetActorScale3D(UContentsConstValue::TileScale);	// 이미지 한 칸 크기 그대로
+	AllObjects.push_back(Baba.get());
+	GMapManager->SetObject(Baba.get(), 0, 0);
 
 	Baba->AddActorLocation(Baba->CalIndexToPos(Index2D(0, 0)));
 	Baba->BeginPosSetting();
 	Baba->SetOrder(ERenderOrder::FrontTile);
-	Baba->Info->Objective = EObjectiveType::YOU;
-	AllObjects.push_back(Baba.get());
+	Baba->Info->ObjectiveType = EObjectType::YOU;
 
 
 	std::shared_ptr<ABabaObject> Baba2 = GetWorld()->SpawnActor<ABabaObject>("Baba");
 	// 얘네는 같은 게임모드인 모든 Object 같이 세팅해야하는 것들
 	Baba2->SetMapScale(UContentsConstValue::Stage1MapScale);
 	Baba2->SetMaxIndex();
-	Baba2->SetActorScale3D(UContentsConstValue::TileScale);	// 이미지 한 칸 크기 그대로
+	//Baba2->SetActorScale3D(UContentsConstValue::TileScale);	// 이미지 한 칸 크기 그대로
+	AllObjects.push_back(Baba2.get());
+	GMapManager->SetObject(Baba2.get(), 1, 0);
 
 	Baba2->AddActorLocation(Baba2->CalIndexToPos(Index2D(1, 0)));
 	Baba2->BeginPosSetting();
 	Baba2->SetOrder(ERenderOrder::FrontTile);
-	Baba2->Info->Objective = EObjectiveType::YOU;
-	AllObjects.push_back(Baba2.get());
+	Baba2->Info->ObjectiveType = EObjectType::YOU;
 
-	GMapManager->SetObject(Baba.get(), 0, 0);
-	GMapManager->SetObject(Baba2.get(), 1, 0);
+
+	std::shared_ptr<AIsVerb> IS = GetWorld()->SpawnActor<AIsVerb>("IS");
+	IS->SetMapScale(UContentsConstValue::Stage1MapScale);
+	IS->SetMaxIndex();
+	//IS->SetActorScale3D(UContentsConstValue::TileScale);	// 이미지 한 칸 크기 그대로
+	AllObjects.push_back(IS.get());
+	GMapManager->SetObject(IS.get(), 10, 3);
+
+	IS->AddActorLocation(IS->CalIndexToPos(Index2D(10, 3)));
+	IS->BeginPosSetting();
+	IS->SetOrder(ERenderOrder::FrontTile);
+	IS->Info->MyType = EObjectType::IS;
 
 	for (int i = 1; i <= 9; i++)
 	{
 		std::shared_ptr<AWallObject> WallTest = GetWorld()->SpawnActor<AWallObject>("Wall");
 		WallTest->SetMapScale(UContentsConstValue::Stage1MapScale);
 		WallTest->SetMaxIndex();
-		WallTest->SetActorScale3D(UContentsConstValue::TileScale);
+		//WallTest->SetActorScale3D(UContentsConstValue::TileScale);
 		WallTest->SetActorLocation(WallTest->CalIndexToPos(Index2D(i, i)));
 		WallTest->BeginPosSetting();
 		//WallTest->Info->Objective = EObjectiveType::STOP;
-		WallTest->Info->Objective = EObjectiveType::PUSH;
+		WallTest->Info->ObjectiveType = EObjectType::PUSH;
 
 		GMapManager->SetObject(WallTest.get(), i, i);
 		AllObjects.push_back(WallTest.get());

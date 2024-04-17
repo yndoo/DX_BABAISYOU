@@ -28,6 +28,7 @@ void AStageSelectGameMode::BeginPlay()
 	std::shared_ptr<AStageSelector> Selector = GetWorld()->SpawnActor<AStageSelector>("Selector");
 	Selector->SetMapScale(UContentsConstValue::StageSelectMapScale);
 	Selector->AddActorLocation(Selector->CalIndexToPos(Index2D(0, 0)));
+	Selector->BeginPosSetting();
 	Selector->SetActorScale3D(UContentsConstValue::TileScale);
 
 	std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");

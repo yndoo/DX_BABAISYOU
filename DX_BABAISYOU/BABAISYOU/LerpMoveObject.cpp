@@ -27,7 +27,7 @@ void ALerpMoveObject::Update(float _DeltaTime)
 {
 	if (false == IsMove)
 	{
-		Index2D Cur = Info->CurIdx;
+		Index2D Cur = Info->CurIndex;
 		Index2D Before = CalPosToIndex(GetActorLocation());
 		if (Cur != Before)
 		{
@@ -48,7 +48,7 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 	if (false == IsMove)
 	{
 		Update(_DeltaTime);
-		if (Info->Objective == EObjectiveType::YOU)
+		if (Info->ObjectiveType == EObjectType::YOU)
 		{
 			InputMove(_DeltaTime);
 		}
