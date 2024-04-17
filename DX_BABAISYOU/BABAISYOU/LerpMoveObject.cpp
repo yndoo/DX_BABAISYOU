@@ -69,8 +69,9 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 		IsMove = true;
 		ZInputCheck = true;
 
-		bool CanGoBack = get<2>(MoveStack.top());		// 튜플 세 번째 원소	
-		if (false == get<2>(MoveStack.top()))
+
+		bool CanGoBack = MoveStack.top().second;		// 튜플 세 번째 원소	
+		if (false == CanGoBack)
 		{
 			// 뒤로 돌아갈 수 없는 롤백은 false로 넘기면 된다.
 			ReverseMoveSetting(NewInputDir, _DeltaTime, false);
@@ -78,20 +79,11 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 			return;
 		}
 
+		// 뒤로 돌아가야 하는 롤백
+		// 1. 이동 : 현재 방향의 반대로 이동
+		ReverseMoveSetting(MoveStack.top().first, _DeltaTime, true);
 
-		// 이동 : 현재 방향의 반대로 이동
-		if (Info->Objective == EObjectiveType::YOU)	// Input있는애는 이렇게
-		{
-			ReverseMoveSetting(get<1>(MoveStack.top()), _DeltaTime, true);
-		}
-		else
-		{
-			ReverseMoveSetting(get<1>(MoveStack.top()), _DeltaTime, true);
-		}
-
-		// 애니메이션에 필요한 정보 : 이전 상태의 정보로 되돌리고 삭제
-		//CurDir = get<1>(MoveStack.top());		// 튜플 두 번째 원소	
-		//AnimationNumber = get<0>(MoveStack.top());	// 튜플 첫 번째 원소
+		// 2. 애니메이션에 필요한 정보 : 이전 상태의 정보로 되돌리고 삭제
 		AnimationNumber = AnimationStack.top().first;
 		NewInputDir = AnimationStack.top().second;
 		MoveStack.pop();
@@ -104,7 +96,7 @@ void ALerpMoveObject::InputMove(float _DeltaTime)
 {
 	if (false == IsMove)
 	{
-		BeforeDir = CurDir;
+		BeforeDir = CurDir;	// 이전 방향
 
 		if (true == IsDown(VK_LEFT))
 		{
@@ -140,8 +132,6 @@ void ALerpMoveObject::InputMove(float _DeltaTime)
 			Index2D Idx = CalPosToIndex(NextActorLocation);
 			if (false == CanGoNextTile(Idx, NewInputDir)) // STOP블록이거나 벽이면 막힘
 			{
-				// 이동 막힌 입력도 스택에 넣어줌. (아무도 이동 안 한거면 넣을 필요가 없는데...)
-				//PushFalseHistory();
 				IsMove = false;
 				NewInputDir = CurDir;	// 입력 적용 안 된 경우 NewInputDir 다시 되돌려놔야함
 				return;
@@ -155,8 +145,6 @@ void ALerpMoveObject::InputMove(float _DeltaTime)
 				}
 				else
 				{
-					// 이동 막힌 입력도 스택에 넣어줌. (아무도 이동 안 한거면 넣을 필요가 없는데...)
-					//PushFalseHistory();
 					IsMove = false;
 					NewInputDir = CurDir;	// 입력 적용 안 된 경우 NewInputDir 다시 되돌려놔야함
 					return;
@@ -164,7 +152,6 @@ void ALerpMoveObject::InputMove(float _DeltaTime)
 			}
 
 			// 입력 적용 OK
-			//CurDir = NewInputDir;
 			UContentsConstValue::InputCount++;
 			EachMoveCheck_ForStack = true;
 			EachInputCheck = true;

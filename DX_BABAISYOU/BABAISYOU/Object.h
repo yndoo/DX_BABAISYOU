@@ -93,8 +93,8 @@ protected:
 	int AnimationNumber = 0;
 
 	// 롤백 기능을 위해 스택이 필요함
-	std::stack<std::tuple<int, EInputDir, bool >> MoveStack;	// AnimationNumber, InputDir, IsMove 행동 스택
-	std::stack<std::pair<int, EInputDir>> AnimationStack;		// AnimationNumber, AnimationDir 애니메이션 스택
+	std::stack<std::pair<EInputDir, bool >> MoveStack;		// InputDir, IsMove 행동 스택
+	std::stack<std::pair<int, EInputDir>> AnimationStack;	// AnimationNumber, AnimationDir 애니메이션 스택
 private:
 	FVector MapScale = FVector::Zero;
 

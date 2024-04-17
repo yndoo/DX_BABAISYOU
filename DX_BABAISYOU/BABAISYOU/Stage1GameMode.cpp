@@ -63,7 +63,7 @@ void AStage1GameMode::Stage1MapSetting()
 	Baba2->AddActorLocation(Baba2->CalIndexToPos(Index2D(1, 0)));
 	Baba2->BeginPosSetting();
 	Baba2->SetOrder(ERenderOrder::FrontTile);
-	Baba2->Info->Objective = EObjectiveType::YOU;
+	Baba2->Info->Objective = EObjectiveType::PUSH;
 	AllObjects.push_back(Baba2.get());
 
 	GMapManager->SetObject(Baba.get(), 0, 0);

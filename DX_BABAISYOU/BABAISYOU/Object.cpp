@@ -255,14 +255,14 @@ void AObject::AllPushNextTile(Index2D _Next, EInputDir _Dir)
 
 void AObject::PushTrueHistory()
 {
-	MoveStack.push(std::make_tuple(AnimationNumber, NewInputDir, true));
+	MoveStack.push(std::make_pair(NewInputDir, true));
 	AnimationStack.push(std::make_pair((AnimationNumber - 1 + 4) % 4, BeforeDir));
 	int a = 0;
 }
 
 void AObject::PushFalseHistory()
 {
-	MoveStack.push(std::make_tuple(AnimationNumber, NewInputDir, false));
+	MoveStack.push(std::make_pair(NewInputDir, false));
 }
 
 bool AObject::DirCheck()
