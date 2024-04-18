@@ -34,6 +34,7 @@ void AStage1GameMode::BeginPlay()
 	Back->SetActorLocation({ 0, 0, 400 });
 	Back->Stage1Setting();
 	Back->SetOrder(ERenderOrder::Background);
+	Update();
 }
 
 void AStage1GameMode::Tick(float _DeltaTime)

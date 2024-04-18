@@ -17,11 +17,13 @@ public:
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+	//void LevelStart(ULevel* _PrevLevel) override;
 
 	virtual void DebugGMM();
+	void Update();
 	void StackUpdate();
 	void SentenceUpdate();
-	void GameUpdate();
+	void FinalUpdate();
 	AObject* VerbCheck(int _X, int _Y);
 	AObject* ObjectiveCheck(int _X, int _Y);
 	void ClearAllSentence();

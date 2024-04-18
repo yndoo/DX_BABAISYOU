@@ -77,8 +77,8 @@ public:
 	ObjectInfo* Info = nullptr;
 
 	FVector CurActorLocation = FVector::Zero;
-	bool EachMoveCheck_ForStack = false;	// 이동 있었으면 스택에 true로, 없었으면 false로 들어가기 위한 변수
-	bool SentenceON = false; // 문장이 만들어지면 켜져야 함.
+	bool EachMoveCheck_ForStack = false;		// 이동 있었으면 스택에 true로, 없었으면 false로 들어가기 위한 변수
+	bool SentenceON = false;					// 문장이 만들어지면 켜져야 함.
 protected:
 	void BeginPlay() override;
 	//void Tick(float _DeltaTime) override;

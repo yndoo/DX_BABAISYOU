@@ -23,7 +23,7 @@ void ALerpMoveObject::BeginPlay()
 }
 
 // 입력 외에 위치 변화가 있는 애들 진짜 행동으로 움직여주는 함수 (Push 당한 애들 등등)
-void ALerpMoveObject::Update(float _DeltaTime)
+void ALerpMoveObject::PushedUpdate(float _DeltaTime)
 {
 	if (false == IsMove)
 	{
@@ -47,7 +47,7 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 	// Input이동은 안 되지만 Z는 되어야 하는 경우가 있음. YOU인 경우에만 InputMove
 	if (false == IsMove)
 	{
-		Update(_DeltaTime);
+		PushedUpdate(_DeltaTime);
 		if (Info->TileType == ETileType::Player && Info->ObjectiveType == EObjectType::YOU)
 		{
 			InputMove(_DeltaTime);
@@ -68,7 +68,8 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 		
 		IsMove = true;
 		ZInputCheck = true;
-
+		UContentsConstValue::ZInput = true;
+		UContentsConstValue::InputCount++;
 
 		bool CanGoBack = MoveStack.top().second;		// 튜플 세 번째 원소	
 		if (false == CanGoBack)
@@ -79,7 +80,9 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 			return;
 		}
 
+
 		// 뒤로 돌아가야 하는 롤백
+		// 
 		// 1. 이동 : 현재 방향의 반대로 이동
 		ReverseMoveSetting(MoveStack.top().first, _DeltaTime, true);
 
@@ -88,6 +91,7 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 		NewInputDir = AnimationStack.top().second;
 		MoveStack.pop();
 		AnimationStack.pop();
+	
 		return;
 	}
 }

@@ -26,6 +26,11 @@ void APlayerObject::Tick(float _DeltaTime)
 	{
 		AnimationNumber = (AnimationNumber + 1) % 4;
 	}
+
+	if (false == SentenceON)
+	{
+		//Info->ObjectiveType = EObjectType::NONE;
+	}
 }
 
 std::string APlayerObject::GetAnimationName(std::string _ObjectName, int _AniNum)

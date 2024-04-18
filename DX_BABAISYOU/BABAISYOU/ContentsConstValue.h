@@ -18,6 +18,7 @@ public:
 	static int MaxIndexX;
 	static int MaxIndexY;
 	static int InputCount;
+	static bool ZInput;			//전역 Z Input 체크
 
 	static std::map<EObjectType, EObjectType> TextToPlayer;
 };

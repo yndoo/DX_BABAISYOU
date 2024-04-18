@@ -11,6 +11,24 @@ BABAGameMode::~BABAGameMode()
 {
 }
 
+void BABAGameMode::Update()
+{
+	// ZInput면 StackUpdate하지마
+	if (true == UContentsConstValue::ZInput)
+	{
+		SentenceUpdate();
+		FinalUpdate();
+		UContentsConstValue::ZInput = false;
+		return;
+	}
+	else
+	{
+		StackUpdate();
+		SentenceUpdate();
+		FinalUpdate();
+	}
+}
+
 void BABAGameMode::BeginPlay()
 {
 	Super::BeginPlay();
@@ -23,10 +41,7 @@ void BABAGameMode::Tick(float _DeltaTime)
 	// 변화 발생 시
 	if (BeforeInputCount != UContentsConstValue::InputCount)
 	{
-		StackUpdate();
-		SentenceUpdate();
-		GameUpdate();
-
+		Update();
 		BeforeInputCount = UContentsConstValue::InputCount;
 	}
 }
@@ -36,11 +51,11 @@ void BABAGameMode::StackUpdate()
 	// 모든 오브젝트 움직인 애, 안 움직인 애 구분해서 Stack에 넣어줘야 함
 	for (auto Obj : AllObjects)
 	{
-		if (Obj->EachMoveCheck_ForStack == true)
+		if (true == Obj->EachMoveCheck_ForStack)
 		{
 			Obj->PushTrueHistory();
 		}
-		else
+		else if (false == Obj->EachMoveCheck_ForStack)
 		{
 			Obj->PushFalseHistory();
 		}
@@ -48,7 +63,7 @@ void BABAGameMode::StackUpdate()
 }
 
 // BABATEXT와 BABAPLAYER 객체 이어주는 함수
-void BABAGameMode::GameUpdate()
+void BABAGameMode::FinalUpdate()
 {
 	for (AObject* sub : OnSubjects)
 	{
@@ -133,10 +148,6 @@ AObject* BABAGameMode::VerbCheck(int _X, int _Y/*주어의 인덱스*/)
 
 				// 동사 ON
 				Obj->SentenceON = true;
-
-				// 문장이 맞으면 Info 세팅 다시해주기
-				// 목적어 여러개면 어캐되는거냐? 해봤자 두갠가? 일단 보류? 제일 나중꺼 하나 걸리게 해두자
-
 
 				return IsObjective;
 			}
