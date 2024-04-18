@@ -140,7 +140,12 @@ bool AObject::CanGoNextAll(Index2D _Next, EInputDir _Dir)
 		{
 			return false;
 		}
-		if ((*Iter)->Info->ObjectiveType == EObjectType::PUSH || (*Iter)->Info->ObjectiveType == EObjectType::YOU)
+		if (
+			(*Iter)->Info->ObjectiveType == EObjectType::PUSH ||
+			(*Iter)->Info->TileType == ETileType::Subject ||
+			(*Iter)->Info->TileType == ETileType::Verb || 
+			(*Iter)->Info->TileType == ETileType::Objective
+			)
 		{
 			// PUSH인 애는 그 옆도 계속 체크.
 			Index2D NextNext = _Next;
@@ -180,7 +185,12 @@ bool AObject::IsNextPUSH(Index2D _Next)
 	std::list<AObject*>::iterator Iter;
 	for (Iter = GMapManager->Graph[_Next.X][_Next.Y].begin(); Iter != GMapManager->Graph[_Next.X][_Next.Y].end(); Iter++)
 	{
-		if ((*Iter)->Info->ObjectiveType == EObjectType::PUSH)
+		if (
+			(*Iter)->Info->ObjectiveType == EObjectType::PUSH ||
+			(*Iter)->Info->TileType == ETileType::Subject ||
+			(*Iter)->Info->TileType == ETileType::Verb ||
+			(*Iter)->Info->TileType == ETileType::Objective
+			)
 		{
 			return true;
 		}
@@ -200,7 +210,12 @@ void AObject::AllPushNextTile(Index2D _Next, EInputDir _Dir)
 	for (Iter = GMapManager->Graph[_Next.X][_Next.Y].begin(); Iter != GMapManager->Graph[_Next.X][_Next.Y].end(); Iter++)
 	{
 		// PUSH인 애는 그 옆도 계속 밀어주기.
-		if ((*Iter)->Info->ObjectiveType == EObjectType::PUSH)
+		if (
+			(*Iter)->Info->ObjectiveType == EObjectType::PUSH ||
+			(*Iter)->Info->TileType == ETileType::Subject ||
+			(*Iter)->Info->TileType == ETileType::Verb ||
+			(*Iter)->Info->TileType == ETileType::Objective
+			)
 		{
 			Index2D NextNext = _Next;
 			switch (_Dir)

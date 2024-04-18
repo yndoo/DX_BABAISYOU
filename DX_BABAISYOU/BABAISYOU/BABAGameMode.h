@@ -21,11 +21,16 @@ protected:
 	virtual void DebugGMM();
 	void StackUpdate();
 	void SentenceUpdate();
+	void GameUpdate();
 	AObject* VerbCheck(int _X, int _Y);
 	AObject* ObjectiveCheck(int _X, int _Y);
+	void ClearAllSentence();
 	int SentenceDir = -1;	// 0, 1, 2, 3
 
-	std::list<AObject*> AllObjects;	// 해당 레벨 모든 오브젝트 들고있음. 이거로 Update 하자..
+	std::list<AObject*> AllObjects;		// 해당 레벨 모든 오브젝트 들고있음. 이거로 Update 하자..
+	std::list<AObject*> Players;		// 모든 Player 오브젝트들만
+	std::list<AObject*> Texts;			// 모든 TEXT 오브젝트들만
+	std::list<AObject*> OnSubjects;		// 문장 ON 된 주어들 
 private:
 	int BeforeInputCount = 0;
 

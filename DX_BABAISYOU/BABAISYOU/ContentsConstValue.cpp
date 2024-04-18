@@ -14,3 +14,8 @@ const int UContentsConstValue::ITileY = 36;
 int UContentsConstValue::MaxIndexX = 0;
 int UContentsConstValue::MaxIndexY = 0;
 int UContentsConstValue::InputCount = 0;
+
+std::map<EObjectType, EObjectType> UContentsConstValue::TextToPlayer = {
+	{EObjectType::BABATEXT, EObjectType::BABA},
+	{EObjectType::WALLTEXT, EObjectType::WALL},
+};

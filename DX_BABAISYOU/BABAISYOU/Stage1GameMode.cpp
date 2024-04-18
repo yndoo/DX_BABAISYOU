@@ -50,6 +50,7 @@ void AStage1GameMode::Stage1MapSetting()
 	Baba->SetMaxIndex();
 	//Baba->SetActorScale3D(UContentsConstValue::TileScale);	// 이미지 한 칸 크기 그대로
 	AllObjects.push_back(Baba.get());
+	Players.push_back(Baba.get());
 	GMapManager->SetObject(Baba.get(), 0, 0);
 
 	Baba->AddActorLocation(Baba->CalIndexToPos(Index2D(0, 0)));
@@ -64,6 +65,7 @@ void AStage1GameMode::Stage1MapSetting()
 	Baba2->SetMaxIndex();
 	//Baba2->SetActorScale3D(UContentsConstValue::TileScale);	// 이미지 한 칸 크기 그대로
 	AllObjects.push_back(Baba2.get());
+	Players.push_back(Baba2.get());
 	GMapManager->SetObject(Baba2.get(), 1, 0);
 
 	Baba2->AddActorLocation(Baba2->CalIndexToPos(Index2D(1, 0)));
@@ -76,16 +78,19 @@ void AStage1GameMode::Stage1MapSetting()
 	IS->SetMaxIndex();
 	//IS->SetActorScale3D(UContentsConstValue::TileScale);	// 이미지 한 칸 크기 그대로
 	AllObjects.push_back(IS.get());
+	Texts.push_back(IS.get());
 	GMapManager->SetObject(IS.get(), 10, 3);
 
 	IS->AddActorLocation(IS->CalIndexToPos(Index2D(10, 3)));
 	IS->BeginPosSetting();
 	IS->SetOrder(ERenderOrder::FrontTile);
 
+
 	std::shared_ptr<ABabaText> BaText = GetWorld()->SpawnActor<ABabaText>("BabaText");
 	BaText->SetMapScale(UContentsConstValue::Stage1MapScale);
 	BaText->SetMaxIndex();
 	AllObjects.push_back(BaText.get());
+	Texts.push_back(BaText.get());
 	GMapManager->SetObject(BaText.get(), 10, 4);
 	BaText->AddActorLocation(BaText->CalIndexToPos(Index2D(10, 4)));
 	BaText->BeginPosSetting();
@@ -95,6 +100,7 @@ void AStage1GameMode::Stage1MapSetting()
 	YOU->SetMapScale(UContentsConstValue::Stage1MapScale);
 	YOU->SetMaxIndex();
 	AllObjects.push_back(YOU.get());
+	Texts.push_back(YOU.get());
 	GMapManager->SetObject(YOU.get(), 10, 2);
 	YOU->AddActorLocation(YOU->CalIndexToPos(Index2D(10, 2)));
 	YOU->BeginPosSetting();
@@ -113,6 +119,7 @@ void AStage1GameMode::Stage1MapSetting()
 
 		GMapManager->SetObject(WallTest.get(), i, i);
 		AllObjects.push_back(WallTest.get());
+		Players.push_back(WallTest.get());
 	}
 }
 

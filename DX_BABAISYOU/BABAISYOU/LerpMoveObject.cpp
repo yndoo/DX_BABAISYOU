@@ -48,7 +48,7 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 	if (false == IsMove)
 	{
 		Update(_DeltaTime);
-		if (Info->ObjectiveType == EObjectType::YOU)
+		if (Info->TileType == ETileType::Player && Info->ObjectiveType == EObjectType::YOU)
 		{
 			InputMove(_DeltaTime);
 		}

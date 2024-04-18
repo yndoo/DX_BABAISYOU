@@ -5,6 +5,8 @@ APlayerObject::APlayerObject()
 {
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
 	Renderer->SetupAttachment(Root);
+
+	Info->TileType = ETileType::Player;
 }
 
 APlayerObject::~APlayerObject()

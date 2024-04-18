@@ -29,6 +29,13 @@ void ABabaText::Tick(float _DeltaTime)
 
 	if (CurObjType != Info->ObjectiveType)
 	{
+		if (CurObjType == EObjectType::PUSH)
+		{
+			//PUSH¸¸
+		}
+
 		CurObjType = Info->ObjectiveType;
 	}
+
+
 }

@@ -4,6 +4,7 @@
 AYouText::AYouText()
 {
 	Info->MyType = EObjectType::YOU;
+	Info->TileType = ETileType::Objective;
 }
 
 AYouText::~AYouText()

@@ -21,9 +21,12 @@ enum class ETileType
 {
 	None,
 	Player,
+
+	// 얘네는 다 PUSH 가능해야 함
 	Subject,	//주어
 	Verb,		//동사	
 	Objective,	//목적어
+	
 	Tile,		//보류
 };
 
