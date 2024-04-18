@@ -23,6 +23,14 @@ ULevel::ULevel()
 
 ULevel::~ULevel() 
 {
+	MainCamera = nullptr;
+	UICamera = nullptr;
+	GameMode = nullptr;
+	Actors.clear();
+	Renderers.clear();
+	Collisions.clear();
+	Widgets.clear();
+
 }
 
 void ULevel::Tick(float _DeltaTime)
@@ -38,6 +46,8 @@ void ULevel::Tick(float _DeltaTime)
 			Actor->Tick(_DeltaTime);
 		}
 	}
+
+
 }
 
 void ULevel::Render(float _DeltaTime)
@@ -268,5 +278,6 @@ void ULevel::PushWidget(std::shared_ptr<UWidget> _Widget)
 
 	_Widget->SetWorld(this);
 
+	WidgetInits.remove(_Widget);
 	Widgets[_Widget->GetOrder()].push_back(_Widget);
 }
