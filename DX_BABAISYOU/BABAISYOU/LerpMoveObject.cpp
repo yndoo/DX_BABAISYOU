@@ -229,4 +229,6 @@ void ALerpMoveObject::ReverseMoveSetting(EInputDir _Dir, float _DeltaTime, bool 
 		AddNextActorLocation(FVector::Zero);
 		break;
 	}
+
+	CurToNext(CurActorLocation, NextActorLocation);
 }
