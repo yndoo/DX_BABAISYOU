@@ -120,6 +120,9 @@
     <ClInclude Include="YouText.h">
       <Filter>Object\Obj-Level3\ObjectiveText</Filter>
     </ClInclude>
+    <ClInclude Include="WallText.h">
+      <Filter>Object\Obj-Level3\SubjectText</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -181,6 +184,9 @@
     </ClCompile>
     <ClCompile Include="YouText.cpp">
       <Filter>Object\Obj-Level3\ObjectiveText</Filter>
+    </ClCompile>
+    <ClCompile Include="WallText.cpp">
+      <Filter>Object\Obj-Level3\SubjectText</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

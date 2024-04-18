@@ -33,8 +33,6 @@ void UBABAISYOUCore::Initialize()
 			UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
 		}*/
 
-		UEngineSprite::CreateCutting("CuttingTest.png", 4, 3);
-
 		UEngineSprite::CreateCutting("BABA.png", 17, 3);
 		UEngineSprite::CreateCutting("WALL.png", 18, 3);
 		UEngineSprite::CreateCutting("BABAText.png", 2, 3);

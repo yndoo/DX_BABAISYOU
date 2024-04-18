@@ -67,6 +67,7 @@ void BABAGameMode::FinalUpdate()
 {
 	for (AObject* sub : OnSubjects)
 	{
+		// PlayerType : 주어 텍스트에 대응하는 Player 타입
 		EObjectType PlayerType = UContentsConstValue::TextToPlayer[sub->Info->MyType];
 		
 		for (AObject* player : Players)
@@ -86,7 +87,13 @@ void BABAGameMode::ClearAllSentence()
 	for (AObject* obj : AllObjects)
 	{
 		obj->SentenceON = false;
+		// 그림 오브젝트들은 문장에 의해 ObjectiveType이 결정되므로 초기화해도 괜찮음
+		if (obj->Info->TileType == ETileType::Player)
+		{
+			obj->Info->ObjectiveType = EObjectType::NONE;
+		}
 	}
+	
 	OnSubjects.clear();
 }
 
@@ -96,7 +103,7 @@ void BABAGameMode::SentenceUpdate()
 	// 전체 Clear
 	ClearAllSentence();
 
-	for (AObject* obj : AllObjects)
+	for (AObject* obj : Texts)
 	{
 		// 주어 만나면 문장검사
 		if (obj->Info->TileType == ETileType::Subject)
@@ -106,7 +113,7 @@ void BABAGameMode::SentenceUpdate()
 			if (IsObjective == nullptr)
 			{
 				SentenceDir = -1;
-				return;
+				continue;
 			}
 			
 			// 문장이 맞으면 
