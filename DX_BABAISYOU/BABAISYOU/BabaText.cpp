@@ -16,9 +16,9 @@ void ABabaText::BeginPlay()
 	Super::BeginPlay();
 
 	Renderer->CreateAnimation("BABATEXT_White", "BABA.png", AnimationInterVec, { 0, 17, 34 }, true);
-	Renderer->CreateAnimation("BABATEXT_Purple", "BABAText.png", AnimationInterVec, { 0, 2, 4 }, true);
-	Renderer->CreateAnimation("BABATEXT_Pink", "BABAText.png", AnimationInterVec, { 1, 3, 5 }, true);
-	Renderer->ChangeAnimation("BABATEXT_Pink");
+	Renderer->CreateAnimation("BABATEXT_Off", "BABAText.png", AnimationInterVec, { 0, 2, 4 }, true);
+	Renderer->CreateAnimation("BABATEXT_On", "BABAText.png", AnimationInterVec, { 1, 3, 5 }, true);
+	Renderer->ChangeAnimation("BABATEXT_On");
 
 	CurObjType = Info->ObjectiveType;
 }
@@ -27,15 +27,18 @@ void ABabaText::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	if (CurObjType != Info->ObjectiveType)
+	MoveStack;
+	int a = 0;
+}
+
+void ABabaText::AniONOFF()
+{
+	if (ON)
 	{
-		if (CurObjType == EObjectType::PUSH)
-		{
-			//PUSH¸¸
-		}
-
-		CurObjType = Info->ObjectiveType;
+		Renderer->ChangeAnimation("BABATEXT_On");
 	}
-
-
+	else
+	{
+		Renderer->ChangeAnimation("BABATEXT_Off");
+	}
 }

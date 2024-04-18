@@ -25,11 +25,11 @@ void AIsText::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	if (ON != SentenceON)
-	{
-		ON = SentenceON;
-		AniONOFF();
-	}
+	//if (ON != SentenceON)
+	//{
+	//	ON = SentenceON;
+	//	AniONOFF();
+	//}
 }
 
 void AIsText::AniONOFF()

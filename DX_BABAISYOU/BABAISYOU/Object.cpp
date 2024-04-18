@@ -245,6 +245,7 @@ void AObject::AllPushNextTile(Index2D _Next, EInputDir _Dir)
 	for (auto PO : PushList)
 	{
 		PO.first->CurToNext(CalIndexToPos(_Next), CalIndexToPos(PO.second));
+		PO.first->EachMoveCheck_ForStack = true;
 		PO.first->NewInputDir = _Dir;
 	}
 }

@@ -25,3 +25,15 @@ void AYouText::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 }
+
+void AYouText::AniONOFF()
+{
+	if (ON)
+	{
+		Renderer->ChangeAnimation("YOU_On");
+	}
+	else
+	{
+		Renderer->ChangeAnimation("YOU_Off");
+	}
+}

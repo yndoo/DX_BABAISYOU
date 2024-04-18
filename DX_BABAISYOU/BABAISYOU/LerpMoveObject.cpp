@@ -34,8 +34,6 @@ void ALerpMoveObject::PushedUpdate(float _DeltaTime)
 			IsMove = true;
 			EachMoveCheck_ForStack = true;
 			AddNextActorLocation(CalIndexToPos(Cur) - CalIndexToPos(Before));
-			//NewInputDir = CurDir;
-			//PushTrueHistory();
 		}
 	}
 }
@@ -143,16 +141,7 @@ void ALerpMoveObject::InputMove(float _DeltaTime)
 			// PUSH있으면 밀기
 			if (true == IsNextPUSH(Idx))
 			{
-				if (true == CanGoNextAll(Idx, NewInputDir))
-				{
-					AllPushNextTile(Idx, NewInputDir);
-				}
-				else
-				{
-					IsMove = false;
-					NewInputDir = CurDir;	// 입력 적용 안 된 경우 NewInputDir 다시 되돌려놔야함
-					return;
-				}
+				AllPushNextTile(Idx, NewInputDir);
 			}
 
 			// 입력 적용 OK

@@ -27,7 +27,7 @@ void ABabaObject::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	Index2D Test = CalPosToIndex(GetActorLocation());
+	MoveStack;
 	int a = 0;
 
 	//{

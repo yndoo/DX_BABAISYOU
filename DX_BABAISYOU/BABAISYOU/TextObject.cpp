@@ -23,7 +23,11 @@ void ATextObject::BeginPlay()
 void ATextObject::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-
+	if (SentenceON != ON)
+	{
+		ON = SentenceON;
+		AniONOFF();
+	}
 }
 
 void ATextObject::AniONOFF()

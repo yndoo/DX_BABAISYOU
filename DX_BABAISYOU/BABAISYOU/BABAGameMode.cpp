@@ -57,7 +57,11 @@ void BABAGameMode::StackUpdate()
 		}
 		else if (false == Obj->EachMoveCheck_ForStack)
 		{
-			Obj->PushFalseHistory();
+			if (Obj->Info->MyType == EObjectType::BABATEXT)
+			{
+				int a = 0;
+			}
+ 			Obj->PushFalseHistory();
 		}
 	}
 }

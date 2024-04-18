@@ -25,3 +25,15 @@ void AStopText::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 }
+
+void AStopText::AniONOFF()
+{
+	if (ON)
+	{
+		Renderer->ChangeAnimation("STOP_On");
+	}
+	else
+	{
+		Renderer->ChangeAnimation("STOP_Off");
+	}
+}
