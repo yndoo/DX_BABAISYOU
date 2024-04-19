@@ -69,18 +69,18 @@ void AStage1GameMode::Stage1MapSetting()
 	//Baba->Info->MyObjectiveType = EObjectType::YOU;	//임시 테스트임
 
 
-	//std::shared_ptr<ABabaObject> Baba2 = GetWorld()->SpawnActor<ABabaObject>("Baba");
-	//// 얘네는 같은 게임모드인 모든 Object 같이 세팅해야하는 것들
-	//Baba2->SetMapScale(UContentsConstValue::Stage1MapScale);
-	//Baba2->SetMaxIndex();
-	////Baba2->SetActorScale3D(UContentsConstValue::TileScale);	// 이미지 한 칸 크기 그대로
-	//AllObjects.push_back(Baba2.get());
-	//Players.push_back(Baba2.get());
-	//GMapManager->SetObject(Baba2.get(), 1, 0);
+	std::shared_ptr<ABabaObject> Baba2 = GetWorld()->SpawnActor<ABabaObject>("Baba");
+	// 얘네는 같은 게임모드인 모든 Object 같이 세팅해야하는 것들
+	Baba2->SetMapScale(UContentsConstValue::Stage1MapScale);
+	Baba2->SetMaxIndex();
+	//Baba2->SetActorScale3D(UContentsConstValue::TileScale);	// 이미지 한 칸 크기 그대로
+	AllObjects.push_back(Baba2.get());
+	Players.push_back(Baba2.get());
+	GMapManager->SetObject(Baba2.get(), 1, 0);
 
-	//Baba2->AddActorLocation(Baba2->CalIndexToPos(Index2D(1, 0)));
-	//Baba2->BeginPosSetting();
-	//Baba2->SetOrder(ERenderOrder::FrontTile);
+	Baba2->AddActorLocation(Baba2->CalIndexToPos(Index2D(1, 0)));
+	Baba2->BeginPosSetting();
+	Baba2->SetOrder(ERenderOrder::FrontTile);
 
 	for (int i = 1; i <= 9; i++)
 	{

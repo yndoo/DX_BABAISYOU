@@ -55,6 +55,9 @@
     <Filter Include="Object\Obj-Level3\VerbText">
       <UniqueIdentifier>{f0be1226-84af-4afa-81dd-1b0ddf534537}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{e8f83a64-3989-4219-af05-f65656e603c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BABAISYOUCore.h">
@@ -135,6 +138,12 @@
     <ClInclude Include="WinText.h">
       <Filter>Object\Obj-Level3\ObjectiveText</Filter>
     </ClInclude>
+    <ClInclude Include="MapEditorGUI.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsGUI.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -211,6 +220,12 @@
     </ClCompile>
     <ClCompile Include="WinText.cpp">
       <Filter>Object\Obj-Level3\ObjectiveText</Filter>
+    </ClCompile>
+    <ClCompile Include="MapEditorGUI.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentsGUI.cpp">
+      <Filter>GUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

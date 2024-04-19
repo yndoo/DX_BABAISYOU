@@ -44,6 +44,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ContentsEnum.h" />
+    <ClInclude Include="ContentsGUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="FlagObject.h">
       <SubType>
       </SubType>
@@ -57,6 +61,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="LerpMoveObject.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MapEditorGUI.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -140,6 +148,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="ContentsGUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="FlagObject.cpp">
       <SubType>
       </SubType>
@@ -153,6 +165,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="LerpMoveObject.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MapEditorGUI.cpp">
       <SubType>
       </SubType>
     </ClCompile>

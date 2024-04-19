@@ -5,6 +5,9 @@
 #include "Stage1GameMode.h"
 #include "StageSelectGameMode.h"
 
+#include <EngineCore/EngineEditorGUI.h>
+#include "ContentsGUI.h"
+
 UBABAISYOUCore::UBABAISYOUCore() 
 {
 }
@@ -65,6 +68,8 @@ void UBABAISYOUCore::Initialize()
 		//}
 	}
 
+	// GUI
+	UEngineEditorGUI::CreateEditorWindow<ContentsGUI>("Contents");
 
 	//GEngine->CreateLevel<APlayGameMode>("PlayLevel");
 	GEngine->CreateLevel<AStage1GameMode>("Stage1Level");
