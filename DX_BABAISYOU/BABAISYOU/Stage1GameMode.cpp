@@ -1,18 +1,24 @@
 #include "PreCompile.h"
-#include "Stage1GameMode.h"
 #include <EngineCore/Camera.h>
-#include "BabaObject.h"
-#include "MapManager.h"
-#include "WallObject.h"
+#include <EngineCore/EngineDebugMsgWindow.h>
+
+#include "Stage1GameMode.h"
 #include "Background.h"
+#include "MapManager.h"
+#include "ContentsEnum.h"
+#include "ContentsConstValue.h"
+
+#include "BabaObject.h"
+#include "WallObject.h"
+#include "FlagObject.h"
+
 #include "IsText.h"
 #include "BabaText.h"
 #include "YouText.h"
 #include "WallText.h"
 #include "StopText.h"
-#include "ContentsEnum.h"
-#include "ContentsConstValue.h"
-#include <EngineCore/EngineDebugMsgWindow.h>
+#include "FlagText.h"
+#include "WinText.h"
 
 
 AStage1GameMode::AStage1GameMode()
@@ -55,12 +61,12 @@ void AStage1GameMode::Stage1MapSetting()
 	//Baba->SetActorScale3D(UContentsConstValue::TileScale);	// 이미지 한 칸 크기 그대로
 	AllObjects.push_back(Baba.get());
 	Players.push_back(Baba.get());
-	GMapManager->SetObject(Baba.get(), 12, 4);
+	GMapManager->SetObject(Baba.get(), 8, 4);
 
-	Baba->AddActorLocation(Baba->CalIndexToPos(Index2D(12, 4)));
+	Baba->AddActorLocation(Baba->CalIndexToPos(Index2D(8, 4)));
 	Baba->BeginPosSetting();
 	Baba->SetOrder(ERenderOrder::FrontTile);
-	Baba->Info->MyObjectiveType = EObjectType::YOU;	//임시 테스트임
+	//Baba->Info->MyObjectiveType = EObjectType::YOU;	//임시 테스트임
 
 
 	//std::shared_ptr<ABabaObject> Baba2 = GetWorld()->SpawnActor<ABabaObject>("Baba");
@@ -85,12 +91,21 @@ void AStage1GameMode::Stage1MapSetting()
 		Wall->SetActorLocation(Wall->CalIndexToPos(Index2D(i, i)));
 		Wall->BeginPosSetting();
 		//WallTest->Info->Objective = EObjectiveType::STOP;
-		Wall->Info->MyObjectiveType = EObjectType::PUSH;
+		//Wall->Info->MyObjectiveType = EObjectType::PUSH;
 
 		GMapManager->SetObject(Wall.get(), i, i);
 		AllObjects.push_back(Wall.get());
 		Players.push_back(Wall.get());
 	}
+
+	std::shared_ptr<AFlagObject> Flag = GetWorld()->SpawnActor<AFlagObject>("Flag");
+	Flag->SetMapScale(UContentsConstValue::Stage1MapScale);
+	Flag->SetMaxIndex();
+	Flag->SetActorLocation(Flag->CalIndexToPos(Index2D(8, 14)));
+	Flag->BeginPosSetting();
+	GMapManager->SetObject(Flag.get(), 8, 14);
+	AllObjects.push_back(Flag.get());
+	Players.push_back(Flag.get());
 
 	/* ============= 주어 Object들 ============= */
 	std::shared_ptr<ABabaText> BaText = GetWorld()->SpawnActor<ABabaText>("BabaText");
@@ -112,6 +127,16 @@ void AStage1GameMode::Stage1MapSetting()
 	WallText->AddActorLocation(WallText->CalIndexToPos(Index2D(11, 4)));
 	WallText->BeginPosSetting();
 	WallText->SetOrder(ERenderOrder::FrontTile);
+
+	std::shared_ptr<AFlagText> FlagText = GetWorld()->SpawnActor<AFlagText>("FlagText");
+	FlagText->SetMapScale(UContentsConstValue::Stage1MapScale);
+	FlagText->SetMaxIndex();
+	FlagText->SetActorLocation(FlagText->CalIndexToPos(Index2D(9, 4)));
+	FlagText->BeginPosSetting();
+	FlagText->SetOrder(ERenderOrder::FrontTile);
+	GMapManager->SetObject(FlagText.get(), 9, 4);
+	AllObjects.push_back(FlagText.get());
+	Texts.push_back(FlagText.get());
 
 	/* ============= 동사 Object들 ============= */
 	std::shared_ptr<AIsText> IS = GetWorld()->SpawnActor<AIsText>("IS");
@@ -147,6 +172,16 @@ void AStage1GameMode::Stage1MapSetting()
 	Stop->AddActorLocation(Stop->CalIndexToPos(Index2D(12, 2)));
 	Stop->BeginPosSetting();
 	Stop->SetOrder(ERenderOrder::FrontTile);
+
+	std::shared_ptr<AWinText> Win = GetWorld()->SpawnActor<AWinText>("WinText");
+	Win->SetMapScale(UContentsConstValue::Stage1MapScale);
+	Win->SetMaxIndex();
+	AllObjects.push_back(Win.get());
+	Texts.push_back(Win.get());
+	GMapManager->SetObject(Win.get(), 13, 2);
+	Win->AddActorLocation(Win->CalIndexToPos(Index2D(13, 2)));
+	Win->BeginPosSetting();
+	Win->SetOrder(ERenderOrder::FrontTile);
 }
 
 void AStage1GameMode::DebugGMM()

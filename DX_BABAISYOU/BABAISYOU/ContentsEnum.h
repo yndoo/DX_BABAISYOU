@@ -37,6 +37,7 @@ enum class EObjectType
 	// 그림들
 	BABA,
 	WALL,
+	FLAG,
 	// 목적어들 (무조건 TEXT)
 	YOU,
 	WIN,
@@ -47,6 +48,7 @@ enum class EObjectType
 	// 주어들
 	BABATEXT,
 	WALLTEXT,
+	FLAGTEXT,
 };
 
 enum class EMyType

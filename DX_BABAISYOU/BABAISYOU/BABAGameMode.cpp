@@ -113,7 +113,7 @@ void BABAGameMode::SentenceUpdate()
 		if (sub->Info->TileType == ETileType::Subject)
 		{
 			// 동사 체크, 목적어 체크 후 문장 맞으면 목적어를 return함.
-			AObject* IsObjective = VerbCheck(sub->Info->CurIndex.X, sub->Info->CurIndex.Y);
+ 			AObject* IsObjective = VerbCheck(sub->Info->CurIndex.X, sub->Info->CurIndex.Y);
 			if (IsObjective == nullptr)
 			{
 				SentenceDir = -1;

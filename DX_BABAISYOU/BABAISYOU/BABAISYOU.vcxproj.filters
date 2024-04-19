@@ -126,6 +126,15 @@
     <ClInclude Include="StopText.h">
       <Filter>Object\Obj-Level3\ObjectiveText</Filter>
     </ClInclude>
+    <ClInclude Include="FlagText.h">
+      <Filter>Object\Obj-Level3\SubjectText</Filter>
+    </ClInclude>
+    <ClInclude Include="FlagObject.h">
+      <Filter>Object\Obj-Level3\PlayerObject</Filter>
+    </ClInclude>
+    <ClInclude Include="WinText.h">
+      <Filter>Object\Obj-Level3\ObjectiveText</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -192,6 +201,15 @@
       <Filter>Object\Obj-Level3\SubjectText</Filter>
     </ClCompile>
     <ClCompile Include="StopText.cpp">
+      <Filter>Object\Obj-Level3\ObjectiveText</Filter>
+    </ClCompile>
+    <ClCompile Include="FlagText.cpp">
+      <Filter>Object\Obj-Level3\SubjectText</Filter>
+    </ClCompile>
+    <ClCompile Include="FlagObject.cpp">
+      <Filter>Object\Obj-Level3\PlayerObject</Filter>
+    </ClCompile>
+    <ClCompile Include="WinText.cpp">
       <Filter>Object\Obj-Level3\ObjectiveText</Filter>
     </ClCompile>
   </ItemGroup>
