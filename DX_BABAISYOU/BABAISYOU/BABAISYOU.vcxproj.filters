@@ -58,6 +58,9 @@
     <Filter Include="GUI">
       <UniqueIdentifier>{e8f83a64-3989-4219-af05-f65656e603c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameMode\CreateMapLevel">
+      <UniqueIdentifier>{53e9ab36-67b6-4186-b43a-0e4071982fb9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BABAISYOUCore.h">
@@ -144,6 +147,9 @@
     <ClInclude Include="ContentsGUI.h">
       <Filter>GUI</Filter>
     </ClInclude>
+    <ClInclude Include="CreateMapGameMode.h">
+      <Filter>GameMode\CreateMapLevel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -226,6 +232,9 @@
     </ClCompile>
     <ClCompile Include="ContentsGUI.cpp">
       <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateMapGameMode.cpp">
+      <Filter>GameMode\CreateMapLevel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

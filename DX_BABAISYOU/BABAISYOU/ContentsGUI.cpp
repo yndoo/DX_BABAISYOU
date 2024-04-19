@@ -26,8 +26,8 @@ void ContentsGUI::OnGui(ULevel* _Level, float _Delta)
 		GEngine->ChangeLevel("SelectMapLevel");
 	}
 
-	/*if (true == ImGui::Button("CreateMapLevel"))
+	if (true == ImGui::Button("CreateMapLevel"))
 	{
 		GEngine->ChangeLevel("CreateMapLevel");
-	}*/
+	}
 }

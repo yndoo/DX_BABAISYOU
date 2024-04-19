@@ -4,9 +4,11 @@
 #include <EngineCore/EngineSprite.h>
 #include "Stage1GameMode.h"
 #include "StageSelectGameMode.h"
+#include "CreateMapGameMode.h"
 
 #include <EngineCore/EngineEditorGUI.h>
 #include "ContentsGUI.h"
+#include "MapEditorGUI.h"
 
 UBABAISYOUCore::UBABAISYOUCore() 
 {
@@ -51,6 +53,7 @@ void UBABAISYOUCore::Initialize()
 		UEngineSprite::CreateCutting("STOP.png", 3, 3);
 		UEngineSprite::CreateCutting("WIN.png", 3, 3);
 
+		// ETC
 		UEngineSprite::CreateCutting("SelectMap_background.png", 3, 1);
 		UEngineSprite::CreateCutting("Selector.png", 3, 1);
 		
@@ -70,10 +73,13 @@ void UBABAISYOUCore::Initialize()
 
 	// GUI
 	UEngineEditorGUI::CreateEditorWindow<ContentsGUI>("Contents");
+	UEngineEditorGUI::CreateEditorWindow<MapEditorGUI>("MapEditor");
 
+	// Level
 	//GEngine->CreateLevel<APlayGameMode>("PlayLevel");
 	GEngine->CreateLevel<AStage1GameMode>("Stage1Level");
 	GEngine->CreateLevel<AStageSelectGameMode>("SelectMapLevel");
+	GEngine->CreateLevel<CreateMapGameMode>("CreateMapLevel");
 	GEngine->ChangeLevel("Stage1Level");
 	int a = 0;
 }
