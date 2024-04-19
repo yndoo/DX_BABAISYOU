@@ -9,6 +9,7 @@
 #include "BabaText.h"
 #include "YouText.h"
 #include "WallText.h"
+#include "StopText.h"
 #include "ContentsEnum.h"
 #include "ContentsConstValue.h"
 #include <EngineCore/EngineDebugMsgWindow.h>
@@ -46,6 +47,7 @@ void AStage1GameMode::Tick(float _DeltaTime)
 
 void AStage1GameMode::Stage1MapSetting()
 {
+	/* ============= Player Object들 ============= */
 	std::shared_ptr<ABabaObject> Baba = GetWorld()->SpawnActor<ABabaObject>("Baba");
 	// 얘네는 같은 게임모드인 모든 Object 같이 세팅해야하는 것들
 	Baba->SetMapScale(UContentsConstValue::Stage1MapScale);
@@ -58,7 +60,7 @@ void AStage1GameMode::Stage1MapSetting()
 	Baba->AddActorLocation(Baba->CalIndexToPos(Index2D(12, 4)));
 	Baba->BeginPosSetting();
 	Baba->SetOrder(ERenderOrder::FrontTile);
-	Baba->Info->ObjectiveType = EObjectType::YOU;	//임시 테스트임
+	Baba->Info->MyObjectiveType = EObjectType::YOU;	//임시 테스트임
 
 
 	//std::shared_ptr<ABabaObject> Baba2 = GetWorld()->SpawnActor<ABabaObject>("Baba");
@@ -74,7 +76,44 @@ void AStage1GameMode::Stage1MapSetting()
 	//Baba2->BeginPosSetting();
 	//Baba2->SetOrder(ERenderOrder::FrontTile);
 
+	for (int i = 1; i <= 9; i++)
+	{
+		std::shared_ptr<AWallObject> Wall = GetWorld()->SpawnActor<AWallObject>("Wall");
+		Wall->SetMapScale(UContentsConstValue::Stage1MapScale);
+		Wall->SetMaxIndex();
+		//WallTest->SetActorScale3D(UContentsConstValue::TileScale);
+		Wall->SetActorLocation(Wall->CalIndexToPos(Index2D(i, i)));
+		Wall->BeginPosSetting();
+		//WallTest->Info->Objective = EObjectiveType::STOP;
+		Wall->Info->MyObjectiveType = EObjectType::PUSH;
 
+		GMapManager->SetObject(Wall.get(), i, i);
+		AllObjects.push_back(Wall.get());
+		Players.push_back(Wall.get());
+	}
+
+	/* ============= 주어 Object들 ============= */
+	std::shared_ptr<ABabaText> BaText = GetWorld()->SpawnActor<ABabaText>("BabaText");
+	BaText->SetMapScale(UContentsConstValue::Stage1MapScale);
+	BaText->SetMaxIndex();
+	AllObjects.push_back(BaText.get());
+	Texts.push_back(BaText.get());
+	GMapManager->SetObject(BaText.get(), 10, 4);
+	BaText->AddActorLocation(BaText->CalIndexToPos(Index2D(10, 4)));
+	BaText->BeginPosSetting();
+	BaText->SetOrder(ERenderOrder::FrontTile);
+
+	std::shared_ptr<AWallText> WallText = GetWorld()->SpawnActor<AWallText>("WallText");
+	WallText->SetMapScale(UContentsConstValue::Stage1MapScale);
+	WallText->SetMaxIndex();
+	AllObjects.push_back(WallText.get());
+	Texts.push_back(WallText.get());
+	GMapManager->SetObject(WallText.get(), 11, 4);
+	WallText->AddActorLocation(WallText->CalIndexToPos(Index2D(11, 4)));
+	WallText->BeginPosSetting();
+	WallText->SetOrder(ERenderOrder::FrontTile);
+
+	/* ============= 동사 Object들 ============= */
 	std::shared_ptr<AIsText> IS = GetWorld()->SpawnActor<AIsText>("IS");
 	IS->SetMapScale(UContentsConstValue::Stage1MapScale);
 	IS->SetMaxIndex();
@@ -87,16 +126,7 @@ void AStage1GameMode::Stage1MapSetting()
 	IS->BeginPosSetting();
 	IS->SetOrder(ERenderOrder::FrontTile);
 
-
-	std::shared_ptr<ABabaText> BaText = GetWorld()->SpawnActor<ABabaText>("BabaText");
-	BaText->SetMapScale(UContentsConstValue::Stage1MapScale);
-	BaText->SetMaxIndex();
-	AllObjects.push_back(BaText.get());
-	Texts.push_back(BaText.get());
-	GMapManager->SetObject(BaText.get(), 10, 4);
-	BaText->AddActorLocation(BaText->CalIndexToPos(Index2D(10, 4)));
-	BaText->BeginPosSetting();
-	BaText->SetOrder(ERenderOrder::FrontTile);
+	/* ============= 목적어 Object들 ============= */
 
 	std::shared_ptr<AYouText> YOU = GetWorld()->SpawnActor<AYouText>("YOUText");
 	YOU->SetMapScale(UContentsConstValue::Stage1MapScale);
@@ -108,31 +138,15 @@ void AStage1GameMode::Stage1MapSetting()
 	YOU->BeginPosSetting();
 	YOU->SetOrder(ERenderOrder::FrontTile);
 
-	for (int i = 1; i <= 9; i++)
-	{
-		std::shared_ptr<AWallObject> WallTest = GetWorld()->SpawnActor<AWallObject>("Wall");
-		WallTest->SetMapScale(UContentsConstValue::Stage1MapScale);
-		WallTest->SetMaxIndex();
-		//WallTest->SetActorScale3D(UContentsConstValue::TileScale);
-		WallTest->SetActorLocation(WallTest->CalIndexToPos(Index2D(i, i)));
-		WallTest->BeginPosSetting();
-		//WallTest->Info->Objective = EObjectiveType::STOP;
-		WallTest->Info->ObjectiveType = EObjectType::PUSH;
-
-		GMapManager->SetObject(WallTest.get(), i, i);
-		AllObjects.push_back(WallTest.get());
-		Players.push_back(WallTest.get());
-	}
-
-	std::shared_ptr<AWallText> WallText = GetWorld()->SpawnActor<AWallText>("WallText");
-	WallText->SetMapScale(UContentsConstValue::Stage1MapScale);
-	WallText->SetMaxIndex();
-	AllObjects.push_back(WallText.get());
-	Texts.push_back(WallText.get());
-	GMapManager->SetObject(WallText.get(), 11, 4);
-	WallText->AddActorLocation(WallText->CalIndexToPos(Index2D(11, 4)));
-	WallText->BeginPosSetting();
-	WallText->SetOrder(ERenderOrder::FrontTile);
+	std::shared_ptr<AStopText> Stop = GetWorld()->SpawnActor<AStopText>("StopText");
+	Stop->SetMapScale(UContentsConstValue::Stage1MapScale);
+	Stop->SetMaxIndex();
+	AllObjects.push_back(Stop.get());
+	Texts.push_back(Stop.get());
+	GMapManager->SetObject(Stop.get(), 12, 2);
+	Stop->AddActorLocation(Stop->CalIndexToPos(Index2D(12, 2)));
+	Stop->BeginPosSetting();
+	Stop->SetOrder(ERenderOrder::FrontTile);
 }
 
 void AStage1GameMode::DebugGMM()

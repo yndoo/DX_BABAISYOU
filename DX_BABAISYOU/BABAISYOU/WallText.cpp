@@ -30,7 +30,7 @@ void AWallText::Tick(float _DeltaTime)
 	}
 
 	ETileType tt = Info->TileType;
-	EObjectType tt2 = Info->ObjectiveType;
+	EObjectType tt2 = Info->MyObjectiveType;
 
 	int a = 0;
 }

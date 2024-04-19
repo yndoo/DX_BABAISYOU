@@ -78,7 +78,7 @@ void BABAGameMode::FinalUpdate()
 		{
 			if (player->Info->MyType == PlayerType)
 			{
-				player->Info->ObjectiveType = sub->Info->ObjectiveType;
+				player->Info->MyObjectiveType = sub->Info->TextObjective;
 				int a = 0;
 			}
 		}
@@ -94,7 +94,7 @@ void BABAGameMode::ClearAllSentence()
 		// 그림 오브젝트들은 문장에 의해 ObjectiveType이 결정되므로 초기화해도 괜찮음
 		if (obj->Info->TileType == ETileType::Player)
 		{
-			obj->Info->ObjectiveType = EObjectType::NONE;
+			obj->Info->MyObjectiveType = EObjectType::NONE;
 		}
 	}
 	
@@ -107,13 +107,13 @@ void BABAGameMode::SentenceUpdate()
 	// 전체 Clear
 	ClearAllSentence();
 
-	for (AObject* obj : Texts)
+	for (AObject* sub : Texts)
 	{
 		// 주어 만나면 문장검사
-		if (obj->Info->TileType == ETileType::Subject)
+		if (sub->Info->TileType == ETileType::Subject)
 		{
 			// 동사 체크, 목적어 체크 후 문장 맞으면 목적어를 return함.
-			AObject* IsObjective = VerbCheck(obj->Info->CurIndex.X, obj->Info->CurIndex.Y);
+			AObject* IsObjective = VerbCheck(sub->Info->CurIndex.X, sub->Info->CurIndex.Y);
 			if (IsObjective == nullptr)
 			{
 				SentenceDir = -1;
@@ -121,12 +121,13 @@ void BABAGameMode::SentenceUpdate()
 			}
 			
 			// 문장이 맞으면 
-			obj->SentenceON = true;
+			sub->SentenceON = true;
 			IsObjective->SentenceON = true;
 			// On된 주어들 리스트에 모아주기
-			OnSubjects.push_back(obj);
+			OnSubjects.push_back(sub);
 			// Info 세팅 다시해주기
-			obj->Info->ObjectiveType = IsObjective->Info->MyType;
+			// (주의) 주어의 목적어타입이 아님!!
+			sub->Info->TextObjective = IsObjective->Info->MyType;
 		}
 	}
 }

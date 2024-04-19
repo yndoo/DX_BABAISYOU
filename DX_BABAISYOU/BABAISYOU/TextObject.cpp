@@ -7,7 +7,7 @@ ATextObject::ATextObject()
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
 	Renderer->SetupAttachment(Root);
 
-	Info->ObjectiveType = EObjectType::PUSH;
+	Info->MyObjectiveType = EObjectType::PUSH;
 }
 
 ATextObject::~ATextObject()

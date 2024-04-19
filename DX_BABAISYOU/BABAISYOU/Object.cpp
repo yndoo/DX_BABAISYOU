@@ -136,12 +136,12 @@ bool AObject::CanGoNextAll(Index2D _Next, EInputDir _Dir)
 	for (Iter = GMapManager->Graph[_Next.X][_Next.Y].begin(); Iter != GMapManager->Graph[_Next.X][_Next.Y].end(); Iter++)
 	{
 		// 못 옮기는 경우 2. 다음 블록이 못 옮기는 블록.
-		if ((*Iter)->Info->ObjectiveType == EObjectType::STOP)
+		if ((*Iter)->Info->MyObjectiveType == EObjectType::STOP)
 		{
 			return false;
 		}
 		if (
-			(*Iter)->Info->ObjectiveType == EObjectType::PUSH ||
+			(*Iter)->Info->MyObjectiveType == EObjectType::PUSH ||
 			(*Iter)->Info->TileType == ETileType::Subject ||
 			(*Iter)->Info->TileType == ETileType::Verb || 
 			(*Iter)->Info->TileType == ETileType::Objective
@@ -186,7 +186,7 @@ bool AObject::IsNextPUSH(Index2D _Next)
 	for (Iter = GMapManager->Graph[_Next.X][_Next.Y].begin(); Iter != GMapManager->Graph[_Next.X][_Next.Y].end(); Iter++)
 	{
 		if (
-			(*Iter)->Info->ObjectiveType == EObjectType::PUSH ||
+			(*Iter)->Info->MyObjectiveType == EObjectType::PUSH ||
 			(*Iter)->Info->TileType == ETileType::Subject ||
 			(*Iter)->Info->TileType == ETileType::Verb ||
 			(*Iter)->Info->TileType == ETileType::Objective
@@ -211,7 +211,7 @@ void AObject::AllPushNextTile(Index2D _Next, EInputDir _Dir)
 	{
 		// PUSH인 애는 그 옆도 계속 밀어주기.
 		if (
-			(*Iter)->Info->ObjectiveType == EObjectType::PUSH ||
+			(*Iter)->Info->MyObjectiveType == EObjectType::PUSH ||
 			(*Iter)->Info->TileType == ETileType::Subject ||
 			(*Iter)->Info->TileType == ETileType::Verb ||
 			(*Iter)->Info->TileType == ETileType::Objective

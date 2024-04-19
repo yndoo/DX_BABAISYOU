@@ -20,7 +20,7 @@ void ABabaText::BeginPlay()
 	Renderer->CreateAnimation("BABATEXT_On", "BABAText.png", AnimationInterVec, { 1, 3, 5 }, true);
 	Renderer->ChangeAnimation("BABATEXT_On");
 
-	CurObjType = Info->ObjectiveType;
+	CurObjType = Info->MyObjectiveType;
 }
 
 void ABabaText::Tick(float _DeltaTime)
