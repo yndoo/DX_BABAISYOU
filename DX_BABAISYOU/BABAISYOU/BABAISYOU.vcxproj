@@ -88,6 +88,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="RockObject.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RockText.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="SinkText.h">
       <SubType>
       </SubType>
@@ -213,6 +221,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="PushText.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="RockObject.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="RockText.cpp">
       <SubType>
       </SubType>
     </ClCompile>

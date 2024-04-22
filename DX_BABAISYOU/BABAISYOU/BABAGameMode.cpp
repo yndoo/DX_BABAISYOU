@@ -8,6 +8,7 @@
 #include "WallObject.h"
 #include "FlagObject.h"
 #include "WaterObject.h"
+#include "RockObject.h"
 
 #include "IsText.h"
 #include "BabaText.h"
@@ -20,6 +21,7 @@
 #include "PushText.h"
 #include "DefeatText.h"
 #include "SinkText.h"
+#include "RockText.h"
 
 BABAGameMode::BABAGameMode()
 {
@@ -151,7 +153,7 @@ void BABAGameMode::DeathCheck()
 				if (others->Info->MyObjectiveType[EObjectType::WIN] == true)
 				{
 					// 게임 승리
-					GEngine->ChangeLevel("SelectMapLevel");
+					//GEngine->ChangeLevel("SelectMapLevel");
 					//return;
 				}
 			}
@@ -165,7 +167,7 @@ void BABAGameMode::DeathCheck()
 	if (0 == YouCount)
 	{
 		// 게임 끝남
-		GEngine->ChangeLevel("SelectMapLevel");
+		//GEngine->ChangeLevel("SelectMapLevel");
 		int a = 0;
 		return;
 	}
@@ -346,6 +348,19 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 		Players.push_back(Flag.get());
 	}
 		break;
+	case EObjectType::ROCK:
+	{
+		std::shared_ptr<ARockObject> Rock = GetWorld()->SpawnActor<ARockObject>("Rock");
+		Rock->SetMapScale(_MapScale);
+		Rock->SetMaxIndex();
+		Rock->SetActorLocation(Rock->CalIndexToPos(Index2D(_X, _Y)));
+		Rock->BeginPosSetting();
+		Rock->SetOrder(ERenderOrder::FrontTile);
+		GMapManager->SetObject(Rock.get(), _X, _Y);
+		AllObjects.push_back(Rock.get());
+		Players.push_back(Rock.get());
+	}
+	break;
 	// ObjectiveObjects
 	case EObjectType::YOU:
 	{
@@ -490,6 +505,19 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 		GMapManager->SetObject(WaterText.get(), _X, _Y);
 		AllObjects.push_back(WaterText.get());
 		Texts.push_back(WaterText.get());
+	}
+	break;
+	case EObjectType::ROCKTEXT:
+	{
+		std::shared_ptr<ARockText> RockText = GetWorld()->SpawnActor<ARockText>("ARockText");
+		RockText->SetMapScale(_MapScale);
+		RockText->SetMaxIndex();
+		RockText->SetActorLocation(RockText->CalIndexToPos(Index2D(_X, _Y)));
+		RockText->BeginPosSetting();
+		RockText->SetOrder(ERenderOrder::FrontTile);
+		GMapManager->SetObject(RockText.get(), _X, _Y);
+		AllObjects.push_back(RockText.get());
+		Texts.push_back(RockText.get());
 	}
 	break;
 	default:

@@ -165,6 +165,12 @@
     <ClInclude Include="SinkText.h">
       <Filter>Object\Obj-Level3\ObjectiveText</Filter>
     </ClInclude>
+    <ClInclude Include="RockText.h">
+      <Filter>Object\Obj-Level3\SubjectText</Filter>
+    </ClInclude>
+    <ClInclude Include="RockObject.h">
+      <Filter>Object\Obj-Level3\PlayerObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -265,6 +271,12 @@
     </ClCompile>
     <ClCompile Include="SinkText.cpp">
       <Filter>Object\Obj-Level3\ObjectiveText</Filter>
+    </ClCompile>
+    <ClCompile Include="RockText.cpp">
+      <Filter>Object\Obj-Level3\SubjectText</Filter>
+    </ClCompile>
+    <ClCompile Include="RockObject.cpp">
+      <Filter>Object\Obj-Level3\PlayerObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

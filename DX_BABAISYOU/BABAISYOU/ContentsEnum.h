@@ -39,6 +39,7 @@ enum class EObjectType
 	WALL,
 	FLAG,
 	WATER,
+	ROCK,
 	// 格利绢, 加己甸 (公炼扒 TEXT)
 	YOU,
 	PUSH,
@@ -54,6 +55,7 @@ enum class EObjectType
 	WALLTEXT,
 	FLAGTEXT,
 	WATERTEXT,
+	ROCKTEXT,
 };
 
 enum class EMyType

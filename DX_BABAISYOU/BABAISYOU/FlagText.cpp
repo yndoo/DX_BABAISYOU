@@ -10,6 +10,7 @@ AFlagText::AFlagText()
 AFlagText::~AFlagText()
 {
 }
+
 void AFlagText::BeginPlay()
 {
 	Super::BeginPlay();

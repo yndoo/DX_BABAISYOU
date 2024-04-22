@@ -43,10 +43,12 @@ void UBABAISYOUCore::Initialize()
 		UEngineSprite::CreateCutting("WALL.png", 18, 3);
 		UEngineSprite::CreateCutting("WATER.png", 18, 3);
 		UEngineSprite::CreateCutting("FLAG.png", 2, 3);
+		UEngineSprite::CreateCutting("ROCK.png", 1, 3);
 
 		// TEXT Objects
 		UEngineSprite::CreateCutting("BABAText.png", 2, 3);
 		UEngineSprite::CreateCutting("FLAGText.png", 3, 3);
+		UEngineSprite::CreateCutting("ROCkText.png", 2, 3);
 
 		UEngineSprite::CreateCutting("IS.png", 2, 3);
 

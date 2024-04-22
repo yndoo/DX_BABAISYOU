@@ -66,23 +66,25 @@ void AStage1GameMode::Stage1MapSetting(FVector MapScale)
 	AutoCreate(EObjectType::WATER, 16, 6, MapScale, 15);
 
 	AutoCreate(EObjectType::FLAG, 8, 5, MapScale);
+	AutoCreate(EObjectType::ROCK, 6, 11, MapScale);
 
 	/* ============= 주어 Object들 ============= */
 	AutoCreate(EObjectType::BABATEXT, 10, 4, MapScale);
 	AutoCreate(EObjectType::WALLTEXT, 9, 3, MapScale);
 	AutoCreate(EObjectType::FLAGTEXT, 9, 4, MapScale);
 	AutoCreate(EObjectType::WATERTEXT, 13, 7, MapScale);
+	AutoCreate(EObjectType::ROCKTEXT, 3, 11, MapScale);
 
 	/* ============= 동사 Object들 ============= */
 	AutoCreate(EObjectType::IS, 10, 3, MapScale);
-	AutoCreate(EObjectType::IS, 14, 6, MapScale);
+	AutoCreate(EObjectType::IS, 4, 10, MapScale);
 	
 	/* ============= 목적어 Object들 ============= */
 	AutoCreate(EObjectType::YOU, 10, 2, MapScale);
 	AutoCreate(EObjectType::STOP, 12, 2, MapScale);
 	AutoCreate(EObjectType::WIN, 13, 2, MapScale);
 	AutoCreate(EObjectType::DEFEAT, 11, 5, MapScale);
-	AutoCreate(EObjectType::PUSH, 11, 6, MapScale);
+	AutoCreate(EObjectType::PUSH, 5, 11, MapScale);
 	AutoCreate(EObjectType::SINK, 15, 7, MapScale);
 }
 
