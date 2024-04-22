@@ -84,6 +84,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PushText.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SinkText.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="StageSelector.h">
       <SubType>
       </SubType>
@@ -119,6 +127,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="WallText.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="WaterObject.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="WaterText.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -196,6 +212,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="PushText.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="SinkText.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="StageSelector.cpp">
       <SubType>
       </SubType>
@@ -236,6 +260,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="WallText.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="WaterObject.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="WaterText.cpp">
       <SubType>
       </SubType>
     </ClCompile>

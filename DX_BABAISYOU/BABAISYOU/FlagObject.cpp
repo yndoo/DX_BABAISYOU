@@ -9,6 +9,7 @@ AFlagObject::AFlagObject()
 AFlagObject::~AFlagObject()
 {
 }
+
 void AFlagObject::BeginPlay()
 {
 	Super::BeginPlay();

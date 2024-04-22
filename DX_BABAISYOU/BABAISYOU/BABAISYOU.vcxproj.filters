@@ -153,6 +153,18 @@
     <ClInclude Include="DefeatText.h">
       <Filter>Object\Obj-Level3\ObjectiveText</Filter>
     </ClInclude>
+    <ClInclude Include="PushText.h">
+      <Filter>Object\Obj-Level3\ObjectiveText</Filter>
+    </ClInclude>
+    <ClInclude Include="WaterText.h">
+      <Filter>Object\Obj-Level3\SubjectText</Filter>
+    </ClInclude>
+    <ClInclude Include="WaterObject.h">
+      <Filter>Object\Obj-Level3\PlayerObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SinkText.h">
+      <Filter>Object\Obj-Level3\ObjectiveText</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -240,6 +252,18 @@
       <Filter>GameMode\CreateMapLevel</Filter>
     </ClCompile>
     <ClCompile Include="DefeatText.cpp">
+      <Filter>Object\Obj-Level3\ObjectiveText</Filter>
+    </ClCompile>
+    <ClCompile Include="PushText.cpp">
+      <Filter>Object\Obj-Level3\ObjectiveText</Filter>
+    </ClCompile>
+    <ClCompile Include="WaterText.cpp">
+      <Filter>Object\Obj-Level3\SubjectText</Filter>
+    </ClCompile>
+    <ClCompile Include="WaterObject.cpp">
+      <Filter>Object\Obj-Level3\PlayerObject</Filter>
+    </ClCompile>
+    <ClCompile Include="SinkText.cpp">
       <Filter>Object\Obj-Level3\ObjectiveText</Filter>
     </ClCompile>
   </ItemGroup>

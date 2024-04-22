@@ -16,12 +16,20 @@ void AWallObject::BeginPlay()
 	Super::BeginPlay();
 	CreateWallAnimations();
 
-	Renderer->ChangeAnimation("WALL0");
+	std::string ani = "WALL" + std::to_string(TileNum);
+	Renderer->ChangeAnimation(ani);
 }
 
 void AWallObject::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	if (TileNum != CurTileNum)
+	{
+		std::string ani = "WALL" + std::to_string(TileNum);
+		Renderer->ChangeAnimation(ani);
+		CurTileNum = TileNum;
+	}
 }
 
 void AWallObject::CreateWallAnimations()

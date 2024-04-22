@@ -7,15 +7,19 @@
 #include "BabaObject.h"
 #include "WallObject.h"
 #include "FlagObject.h"
+#include "WaterObject.h"
 
 #include "IsText.h"
 #include "BabaText.h"
 #include "YouText.h"
 #include "WallText.h"
-#include "StopText.h"
 #include "FlagText.h"
+#include "WaterText.h"
+#include "StopText.h"
 #include "WinText.h"
+#include "PushText.h"
 #include "DefeatText.h"
+#include "SinkText.h"
 
 BABAGameMode::BABAGameMode()
 {
@@ -131,7 +135,10 @@ void BABAGameMode::DeathCheck()
 					Changed = true;
 					continue;
 				}
-				if (others->Info->MyObjectiveType[EObjectType::SINK] == true)
+				if (
+					others->Info->MyObjectiveType[EObjectType::SINK] == true &&
+					Obj->Info->MyObjectiveType[EObjectType::FLOAT] == false
+					)
 				{
 					//Obj와 others를 둘다 파괴
 					--YouCount;
@@ -174,6 +181,10 @@ void BABAGameMode::ClearAllSentence()
 		if (obj->Info->TileType == ETileType::Player)
 		{
 			obj->Info->MyObjectiveType.clear();
+			//for (auto types : obj->Info->MyObjectiveType)
+			//{
+			//	types.second = false;
+			//}
 		}
 	}
 	
@@ -269,12 +280,13 @@ AObject* BABAGameMode::ObjectiveCheck(int _X, int _Y/*동사의 인덱스*/)
 	return nullptr;
 }
 
-void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _MapScale)
+void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _MapScale, int _TileNum/* = 0*/)
 {
 	switch (_ObjectType)
 	{
 	case EObjectType::NONE:
 		break;
+	// PlayerObjects
 	case EObjectType::BABA:
 	{
 		std::shared_ptr<ABabaObject> Baba = GetWorld()->SpawnActor<ABabaObject>("Baba");
@@ -291,6 +303,7 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 	case EObjectType::WALL:
 	{
 		std::shared_ptr<AWallObject> Wall = GetWorld()->SpawnActor<AWallObject>("Wall");
+		Wall->SetTileNum(_TileNum);
 		Wall->SetMapScale(_MapScale);
 		Wall->SetMaxIndex();
 		Wall->SetActorLocation(Wall->CalIndexToPos(Index2D(_X, _Y)));
@@ -301,6 +314,20 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 		Players.push_back(Wall.get());
 	}
 		break;
+	case EObjectType::WATER:
+	{
+		std::shared_ptr<AWaterObject> Water = GetWorld()->SpawnActor<AWaterObject>("Water");
+		Water->SetTileNum(_TileNum);
+		Water->SetMapScale(_MapScale);
+		Water->SetMaxIndex();
+		Water->SetActorLocation(Water->CalIndexToPos(Index2D(_X, _Y)));
+		Water->BeginPosSetting();
+		Water->SetOrder(ERenderOrder::BackTile);
+		GMapManager->SetObject(Water.get(), _X, _Y);
+		AllObjects.push_back(Water.get());
+		Players.push_back(Water.get());
+	}
+	break;
 	case EObjectType::FLAG:
 	{
 		std::shared_ptr<AFlagObject> Flag = GetWorld()->SpawnActor<AFlagObject>("Flag");
@@ -314,6 +341,7 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 		Players.push_back(Flag.get());
 	}
 		break;
+	// ObjectiveObjects
 	case EObjectType::YOU:
 	{
 		std::shared_ptr<AYouText> YOU = GetWorld()->SpawnActor<AYouText>("YOUText");
@@ -328,6 +356,17 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 	}
 		break;
 	case EObjectType::PUSH:
+	{
+		std::shared_ptr<APushText> Push = GetWorld()->SpawnActor<APushText>("PUSHText");
+		Push->SetMapScale(_MapScale);
+		Push->SetMaxIndex();
+		Push->AddActorLocation(Push->CalIndexToPos(Index2D(_X, _Y)));
+		Push->BeginPosSetting();
+		Push->SetOrder(ERenderOrder::FrontTile);
+		GMapManager->SetObject(Push.get(), _X, _Y);
+		AllObjects.push_back(Push.get());
+		Texts.push_back(Push.get());
+	}
 		break;
 	case EObjectType::STOP:
 	{
@@ -369,7 +408,19 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 	}
 		break;
 	case EObjectType::SINK:
+	{
+		std::shared_ptr<ASinkText> Sink = GetWorld()->SpawnActor<ASinkText>("SinkText");
+		Sink->SetMapScale(_MapScale);
+		Sink->SetMaxIndex();
+		Sink->AddActorLocation(Sink->CalIndexToPos(Index2D(_X, _Y)));
+		Sink->BeginPosSetting();
+		Sink->SetOrder(ERenderOrder::FrontTile);
+		GMapManager->SetObject(Sink.get(), _X, _Y);
+		AllObjects.push_back(Sink.get());
+		Texts.push_back(Sink.get());
+	}
 		break;
+	// VerbObejcts
 	case EObjectType::IS:
 	{
 		std::shared_ptr<AIsText> IS = GetWorld()->SpawnActor<AIsText>("IS");
@@ -383,6 +434,7 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 		Texts.push_back(IS.get());
 	}
 		break;
+	// SubjectObjects
 	case EObjectType::BABATEXT:
 	{
 		std::shared_ptr<ABabaText> BaText = GetWorld()->SpawnActor<ABabaText>("BabaText");
@@ -422,6 +474,19 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 		Texts.push_back(FlagText.get());
 	}
 		break;
+	case EObjectType::WATERTEXT:
+	{
+		std::shared_ptr<AWaterText> WaterText = GetWorld()->SpawnActor<AWaterText>("WaterText");
+		WaterText->SetMapScale(_MapScale);
+		WaterText->SetMaxIndex();
+		WaterText->SetActorLocation(WaterText->CalIndexToPos(Index2D(_X, _Y)));
+		WaterText->BeginPosSetting();
+		WaterText->SetOrder(ERenderOrder::FrontTile);
+		GMapManager->SetObject(WaterText.get(), _X, _Y);
+		AllObjects.push_back(WaterText.get());
+		Texts.push_back(WaterText.get());
+	}
+	break;
 	default:
 		break;
 	}

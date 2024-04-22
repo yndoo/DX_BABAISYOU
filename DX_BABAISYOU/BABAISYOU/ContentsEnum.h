@@ -38,19 +38,22 @@ enum class EObjectType
 	BABA,
 	WALL,
 	FLAG,
-	// 목적어들 (무조건 TEXT)
+	WATER,
+	// 목적어, 속성들 (무조건 TEXT)
 	YOU,
 	PUSH,
 	STOP,
 	WIN,
 	DEFEAT,
 	SINK,
+	FLOAT,
 	// 동사들
 	IS,
 	// 주어들
 	BABATEXT,
 	WALLTEXT,
 	FLAGTEXT,
+	WATERTEXT,
 };
 
 enum class EMyType

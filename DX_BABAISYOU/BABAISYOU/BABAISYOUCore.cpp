@@ -41,6 +41,7 @@ void UBABAISYOUCore::Initialize()
 		// Player Objects
 		UEngineSprite::CreateCutting("BABA.png", 17, 3);
 		UEngineSprite::CreateCutting("WALL.png", 18, 3);
+		UEngineSprite::CreateCutting("WATER.png", 18, 3);
 		UEngineSprite::CreateCutting("FLAG.png", 2, 3);
 
 		// TEXT Objects
