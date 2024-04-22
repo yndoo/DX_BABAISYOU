@@ -3,6 +3,19 @@
 #include <EngineCore/EngineDebugMsgWindow.h>
 #include "ContentsConstValue.h"
 
+#include "BabaObject.h"
+#include "WallObject.h"
+#include "FlagObject.h"
+
+#include "IsText.h"
+#include "BabaText.h"
+#include "YouText.h"
+#include "WallText.h"
+#include "StopText.h"
+#include "FlagText.h"
+#include "WinText.h"
+#include "DefeatText.h"
+
 BABAGameMode::BABAGameMode()
 {
 }
@@ -18,14 +31,21 @@ void BABAGameMode::Update()
 	{
 		SentenceUpdate();
 		FinalUpdate();
+		DeathCheck();
 		UContentsConstValue::ZInput = false;
+		BeforeInputCount = UContentsConstValue::InputCount;
 		return;
 	}
 	else
 	{
-		StackUpdate();
+		if (BeforeInputCount != UContentsConstValue::InputCount)
+		{
+			StackUpdate();
+			BeforeInputCount = UContentsConstValue::InputCount;
+		}
 		SentenceUpdate();
 		FinalUpdate();
+		DeathCheck();
 	}
 }
 
@@ -38,12 +58,13 @@ void BABAGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	// 변화 발생 시
-	if (BeforeInputCount != UContentsConstValue::InputCount)
-	{
-		Update();
-		BeforeInputCount = UContentsConstValue::InputCount;
-	}
+	Update();
+	
+	//if (BeforeInputCount != UContentsConstValue::InputCount)
+	//{
+	//	Update();
+	//	BeforeInputCount = UContentsConstValue::InputCount;
+	//}
 }
 
 void BABAGameMode::StackUpdate()
@@ -66,7 +87,7 @@ void BABAGameMode::StackUpdate()
 	}
 }
 
-// BABATEXT와 BABAPLAYER 객체 이어주는 함수
+// TEXT와 PLAYER 객체 이어주는 함수
 void BABAGameMode::FinalUpdate()
 {
 	for (AObject* sub : OnSubjects)
@@ -82,6 +103,61 @@ void BABAGameMode::FinalUpdate()
 				int a = 0;
 			}
 		}
+	}
+}
+
+// 죽거나 이기는 상황을 체크해주는 함수
+void BABAGameMode::DeathCheck()
+{
+	int YouCount = 0;
+	for (AObject* Obj : Players)
+	{
+		if (Obj->Info->MyObjectiveType == EObjectType::YOU)
+		{
+			++YouCount;
+			Index2D YouPos = Obj->Info->CurIndex;
+			
+			//std::list<AObject*> test = GMapManager->Graph[YouPos.X][YouPos.Y];
+
+			bool Changed = false;
+			for (AObject* others : GMapManager->Graph[YouPos.X][YouPos.Y])
+			{
+				if (others->Info->MyObjectiveType == EObjectType::DEFEAT)
+				{
+					//Obj를 파괴
+					--YouCount;
+					Obj->Destroyed = true;
+					Changed = true;
+					continue;
+				}
+				if (others->Info->MyObjectiveType == EObjectType::SINK)
+				{
+					//Obj와 others를 둘다 파괴
+					--YouCount;
+					Obj->Destroyed = true;
+					others->Destroyed = true;
+					Changed = true;
+					continue;
+					//return;
+				}
+				if (others->Info->MyObjectiveType == EObjectType::WIN)
+				{
+					// 게임 승리
+					//return;
+				}
+			}
+			if (false == Changed)
+			{
+				Obj->Destroyed = false;
+			}
+		}
+	}
+	YouCount;
+	if (0 == YouCount)
+	{
+		// 게임 끝남
+		int a = 0;
+		return;
 	}
 }
 
@@ -188,6 +264,164 @@ AObject* BABAGameMode::ObjectiveCheck(int _X, int _Y/*동사의 인덱스*/)
 	}
 	
 	return nullptr;
+}
+
+void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _MapScale)
+{
+	switch (_ObjectType)
+	{
+	case EObjectType::NONE:
+		break;
+	case EObjectType::BABA:
+	{
+		std::shared_ptr<ABabaObject> Baba = GetWorld()->SpawnActor<ABabaObject>("Baba");
+		Baba->SetMapScale(_MapScale);
+		Baba->SetMaxIndex();
+		Baba->AddActorLocation(Baba->CalIndexToPos(Index2D(_X, _Y)));
+		Baba->BeginPosSetting();
+		Baba->SetOrder(ERenderOrder::FrontTile);
+		AllObjects.push_back(Baba.get());
+		Players.push_back(Baba.get());
+		GMapManager->SetObject(Baba.get(), _X, _Y);
+	}
+		break;
+	case EObjectType::WALL:
+	{
+		std::shared_ptr<AWallObject> Wall = GetWorld()->SpawnActor<AWallObject>("Wall");
+		Wall->SetMapScale(_MapScale);
+		Wall->SetMaxIndex();
+		Wall->SetActorLocation(Wall->CalIndexToPos(Index2D(_X, _Y)));
+		Wall->BeginPosSetting();
+		Wall->SetOrder(ERenderOrder::BackTile);
+		GMapManager->SetObject(Wall.get(), _X, _Y);
+		AllObjects.push_back(Wall.get());
+		Players.push_back(Wall.get());
+	}
+		break;
+	case EObjectType::FLAG:
+	{
+		std::shared_ptr<AFlagObject> Flag = GetWorld()->SpawnActor<AFlagObject>("Flag");
+		Flag->SetMapScale(_MapScale);
+		Flag->SetMaxIndex();
+		Flag->SetActorLocation(Flag->CalIndexToPos(Index2D(_X, _Y)));
+		Flag->BeginPosSetting();
+		Flag->SetOrder(ERenderOrder::FrontTile);
+		GMapManager->SetObject(Flag.get(), _X, _Y);
+		AllObjects.push_back(Flag.get());
+		Players.push_back(Flag.get());
+	}
+		break;
+	case EObjectType::YOU:
+	{
+		std::shared_ptr<AYouText> YOU = GetWorld()->SpawnActor<AYouText>("YOUText");
+		YOU->SetMapScale(_MapScale);
+		YOU->SetMaxIndex();
+		YOU->AddActorLocation(YOU->CalIndexToPos(Index2D(_X, _Y)));
+		YOU->BeginPosSetting();
+		YOU->SetOrder(ERenderOrder::FrontTile);
+		GMapManager->SetObject(YOU.get(), _X, _Y);
+		AllObjects.push_back(YOU.get());
+		Texts.push_back(YOU.get());
+	}
+		break;
+	case EObjectType::PUSH:
+		break;
+	case EObjectType::STOP:
+	{
+		std::shared_ptr<AStopText> Stop = GetWorld()->SpawnActor<AStopText>("StopText");
+		Stop->SetMapScale(_MapScale);
+		Stop->SetMaxIndex();
+		Stop->AddActorLocation(Stop->CalIndexToPos(Index2D(_X, _Y)));
+		Stop->BeginPosSetting();
+		Stop->SetOrder(ERenderOrder::FrontTile);
+		GMapManager->SetObject(Stop.get(), _X, _Y);
+		AllObjects.push_back(Stop.get());
+		Texts.push_back(Stop.get());
+	}
+		break;
+	case EObjectType::WIN:
+	{
+		std::shared_ptr<AWinText> Win = GetWorld()->SpawnActor<AWinText>("WinText");
+		Win->SetMapScale(_MapScale);
+		Win->SetMaxIndex();
+		Win->AddActorLocation(Win->CalIndexToPos(Index2D(_X, _Y)));
+		Win->BeginPosSetting();
+		Win->SetOrder(ERenderOrder::FrontTile);
+		GMapManager->SetObject(Win.get(), _X, _Y);
+		AllObjects.push_back(Win.get());
+		Texts.push_back(Win.get());
+	}
+		break;
+	case EObjectType::DEFEAT:
+	{
+		std::shared_ptr<ADefeatText> Defeat = GetWorld()->SpawnActor<ADefeatText>("DefeatText");
+		Defeat->SetMapScale(_MapScale);
+		Defeat->SetMaxIndex();
+		Defeat->AddActorLocation(Defeat->CalIndexToPos(Index2D(_X, _Y)));
+		Defeat->BeginPosSetting();
+		Defeat->SetOrder(ERenderOrder::FrontTile);
+		GMapManager->SetObject(Defeat.get(), _X, _Y);
+		AllObjects.push_back(Defeat.get());
+		Texts.push_back(Defeat.get());
+	}
+		break;
+	case EObjectType::SINK:
+		break;
+	case EObjectType::IS:
+	{
+		std::shared_ptr<AIsText> IS = GetWorld()->SpawnActor<AIsText>("IS");
+		IS->SetMapScale(_MapScale);
+		IS->SetMaxIndex();
+		IS->AddActorLocation(IS->CalIndexToPos(Index2D(_X, _Y)));
+		IS->BeginPosSetting();
+		IS->SetOrder(ERenderOrder::FrontTile);
+		GMapManager->SetObject(IS.get(), _X, _Y);
+		AllObjects.push_back(IS.get());
+		Texts.push_back(IS.get());
+	}
+		break;
+	case EObjectType::BABATEXT:
+	{
+		std::shared_ptr<ABabaText> BaText = GetWorld()->SpawnActor<ABabaText>("BabaText");
+		BaText->SetMapScale(_MapScale);
+		BaText->SetMaxIndex();
+		BaText->AddActorLocation(BaText->CalIndexToPos(Index2D(_X, _Y)));
+		BaText->BeginPosSetting();
+		BaText->SetOrder(ERenderOrder::FrontTile);
+		GMapManager->SetObject(BaText.get(), _X, _Y);
+		AllObjects.push_back(BaText.get());
+		Texts.push_back(BaText.get());
+	}
+		break;
+	case EObjectType::WALLTEXT:
+	{
+		std::shared_ptr<AWallText> WallText = GetWorld()->SpawnActor<AWallText>("WallText");
+		WallText->SetMapScale(_MapScale);
+		WallText->SetMaxIndex();
+		WallText->AddActorLocation(WallText->CalIndexToPos(Index2D(_X, _Y)));
+		WallText->BeginPosSetting();
+		WallText->SetOrder(ERenderOrder::FrontTile);
+		GMapManager->SetObject(WallText.get(), _X, _Y);
+		AllObjects.push_back(WallText.get());
+		Texts.push_back(WallText.get());
+	}
+		break;
+	case EObjectType::FLAGTEXT:
+	{
+		std::shared_ptr<AFlagText> FlagText = GetWorld()->SpawnActor<AFlagText>("FlagText");
+		FlagText->SetMapScale(_MapScale);
+		FlagText->SetMaxIndex();
+		FlagText->SetActorLocation(FlagText->CalIndexToPos(Index2D(_X, _Y)));
+		FlagText->BeginPosSetting();
+		FlagText->SetOrder(ERenderOrder::FrontTile);
+		GMapManager->SetObject(FlagText.get(), _X, _Y);
+		AllObjects.push_back(FlagText.get());
+		Texts.push_back(FlagText.get());
+	}
+		break;
+	default:
+		break;
+	}
 }
 
 void BABAGameMode::DebugGMM()

@@ -150,6 +150,9 @@
     <ClInclude Include="CreateMapGameMode.h">
       <Filter>GameMode\CreateMapLevel</Filter>
     </ClInclude>
+    <ClInclude Include="DefeatText.h">
+      <Filter>Object\Obj-Level3\ObjectiveText</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -235,6 +238,9 @@
     </ClCompile>
     <ClCompile Include="CreateMapGameMode.cpp">
       <Filter>GameMode\CreateMapLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="DefeatText.cpp">
+      <Filter>Object\Obj-Level3\ObjectiveText</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

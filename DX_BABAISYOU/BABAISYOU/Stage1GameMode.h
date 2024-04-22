@@ -20,7 +20,7 @@ protected:
 	void DebugGMM() override;
 
 private:
-	void Stage1MapSetting();
+	void Stage1MapSetting(FVector MapScale);
 
 };
 

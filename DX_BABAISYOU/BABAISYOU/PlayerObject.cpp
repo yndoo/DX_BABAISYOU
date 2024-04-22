@@ -31,6 +31,20 @@ void APlayerObject::Tick(float _DeltaTime)
 	{
 		//Info->ObjectiveType = EObjectType::NONE;
 	}
+
+	if (MyDestroyed != Destroyed)
+	{
+		if (true == Destroyed)
+		{
+			Renderer->SetActive(false);
+			MyDestroyed = Destroyed;
+		}
+		else
+		{
+			Renderer->SetActive(true);
+			MyDestroyed = Destroyed;
+		}
+	}
 }
 
 std::string APlayerObject::GetAnimationName(std::string _ObjectName, int _AniNum)

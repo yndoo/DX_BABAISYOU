@@ -52,6 +52,9 @@ void UBABAISYOUCore::Initialize()
 		UEngineSprite::CreateCutting("YOU.png", 3, 3);
 		UEngineSprite::CreateCutting("STOP.png", 3, 3);
 		UEngineSprite::CreateCutting("WIN.png", 3, 3);
+		UEngineSprite::CreateCutting("DEFEAT.png", 3, 3);
+		UEngineSprite::CreateCutting("SINK.png", 3, 3);
+		UEngineSprite::CreateCutting("PUSH.png", 3, 3);
 
 		// ETC
 		UEngineSprite::CreateCutting("SelectMap_background.png", 3, 1);
@@ -81,5 +84,6 @@ void UBABAISYOUCore::Initialize()
 	GEngine->CreateLevel<AStageSelectGameMode>("SelectMapLevel");
 	GEngine->CreateLevel<CreateMapGameMode>("CreateMapLevel");
 	GEngine->ChangeLevel("Stage1Level");
+
 	int a = 0;
 }

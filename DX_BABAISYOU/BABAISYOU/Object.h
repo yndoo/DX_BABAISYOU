@@ -35,8 +35,8 @@ public:
 	friend AObject;
 
 	ETileType TileType = ETileType::None;
+	EObjectType MyType = EObjectType::NONE;				// 내가 뭔지	
 	EObjectType MyObjectiveType = EObjectType::NONE;	// 나한테 걸려있는 목적어 타입(원래는 복수 목적어가 가능해야 함. 복수는 일단 보류..)
-	EObjectType MyType = EObjectType::NONE;
 
 	EObjectType TextObjective = EObjectType::NONE;	// TEXT 오브젝트와 문장으로 완성된 목적어. (TEXT에 적용하면 안 됨, TEXT인 객체들에게만 유효한 값)
 
@@ -81,9 +81,10 @@ public:
 	FVector CurActorLocation = FVector::Zero;
 	bool EachMoveCheck_ForStack = false;		// 이동 있었으면 스택에 true로, 없었으면 false로 들어가기 위한 변수
 	bool SentenceON = false;					// 문장이 만들어지면 켜져야 함.
+	bool Destroyed = false;						// 파괴됐으면 ON 돼야 함.
 protected:
 	void BeginPlay() override;
-	//void Tick(float _DeltaTime) override;
+	void Tick(float _DeltaTime) override;
 	bool DirCheck();
 
 	USpriteRenderer* Renderer = nullptr;
@@ -96,6 +97,7 @@ protected:
 	// 롤백 기능을 위해 스택이 필요함
 	std::stack<std::pair<EInputDir, bool >> MoveStack;		// InputDir, IsMove 행동 스택
 	std::stack<std::pair<int, EInputDir>> AnimationStack;	// AnimationNumber, AnimationDir 애니메이션 스택
+	std::stack<EObjectType> ObjectiveStack;						// 상태(Objective) 스택
 
 	// 바바이즈유의 모든 오브젝트는 3개씩 애니메이션함.
 	float AnimationInter = 0.2f;

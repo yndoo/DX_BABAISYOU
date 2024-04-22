@@ -32,7 +32,8 @@ AStage1GameMode::~AStage1GameMode()
 void AStage1GameMode::BeginPlay()
 {
 	Super::BeginPlay();
-	Stage1MapSetting();	// 맵 오브젝트 세팅하는 곳
+	Stage1MapSetting(UContentsConstValue::Stage1MapScale);	// 맵 오브젝트 세팅하는 곳
+
 
 	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, -200.0f));
@@ -51,137 +52,30 @@ void AStage1GameMode::Tick(float _DeltaTime)
 	DebugGMM();
 }
 
-void AStage1GameMode::Stage1MapSetting()
+void AStage1GameMode::Stage1MapSetting(FVector MapScale)
 {
 	/* ============= Player Object들 ============= */
-	std::shared_ptr<ABabaObject> Baba = GetWorld()->SpawnActor<ABabaObject>("Baba");
-	// 얘네는 같은 게임모드인 모든 Object 같이 세팅해야하는 것들
-	Baba->SetMapScale(UContentsConstValue::Stage1MapScale);
-	Baba->SetMaxIndex();
-	//Baba->SetActorScale3D(UContentsConstValue::TileScale);	// 이미지 한 칸 크기 그대로
-	AllObjects.push_back(Baba.get());
-	Players.push_back(Baba.get());
-	GMapManager->SetObject(Baba.get(), 8, 4);
+	AutoCreate(EObjectType::BABA, 8, 4, MapScale);
+	
+	AutoCreate(EObjectType::WALL, 1, 1, MapScale);
+	AutoCreate(EObjectType::WALL, 2, 2, MapScale);
+	AutoCreate(EObjectType::WALL, 3, 3, MapScale);
 
-	Baba->AddActorLocation(Baba->CalIndexToPos(Index2D(8, 4)));
-	Baba->BeginPosSetting();
-	Baba->SetOrder(ERenderOrder::FrontTile);
-	//Baba->Info->MyObjectiveType = EObjectType::YOU;	//임시 테스트임
-
-
-	std::shared_ptr<ABabaObject> Baba2 = GetWorld()->SpawnActor<ABabaObject>("Baba");
-	// 얘네는 같은 게임모드인 모든 Object 같이 세팅해야하는 것들
-	Baba2->SetMapScale(UContentsConstValue::Stage1MapScale);
-	Baba2->SetMaxIndex();
-	//Baba2->SetActorScale3D(UContentsConstValue::TileScale);	// 이미지 한 칸 크기 그대로
-	AllObjects.push_back(Baba2.get());
-	Players.push_back(Baba2.get());
-	GMapManager->SetObject(Baba2.get(), 1, 0);
-
-	Baba2->AddActorLocation(Baba2->CalIndexToPos(Index2D(1, 0)));
-	Baba2->BeginPosSetting();
-	Baba2->SetOrder(ERenderOrder::FrontTile);
-
-	for (int i = 1; i <= 9; i++)
-	{
-		std::shared_ptr<AWallObject> Wall = GetWorld()->SpawnActor<AWallObject>("Wall");
-		Wall->SetMapScale(UContentsConstValue::Stage1MapScale);
-		Wall->SetMaxIndex();
-		//WallTest->SetActorScale3D(UContentsConstValue::TileScale);
-		Wall->SetActorLocation(Wall->CalIndexToPos(Index2D(i, i)));
-		Wall->BeginPosSetting();
-		//WallTest->Info->Objective = EObjectiveType::STOP;
-		//Wall->Info->MyObjectiveType = EObjectType::PUSH;
-
-		GMapManager->SetObject(Wall.get(), i, i);
-		AllObjects.push_back(Wall.get());
-		Players.push_back(Wall.get());
-	}
-
-	std::shared_ptr<AFlagObject> Flag = GetWorld()->SpawnActor<AFlagObject>("Flag");
-	Flag->SetMapScale(UContentsConstValue::Stage1MapScale);
-	Flag->SetMaxIndex();
-	Flag->SetActorLocation(Flag->CalIndexToPos(Index2D(8, 14)));
-	Flag->BeginPosSetting();
-	GMapManager->SetObject(Flag.get(), 8, 14);
-	AllObjects.push_back(Flag.get());
-	Players.push_back(Flag.get());
+	AutoCreate(EObjectType::FLAG, 8, 5, MapScale);
 
 	/* ============= 주어 Object들 ============= */
-	std::shared_ptr<ABabaText> BaText = GetWorld()->SpawnActor<ABabaText>("BabaText");
-	BaText->SetMapScale(UContentsConstValue::Stage1MapScale);
-	BaText->SetMaxIndex();
-	AllObjects.push_back(BaText.get());
-	Texts.push_back(BaText.get());
-	GMapManager->SetObject(BaText.get(), 10, 4);
-	BaText->AddActorLocation(BaText->CalIndexToPos(Index2D(10, 4)));
-	BaText->BeginPosSetting();
-	BaText->SetOrder(ERenderOrder::FrontTile);
-
-	std::shared_ptr<AWallText> WallText = GetWorld()->SpawnActor<AWallText>("WallText");
-	WallText->SetMapScale(UContentsConstValue::Stage1MapScale);
-	WallText->SetMaxIndex();
-	AllObjects.push_back(WallText.get());
-	Texts.push_back(WallText.get());
-	GMapManager->SetObject(WallText.get(), 11, 4);
-	WallText->AddActorLocation(WallText->CalIndexToPos(Index2D(11, 4)));
-	WallText->BeginPosSetting();
-	WallText->SetOrder(ERenderOrder::FrontTile);
-
-	std::shared_ptr<AFlagText> FlagText = GetWorld()->SpawnActor<AFlagText>("FlagText");
-	FlagText->SetMapScale(UContentsConstValue::Stage1MapScale);
-	FlagText->SetMaxIndex();
-	FlagText->SetActorLocation(FlagText->CalIndexToPos(Index2D(9, 4)));
-	FlagText->BeginPosSetting();
-	FlagText->SetOrder(ERenderOrder::FrontTile);
-	GMapManager->SetObject(FlagText.get(), 9, 4);
-	AllObjects.push_back(FlagText.get());
-	Texts.push_back(FlagText.get());
+	AutoCreate(EObjectType::BABATEXT, 10, 4, MapScale);
+	AutoCreate(EObjectType::WALLTEXT, 12, 4, MapScale);
+	AutoCreate(EObjectType::FLAGTEXT, 9, 4, MapScale);
 
 	/* ============= 동사 Object들 ============= */
-	std::shared_ptr<AIsText> IS = GetWorld()->SpawnActor<AIsText>("IS");
-	IS->SetMapScale(UContentsConstValue::Stage1MapScale);
-	IS->SetMaxIndex();
-	//IS->SetActorScale3D(UContentsConstValue::TileScale);	// 이미지 한 칸 크기 그대로
-	AllObjects.push_back(IS.get());
-	Texts.push_back(IS.get());
-	GMapManager->SetObject(IS.get(), 10, 3);
-
-	IS->AddActorLocation(IS->CalIndexToPos(Index2D(10, 3)));
-	IS->BeginPosSetting();
-	IS->SetOrder(ERenderOrder::FrontTile);
-
+	AutoCreate(EObjectType::IS, 10, 3, MapScale);
+	
 	/* ============= 목적어 Object들 ============= */
-
-	std::shared_ptr<AYouText> YOU = GetWorld()->SpawnActor<AYouText>("YOUText");
-	YOU->SetMapScale(UContentsConstValue::Stage1MapScale);
-	YOU->SetMaxIndex();
-	AllObjects.push_back(YOU.get());
-	Texts.push_back(YOU.get());
-	GMapManager->SetObject(YOU.get(), 10, 2);
-	YOU->AddActorLocation(YOU->CalIndexToPos(Index2D(10, 2)));
-	YOU->BeginPosSetting();
-	YOU->SetOrder(ERenderOrder::FrontTile);
-
-	std::shared_ptr<AStopText> Stop = GetWorld()->SpawnActor<AStopText>("StopText");
-	Stop->SetMapScale(UContentsConstValue::Stage1MapScale);
-	Stop->SetMaxIndex();
-	AllObjects.push_back(Stop.get());
-	Texts.push_back(Stop.get());
-	GMapManager->SetObject(Stop.get(), 12, 2);
-	Stop->AddActorLocation(Stop->CalIndexToPos(Index2D(12, 2)));
-	Stop->BeginPosSetting();
-	Stop->SetOrder(ERenderOrder::FrontTile);
-
-	std::shared_ptr<AWinText> Win = GetWorld()->SpawnActor<AWinText>("WinText");
-	Win->SetMapScale(UContentsConstValue::Stage1MapScale);
-	Win->SetMaxIndex();
-	AllObjects.push_back(Win.get());
-	Texts.push_back(Win.get());
-	GMapManager->SetObject(Win.get(), 13, 2);
-	Win->AddActorLocation(Win->CalIndexToPos(Index2D(13, 2)));
-	Win->BeginPosSetting();
-	Win->SetOrder(ERenderOrder::FrontTile);
+	AutoCreate(EObjectType::YOU, 10, 2, MapScale);
+	AutoCreate(EObjectType::STOP, 12, 2, MapScale);
+	AutoCreate(EObjectType::WIN, 13, 2, MapScale);
+	AutoCreate(EObjectType::DEFEAT, 11, 5, MapScale);
 }
 
 void AStage1GameMode::DebugGMM()

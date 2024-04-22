@@ -24,5 +24,6 @@ protected:
 	void CreateObject4DirAnimations(std::string _ObjectName);
 	std::string GetAnimationName(std::string _ObjectName, int _AniNum);
 private:
+	bool MyDestroyed = false;
 };
 

@@ -40,9 +40,11 @@ enum class EObjectType
 	FLAG,
 	// 목적어들 (무조건 TEXT)
 	YOU,
-	WIN,
-	STOP,
 	PUSH,
+	STOP,
+	WIN,
+	DEFEAT,
+	SINK,
 	// 동사들
 	IS,
 	// 주어들
