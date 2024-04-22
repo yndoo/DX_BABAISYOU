@@ -55,26 +55,27 @@ void AStage1GameMode::Tick(float _DeltaTime)
 void AStage1GameMode::Stage1MapSetting(FVector MapScale)
 {
 	/* ============= Player Object들 ============= */
-	AutoCreate(EObjectType::BABA, 8, 4, MapScale);
+	AutoCreate(EObjectType::BABA, 13, 8, MapScale);
 	
 	AutoCreate(EObjectType::WALL, 1, 1, MapScale, 0);
 	AutoCreate(EObjectType::WALL, 2, 2, MapScale, 1);
 	AutoCreate(EObjectType::WALL, 3, 3, MapScale, 15);
 
-	AutoCreate(EObjectType::WATER, 11, 11, MapScale, 0);
-	AutoCreate(EObjectType::WATER, 12, 12, MapScale, 1);
-	AutoCreate(EObjectType::WATER, 13, 13, MapScale, 15);
+	AutoCreate(EObjectType::WATER, 14, 4, MapScale, 0);
+	AutoCreate(EObjectType::WATER, 15, 5, MapScale, 1);
+	AutoCreate(EObjectType::WATER, 16, 6, MapScale, 15);
 
 	AutoCreate(EObjectType::FLAG, 8, 5, MapScale);
 
 	/* ============= 주어 Object들 ============= */
 	AutoCreate(EObjectType::BABATEXT, 10, 4, MapScale);
-	AutoCreate(EObjectType::WALLTEXT, 12, 4, MapScale);
+	AutoCreate(EObjectType::WALLTEXT, 9, 3, MapScale);
 	AutoCreate(EObjectType::FLAGTEXT, 9, 4, MapScale);
-	AutoCreate(EObjectType::WATERTEXT, 9, 9, MapScale);
+	AutoCreate(EObjectType::WATERTEXT, 13, 7, MapScale);
 
 	/* ============= 동사 Object들 ============= */
 	AutoCreate(EObjectType::IS, 10, 3, MapScale);
+	AutoCreate(EObjectType::IS, 14, 6, MapScale);
 	
 	/* ============= 목적어 Object들 ============= */
 	AutoCreate(EObjectType::YOU, 10, 2, MapScale);
@@ -82,7 +83,7 @@ void AStage1GameMode::Stage1MapSetting(FVector MapScale)
 	AutoCreate(EObjectType::WIN, 13, 2, MapScale);
 	AutoCreate(EObjectType::DEFEAT, 11, 5, MapScale);
 	AutoCreate(EObjectType::PUSH, 11, 6, MapScale);
-	AutoCreate(EObjectType::SINK, 7, 5, MapScale);
+	AutoCreate(EObjectType::SINK, 15, 7, MapScale);
 }
 
 void AStage1GameMode::DebugGMM()

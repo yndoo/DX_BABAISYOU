@@ -4,6 +4,7 @@
 ASinkText::ASinkText()
 {
 	Info->MyType = EObjectType::SINK;
+	Info->TileType = ETileType::Objective;
 }
 
 ASinkText::~ASinkText()

@@ -136,8 +136,8 @@ void BABAGameMode::DeathCheck()
 					continue;
 				}
 				if (
-					others->Info->MyObjectiveType[EObjectType::SINK] == true &&
-					Obj->Info->MyObjectiveType[EObjectType::FLOAT] == false
+					others->Info->MyObjectiveType[EObjectType::SINK] == true
+					//&& Obj->Info->MyObjectiveType[EObjectType::FLOAT] == false
 					)
 				{
 					//Obj와 others를 둘다 파괴
@@ -203,6 +203,11 @@ void BABAGameMode::SentenceUpdate()
 		if (sub->Info->TileType == ETileType::Subject)
 		{
 			// 동사 체크, 목적어 체크 후 문장 맞으면 목적어를 return함.
+			if (sub->Info->MyType == EObjectType::WATERTEXT)
+			{
+				int a = 0;
+			}
+
  			AObject* IsObjective = VerbCheck(sub->Info->CurIndex.X, sub->Info->CurIndex.Y);
 			if (IsObjective == nullptr)
 			{
