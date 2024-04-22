@@ -29,9 +29,6 @@ void AWallText::Tick(float _DeltaTime)
 		AniONOFF();
 	}
 
-	ETileType tt = Info->TileType;
-	EObjectType tt2 = Info->MyObjectiveType;
-
 	int a = 0;
 }
 

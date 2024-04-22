@@ -36,9 +36,17 @@ public:
 
 	ETileType TileType = ETileType::None;
 	EObjectType MyType = EObjectType::NONE;				// 내가 뭔지	
-	EObjectType MyObjectiveType = EObjectType::NONE;	// 나한테 걸려있는 목적어 타입(원래는 복수 목적어가 가능해야 함. 복수는 일단 보류..)
+	//EObjectType MyObjectiveType = EObjectType::NONE;	// 나한테 걸려있는 목적어 타입(원래는 복수 목적어가 가능해야 함. 복수는 일단 보류..)
+	std::map<EObjectType, bool> MyObjectiveType =
+	{
+		{EObjectType::YOU, false},
+		{EObjectType::WIN, false},
+		{EObjectType::STOP, false},
+		{EObjectType::DEFEAT, false},
+		{EObjectType::PUSH, false},
+	};
 
-	EObjectType TextObjective = EObjectType::NONE;	// TEXT 오브젝트와 문장으로 완성된 목적어. (TEXT에 적용하면 안 됨, TEXT인 객체들에게만 유효한 값)
+	EObjectType TextObjective = EObjectType::NONE;		// TEXT 오브젝트와 문장으로 완성된 목적어. (TEXT에 적용하면 안 됨, TEXT인 객체들에게만 유효한 값)
 
 	Index2D CurIndex = Index2D(-1, -1);
 };
@@ -97,7 +105,7 @@ protected:
 	// 롤백 기능을 위해 스택이 필요함
 	std::stack<std::pair<EInputDir, bool >> MoveStack;		// InputDir, IsMove 행동 스택
 	std::stack<std::pair<int, EInputDir>> AnimationStack;	// AnimationNumber, AnimationDir 애니메이션 스택
-	std::stack<EObjectType> ObjectiveStack;						// 상태(Objective) 스택
+	std::stack<std::map<EObjectType, bool>> ObjectiveStack;						// 상태(Objective) 스택
 
 	// 바바이즈유의 모든 오브젝트는 3개씩 애니메이션함.
 	float AnimationInter = 0.2f;

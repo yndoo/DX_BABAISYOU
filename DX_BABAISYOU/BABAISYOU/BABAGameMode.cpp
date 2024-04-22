@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "BABAGameMode.h"
 #include <EngineCore/EngineDebugMsgWindow.h>
+#include <EngineCore/EngineCore.h>
 #include "ContentsConstValue.h"
 
 #include "BabaObject.h"
@@ -99,7 +100,7 @@ void BABAGameMode::FinalUpdate()
 		{
 			if (player->Info->MyType == PlayerType)
 			{
-				player->Info->MyObjectiveType = sub->Info->TextObjective;
+				player->Info->MyObjectiveType[sub->Info->TextObjective] = true;
 				int a = 0;
 			}
 		}
@@ -112,7 +113,7 @@ void BABAGameMode::DeathCheck()
 	int YouCount = 0;
 	for (AObject* Obj : Players)
 	{
-		if (Obj->Info->MyObjectiveType == EObjectType::YOU)
+		if (Obj->Info->MyObjectiveType[EObjectType::YOU] == true)
 		{
 			++YouCount;
 			Index2D YouPos = Obj->Info->CurIndex;
@@ -122,7 +123,7 @@ void BABAGameMode::DeathCheck()
 			bool Changed = false;
 			for (AObject* others : GMapManager->Graph[YouPos.X][YouPos.Y])
 			{
-				if (others->Info->MyObjectiveType == EObjectType::DEFEAT)
+				if (others->Info->MyObjectiveType[EObjectType::DEFEAT] == true)
 				{
 					//Obj를 파괴
 					--YouCount;
@@ -130,7 +131,7 @@ void BABAGameMode::DeathCheck()
 					Changed = true;
 					continue;
 				}
-				if (others->Info->MyObjectiveType == EObjectType::SINK)
+				if (others->Info->MyObjectiveType[EObjectType::SINK] == true)
 				{
 					//Obj와 others를 둘다 파괴
 					--YouCount;
@@ -140,9 +141,10 @@ void BABAGameMode::DeathCheck()
 					continue;
 					//return;
 				}
-				if (others->Info->MyObjectiveType == EObjectType::WIN)
+				if (others->Info->MyObjectiveType[EObjectType::WIN] == true)
 				{
 					// 게임 승리
+					GEngine->ChangeLevel("SelectMapLevel");
 					//return;
 				}
 			}
@@ -156,6 +158,7 @@ void BABAGameMode::DeathCheck()
 	if (0 == YouCount)
 	{
 		// 게임 끝남
+		GEngine->ChangeLevel("SelectMapLevel");
 		int a = 0;
 		return;
 	}
@@ -170,7 +173,7 @@ void BABAGameMode::ClearAllSentence()
 		// 그림 오브젝트들은 문장에 의해 ObjectiveType이 결정되므로 초기화해도 괜찮음
 		if (obj->Info->TileType == ETileType::Player)
 		{
-			obj->Info->MyObjectiveType = EObjectType::NONE;
+			obj->Info->MyObjectiveType.clear();
 		}
 	}
 	
