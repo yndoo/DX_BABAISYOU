@@ -171,6 +171,12 @@
     <ClInclude Include="RockObject.h">
       <Filter>Object\Obj-Level3\PlayerObject</Filter>
     </ClInclude>
+    <ClInclude Include="SkullText.h">
+      <Filter>Object\Obj-Level3\SubjectText</Filter>
+    </ClInclude>
+    <ClInclude Include="SkullObject.h">
+      <Filter>Object\Obj-Level3\PlayerObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -276,6 +282,12 @@
       <Filter>Object\Obj-Level3\SubjectText</Filter>
     </ClCompile>
     <ClCompile Include="RockObject.cpp">
+      <Filter>Object\Obj-Level3\PlayerObject</Filter>
+    </ClCompile>
+    <ClCompile Include="SkullText.cpp">
+      <Filter>Object\Obj-Level3\SubjectText</Filter>
+    </ClCompile>
+    <ClCompile Include="SkullObject.cpp">
       <Filter>Object\Obj-Level3\PlayerObject</Filter>
     </ClCompile>
   </ItemGroup>

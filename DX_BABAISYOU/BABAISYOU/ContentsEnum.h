@@ -40,6 +40,7 @@ enum class EObjectType
 	FLAG,
 	WATER,
 	ROCK,
+	SKULL, 
 	// 格利绢, 加己甸 (公炼扒 TEXT)
 	YOU,
 	PUSH,
@@ -56,6 +57,8 @@ enum class EObjectType
 	FLAGTEXT,
 	WATERTEXT,
 	ROCKTEXT,
+	SKULLTEXT,
+
 };
 
 enum class EMyType

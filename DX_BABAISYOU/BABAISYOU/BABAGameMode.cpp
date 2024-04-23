@@ -9,6 +9,7 @@
 #include "FlagObject.h"
 #include "WaterObject.h"
 #include "RockObject.h"
+#include "SkullObject.h"
 
 #include "IsText.h"
 #include "BabaText.h"
@@ -22,6 +23,7 @@
 #include "DefeatText.h"
 #include "SinkText.h"
 #include "RockText.h"
+#include "SkullText.h"
 
 BABAGameMode::BABAGameMode()
 {
@@ -358,6 +360,19 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 		Players.push_back(Rock.get());
 	}
 	break;
+	case EObjectType::SKULL:
+	{
+		std::shared_ptr<ASkullObject> Skull = GetWorld()->SpawnActor<ASkullObject>("Skull");
+		Skull->SetMapScale(_MapScale);
+		Skull->SetMaxIndex();
+		Skull->SetActorLocation(Skull->CalIndexToPos(Index2D(_X, _Y)));
+		Skull->BeginPosSetting();
+		Skull->SetOrder(ERenderOrder::FrontTile);
+		GMapManager->SetObject(Skull.get(), _X, _Y);
+		AllObjects.push_back(Skull.get());
+		Players.push_back(Skull.get());
+	}
+	break;
 	// ObjectiveObjects
 	case EObjectType::YOU:
 	{
@@ -506,7 +521,7 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 	break;
 	case EObjectType::ROCKTEXT:
 	{
-		std::shared_ptr<ARockText> RockText = GetWorld()->SpawnActor<ARockText>("ARockText");
+		std::shared_ptr<ARockText> RockText = GetWorld()->SpawnActor<ARockText>("RockText");
 		RockText->SetMapScale(_MapScale);
 		RockText->SetMaxIndex();
 		RockText->SetActorLocation(RockText->CalIndexToPos(Index2D(_X, _Y)));
@@ -517,6 +532,18 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 		Texts.push_back(RockText.get());
 	}
 	break;
+	case EObjectType::SKULLTEXT:
+	{
+		std::shared_ptr<ASkullText> SkullText = GetWorld()->SpawnActor<ASkullText>("SkullText");
+		SkullText->SetMapScale(_MapScale);
+		SkullText->SetMaxIndex();
+		SkullText->SetActorLocation(SkullText->CalIndexToPos(Index2D(_X, _Y)));
+		SkullText->BeginPosSetting();
+		SkullText->SetOrder(ERenderOrder::FrontTile);
+		GMapManager->SetObject(SkullText.get(), _X, _Y);
+		AllObjects.push_back(SkullText.get());
+		Texts.push_back(SkullText.get());
+	}
 	default:
 		break;
 	}

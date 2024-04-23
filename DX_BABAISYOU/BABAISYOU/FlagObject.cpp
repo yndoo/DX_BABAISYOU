@@ -23,7 +23,4 @@ void AFlagObject::BeginPlay()
 void AFlagObject::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-
-	Info;
-	int a = 0;
 }

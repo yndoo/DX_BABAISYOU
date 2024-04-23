@@ -100,6 +100,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="SkullObject.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SkullText.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="StageSelector.h">
       <SubType>
       </SubType>
@@ -233,6 +241,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="SinkText.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="SkullObject.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="SkullText.cpp">
       <SubType>
       </SubType>
     </ClCompile>
