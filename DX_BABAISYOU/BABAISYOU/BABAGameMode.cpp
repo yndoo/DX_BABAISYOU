@@ -10,6 +10,7 @@
 #include "WaterObject.h"
 #include "RockObject.h"
 #include "SkullObject.h"
+#include "LavaObject.h"
 
 #include "IsText.h"
 #include "BabaText.h"
@@ -24,6 +25,7 @@
 #include "SinkText.h"
 #include "RockText.h"
 #include "SkullText.h"
+#include "LavaText.h"
 
 BABAGameMode::BABAGameMode()
 {
@@ -286,7 +288,7 @@ AObject* BABAGameMode::ObjectiveCheck(int _X, int _Y/*동사의 인덱스*/)
 	return nullptr;
 }
 
-void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _MapScale, int _TileNum/* = 0*/)
+void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _MapScale)
 {
 	switch (_ObjectType)
 	{
@@ -309,7 +311,6 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 	case EObjectType::WALL:
 	{
 		std::shared_ptr<AWallObject> Wall = GetWorld()->SpawnActor<AWallObject>("Wall");
-		Wall->SetTileNum(_TileNum);
 		Wall->SetMapScale(_MapScale);
 		Wall->SetMaxIndex();
 		Wall->SetActorLocation(Wall->CalIndexToPos(Index2D(_X, _Y)));
@@ -323,7 +324,6 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 	case EObjectType::WATER:
 	{
 		std::shared_ptr<AWaterObject> Water = GetWorld()->SpawnActor<AWaterObject>("Water");
-		Water->SetTileNum(_TileNum);
 		Water->SetMapScale(_MapScale);
 		Water->SetMaxIndex();
 		Water->SetActorLocation(Water->CalIndexToPos(Index2D(_X, _Y)));
@@ -332,6 +332,19 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 		GMapManager->SetObject(Water.get(), _X, _Y);
 		AllObjects.push_back(Water.get());
 		Players.push_back(Water.get());
+	}
+	break;
+	case EObjectType::LAVA:
+	{
+		std::shared_ptr<ALavaObject> Lava = GetWorld()->SpawnActor<ALavaObject>("Lava");
+		Lava->SetMapScale(_MapScale);
+		Lava->SetMaxIndex();
+		Lava->SetActorLocation(Lava->CalIndexToPos(Index2D(_X, _Y)));
+		Lava->BeginPosSetting();
+		Lava->SetOrder(ERenderOrder::BackTile);
+		GMapManager->SetObject(Lava.get(), _X, _Y);
+		AllObjects.push_back(Lava.get());
+		Players.push_back(Lava.get());
 	}
 	break;
 	case EObjectType::FLAG:
@@ -544,6 +557,20 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 		AllObjects.push_back(SkullText.get());
 		Texts.push_back(SkullText.get());
 	}
+	break;
+	case EObjectType::LAVATEXT:
+	{
+		std::shared_ptr<ALavaText> LavaText = GetWorld()->SpawnActor<ALavaText>("LavaText");
+		LavaText->SetMapScale(_MapScale);
+		LavaText->SetMaxIndex();
+		LavaText->SetActorLocation(LavaText->CalIndexToPos(Index2D(_X, _Y)));
+		LavaText->BeginPosSetting();
+		LavaText->SetOrder(ERenderOrder::FrontTile);
+		GMapManager->SetObject(LavaText.get(), _X, _Y);
+		AllObjects.push_back(LavaText.get());
+		Texts.push_back(LavaText.get());
+	}
+	break;
 	default:
 		break;
 	}

@@ -62,9 +62,14 @@ void AStage1GameMode::Stage1MapSetting(FVector MapScale)
 	AutoCreate(EObjectType::WALL, 1, 3, MapScale);
 	AutoCreate(EObjectType::WALL, 3, 3, MapScale);
 
-	AutoCreate(EObjectType::WATER, 14, 4, MapScale, 0);
-	AutoCreate(EObjectType::WATER, 15, 5, MapScale, 1);
-	AutoCreate(EObjectType::WATER, 16, 6, MapScale, 15);
+	AutoCreate(EObjectType::WATER, 14, 4, MapScale);
+	AutoCreate(EObjectType::WATER, 15, 5, MapScale);
+	AutoCreate(EObjectType::WATER, 16, 6, MapScale);
+
+	AutoCreate(EObjectType::LAVA, 15, 3, MapScale);
+	AutoCreate(EObjectType::LAVA, 15, 4, MapScale);
+	AutoCreate(EObjectType::LAVA, 15, 5, MapScale);
+
 
 	AutoCreate(EObjectType::FLAG, 8, 5, MapScale);
 	AutoCreate(EObjectType::ROCK, 6, 11, MapScale);

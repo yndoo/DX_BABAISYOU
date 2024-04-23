@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <FxCompile Include="BlurEffectShader.fx" />
     <FxCompile Include="ColorShader.fx" />
     <FxCompile Include="DebugShader.fx" />
     <FxCompile Include="ImageShader.fx">
@@ -135,6 +136,7 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
+    <FxCompile Include="ImageShaderInstanced.fx" />
     <FxCompile Include="TargetCopyShader.fx" />
   </ItemGroup>
   <ItemGroup>
