@@ -41,6 +41,7 @@ enum class EObjectType
 	WATER,
 	ROCK,
 	SKULL, 
+	LAVA,
 	// 格利绢, 加己甸 (公炼扒 TEXT)
 	YOU,
 	PUSH,
@@ -58,7 +59,7 @@ enum class EObjectType
 	WATERTEXT,
 	ROCKTEXT,
 	SKULLTEXT,
-
+	LAVATEXT,
 };
 
 enum class EMyType

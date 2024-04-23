@@ -57,9 +57,10 @@ void AStage1GameMode::Stage1MapSetting(FVector MapScale)
 	/* ============= Player Objectµé ============= */
 	AutoCreate(EObjectType::BABA, 13, 8, MapScale);
 	
-	AutoCreate(EObjectType::WALL, 1, 1, MapScale, 0);
-	AutoCreate(EObjectType::WALL, 2, 2, MapScale, 1);
-	AutoCreate(EObjectType::WALL, 3, 3, MapScale, 15);
+	AutoCreate(EObjectType::WALL, 1, 1, MapScale);
+	AutoCreate(EObjectType::WALL, 1, 2, MapScale);
+	AutoCreate(EObjectType::WALL, 1, 3, MapScale);
+	AutoCreate(EObjectType::WALL, 3, 3, MapScale);
 
 	AutoCreate(EObjectType::WATER, 14, 4, MapScale, 0);
 	AutoCreate(EObjectType::WATER, 15, 5, MapScale, 1);

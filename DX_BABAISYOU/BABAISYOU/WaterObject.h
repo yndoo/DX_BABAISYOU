@@ -1,8 +1,8 @@
 #pragma once
-#include "PlayerObject.h"
-class AWaterObject : public APlayerObject
+#include "TileObject.h"
+class AWaterObject : public ATileObject
 {
-	GENERATED_BODY(APlayerObject)
+	GENERATED_BODY(ATileObject)
 public:
 	AWaterObject();
 	~AWaterObject();
@@ -12,16 +12,10 @@ public:
 	AWaterObject& operator=(const AWaterObject& _Other) = delete;
 	AWaterObject& operator=(AWaterObject&& _Other) noexcept = delete;
 
-	void SetTileNum(int _num)
-	{
-		TileNum = _num;
-	}
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
-	void CreateWaterAnimations();
-	int TileNum = 0;
-	int CurTileNum = 0;
+
 };
 

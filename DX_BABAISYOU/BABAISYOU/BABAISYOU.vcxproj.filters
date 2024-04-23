@@ -61,6 +61,9 @@
     <Filter Include="GameMode\CreateMapLevel">
       <UniqueIdentifier>{53e9ab36-67b6-4186-b43a-0e4071982fb9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Obj-Level2.5">
+      <UniqueIdentifier>{775ef312-c847-4351-a3cd-b0e98959707b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BABAISYOUCore.h">
@@ -177,6 +180,15 @@
     <ClInclude Include="SkullObject.h">
       <Filter>Object\Obj-Level3\PlayerObject</Filter>
     </ClInclude>
+    <ClInclude Include="LavaText.h">
+      <Filter>Object\Obj-Level3\SubjectText</Filter>
+    </ClInclude>
+    <ClInclude Include="LavaObject.h">
+      <Filter>Object\Obj-Level3\PlayerObject</Filter>
+    </ClInclude>
+    <ClInclude Include="TileObject.h">
+      <Filter>Object\Obj-Level2.5</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -289,6 +301,15 @@
     </ClCompile>
     <ClCompile Include="SkullObject.cpp">
       <Filter>Object\Obj-Level3\PlayerObject</Filter>
+    </ClCompile>
+    <ClCompile Include="LavaText.cpp">
+      <Filter>Object\Obj-Level3\SubjectText</Filter>
+    </ClCompile>
+    <ClCompile Include="LavaObject.cpp">
+      <Filter>Object\Obj-Level3\PlayerObject</Filter>
+    </ClCompile>
+    <ClCompile Include="TileObject.cpp">
+      <Filter>Object\Obj-Level2.5</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

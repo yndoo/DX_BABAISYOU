@@ -68,6 +68,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="LavaObject.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="LavaText.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="LerpMoveObject.h">
       <SubType>
       </SubType>
@@ -135,6 +143,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TextObject.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TileObject.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -212,6 +224,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="LavaObject.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="LavaText.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="LerpMoveObject.cpp">
       <SubType>
       </SubType>
@@ -284,6 +304,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TextObject.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TileObject.cpp">
       <SubType>
       </SubType>
     </ClCompile>
