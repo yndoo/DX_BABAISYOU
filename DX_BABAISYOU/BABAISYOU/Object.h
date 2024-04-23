@@ -106,7 +106,6 @@ protected:
 	// 롤백 기능을 위해 스택이 필요함
 	std::stack<std::pair<EInputDir, bool >> MoveStack;		// InputDir, IsMove 행동 스택
 	std::stack<std::pair<int, EInputDir>> AnimationStack;	// AnimationNumber, AnimationDir 애니메이션 스택
-	std::stack<std::map<EObjectType, bool>> ObjectiveStack;						// 상태(Objective) 스택
 
 	// 바바이즈유의 모든 오브젝트는 3개씩 애니메이션함.
 	float AnimationInter = 0.2f;

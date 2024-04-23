@@ -87,10 +87,9 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 		// 2. 애니메이션에 필요한 정보 : 이전 상태의 정보로 되돌리고 삭제
 		AnimationNumber = AnimationStack.top().first;
 		NewInputDir = AnimationStack.top().second;
-		Info->MyObjectiveType = ObjectiveStack.top();
+
 		MoveStack.pop();
 		AnimationStack.pop();
-		ObjectiveStack.pop();
 	
 		return;
 	}

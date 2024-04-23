@@ -173,7 +173,7 @@ void BABAGameMode::DeathCheck()
 	}
 }
 
-// 모든 문장 꺼주는 함수
+// 모든 문장 꺼주는 함수, Destroyed도 초기화
 void BABAGameMode::ClearAllSentence()
 {
 	for (AObject* obj : AllObjects)
@@ -183,10 +183,7 @@ void BABAGameMode::ClearAllSentence()
 		if (obj->Info->TileType == ETileType::Player)
 		{
 			obj->Info->MyObjectiveType.clear();
-			//for (auto types : obj->Info->MyObjectiveType)
-			//{
-			//	types.second = false;
-			//}
+			obj->Destroyed = false;
 		}
 	}
 	

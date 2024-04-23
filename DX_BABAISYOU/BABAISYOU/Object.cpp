@@ -259,14 +259,12 @@ void AObject::PushTrueHistory()
 {
 	MoveStack.push(std::make_pair(NewInputDir, true));
 	AnimationStack.push(std::make_pair((AnimationNumber - 1 + 4) % 4, BeforeDir));
-	ObjectiveStack.push(Info->MyObjectiveType);
 	int a = 0;
 }
 
 void AObject::PushFalseHistory()
 {
 	MoveStack.push(std::make_pair(NewInputDir, false));
-	//ObjectiveStack.push(Info->MyObjectiveType);	// 얘는 필요없나?
 }
 
 bool AObject::DirCheck()
