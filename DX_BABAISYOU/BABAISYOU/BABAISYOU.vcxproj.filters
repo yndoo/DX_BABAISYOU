@@ -189,6 +189,9 @@
     <ClInclude Include="TileObject.h">
       <Filter>Object\Obj-Level2.5</Filter>
     </ClInclude>
+    <ClInclude Include="HotText.h">
+      <Filter>Object\Obj-Level3\ObjectiveText</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -310,6 +313,9 @@
     </ClCompile>
     <ClCompile Include="TileObject.cpp">
       <Filter>Object\Obj-Level2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="HotText.cpp">
+      <Filter>Object\Obj-Level3\ObjectiveText</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

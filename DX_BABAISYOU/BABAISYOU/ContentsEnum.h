@@ -50,6 +50,7 @@ enum class EObjectType
 	DEFEAT,
 	SINK,
 	FLOAT,
+	HOT,
 	// 동사들
 	IS,
 	// 주어들

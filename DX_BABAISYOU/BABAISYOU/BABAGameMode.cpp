@@ -26,6 +26,7 @@
 #include "RockText.h"
 #include "SkullText.h"
 #include "LavaText.h"
+#include "HotText.h"
 
 BABAGameMode::BABAGameMode()
 {
@@ -133,7 +134,7 @@ void BABAGameMode::DeathCheck()
 			bool Changed = false;
 			for (AObject* others : GMapManager->Graph[YouPos.X][YouPos.Y])
 			{
-				if (others->Info->MyObjectiveType[EObjectType::DEFEAT] == true)
+				if (others->Info->MyObjectiveType[EObjectType::DEFEAT] == true || others->Info->MyObjectiveType[EObjectType::HOT] == true)
 				{
 					//Obj¸¦ ÆÄ±«
 					--YouCount;
@@ -465,6 +466,19 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 		Texts.push_back(Sink.get());
 	}
 		break;
+	case EObjectType::HOT:
+	{
+		std::shared_ptr<AHotText> Hot = GetWorld()->SpawnActor<AHotText>("HotText");
+		Hot->SetMapScale(_MapScale);
+		Hot->SetMaxIndex();
+		Hot->AddActorLocation(Hot->CalIndexToPos(Index2D(_X, _Y)));
+		Hot->BeginPosSetting();
+		Hot->SetOrder(ERenderOrder::FrontTile);
+		GMapManager->SetObject(Hot.get(), _X, _Y);
+		AllObjects.push_back(Hot.get());
+		Texts.push_back(Hot.get());
+	}
+	break;
 	// VerbObejcts
 	case EObjectType::IS:
 	{

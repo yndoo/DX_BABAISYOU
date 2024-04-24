@@ -61,6 +61,7 @@ void UBABAISYOUCore::Initialize()
 		UEngineSprite::CreateCutting("DEFEAT.png", 3, 3);
 		UEngineSprite::CreateCutting("SINK.png", 3, 3);
 		UEngineSprite::CreateCutting("PUSH.png", 3, 3);
+		UEngineSprite::CreateCutting("HOT.png", 3, 3);
 
 		// ETC
 		UEngineSprite::CreateCutting("SelectMap_background.png", 3, 1);

@@ -82,11 +82,13 @@ void AStage1GameMode::Stage1MapSetting(FVector MapScale)
 	AutoCreate(EObjectType::WATERTEXT, 13, 7, MapScale);
 	AutoCreate(EObjectType::ROCKTEXT, 3, 11, MapScale);
 	AutoCreate(EObjectType::SKULLTEXT, 0, 0, MapScale);
+	AutoCreate(EObjectType::LAVATEXT, 4, 2, MapScale);
 
 	/* ============= 동사 Object들 ============= */
 	AutoCreate(EObjectType::IS, 10, 3, MapScale);
 	AutoCreate(EObjectType::IS, 4, 10, MapScale);
 	AutoCreate(EObjectType::IS, 1, 0, MapScale);
+	AutoCreate(EObjectType::IS, 5, 1, MapScale);
 	
 	/* ============= 목적어 Object들 ============= */
 	AutoCreate(EObjectType::YOU, 10, 2, MapScale);
@@ -95,6 +97,7 @@ void AStage1GameMode::Stage1MapSetting(FVector MapScale)
 	AutoCreate(EObjectType::DEFEAT, 2, 0, MapScale);
 	AutoCreate(EObjectType::PUSH, 5, 11, MapScale);
 	AutoCreate(EObjectType::SINK, 15, 7, MapScale);
+	AutoCreate(EObjectType::HOT, 6, 1, MapScale);
 }
 
 void AStage1GameMode::DebugGMM()
