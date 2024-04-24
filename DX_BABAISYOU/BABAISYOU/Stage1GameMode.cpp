@@ -70,6 +70,7 @@ void AStage1GameMode::Stage1MapSetting(FVector MapScale)
 	AutoCreate(EObjectType::LAVA, 15, 4, MapScale);
 	AutoCreate(EObjectType::LAVA, 15, 5, MapScale);
 
+	AutoCreate(EObjectType::GRASS, 15, 15, MapScale);
 
 	AutoCreate(EObjectType::FLAG, 8, 5, MapScale);
 	AutoCreate(EObjectType::ROCK, 6, 11, MapScale);

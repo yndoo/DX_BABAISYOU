@@ -42,6 +42,7 @@ enum class EObjectType
 	ROCK,
 	SKULL, 
 	LAVA,
+	GRASS,
 	// 목적어, 속성들 (무조건 TEXT)
 	YOU,
 	PUSH,
@@ -61,6 +62,7 @@ enum class EObjectType
 	ROCKTEXT,
 	SKULLTEXT,
 	LAVATEXT,
+	GRASSTEXT,	// 필요가 딱히 없어서 아직 안 만듦.
 };
 
 enum class EMyType

@@ -11,6 +11,7 @@
 #include "RockObject.h"
 #include "SkullObject.h"
 #include "LavaObject.h"
+#include "GrassObject.h"
 
 #include "IsText.h"
 #include "BabaText.h"
@@ -346,6 +347,19 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 		GMapManager->SetObject(Lava.get(), _X, _Y);
 		AllObjects.push_back(Lava.get());
 		Players.push_back(Lava.get());
+	}
+	break;
+	case EObjectType::GRASS:
+	{
+		std::shared_ptr<AGrassObject> Grass = GetWorld()->SpawnActor<AGrassObject>("Grass");
+		Grass->SetMapScale(_MapScale);
+		Grass->SetMaxIndex();
+		Grass->SetActorLocation(Grass->CalIndexToPos(Index2D(_X, _Y)));
+		Grass->BeginPosSetting();
+		Grass->SetOrder(ERenderOrder::BackTile);
+		GMapManager->SetObject(Grass.get(), _X, _Y);
+		AllObjects.push_back(Grass.get());
+		Players.push_back(Grass.get());
 	}
 	break;
 	case EObjectType::FLAG:
