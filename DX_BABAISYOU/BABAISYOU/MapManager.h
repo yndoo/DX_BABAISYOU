@@ -39,6 +39,7 @@ public:
 
 	//void ClearGraph();
 	static std::list<AObject*> Graph[40][20];	//[가로][세로] list 2차원 배열
+	//std::list<AObject*> Graph[40][20];	//[가로][세로] list 2차원 배열
 
 protected:
 

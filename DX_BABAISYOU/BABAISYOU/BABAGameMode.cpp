@@ -31,6 +31,7 @@
 
 BABAGameMode::BABAGameMode()
 {
+	GMapManager = new MapManager();
 }
 
 BABAGameMode::~BABAGameMode()
@@ -83,6 +84,16 @@ void BABAGameMode::Tick(float _DeltaTime)
 	//	Update();
 	//	BeforeInputCount = UContentsConstValue::InputCount;
 	//}
+}
+
+void BABAGameMode::LevelStart(ULevel* _PrevLevel)
+{
+	
+}
+
+void BABAGameMode::LevelEnd(ULevel* _NextLevel)
+{
+	//GMapManager->ClearGraph();
 }
 
 void BABAGameMode::StackUpdate()

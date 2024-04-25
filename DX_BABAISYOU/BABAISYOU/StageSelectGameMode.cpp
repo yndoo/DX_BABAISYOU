@@ -36,6 +36,27 @@ void AStageSelectGameMode::BeginPlay()
 	//Back->SetActorScale3D(UContentsConstValue::StageSelectMapImgScale);
 	//Back->SelectStageSetting();
 
+	std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");
+	Back->SetActorScale3D(UContentsConstValue::Stage1MapScale);
+	Back->SetActorLocation({ 0, 0, 400 });
+	Back->Stage1Setting();
+	Back->SetOrder(ERenderOrder::Background);
+}
+
+void AStageSelectGameMode::Tick(float _DeltaTime)
+{
+	Super::Tick(_DeltaTime);
+	if (true == IsDown(VK_SPACE))
+	{
+		GEngine->ChangeLevel("Stage1Level");
+	}
+
+	GMapManager->Graph;
+	int a = 0;
+}
+
+void AStageSelectGameMode::LevelStart(ULevel* _PrevLevel)
+{
 	UEngineSerializer Ser;
 	std::string Str = "Test1";
 	UEngineFile File = Dir.GetPathFromFile(Str + ".Data");
@@ -58,12 +79,7 @@ void AStageSelectGameMode::BeginPlay()
 	}
 }
 
-void AStageSelectGameMode::Tick(float _DeltaTime)
+void AStageSelectGameMode::LevelEnd(ULevel* _NextLevel)
 {
-	Super::Tick(_DeltaTime);
-	if (true == IsDown(VK_SPACE))
-	{
-		GEngine->ChangeLevel("Stage1Level");
-	}
+	//GMapManager->ClearGraph();
 }
-

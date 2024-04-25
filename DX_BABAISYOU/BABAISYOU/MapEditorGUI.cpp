@@ -80,11 +80,76 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
-
-		// 이거 해도 당장 보이진 않는디..
-		//GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}
-	
+	if (true == ImGui::Button("WALL"))
+	{
+		TargetType = EObjectType::WALL;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+	}
+	if (true == ImGui::Button("Grass"))
+	{
+		TargetType = EObjectType::GRASS;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+	}
+
+	/* Text */
+	if (true == ImGui::Button("BabaText"))
+	{
+		TargetType = EObjectType::BABATEXT;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+	}
+	if (true == ImGui::Button("IsText"))
+	{
+		TargetType = EObjectType::IS;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+	}
+	if (true == ImGui::Button("YouText"))
+	{
+		TargetType = EObjectType::YOU;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+	}
+	if (true == ImGui::Button("WallText"))
+	{
+		TargetType = EObjectType::WALLTEXT;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+	}
+	if (true == ImGui::Button("StopText"))
+	{
+		TargetType = EObjectType::STOP;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+	}
+	if (true == ImGui::Button("WinText"))
+	{
+		TargetType = EObjectType::WIN;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+	}
+
+
+
 	ImGui::InputText("FileName", FileName, 25);
 
 	if (true == ImGui::Button("Save")) 
