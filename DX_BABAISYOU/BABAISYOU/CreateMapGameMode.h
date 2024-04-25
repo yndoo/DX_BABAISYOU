@@ -1,9 +1,9 @@
 #pragma once
-#include <EngineCore/GameMode.h>
+#include "BABAGameMode.h"
 
-class CreateMapGameMode : public AGameMode
+class CreateMapGameMode : public BABAGameMode
 {
-	GENERATED_BODY(AGameMode)
+	GENERATED_BODY(BABAGameMode)
 public:
 	CreateMapGameMode();
 	~CreateMapGameMode();
@@ -15,7 +15,8 @@ public:
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
-
+	void LevelEnd(ULevel* _NextLevel) override;
+	void LevelStart(ULevel* _PrevLevel) override;
 private:
 
 };

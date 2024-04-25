@@ -26,6 +26,17 @@ public:
 		Graph[_x][_y].push_back(_Obj);
 	}
 
+	void ClearGraph()
+	{
+		for (int i = 0; i < 40; i++)
+		{
+			for (int j = 0; j < 20; j++)
+			{
+				Graph[i][j].clear();
+			}
+		}
+	}
+
 	//void ClearGraph();
 	static std::list<AObject*> Graph[40][20];	//[가로][세로] list 2차원 배열
 

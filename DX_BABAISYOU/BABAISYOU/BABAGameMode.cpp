@@ -65,6 +65,11 @@ void BABAGameMode::Update()
 void BABAGameMode::BeginPlay()
 {
 	Super::BeginPlay();
+	//GMapManager->ClearGraph();
+
+	Dir.MoveParent();
+	Dir.Move("ContentsResources");
+	Dir.Move("Save");
 }
 
 void BABAGameMode::Tick(float _DeltaTime)

@@ -31,11 +31,11 @@ void ABabaObject::Tick(float _DeltaTime)
 	int a = 0;
 
 	//{
-		Index2D Index = CalPosToIndex(GetActorLocation());
-		FVector Res = FVector(Index.X, Index.Y);
-		FVector Res2 = FVector(this->Info->CurIndex.X, this->Info->CurIndex.Y);
-		std::string Msg = std::format("Loc_Index : {}, Info_Index : {} \n", Res.ToString(), Res2.ToString());
-		UEngineDebugMsgWindow::PushMsg(Msg);
+	//	Index2D Index = CalPosToIndex(GetActorLocation());
+	//	FVector Res = FVector(Index.X, Index.Y);
+	//	FVector Res2 = FVector(this->Info->CurIndex.X, this->Info->CurIndex.Y);
+	//	std::string Msg = std::format("Loc_Index : {}, Info_Index : {} \n", Res.ToString(), Res2.ToString());
+	//	UEngineDebugMsgWindow::PushMsg(Msg);
 
 	//	FVector Pos = CalIndexToPos(Index);
 	//	std::string Msg2 = std::format("IndexToPos : {}\n", Pos.ToString());

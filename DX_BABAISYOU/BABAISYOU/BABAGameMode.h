@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/GameMode.h>
+#include <EngineBase/EngineDirectory.h>
 #include "MapManager.h"
 #include "Object.h"
 
@@ -14,6 +15,10 @@ public:
 	BABAGameMode(BABAGameMode&& _Other) noexcept = delete;
 	BABAGameMode& operator=(const BABAGameMode& _Other) = delete;
 	BABAGameMode& operator=(BABAGameMode&& _Other) noexcept = delete;
+
+
+	void AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _MapScale);	
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -30,7 +35,8 @@ protected:
 	void ClearAllSentence();
 	int SentenceDir = -1;	// 0, 1, 2, 3
 
-	void AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _MapScale);	
+	UEngineDirectory Dir;
+	std::vector<int> TileData;	// X, Y, ObjectNum 순서.
 
 	std::list<AObject*> AllObjects;		// 해당 레벨 모든 오브젝트 들고있음. 이거로 Update 하자..
 	std::list<AObject*> Players;		// 모든 Player 오브젝트들만
