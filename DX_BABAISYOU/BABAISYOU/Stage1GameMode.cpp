@@ -32,7 +32,6 @@ AStage1GameMode::~AStage1GameMode()
 void AStage1GameMode::BeginPlay()
 {
 	Super::BeginPlay();
-
 }
 
 void AStage1GameMode::Tick(float _DeltaTime)
@@ -43,20 +42,16 @@ void AStage1GameMode::Tick(float _DeltaTime)
 
 void AStage1GameMode::LevelStart(ULevel* _PrevLevel)
 {
-	Stage1MapSetting(UContentsConstValue::Stage1MapScale);	// 맵 오브젝트 세팅하는 곳
+	Super::LevelStart(_PrevLevel);
 
-	std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");
-	Back->SetActorScale3D(UContentsConstValue::Stage1MapScale);
-	Back->SetActorLocation({ 0, 0, 400 });
-	Back->Stage1Setting();
-	Back->SetOrder(ERenderOrder::Background);
+	LoadMapFile("Stage1");
 
 	Update();
 }
 
 void AStage1GameMode::LevelEnd(ULevel* _NextLevel)
 {
-	//GMapManager->ClearGraph();
+	Super::LevelEnd(_NextLevel);
 }
 
 void AStage1GameMode::Stage1MapSetting(FVector MapScale)

@@ -39,10 +39,10 @@ void CreateMapGameMode::Tick(float _DeltaTime)
 
 void CreateMapGameMode::LevelStart(ULevel* _PrevLevel)
 {
-	
+	Super::LevelStart(_PrevLevel);
 }
 
 void CreateMapGameMode::LevelEnd(ULevel* _NextLevel)
 {
-	//GMapManager->ClearGraph();
+	Super::LevelEnd(_NextLevel);
 }

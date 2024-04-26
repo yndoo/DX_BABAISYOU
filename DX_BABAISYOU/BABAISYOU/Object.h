@@ -92,13 +92,14 @@ public:
 	bool EachMoveCheck_ForStack = false;		// 이동 있었으면 스택에 true로, 없었으면 false로 들어가기 위한 변수
 	bool SentenceON = false;					// 문장이 만들어지면 켜져야 함.
 	bool Destroyed = false;						// 파괴됐으면 ON 돼야 함.
+	
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 	bool DirCheck();
 
-	USpriteRenderer* Renderer = nullptr;
 	UDefaultSceneComponent* Root = nullptr;
+	USpriteRenderer* Renderer = nullptr;
 	EInputDir CurDir = EInputDir::Right;		// 현재 방향
 	EInputDir NewInputDir = EInputDir::Right;	// 새로 입력받는 이동 방향
 	EInputDir BeforeDir = EInputDir::Right;		// 이동 전 방향 -> 제일 나중에 업데이트되는 방향 

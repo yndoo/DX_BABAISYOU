@@ -57,10 +57,11 @@ void AStageSelectGameMode::Tick(float _DeltaTime)
 
 void AStageSelectGameMode::LevelStart(ULevel* _PrevLevel)
 {
+	Super::LevelStart(_PrevLevel);
 	LoadMapFile("Test1");
 }
 
 void AStageSelectGameMode::LevelEnd(ULevel* _NextLevel)
 {
-	//GMapManager->ClearGraph();
+	Super::LevelEnd(_NextLevel);
 }

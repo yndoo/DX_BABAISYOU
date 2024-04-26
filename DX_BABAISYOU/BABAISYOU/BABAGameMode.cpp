@@ -116,25 +116,30 @@ void BABAGameMode::LoadMapFile(std::string _FileName)
 
 void BABAGameMode::LevelStart(ULevel* _PrevLevel)
 {
-	
+	Super::LevelStart(_PrevLevel);
 }
 
 void BABAGameMode::LevelEnd(ULevel* _NextLevel)
 {
+	Super::LevelEnd(_NextLevel);
 	//std::list<AObject*> AllObjects;		
 	//std::list<AObject*> Players;		
 	//std::list<AObject*> Texts;			
 	//std::list<AObject*> OnSubjects;		
 	
-	for (auto a : AllObjects)
+	for (AObject* one : AllObjects)
 	{
-		
+		one->Destroy();
 	}
-	
+
+	AllObjects;
+
 	AllObjects.clear();
 	Players.clear();
 	Texts.clear();
 	OnSubjects.clear();
+
+	int a = 0;
 }
 
 void BABAGameMode::StackUpdate()

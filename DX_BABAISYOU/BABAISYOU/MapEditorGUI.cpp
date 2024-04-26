@@ -68,6 +68,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}ImGui::SameLine();
 	if (true == ImGui::Button("Wall"))
 	{
@@ -76,6 +77,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}ImGui::SameLine();
 	if (true == ImGui::Button("Water"))
 	{
@@ -84,6 +86,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}ImGui::SameLine();
 	if (true == ImGui::Button("Lava"))
 	{
@@ -92,6 +95,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}
 
 	ImGui::Text("== PlayerObject ==");
@@ -102,6 +106,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}ImGui::SameLine();
 	if (true == ImGui::Button("Flag"))
 	{
@@ -110,6 +115,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}ImGui::SameLine();
 	if (true == ImGui::Button("Rock"))
 	{
@@ -118,6 +124,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}ImGui::SameLine();
 	if (true == ImGui::Button("Skull"))
 	{
@@ -126,6 +133,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}
 
 	ImGui::Text("== TextObject ==");
@@ -137,6 +145,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}ImGui::SameLine();
 	if (true == ImGui::Button("FlagText"))
 	{
@@ -145,6 +154,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}ImGui::SameLine();
 	if (true == ImGui::Button("LavaText"))
 	{
@@ -153,6 +163,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}ImGui::SameLine();
 	if (true == ImGui::Button("RockText"))
 	{
@@ -161,6 +172,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}ImGui::SameLine();
 	if (true == ImGui::Button("SkullText"))
 	{
@@ -169,6 +181,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}ImGui::SameLine();
 	if (true == ImGui::Button("WallText"))
 	{
@@ -177,6 +190,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}ImGui::SameLine();
 	if (true == ImGui::Button("WaterText"))
 	{
@@ -185,6 +199,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}
 
 	ImGui::Text("Verb");
@@ -195,6 +210,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}
 	ImGui::Text("Objective");
 	if (true == ImGui::Button("YouText"))
@@ -204,6 +220,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}ImGui::SameLine();
 	if (true == ImGui::Button("DefeatText"))
 	{
@@ -212,6 +229,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}ImGui::SameLine();
 	if (true == ImGui::Button("StopText"))
 	{
@@ -220,6 +238,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}ImGui::SameLine();
 	if (true == ImGui::Button("WinText"))
 	{
@@ -228,6 +247,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}ImGui::SameLine();
 	if (true == ImGui::Button("HotText"))
 	{
@@ -236,6 +256,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}ImGui::SameLine();
 	if (true == ImGui::Button("PushText"))
 	{
@@ -244,6 +265,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}ImGui::SameLine();
 	if (true == ImGui::Button("SinkText"))
 	{
@@ -252,11 +274,20 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}
 
+	ImGui::Text("\n== One Time Cancel ==");
+	if (true == ImGui::Button("Cancel"))
+	{
+		TileData.pop_back();
+		TileData.pop_back();
+		TileData.pop_back();
+		// 보이는 건 일단 못지우는걸로..
+	}
 
 	ImGui::Text("\n\n== Save File ==");
-	ImGui::InputText("FileName", FileName, 25);
+	ImGui::InputText("Save FileName", FileName, 25);
 
 	if (true == ImGui::Button("Save")) 
 	{
@@ -274,7 +305,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 	}
 
 	ImGui::Text("== Load File ==");
-	ImGui::InputText("FileName2", FileName, 25);
+	ImGui::InputText("Load FileName", FileName, 25);
 	if (true == ImGui::Button("Load"))
 	{
 		UEngineSerializer Ser;
