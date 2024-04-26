@@ -18,6 +18,8 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 	void DebugGMM() override;
+	void LevelEnd(ULevel* _NextLevel) override;
+	void LevelStart(ULevel* _PrevLevel) override;
 
 private:
 	void Stage1MapSetting(FVector MapScale);

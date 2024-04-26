@@ -32,18 +32,7 @@ AStage1GameMode::~AStage1GameMode()
 void AStage1GameMode::BeginPlay()
 {
 	Super::BeginPlay();
-	Stage1MapSetting(UContentsConstValue::Stage1MapScale);	// 맵 오브젝트 세팅하는 곳
 
-
-	//std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
-	//Camera->SetActorLocation(FVector(0.0f, 0.0f, -200.0f));
-
-	std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");
-	Back->SetActorScale3D(UContentsConstValue::Stage1MapScale);
-	Back->SetActorLocation({ 0, 0, 400 });
-	Back->Stage1Setting();
-	Back->SetOrder(ERenderOrder::Background);
-	Update();
 }
 
 void AStage1GameMode::Tick(float _DeltaTime)
@@ -52,8 +41,28 @@ void AStage1GameMode::Tick(float _DeltaTime)
 	DebugGMM();
 }
 
+void AStage1GameMode::LevelStart(ULevel* _PrevLevel)
+{
+	Stage1MapSetting(UContentsConstValue::Stage1MapScale);	// 맵 오브젝트 세팅하는 곳
+
+	std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");
+	Back->SetActorScale3D(UContentsConstValue::Stage1MapScale);
+	Back->SetActorLocation({ 0, 0, 400 });
+	Back->Stage1Setting();
+	Back->SetOrder(ERenderOrder::Background);
+
+	Update();
+}
+
+void AStage1GameMode::LevelEnd(ULevel* _NextLevel)
+{
+	//GMapManager->ClearGraph();
+}
+
 void AStage1GameMode::Stage1MapSetting(FVector MapScale)
 {
+	GMapManager->ClearGraph();
+
 	/* ============= Player Object들 ============= */
 	AutoCreate(EObjectType::BABA, 13, 8, MapScale);
 	

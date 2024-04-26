@@ -28,11 +28,11 @@ void CreateMapGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 	
-	if (true == UContentsConstValue::IsMapEditorUpdated)
-	{
-		LoadMapFile("Test1");
-		UContentsConstValue::IsMapEditorUpdated = false;
-	}
+	//if (true == UContentsConstValue::IsMapEditorUpdated)
+	//{
+	//	LoadMapFile("Test1");
+	//	UContentsConstValue::IsMapEditorUpdated = false;
+	//}
 
 }
 

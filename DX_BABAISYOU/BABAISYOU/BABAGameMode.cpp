@@ -121,7 +121,20 @@ void BABAGameMode::LevelStart(ULevel* _PrevLevel)
 
 void BABAGameMode::LevelEnd(ULevel* _NextLevel)
 {
-	//GMapManager->ClearGraph();
+	//std::list<AObject*> AllObjects;		
+	//std::list<AObject*> Players;		
+	//std::list<AObject*> Texts;			
+	//std::list<AObject*> OnSubjects;		
+	
+	for (auto a : AllObjects)
+	{
+		
+	}
+	
+	AllObjects.clear();
+	Players.clear();
+	Texts.clear();
+	OnSubjects.clear();
 }
 
 void BABAGameMode::StackUpdate()

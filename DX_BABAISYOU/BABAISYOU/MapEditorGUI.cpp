@@ -272,6 +272,33 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		File.Open(EIOOpenMode::Write, EIODataType::Binary);
 		File.Save(Ser);
 	}
+
+	ImGui::Text("== Load File ==");
+	ImGui::InputText("FileName2", FileName, 25);
+	if (true == ImGui::Button("Load"))
+	{
+		UEngineSerializer Ser;
+		std::string Str = FileName;
+		UEngineFile File = Dir.GetPathFromFile(Str + ".Data");
+		if (false == File.IsExists())
+		{
+			return;
+		}
+		File.Open(EIOOpenMode::Read, EIODataType::Binary);
+		File.Load(Ser);
+		Ser >> TileData;
+
+		GMapManager->ClearGraph();
+		int Index = 0;
+		while (TileData.size() > Index)
+		{
+			int x = TileData[Index];
+			int y = TileData[Index + 1];
+			int type = TileData[Index + 2];
+			GameMode->AutoCreate(static_cast<EObjectType>(type), x, y, UContentsConstValue::Stage1MapScale);
+			Index += 3;
+		}
+	}
 }
 
 FVector MapEditorGUI::CalPosToIndex(FVector _Pos)
