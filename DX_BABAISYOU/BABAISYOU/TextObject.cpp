@@ -6,7 +6,7 @@ ATextObject::ATextObject()
 {
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
 	Renderer->SetupAttachment(Root);
-	Renderer->SetOrder(ERenderOrder::FrontTile);
+	Renderer->SetOrder(ERenderOrder::Text);
 
 	Info->MyObjectiveType[EObjectType::PUSH] = true;
 }

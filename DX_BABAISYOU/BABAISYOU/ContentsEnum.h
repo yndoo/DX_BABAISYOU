@@ -15,6 +15,8 @@ enum class ERenderOrder
 	Background,
 	BackTile,
 	FrontTile,
+	Text,
+	Player,
 };
 
 enum class ETileType

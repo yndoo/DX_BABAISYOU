@@ -5,6 +5,7 @@
 
 ATileObject::ATileObject()
 {
+	Renderer->SetOrder(ERenderOrder::FrontTile);
 }
 
 ATileObject::~ATileObject()
@@ -14,7 +15,6 @@ ATileObject::~ATileObject()
 void ATileObject::BeginPlay()
 {
 	Super::BeginPlay();
-	//CreateAnimations();
 }
 
 void ATileObject::Tick(float _DeltaTime)
