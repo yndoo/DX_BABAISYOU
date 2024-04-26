@@ -3,6 +3,7 @@
 #include <EngineCore/EngineCore.h>
 #include <EngineCore/EngineDebugMsgWindow.h>
 #include <EngineCore/DefaultSceneComponent.h>
+#include "ContentsEnum.h"
 
 ABackground::ABackground()
 {
@@ -11,6 +12,8 @@ ABackground::ABackground()
 
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
 	Renderer->SetupAttachment(Root);
+
+	Renderer->SetOrder(ERenderOrder::Background);
 }
 
 ABackground::~ABackground()

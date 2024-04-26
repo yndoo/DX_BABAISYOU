@@ -39,7 +39,6 @@ void MapEditorGUI::Tick(ULevel* _Level, float _Delta)
 	{
 		Off();
 	}
-
 	//DebugGMM();
 }
 
@@ -61,34 +60,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		ClickIndex = MouseIndexTest;
 		int a = 0;
 	}
-
-	if (true == ImGui::Button("BABA"))
-	{
-		TargetType = EObjectType::BABA;
-		ObjectNum = static_cast<int>(TargetType);
-		TileData.push_back(ClickIndex.iX());
-		TileData.push_back(ClickIndex.iY());
-		TileData.push_back(ObjectNum);
-
-		// 이거 해도 당장 보이진 않는디..
-		//GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
-	}
-	if (true == ImGui::Button("Flag"))
-	{
-		TargetType = EObjectType::FLAG;
-		ObjectNum = static_cast<int>(TargetType);
-		TileData.push_back(ClickIndex.iX());
-		TileData.push_back(ClickIndex.iY());
-		TileData.push_back(ObjectNum);
-	}
-	if (true == ImGui::Button("WALL"))
-	{
-		TargetType = EObjectType::WALL;
-		ObjectNum = static_cast<int>(TargetType);
-		TileData.push_back(ClickIndex.iX());
-		TileData.push_back(ClickIndex.iY());
-		TileData.push_back(ObjectNum);
-	}
+	ImGui::Text("\n== TileObject ==");
 	if (true == ImGui::Button("Grass"))
 	{
 		TargetType = EObjectType::GRASS;
@@ -96,9 +68,68 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+	}ImGui::SameLine();
+	if (true == ImGui::Button("Wall"))
+	{
+		TargetType = EObjectType::WALL;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+	}ImGui::SameLine();
+	if (true == ImGui::Button("Water"))
+	{
+		TargetType = EObjectType::WATER;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+	}ImGui::SameLine();
+	if (true == ImGui::Button("Lava"))
+	{
+		TargetType = EObjectType::LAVA;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
 	}
 
-	/* Text */
+	ImGui::Text("== PlayerObject ==");
+	if (true == ImGui::Button("BABA"))
+	{
+		TargetType = EObjectType::BABA;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+	}ImGui::SameLine();
+	if (true == ImGui::Button("Flag"))
+	{
+		TargetType = EObjectType::FLAG;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+	}ImGui::SameLine();
+	if (true == ImGui::Button("Rock"))
+	{
+		TargetType = EObjectType::ROCK;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+	}ImGui::SameLine();
+	if (true == ImGui::Button("Skull"))
+	{
+		TargetType = EObjectType::SKULL;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+	}
+
+	ImGui::Text("== TextObject ==");
+	ImGui::Text("Subject");
 	if (true == ImGui::Button("BabaText"))
 	{
 		TargetType = EObjectType::BABATEXT;
@@ -106,7 +137,57 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+	}ImGui::SameLine();
+	if (true == ImGui::Button("FlagText"))
+	{
+		TargetType = EObjectType::FLAGTEXT;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+	}ImGui::SameLine();
+	if (true == ImGui::Button("LavaText"))
+	{
+		TargetType = EObjectType::LAVATEXT;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+	}ImGui::SameLine();
+	if (true == ImGui::Button("RockText"))
+	{
+		TargetType = EObjectType::ROCKTEXT;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+	}ImGui::SameLine();
+	if (true == ImGui::Button("SkullText"))
+	{
+		TargetType = EObjectType::SKULLTEXT;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+	}ImGui::SameLine();
+	if (true == ImGui::Button("WallText"))
+	{
+		TargetType = EObjectType::WALLTEXT;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+	}ImGui::SameLine();
+	if (true == ImGui::Button("WaterText"))
+	{
+		TargetType = EObjectType::WATERTEXT;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
 	}
+
+	ImGui::Text("Verb");
 	if (true == ImGui::Button("IsText"))
 	{
 		TargetType = EObjectType::IS;
@@ -115,6 +196,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
 	}
+	ImGui::Text("Objective");
 	if (true == ImGui::Button("YouText"))
 	{
 		TargetType = EObjectType::YOU;
@@ -122,15 +204,15 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
-	}
-	if (true == ImGui::Button("WallText"))
+	}ImGui::SameLine();
+	if (true == ImGui::Button("DefeatText"))
 	{
-		TargetType = EObjectType::WALLTEXT;
+		TargetType = EObjectType::DEFEAT;
 		ObjectNum = static_cast<int>(TargetType);
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
-	}
+	}ImGui::SameLine();
 	if (true == ImGui::Button("StopText"))
 	{
 		TargetType = EObjectType::STOP;
@@ -138,7 +220,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
-	}
+	}ImGui::SameLine();
 	if (true == ImGui::Button("WinText"))
 	{
 		TargetType = EObjectType::WIN;
@@ -146,14 +228,39 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iX());
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
+	}ImGui::SameLine();
+	if (true == ImGui::Button("HotText"))
+	{
+		TargetType = EObjectType::HOT;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+	}ImGui::SameLine();
+	if (true == ImGui::Button("PushText"))
+	{
+		TargetType = EObjectType::PUSH;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+	}ImGui::SameLine();
+	if (true == ImGui::Button("SinkText"))
+	{
+		TargetType = EObjectType::SINK;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
 	}
 
 
-
+	ImGui::Text("\n\n== Save File ==");
 	ImGui::InputText("FileName", FileName, 25);
 
 	if (true == ImGui::Button("Save")) 
 	{
+		UContentsConstValue::IsMapEditorUpdated = true;
 		if (TileData.empty() == true) 
 		{
 			return;
@@ -164,32 +271,6 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		UEngineFile File = Dir.GetPathFromFile(Str + ".Data");
 		File.Open(EIOOpenMode::Write, EIODataType::Binary);
 		File.Save(Ser);
-	}
-
-	if (true == ImGui::Button("Load")) 
-	{
-		TileData.clear();
-
-		UEngineSerializer Ser;
-		std::string Str = FileName;
-		UEngineFile File = Dir.GetPathFromFile(Str + ".Data");
-		if (false == File.IsExists()) 
-		{
-			return;
-		}
-		File.Open(EIOOpenMode::Read, EIODataType::Binary);
-		File.Load(Ser);
-		Ser >> TileData;
-	
-		int Index = 0;
-		while (TileData.size() > Index) 
-		{
-			int x = TileData[Index];
-			int y = TileData[Index + 1];
-			int type = TileData[Index + 2];
-			//GameMode->AutoCreate(static_cast<EObjectType>(type), x, y, FVector(MapScale[0], MapScale[1]));
-			Index += 3;
-		}
 	}
 }
 

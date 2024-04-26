@@ -15,6 +15,7 @@ int UContentsConstValue::MaxIndexX = 0;
 int UContentsConstValue::MaxIndexY = 0;
 int UContentsConstValue::InputCount = 0;
 bool UContentsConstValue::ZInput = false;
+bool UContentsConstValue::IsMapEditorUpdated = false;
 
 std::map<EObjectType, EObjectType> UContentsConstValue::TextToPlayer = {
 	{EObjectType::BABATEXT, EObjectType::BABA},

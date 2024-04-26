@@ -35,8 +35,8 @@ void AStage1GameMode::BeginPlay()
 	Stage1MapSetting(UContentsConstValue::Stage1MapScale);	// 맵 오브젝트 세팅하는 곳
 
 
-	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
-	Camera->SetActorLocation(FVector(0.0f, 0.0f, -200.0f));
+	//std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
+	//Camera->SetActorLocation(FVector(0.0f, 0.0f, -200.0f));
 
 	std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");
 	Back->SetActorScale3D(UContentsConstValue::Stage1MapScale);

@@ -68,6 +68,9 @@ void BABAGameMode::BeginPlay()
 	Super::BeginPlay();
 	//GMapManager->ClearGraph();
 
+	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
+	Camera->SetActorLocation(FVector(0.0f, 0.0f, -200.0f));
+
 	Dir.MoveParent();
 	Dir.Move("ContentsResources");
 	Dir.Move("Save");
@@ -84,6 +87,31 @@ void BABAGameMode::Tick(float _DeltaTime)
 	//	Update();
 	//	BeforeInputCount = UContentsConstValue::InputCount;
 	//}
+}
+
+void BABAGameMode::LoadMapFile(std::string _FileName)
+{
+	UEngineSerializer Ser;
+	std::string Str = _FileName;
+	UEngineFile File = Dir.GetPathFromFile(Str + ".Data");
+	if (false == File.IsExists())
+	{
+		return;
+	}
+	File.Open(EIOOpenMode::Read, EIODataType::Binary);
+	File.Load(Ser);
+	Ser >> TileData;
+
+	GMapManager->ClearGraph();
+	int Index = 0;
+	while (TileData.size() > Index)
+	{
+		int x = TileData[Index];
+		int y = TileData[Index + 1];
+		int type = TileData[Index + 2];
+		AutoCreate(static_cast<EObjectType>(type), x, y, UContentsConstValue::Stage1MapScale);
+		Index += 3;
+	}
 }
 
 void BABAGameMode::LevelStart(ULevel* _PrevLevel)
@@ -298,7 +326,6 @@ AObject* BABAGameMode::ObjectiveCheck(int _X, int _Y/*동사의 인덱스*/)
 	{
 		if (Obj->Info->TileType == ETileType::Objective)
 		{
-			// 방향
 			return Obj;
 		}
 	}

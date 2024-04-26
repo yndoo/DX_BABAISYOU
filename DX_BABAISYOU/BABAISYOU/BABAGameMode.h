@@ -26,6 +26,7 @@ protected:
 	void LevelStart(ULevel* _PrevLevel) override;
 
 	virtual void DebugGMM();
+	virtual void LoadMapFile(std::string _FileName);
 	void Update();
 	void StackUpdate();
 	void SentenceUpdate();

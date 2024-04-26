@@ -57,26 +57,7 @@ void AStageSelectGameMode::Tick(float _DeltaTime)
 
 void AStageSelectGameMode::LevelStart(ULevel* _PrevLevel)
 {
-	UEngineSerializer Ser;
-	std::string Str = "Test1";
-	UEngineFile File = Dir.GetPathFromFile(Str + ".Data");
-	if (false == File.IsExists())
-	{
-		return;
-	}
-	File.Open(EIOOpenMode::Read, EIODataType::Binary);
-	File.Load(Ser);
-	Ser >> TileData;
-
-	int Index = 0;
-	while (TileData.size() > Index)
-	{
-		int x = TileData[Index];
-		int y = TileData[Index + 1];
-		int type = TileData[Index + 2];
-		AutoCreate(static_cast<EObjectType>(type), x, y, UContentsConstValue::Stage1MapScale);
-		Index += 3;
-	}
+	LoadMapFile("Test1");
 }
 
 void AStageSelectGameMode::LevelEnd(ULevel* _NextLevel)
