@@ -48,11 +48,19 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="FadeInCover.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="CreateMapGameMode.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="DefeatText.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="FadeOutEffect.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -212,11 +220,19 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="FadeInCover.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="CreateMapGameMode.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="DefeatText.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="FadeOutEffect.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -3,10 +3,11 @@
 #include <EngineCore/EngineDebugMsgWindow.h>
 
 #include "Stage1GameMode.h"
-#include "Background.h"
 #include "MapManager.h"
 #include "ContentsEnum.h"
 #include "ContentsConstValue.h"
+
+#include "Background.h"
 
 #include "BabaObject.h"
 #include "WallObject.h"
@@ -43,6 +44,13 @@ void AStage1GameMode::Tick(float _DeltaTime)
 void AStage1GameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
+
+	std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");
+	Back->SetActorScale3D(UContentsConstValue::Stage1MapScale);
+	Back->SetActorLocation({ 0, 0, 400 });
+	Back->Stage1Setting();
+	Back->SetOrder(ERenderOrder::Background);
+	
 
 	LoadMapFile("Stage1");
 

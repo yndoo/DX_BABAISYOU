@@ -2,7 +2,10 @@
 #include "BABAGameMode.h"
 #include <EngineCore/EngineDebugMsgWindow.h>
 #include <EngineCore/EngineCore.h>
+
 #include "ContentsConstValue.h"
+#include "FadeInCover.h"
+#include "FadeOUTEffect.h"
 
 #include "BabaObject.h"
 #include "WallObject.h"
@@ -82,11 +85,7 @@ void BABAGameMode::Tick(float _DeltaTime)
 
 	Update();
 	
-	//if (BeforeInputCount != UContentsConstValue::InputCount)
-	//{
-	//	Update();
-	//	BeforeInputCount = UContentsConstValue::InputCount;
-	//}
+
 }
 
 void BABAGameMode::LoadMapFile(std::string _FileName)
@@ -117,11 +116,15 @@ void BABAGameMode::LoadMapFile(std::string _FileName)
 void BABAGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
+	std::shared_ptr<AFadeInCover> cover = GetWorld()->SpawnActor<AFadeInCover>("cover");
+	cover->SetActorScale3D(FVector(1280, 720));
+	cover->SetActorLocation({ 0, 0, 400 });
 }
 
 void BABAGameMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
+
 	//std::list<AObject*> AllObjects;		
 	//std::list<AObject*> Players;		
 	//std::list<AObject*> Texts;			
@@ -221,6 +224,7 @@ void BABAGameMode::DeathCheck()
 				if (others->Info->MyObjectiveType[EObjectType::WIN] == true)
 				{
 					// °ÔÀÓ ½Â¸®
+					GetWorld()->GetLastTarget()->AddEffect<FadeOutEffect>();
 					//GEngine->ChangeLevel("SelectMapLevel");
 					//return;
 				}

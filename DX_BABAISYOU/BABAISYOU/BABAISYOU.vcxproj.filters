@@ -67,6 +67,9 @@
     <Filter Include="Object\Obj-Level3\0PlayerObject">
       <UniqueIdentifier>{6e643e94-19ad-4c0f-a3cc-87d3c747805b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Effect">
+      <UniqueIdentifier>{bcb3a7c3-00a7-4422-8cb2-e08780e3181f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BABAISYOUCore.h">
@@ -198,6 +201,12 @@
     <ClInclude Include="GrassObject.h">
       <Filter>Object\Obj-Level3\0PlayerObject - Tile</Filter>
     </ClInclude>
+    <ClInclude Include="FadeInCover.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="FadeOutEffect.h">
+      <Filter>Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -325,6 +334,12 @@
     </ClCompile>
     <ClCompile Include="GrassObject.cpp">
       <Filter>Object\Obj-Level3\0PlayerObject - Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="FadeInCover.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="FadeOutEffect.cpp">
+      <Filter>Effect</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

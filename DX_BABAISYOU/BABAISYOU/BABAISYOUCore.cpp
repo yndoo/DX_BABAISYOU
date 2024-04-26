@@ -1,14 +1,14 @@
 #include "PreCompile.h"
 #include "BABAISYOUCore.h"
-#include "PlayGameMode.h"
 #include <EngineCore/EngineSprite.h>
+#include <EngineCore/EngineEditorGUI.h>
+
+#include "ContentsGUI.h"
+#include "MapEditorGUI.h"
+
 #include "Stage1GameMode.h"
 #include "StageSelectGameMode.h"
 #include "CreateMapGameMode.h"
-
-#include <EngineCore/EngineEditorGUI.h>
-#include "ContentsGUI.h"
-#include "MapEditorGUI.h"
 
 UBABAISYOUCore::UBABAISYOUCore() 
 {
@@ -20,6 +20,12 @@ UBABAISYOUCore::~UBABAISYOUCore()
 
 void UBABAISYOUCore::Initialize()
 {
+	{
+		UEngineDirectory Dir;
+		Dir.MoveToSearchChild("ContentsShader");
+		UEngineShader::AutoCompile(Dir);
+	}
+
 	{
 		// 파일의 헤더
 		UEngineDirectory Dir;
@@ -68,7 +74,7 @@ void UBABAISYOUCore::Initialize()
 		// ETC
 		UEngineSprite::CreateCutting("SelectMap_background.png", 3, 1);
 		UEngineSprite::CreateCutting("Selector.png", 3, 1);
-		
+	
 	}
 
 
@@ -82,6 +88,10 @@ void UBABAISYOUCore::Initialize()
 		//	UEngineSound::Load(File.GetFullPath());
 		//}
 	}
+	// Material
+	std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("CirCleFadeOUT");
+	Mat->SetPixelShader("CirCleFadeOUTShader.fx");
+	Mat->SetVertexShader("CirCleFadeOUTShader.fx");
 
 	// GUI
 	UEngineEditorGUI::CreateEditorWindow<ContentsGUI>("Contents");
