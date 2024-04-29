@@ -241,7 +241,6 @@ void BABAGameMode::DeathCheck()
 			if (false == Changed)
 			{
 				Obj->Destroyed = false;
-				InputOff();
 			}
 		}
 	}
