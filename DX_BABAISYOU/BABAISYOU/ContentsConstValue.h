@@ -18,6 +18,7 @@ public:
 	static int MaxIndexX;
 	static int MaxIndexY;
 	static int InputCount;
+	static int ClearStage;		// 최근에 클리어 된 스테이지 번호
 	static bool ZInput;			//전역 Z Input 체크
 	static bool IsMapEditorUpdated;
 

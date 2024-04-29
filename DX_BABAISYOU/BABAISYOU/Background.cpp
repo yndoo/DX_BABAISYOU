@@ -38,7 +38,7 @@ void ABackground::Tick(float _DeltaTime)
 void ABackground::SelectStageSetting()
 {
 	Renderer->SetSprite("SelectMap_background.png", 2);
-	Renderer->CreateAnimation("Back", "SelectMap_background.png", 0.2f);
+	Renderer->CreateAnimation("Back", "SelectMap_background.png", 0.5f);
 	Renderer->ChangeAnimation("Back");
 }
 

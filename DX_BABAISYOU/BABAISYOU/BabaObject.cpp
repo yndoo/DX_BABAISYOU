@@ -27,26 +27,6 @@ void ABabaObject::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	MoveStack;
-	int a = 0;
-
-	//{
-	//	Index2D Index = CalPosToIndex(GetActorLocation());
-	//	FVector Res = FVector(Index.X, Index.Y);
-	//	FVector Res2 = FVector(this->Info->CurIndex.X, this->Info->CurIndex.Y);
-	//	std::string Msg = std::format("Loc_Index : {}, Info_Index : {} \n", Res.ToString(), Res2.ToString());
-	//	UEngineDebugMsgWindow::PushMsg(Msg);
-
-	//	FVector Pos = CalIndexToPos(Index);
-	//	std::string Msg2 = std::format("IndexToPos : {}\n", Pos.ToString());
-	//	UEngineDebugMsgWindow::PushMsg(Msg2);
-	//}
-
-	//{
-	//	std::string Msg = std::format("Pos : {}\n", GetActorLocation().ToString());
-	//	UEngineDebugMsgWindow::PushMsg(Msg);
-	//}
-
 	// 입력이 있었으면 -> 애니메이션 업데이트해야함
 	if (true == EachInputCheck || true == ZInputCheck)
 	{

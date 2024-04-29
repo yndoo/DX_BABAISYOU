@@ -7,6 +7,7 @@
 #include "MapEditorGUI.h"
 
 #include "Stage1GameMode.h"
+#include "Stage2GameMode.h"
 #include "StageSelectGameMode.h"
 #include "CreateMapGameMode.h"
 
@@ -75,6 +76,7 @@ void UBABAISYOUCore::Initialize()
 		// ETC
 		UEngineSprite::CreateCutting("SelectMap_background.png", 3, 1);
 		UEngineSprite::CreateCutting("Selector.png", 3, 1);
+		UEngineSprite::CreateCutting("NumberFont.png", 10, 6);
 	
 	}
 
@@ -101,6 +103,7 @@ void UBABAISYOUCore::Initialize()
 	// Level
 	//GEngine->CreateLevel<APlayGameMode>("PlayLevel");
 	GEngine->CreateLevel<AStage1GameMode>("Stage1Level");
+	GEngine->CreateLevel<AStage2GameMode>("Stage2Level");
 	GEngine->CreateLevel<AStageSelectGameMode>("SelectMapLevel");
 	GEngine->CreateLevel<CreateMapGameMode>("CreateMapLevel");
 	GEngine->ChangeLevel("Stage1Level");

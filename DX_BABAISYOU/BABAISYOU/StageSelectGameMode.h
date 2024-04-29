@@ -1,6 +1,9 @@
 #pragma once
 #include "BABAGameMode.h"
 
+#include "StageSelector.h"
+#include "StageNumber.h"
+
 class AStageSelectGameMode : public BABAGameMode
 {
 	GENERATED_BODY(BABAGameMode)
@@ -18,7 +21,13 @@ protected:
 	void LevelEnd(ULevel* _NextLevel) override;
 	void LevelStart(ULevel* _PrevLevel) override;
 
+	void NewStage(int _Num1, int _Num2);
+	int IndexToStage(Index2D _index);
 private:
+	std::shared_ptr<AStageSelector> Selector = nullptr;
+	std::vector<std::pair<std::shared_ptr<AStageNumber>, std::shared_ptr<AStageNumber>>> Stages;
 
+	int CurStage = -1;
+	int ClearStage = -1;
 };
 

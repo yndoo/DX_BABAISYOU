@@ -163,7 +163,7 @@ void ALerpMoveObject::LerpMove(float _DeltaTime)
 {
 	if (LerpTime <= 1.f && true == IsMove)
 	{
-		LerpTime += _DeltaTime * 3;
+		LerpTime += _DeltaTime * 6;
 		SetActorLocation(LerpCal(LerpTime));
 	}
 	else

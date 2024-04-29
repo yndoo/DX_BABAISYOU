@@ -23,7 +23,6 @@ protected:
 	CreateMapGameMode* GameMode = nullptr;
 private:
 	FVector CalPosToIndex(FVector _Pos);
-	//void DebugGMM();
 
 	UEngineDirectory Dir;
 	FVector WinScale = FVector::Zero;

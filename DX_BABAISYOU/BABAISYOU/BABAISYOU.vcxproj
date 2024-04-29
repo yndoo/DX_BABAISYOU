@@ -136,6 +136,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Stage2GameMode.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="StageNumber.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="StageSelector.h">
       <SubType>
       </SubType>
@@ -309,6 +317,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="SkullText.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage2GameMode.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="StageNumber.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -31,9 +31,6 @@
     <Filter Include="GameMode">
       <UniqueIdentifier>{c37350ce-309f-4a01-b091-402f1673d84d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameMode\Stage1Level">
-      <UniqueIdentifier>{f77e2612-9404-4c62-af24-af6690cbca16}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameMode\StageSelectLevel">
       <UniqueIdentifier>{395f495a-7038-4bfd-ab60-858276009d86}</UniqueIdentifier>
     </Filter>
@@ -70,6 +67,9 @@
     <Filter Include="Effect">
       <UniqueIdentifier>{bcb3a7c3-00a7-4422-8cb2-e08780e3181f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameMode\StageLevel">
+      <UniqueIdentifier>{f77e2612-9404-4c62-af24-af6690cbca16}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BABAISYOUCore.h">
@@ -85,7 +85,7 @@
       <Filter>GameMode\TestLevel\Object</Filter>
     </ClInclude>
     <ClInclude Include="Stage1GameMode.h">
-      <Filter>GameMode\Stage1Level</Filter>
+      <Filter>GameMode\StageLevel</Filter>
     </ClInclude>
     <ClInclude Include="StageSelectGameMode.h">
       <Filter>GameMode\StageSelectLevel</Filter>
@@ -115,9 +115,6 @@
       <Filter>GameMode</Filter>
     </ClInclude>
     <ClInclude Include="BabaObject.h">
-      <Filter>Object\Obj-Level3\0PlayerObject</Filter>
-    </ClInclude>
-    <ClInclude Include="StageSelector.h">
       <Filter>Object\Obj-Level3\0PlayerObject</Filter>
     </ClInclude>
     <ClInclude Include="TextObject.h">
@@ -210,6 +207,15 @@
     <ClInclude Include="BackTileObject.h">
       <Filter>Object\Obj-Level3\0PlayerObject</Filter>
     </ClInclude>
+    <ClInclude Include="StageSelector.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="StageNumber.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage2GameMode.h">
+      <Filter>GameMode\StageLevel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -225,7 +231,7 @@
       <Filter>GameMode\TestLevel\Object</Filter>
     </ClCompile>
     <ClCompile Include="Stage1GameMode.cpp">
-      <Filter>GameMode\Stage1Level</Filter>
+      <Filter>GameMode\StageLevel</Filter>
     </ClCompile>
     <ClCompile Include="StageSelectGameMode.cpp">
       <Filter>GameMode\StageSelectLevel</Filter>
@@ -252,9 +258,6 @@
       <Filter>GameMode</Filter>
     </ClCompile>
     <ClCompile Include="BabaObject.cpp">
-      <Filter>Object\Obj-Level3\0PlayerObject</Filter>
-    </ClCompile>
-    <ClCompile Include="StageSelector.cpp">
       <Filter>Object\Obj-Level3\0PlayerObject</Filter>
     </ClCompile>
     <ClCompile Include="TextObject.cpp">
@@ -346,6 +349,15 @@
     </ClCompile>
     <ClCompile Include="BackTileObject.cpp">
       <Filter>Object\Obj-Level3\0PlayerObject</Filter>
+    </ClCompile>
+    <ClCompile Include="StageSelector.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="StageNumber.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage2GameMode.cpp">
+      <Filter>GameMode\StageLevel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -292,7 +292,6 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.pop_back();
 		TileData.pop_back();
 		TileData.pop_back();
-		// 보이는 건 일단 못지우는걸로..
 	}
 
 	ImGui::Text("\n\n== Save File ==");
@@ -356,19 +355,3 @@ FVector MapEditorGUI::CalPosToIndex(FVector _Pos)
 
 	return Index;
 }
-
-//void MapEditorGUI::DebugGMM()
-//{
-//	for (int y = 19; y >= 0; y--)		// 세로
-//	{
-//		std::string Msg = "";
-//		for (int x = 0; x < 24; x++)	// 가로
-//		{
-//			int ss = GMapManager->Graph[x][y].size();
-//
-//			Msg += std::format("{} ", std::to_string(ss));
-//		}
-//		Msg += "\n";
-//		UEngineDebugMsgWindow::PushMsg(Msg);
-//	}
-//}

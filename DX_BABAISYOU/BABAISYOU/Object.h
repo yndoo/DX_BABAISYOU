@@ -26,6 +26,15 @@ struct Index2D
 		}
 		return false;
 	}
+
+	bool operator==(const Index2D _Other) const
+	{
+		if (X == _Other.X && Y == _Other.Y)
+		{
+			return true;
+		}
+		return false;
+	}
 };
 
 class AObject;

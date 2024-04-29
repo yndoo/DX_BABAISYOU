@@ -235,7 +235,8 @@ void BABAGameMode::DeathCheck()
 					// °ÔÀÓ ½Â¸®
 					GetWorld()->GetLastTarget()->AddEffect<FadeOutEffect>();
 					Obj->InputOff();
-					//GEngine->ChangeLevel("SelectMapLevel");
+					UContentsConstValue::ClearStage += 1;
+					GEngine->ChangeLevel("SelectMapLevel");
 					//return;
 				}
 			}

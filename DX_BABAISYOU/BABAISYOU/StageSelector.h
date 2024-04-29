@@ -1,5 +1,4 @@
 #pragma once
-#include <EngineCore/SpriteRenderer.h>
 #include "PlayerObject.h"
 
 class AStageSelector : public APlayerObject
