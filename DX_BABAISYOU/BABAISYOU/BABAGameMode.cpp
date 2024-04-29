@@ -233,6 +233,7 @@ void BABAGameMode::DeathCheck()
 				{
 					// °ÔÀÓ ½Â¸®
 					GetWorld()->GetLastTarget()->AddEffect<FadeOutEffect>();
+					Obj->InputOff();
 					//GEngine->ChangeLevel("SelectMapLevel");
 					//return;
 				}
@@ -240,6 +241,7 @@ void BABAGameMode::DeathCheck()
 			if (false == Changed)
 			{
 				Obj->Destroyed = false;
+				InputOff();
 			}
 		}
 	}
