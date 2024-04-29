@@ -207,6 +207,9 @@
     <ClInclude Include="FadeOutEffect.h">
       <Filter>Effect</Filter>
     </ClInclude>
+    <ClInclude Include="BackTileObject.h">
+      <Filter>Object\Obj-Level3\0PlayerObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -340,6 +343,9 @@
     </ClCompile>
     <ClCompile Include="FadeOutEffect.cpp">
       <Filter>Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="BackTileObject.cpp">
+      <Filter>Object\Obj-Level3\0PlayerObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -66,6 +66,8 @@ enum class EObjectType
 	SKULLTEXT,
 	LAVATEXT,
 	GRASSTEXT,	// 필요가 딱히 없어서 아직 안 만듦.
+	// 바닥에 깔리는 애
+	TILE,
 };
 
 enum class EMyType

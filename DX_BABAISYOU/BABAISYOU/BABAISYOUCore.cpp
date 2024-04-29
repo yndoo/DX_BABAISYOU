@@ -54,6 +54,7 @@ void UBABAISYOUCore::Initialize()
 		UEngineSprite::CreateCutting("FLAG.png", 2, 3);
 		UEngineSprite::CreateCutting("ROCK.png", 1, 3);
 		UEngineSprite::CreateCutting("SKULL.png", 4, 3);
+		UEngineSprite::CreateCutting("Tile.png", 3, 1);
 
 		// TEXT Objects
 		UEngineSprite::CreateCutting("BABAText.png", 2, 3);

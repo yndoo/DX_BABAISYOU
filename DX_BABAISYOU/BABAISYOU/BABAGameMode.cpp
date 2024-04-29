@@ -15,6 +15,7 @@
 #include "SkullObject.h"
 #include "LavaObject.h"
 #include "GrassObject.h"
+#include "BackTileObject.h"
 
 #include "IsText.h"
 #include "BabaText.h"
@@ -413,7 +414,7 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 		AllObjects.push_back(Water.get());
 		Players.push_back(Water.get());
 	}
-	break;
+		break;
 	case EObjectType::LAVA:
 	{
 		std::shared_ptr<ALavaObject> Lava = GetWorld()->SpawnActor<ALavaObject>("Lava");
@@ -426,7 +427,7 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 		AllObjects.push_back(Lava.get());
 		Players.push_back(Lava.get());
 	}
-	break;
+		break;
 	case EObjectType::GRASS:
 	{
 		std::shared_ptr<AGrassObject> Grass = GetWorld()->SpawnActor<AGrassObject>("Grass");
@@ -439,7 +440,7 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 		AllObjects.push_back(Grass.get());
 		Players.push_back(Grass.get());
 	}
-	break;
+		break;
 	case EObjectType::FLAG:
 	{
 		std::shared_ptr<AFlagObject> Flag = GetWorld()->SpawnActor<AFlagObject>("Flag");
@@ -465,7 +466,7 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 		AllObjects.push_back(Rock.get());
 		Players.push_back(Rock.get());
 	}
-	break;
+		break;
 	case EObjectType::SKULL:
 	{
 		std::shared_ptr<ASkullObject> Skull = GetWorld()->SpawnActor<ASkullObject>("Skull");
@@ -478,7 +479,20 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 		AllObjects.push_back(Skull.get());
 		Players.push_back(Skull.get());
 	}
-	break;
+		break;
+	case EObjectType::TILE:
+	{
+		std::shared_ptr<ABackTileObject> Tile= GetWorld()->SpawnActor<ABackTileObject>("Skull");
+		Tile->SetMapScale(_MapScale);
+		Tile->SetMaxIndex();
+		Tile->SetActorLocation(Tile->CalIndexToPos(Index2D(_X, _Y)));
+		Tile->BeginPosSetting();
+		Tile->SetOrder(ERenderOrder::FrontTile);
+		GMapManager->SetObject(Tile.get(), _X, _Y);
+		AllObjects.push_back(Tile.get());
+		Players.push_back(Tile.get());
+	}
+		break;
 	// ObjectiveObjects
 	case EObjectType::YOU:
 	{
@@ -505,7 +519,7 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 		AllObjects.push_back(Push.get());
 		Texts.push_back(Push.get());
 	}
-		break;
+	break;
 	case EObjectType::STOP:
 	{
 		std::shared_ptr<AStopText> Stop = GetWorld()->SpawnActor<AStopText>("StopText");
@@ -570,7 +584,7 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 		AllObjects.push_back(Hot.get());
 		Texts.push_back(Hot.get());
 	}
-	break;
+		break;
 	// VerbObejcts
 	case EObjectType::IS:
 	{

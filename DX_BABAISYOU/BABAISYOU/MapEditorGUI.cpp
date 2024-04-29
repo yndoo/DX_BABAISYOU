@@ -135,6 +135,15 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ObjectNum);
 		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}
+	if (true == ImGui::Button("Tile"))
+	{
+		TargetType = EObjectType::TILE;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
+	}
 
 	ImGui::Text("== TextObject ==");
 	ImGui::Text("Subject");
