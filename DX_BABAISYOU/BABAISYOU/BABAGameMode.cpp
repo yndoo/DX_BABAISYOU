@@ -177,7 +177,15 @@ void BABAGameMode::FinalUpdate()
 		{
 			if (player->Info->MyType == PlayerType)
 			{
-				player->Info->MyObjectiveType[sub->Info->TextObjective] = true;
+				// 주어 텍스트의 오브젝티브를 다 넘겨줌
+				for (auto m : sub->Info->TextObjective)
+				{
+					if (m.second == true)
+					{
+						player->Info->MyObjectiveType[m.first] = true;
+					}
+				}
+				
 				int a = 0;
 			}
 		}
@@ -274,26 +282,37 @@ void BABAGameMode::SentenceUpdate()
 		if (sub->Info->TileType == ETileType::Subject)
 		{
 			// 동사 체크, 목적어 체크 후 문장 맞으면 목적어를 return함.
- 			AObject* IsObjective = VerbCheck(sub->Info->CurIndex.X, sub->Info->CurIndex.Y);
-			if (IsObjective == nullptr)
+ 			//AObject* IsObjective = VerbCheck(sub->Info->CurIndex.X, sub->Info->CurIndex.Y);
+			VerbCheck(sub->Info->CurIndex.X, sub->Info->CurIndex.Y);
+			if (true == sentenceQ.empty())
 			{
 				SentenceDir = -1;
 				continue;
 			}
 			
-			// 문장이 맞으면 
+			// 문장이 맞으면 주어 ON
 			sub->SentenceON = true;
-			IsObjective->SentenceON = true;
-			// On된 주어들 리스트에 모아주기
-			OnSubjects.push_back(sub);
-			// Info 세팅 다시해주기
-			// (주의) 주어의 목적어타입이 아님!!
-			sub->Info->TextObjective = IsObjective->Info->MyType;
+
+			while (!sentenceQ.empty())
+			{
+				AObject* IsObjective = sentenceQ.front();
+				IsObjective->SentenceON = true;
+				
+				// On된 주어들 리스트에 모아주기
+				OnSubjects.push_back(sub);
+
+				// Info 세팅 다시해주기
+				// (주의) 주어의 TextObjective(MyObjective가 아님)에 넣어주고서 Player 객체와 이어주는 작업이 필요함!!
+				sub->Info->TextObjective[IsObjective->Info->MyType] = true;
+
+				sentenceQ.pop();
+			}
+
 		}
 	}
 }
 
-AObject* BABAGameMode::VerbCheck(int _X, int _Y/*주어의 인덱스*/)
+void BABAGameMode::VerbCheck(int _X, int _Y/*주어의 인덱스*/)
 {
 	// 돌면서 동사 찾기
 	for (int i = 0; i < 4; i++)
@@ -316,17 +335,15 @@ AObject* BABAGameMode::VerbCheck(int _X, int _Y/*주어의 인덱스*/)
 				if (IsObjective == nullptr)
 				{
 					SentenceDir = -1;
-					return nullptr;
+					continue;
 				}
 
 				// 동사 ON
 				Obj->SentenceON = true;
-
-				return IsObjective;
+				sentenceQ.push(IsObjective);
 			}
 		}
 	}
-	return nullptr;
 }
 
 AObject* BABAGameMode::ObjectiveCheck(int _X, int _Y/*동사의 인덱스*/)

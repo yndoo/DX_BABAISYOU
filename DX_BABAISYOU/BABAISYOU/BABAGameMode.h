@@ -3,6 +3,7 @@
 #include <EngineBase/EngineDirectory.h>
 #include "MapManager.h"
 #include "Object.h"
+#include <queue>
 
 class BABAGameMode : public AGameMode
 {
@@ -32,10 +33,11 @@ protected:
 	void SentenceUpdate();
 	void FinalUpdate();
 	void DeathCheck();
-	AObject* VerbCheck(int _X, int _Y);
+	void VerbCheck(int _X, int _Y);
 	AObject* ObjectiveCheck(int _X, int _Y);
 	void ClearAllSentence();
 	int SentenceDir = -1;	// 0, 1, 2, 3
+	std::queue<AObject*> sentenceQ;
 
 	UEngineDirectory Dir;
 	std::vector<int> TileData;	// X, Y, ObjectNum ¼ø¼­.
