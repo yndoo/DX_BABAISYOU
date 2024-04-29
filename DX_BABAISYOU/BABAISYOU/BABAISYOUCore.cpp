@@ -106,7 +106,7 @@ void UBABAISYOUCore::Initialize()
 	GEngine->CreateLevel<AStage2GameMode>("Stage2Level");
 	GEngine->CreateLevel<AStageSelectGameMode>("SelectMapLevel");
 	GEngine->CreateLevel<CreateMapGameMode>("CreateMapLevel");
-	GEngine->ChangeLevel("Stage1Level");
+	GEngine->ChangeLevel("SelectMapLevel");
 
 	int a = 0;
 }

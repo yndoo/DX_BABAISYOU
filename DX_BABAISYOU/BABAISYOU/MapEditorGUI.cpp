@@ -39,7 +39,6 @@ void MapEditorGUI::Tick(ULevel* _Level, float _Delta)
 	{
 		Off();
 	}
-	//DebugGMM();
 }
 
 void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)

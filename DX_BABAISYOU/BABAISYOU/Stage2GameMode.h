@@ -1,5 +1,6 @@
 #pragma once
 #include "BABAGameMode.h"
+#include "Background.h"
 
 class AStage2GameMode : public BABAGameMode
 {
@@ -19,6 +20,6 @@ protected:
 	void LevelStart(ULevel* _PrevLevel) override;
 
 private:
-
+	std::shared_ptr<ABackground> Back;
 };
 

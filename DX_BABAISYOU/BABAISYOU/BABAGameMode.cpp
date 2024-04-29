@@ -36,6 +36,7 @@
 BABAGameMode::BABAGameMode()
 {
 	GMapManager = new MapManager();
+	InputOn();
 }
 
 BABAGameMode::~BABAGameMode()
@@ -143,6 +144,7 @@ void BABAGameMode::LevelEnd(ULevel* _NextLevel)
 	Texts.clear();
 	OnSubjects.clear();
 
+	GMapManager->ClearGraph();
 	int a = 0;
 }
 
@@ -230,7 +232,7 @@ void BABAGameMode::DeathCheck()
 					continue;
 					//return;
 				}
-				if (others->Info->MyObjectiveType[EObjectType::WIN] == true)
+				if (others->Info->MyObjectiveType[EObjectType::WIN] == true || true == IsPress(VK_F1))
 				{
 					// °ÔÀÓ ½Â¸®
 					GetWorld()->GetLastTarget()->AddEffect<FadeOutEffect>();
