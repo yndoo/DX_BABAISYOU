@@ -111,7 +111,8 @@ public:
 	FVector CurActorLocation = FVector::Zero;
 	bool EachMoveCheck_ForStack = false;		// 이동 있었으면 스택에 true로, 없었으면 false로 들어가기 위한 변수
 	bool SentenceON = false;					// 문장이 만들어지면 켜져야 함.
-	bool Destroyed = false;						// 파괴됐으면 ON 돼야 함.
+	bool Destroyed = false;						// 파괴됐으면 ON 돼야 함. (눈에 보이냐 마냐에만 관여함. 실제로 지워지게하는 변수 X)
+	bool RealDeath = false;						// 진짜 죽이는 변수.
 	
 protected:
 	void BeginPlay() override;
@@ -126,8 +127,9 @@ protected:
 	int AnimationNumber = 0;
 
 	// 롤백 기능을 위해 스택이 필요함
-	std::stack<std::pair<EInputDir, bool >> MoveStack;		// InputDir, IsMove 행동 스택
+	std::stack<std::pair<EInputDir, bool>> MoveStack;		// InputDir, IsMove 행동 스택
 	std::stack<std::pair<int, EInputDir>> AnimationStack;	// AnimationNumber, AnimationDir 애니메이션 스택
+	std::stack<bool> DeathStack;
 
 	// 바바이즈유의 모든 오브젝트는 3개씩 애니메이션함.
 	float AnimationInter = 0.2f;

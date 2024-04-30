@@ -30,7 +30,7 @@ enum class ETileType
 	Verb,		//동사	
 	Objective,	//목적어
 	
-	Tile,		//보류
+	Tile,		//타일객체
 };
 
 // 모든 오브젝트 종류

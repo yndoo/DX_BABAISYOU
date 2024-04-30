@@ -56,14 +56,14 @@ void BABAGameMode::Update()
 	}
 	else
 	{
+		SentenceUpdate();
+		FinalUpdate();
+		DeathCheck();
 		if (BeforeInputCount != UContentsConstValue::InputCount)
 		{
 			StackUpdate();
 			BeforeInputCount = UContentsConstValue::InputCount;
 		}
-		SentenceUpdate();
-		FinalUpdate();
-		DeathCheck();
 	}
 }
 
@@ -172,6 +172,11 @@ void BABAGameMode::FinalUpdate()
 		{
 			if (player->Info->MyType == PlayerType)
 			{
+				// 진짜 죽어야 하는 상태면 XX
+				if (player->RealDeath == true)
+				{
+					continue;
+				}
 				// 주어 텍스트의 오브젝티브를 다 넘겨줌
 				for (auto m : sub->Info->TextObjective)
 				{
@@ -209,12 +214,14 @@ void BABAGameMode::DeathCheck()
 					Changed = true;
 					continue;
 				}
-				if (others->Info->MyObjectiveType[EObjectType::SINK] == true)
+				if (others->RealDeath != true && others->Info->MyObjectiveType[EObjectType::SINK] == true)
 				{
 					//Obj와 others를 둘다 파괴
 					--YouCount;
 					Obj->Destroyed = true;
+					Obj->RealDeath = true;
 					others->Destroyed = true;
+					others->RealDeath = true;
 					Changed = true;
 					continue;
 					//return;
@@ -244,10 +251,12 @@ void BABAGameMode::DeathCheck()
 				{
 					Obj->Destroyed = true;
 				}
-				if (true == others->Info->MyObjectiveType[EObjectType::SINK])
+				if (others->RealDeath != true && true == others->Info->MyObjectiveType[EObjectType::SINK])
 				{
 					Obj->Destroyed = true;
+					Obj->RealDeath = true;
 					others->Destroyed = true;
+					others->RealDeath = true;
 				}
 			}
 		}
@@ -258,7 +267,7 @@ void BABAGameMode::DeathCheck()
 	{
 		// 게임 끝남
 		//GEngine->ChangeLevel("SelectMapLevel");
-		GetWorld()->GetLastTarget()->AddEffect<FadeOutEffect>();
+		//GetWorld()->GetLastTarget()->AddEffect<FadeOutEffect>();
 		int a = 0;
 		return;
 	}
@@ -294,7 +303,6 @@ void BABAGameMode::SentenceUpdate()
 		if (sub->Info->TileType == ETileType::Subject)
 		{
 			// 동사 체크, 목적어 체크 후 문장 맞으면 목적어를 return함.
- 			//AObject* IsObjective = VerbCheck(sub->Info->CurIndex.X, sub->Info->CurIndex.Y);
 			VerbCheck(sub->Info->CurIndex.X, sub->Info->CurIndex.Y);
 			if (true == sentenceQ.empty())
 			{

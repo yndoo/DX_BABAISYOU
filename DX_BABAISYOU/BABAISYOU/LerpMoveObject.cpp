@@ -69,7 +69,14 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 		UContentsConstValue::ZInput = true;
 		UContentsConstValue::InputCount++;
 
-		bool CanGoBack = MoveStack.top().second;		// 튜플 세 번째 원소	
+		// DeathStack은 어캐빼야할까....
+		if (true == DeathStack.top())
+		{
+			RealDeath = false;
+			Destroyed = false;
+		}
+
+		bool CanGoBack = MoveStack.top().second;
 		if (false == CanGoBack)
 		{
 			// 뒤로 돌아갈 수 없는 롤백은 false로 넘기면 된다.
@@ -77,7 +84,6 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 			MoveStack.pop();
 			return;
 		}
-
 
 		// 뒤로 돌아가야 하는 롤백
 		// 
@@ -88,9 +94,11 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 		AnimationNumber = AnimationStack.top().first;
 		NewInputDir = AnimationStack.top().second;
 
+
 		MoveStack.pop();
 		AnimationStack.pop();
-	
+		DeathStack.pop();
+
 		return;
 	}
 }

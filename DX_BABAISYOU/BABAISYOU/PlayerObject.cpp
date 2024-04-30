@@ -32,14 +32,22 @@ void APlayerObject::Tick(float _DeltaTime)
 		//Info->ObjectiveType = EObjectType::NONE;
 	}
 
+	if (false == RealDeath)
+	{
+		Renderer->SetActive(true);
+		Destroyed = false;
+		MyDestroyed = Destroyed;
+		return;
+	}
+
 	if (MyDestroyed != Destroyed)
 	{
-		if (true == Destroyed)
+		if (true == Destroyed || true == RealDeath)
 		{
 			Renderer->SetActive(false);
 			MyDestroyed = Destroyed;
 		}
-		else
+		else 
 		{
 			Renderer->SetActive(true);
 			MyDestroyed = Destroyed;
