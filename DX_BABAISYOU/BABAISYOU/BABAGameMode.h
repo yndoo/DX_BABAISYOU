@@ -5,6 +5,9 @@
 #include "Object.h"
 #include <queue>
 
+#include "FadeInCover.h"
+#include "FadeOUTEffect.h"
+
 class BABAGameMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -40,6 +43,8 @@ protected:
 	int SentenceDir = -1;	// 0, 1, 2, 3
 	std::queue<AObject*> sentenceQ;
 	EGameState GameState = EGameState::SELECTMAP;	// 실행 시 SLECETMAP에서 시작함
+	std::shared_ptr<FadeOutEffect> FadeOut;// = nullptr;
+	float EffectTime = 3.f;
 
 	UEngineDirectory Dir;
 	std::vector<int> TileData;	// X, Y, ObjectNum 순서.

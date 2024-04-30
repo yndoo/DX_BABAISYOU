@@ -4,8 +4,6 @@
 #include <EngineCore/EngineCore.h>
 
 #include "ContentsConstValue.h"
-#include "FadeInCover.h"
-#include "FadeOUTEffect.h"
 
 #include "BabaObject.h"
 #include "WallObject.h"
@@ -85,6 +83,29 @@ void BABAGameMode::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 
 	Update();
+
+	switch (GameState) 
+	{
+	case EGameState::CLEAR:
+		if (EffectTime < 0.f)
+		{
+			FadeOut.get()->EffectOff();
+			EffectTime = 3.f;
+			GameState = EGameState::CLEARMSG;
+		}
+		else
+		{
+			EffectTime -= _DeltaTime;
+			
+		}
+		break;
+	case EGameState::CLEARMSG:
+		GEngine->ChangeLevel("SelectMapLevel");
+		GameState = EGameState::NONE;
+		break;
+	default:
+		break;
+	}
 }
 
 void BABAGameMode::LoadMapFile(std::string _FileName)
@@ -229,11 +250,15 @@ void BABAGameMode::DeathCheck()
 				if (others->Info->MyObjectiveType[EObjectType::WIN] == true || true == IsPress(VK_F1))
 				{
 					// °ÔÀÓ WIN
-					GetWorld()->GetLastTarget()->AddEffect<FadeOutEffect>();
-					Obj->InputOff();
-					UContentsConstValue::ClearStage += 1;
-					//GEngine->ChangeLevel("SelectMapLevel");
-					//return;
+					if(GameState != EGameState::CLEAR)
+					{
+						Obj->InputOff();
+						FadeOut = GetWorld()->GetLastTarget()->AddEffect<FadeOutEffect>();
+						FadeOut.get()->EffectON();
+
+						UContentsConstValue::ClearStage += 1;
+						GameState = EGameState::CLEAR;
+					}
 				}
 			}
 			if (false == Changed)

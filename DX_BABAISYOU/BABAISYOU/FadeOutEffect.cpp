@@ -29,3 +29,18 @@ void FadeOutEffect::Effect(std::shared_ptr<UEngineRenderTarget> EffectTarget)
 	Render(0.0f);
 
 }
+
+void FadeOutEffect::EffectON()
+{
+	Active(true);
+}
+
+void FadeOutEffect::EffectOff()
+{
+	Active(false);
+}
+
+void FadeOutEffect::SetEffect(bool _Triger)
+{
+	Active(_Triger);
+}

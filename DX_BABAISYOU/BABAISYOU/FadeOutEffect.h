@@ -12,6 +12,9 @@ public:
 	FadeOutEffect(FadeOutEffect&& _Other) noexcept = delete;
 	FadeOutEffect& operator=(const FadeOutEffect& _Other) = delete;
 	FadeOutEffect& operator=(FadeOutEffect&& _Other) noexcept = delete;
+	void EffectON();
+	void EffectOff();
+	void SetEffect(bool _Triger);
 
 protected:
 	void Init() override;
