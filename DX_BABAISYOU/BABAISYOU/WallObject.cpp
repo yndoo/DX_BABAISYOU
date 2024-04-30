@@ -5,6 +5,7 @@
 AWallObject::AWallObject()
 {
 	Info->MyType = EObjectType::WALL;
+	Info->TileType = ETileType::Player;
 }
 
 AWallObject::~AWallObject()
