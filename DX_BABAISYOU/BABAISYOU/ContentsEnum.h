@@ -70,7 +70,13 @@ enum class EObjectType
 	TILE,
 };
 
-enum class EMyType
+// 게임 진행 상황
+enum class EGameState
 {
-
+	NONE,
+	LOBBY,
+	STAGE,
+	CLEAR,
+	CLEARMSG,
+	SELECTMAP,
 };

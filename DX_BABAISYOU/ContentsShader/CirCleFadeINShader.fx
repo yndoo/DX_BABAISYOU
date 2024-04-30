@@ -37,7 +37,7 @@ ImagePSOutPut CirCleFade_PS(ImageVSOutPut _Input)
     
     if (Len > 0.5f * AccTime)
     {
-        Out.COLOR.rgba = float4(0.f, 0.f, 0.f, 1.f);
+        Out.COLOR.rgba = float4(0.1f, 0.1f, 0.1f, 1.f);
 
     }
     

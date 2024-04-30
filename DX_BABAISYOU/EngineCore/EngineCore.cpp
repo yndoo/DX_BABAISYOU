@@ -37,9 +37,11 @@ void UEngineCore::EngineStart(HINSTANCE _Inst)
 	LeakCheck;
 	GEngine = this;
 
+	JobWorker.Initialize("Engine Thread");
+
 	EngineOptionInit();
 
-	EngineWindow.Open(EngineOption.WindowTitle);
+	EngineWindow.Open(EngineOption.WindowTitle, WindowIconPath);
 	// 디바이스 초기화전에 크기가 다정해지면 해상도가 이미 결정 된거에요.
 	// EngineOption.WindowScale 해상도
 	// 해상도는 윈도우 크기와 관련이 없습니다.
@@ -53,7 +55,7 @@ void UEngineCore::EngineStart(HINSTANCE _Inst)
 	{
 		UserCorePtr->Initialize();
 		MainTimer.TimeCheckStart();
-	}
+	} 
 
 
 	UEngineWindow::WindowMessageLoop(
@@ -87,11 +89,11 @@ void UEngineCore::EngineOptionInit()
 		File.Load(Ser);
 		EngineOption.DeSerialize(Ser);
 	}
-
 }
 
 void UEngineCore::EngineEnd()
 {
+	JobWorker.End();
 	Levels.clear();
 	EngineDevice.EngineResourcesRelease();
 }

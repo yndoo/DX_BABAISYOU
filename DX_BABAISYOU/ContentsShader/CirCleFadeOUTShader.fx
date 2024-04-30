@@ -28,7 +28,7 @@ ImagePSOutPut CirCleFade_PS(ImageVSOutPut _Input)
 {
     ImagePSOutPut Out = (ImagePSOutPut) 0;
     //Out.COLOR.rgba = Image.Sample(Image_Sampler, _Input.TEXCOORD.xy);
-    Out.COLOR.rgba = float4(0.f, 0.f, 0.f, 1.f);
+    Out.COLOR.rgba = float4(0.1f, 0.1f, 0.1f, 1.f);
     
 
     

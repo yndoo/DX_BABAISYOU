@@ -36,8 +36,10 @@ protected:
 	void VerbCheck(int _X, int _Y);
 	AObject* ObjectiveCheck(int _X, int _Y);
 	void ClearAllSentence();
+
 	int SentenceDir = -1;	// 0, 1, 2, 3
 	std::queue<AObject*> sentenceQ;
+	EGameState GameState = EGameState::SELECTMAP;	// 실행 시 SLECETMAP에서 시작함
 
 	UEngineDirectory Dir;
 	std::vector<int> TileData;	// X, Y, ObjectNum 순서.

@@ -229,10 +229,10 @@ void BABAGameMode::DeathCheck()
 				if (others->Info->MyObjectiveType[EObjectType::WIN] == true || true == IsPress(VK_F1))
 				{
 					// °ÔÀÓ ½Â¸®
-					//GetWorld()->GetLastTarget()->AddEffect<FadeOutEffect>();
+					GetWorld()->GetLastTarget()->AddEffect<FadeOutEffect>();
 					Obj->InputOff();
 					UContentsConstValue::ClearStage += 1;
-					GEngine->ChangeLevel("SelectMapLevel");
+					//GEngine->ChangeLevel("SelectMapLevel");
 					//return;
 				}
 			}
