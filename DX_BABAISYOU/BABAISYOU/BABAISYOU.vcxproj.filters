@@ -213,7 +213,7 @@
     <ClInclude Include="StageNumber.h">
       <Filter>Actor</Filter>
     </ClInclude>
-    <ClInclude Include="Stage2GameMode.h">
+    <ClInclude Include="StageGameMode.h">
       <Filter>GameMode\StageLevel</Filter>
     </ClInclude>
   </ItemGroup>
@@ -356,7 +356,7 @@
     <ClCompile Include="StageNumber.cpp">
       <Filter>Actor</Filter>
     </ClCompile>
-    <ClCompile Include="Stage2GameMode.cpp">
+    <ClCompile Include="StageGameMode.cpp">
       <Filter>GameMode\StageLevel</Filter>
     </ClCompile>
   </ItemGroup>

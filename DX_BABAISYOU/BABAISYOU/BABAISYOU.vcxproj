@@ -136,7 +136,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Stage2GameMode.h">
+    <ClInclude Include="StageGameMode.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -320,7 +320,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Stage2GameMode.cpp">
+    <ClCompile Include="StageGameMode.cpp">
       <SubType>
       </SubType>
     </ClCompile>

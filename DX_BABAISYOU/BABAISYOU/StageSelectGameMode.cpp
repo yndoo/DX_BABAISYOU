@@ -56,7 +56,7 @@ void AStageSelectGameMode::Tick(float _DeltaTime)
 	{
 		Index2D where = Selector->Info->CurIndex;
 		int StageN = IndexToStage(where);
-		GEngine->ChangeLevel("Stage2Level");
+		GEngine->ChangeLevel("StageLevel");
 		UContentsConstValue::OpenStageNum = StageN;
 	}
 

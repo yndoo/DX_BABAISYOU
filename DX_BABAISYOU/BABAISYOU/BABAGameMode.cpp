@@ -228,7 +228,7 @@ void BABAGameMode::DeathCheck()
 				}
 				if (others->Info->MyObjectiveType[EObjectType::WIN] == true || true == IsPress(VK_F1))
 				{
-					// 게임 승리
+					// 게임 WIN
 					GetWorld()->GetLastTarget()->AddEffect<FadeOutEffect>();
 					Obj->InputOff();
 					UContentsConstValue::ClearStage += 1;

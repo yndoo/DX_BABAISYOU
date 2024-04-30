@@ -7,7 +7,7 @@
 #include "MapEditorGUI.h"
 
 #include "Stage1GameMode.h"
-#include "Stage2GameMode.h"
+#include "StageGameMode.h"
 #include "StageSelectGameMode.h"
 #include "CreateMapGameMode.h"
 
@@ -103,7 +103,7 @@ void UBABAISYOUCore::Initialize()
 	// Level
 	//GEngine->CreateLevel<APlayGameMode>("PlayLevel");
 	GEngine->CreateLevel<AStage1GameMode>("Stage1Level");
-	GEngine->CreateLevel<AStage2GameMode>("Stage2Level");
+	GEngine->CreateLevel<AStageGameMode>("StageLevel");
 	GEngine->CreateLevel<AStageSelectGameMode>("SelectMapLevel");
 	GEngine->CreateLevel<CreateMapGameMode>("CreateMapLevel");
 	GEngine->ChangeLevel("SelectMapLevel");

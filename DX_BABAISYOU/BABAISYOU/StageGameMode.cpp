@@ -1,26 +1,26 @@
 #include "PreCompile.h"
-#include "Stage2GameMode.h"
+#include "StageGameMode.h"
 #include "ContentsConstValue.h"
 
-AStage2GameMode::AStage2GameMode()
+AStageGameMode::AStageGameMode()
 {
 }
 
-AStage2GameMode::~AStage2GameMode()
+AStageGameMode::~AStageGameMode()
 {
 }
 
-void AStage2GameMode::BeginPlay()
+void AStageGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 }
 
-void AStage2GameMode::Tick(float _DeltaTime)
+void AStageGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 }
 
-void AStage2GameMode::LevelStart(ULevel* _PrevLevel)
+void AStageGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 
@@ -48,7 +48,7 @@ void AStage2GameMode::LevelStart(ULevel* _PrevLevel)
 	Update();
 }
 
-void AStage2GameMode::LevelEnd(ULevel* _NextLevel)
+void AStageGameMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
 }
