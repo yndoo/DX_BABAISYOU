@@ -9,6 +9,7 @@ public:
 	static const FVector StageSelectMapImgScale;
 	static const FVector Stage1MapScale;
 	static const FVector Stage3MapScale;
+	static const FVector Stage4MapScale;
 
 	static const FVector TileScale;
 	static const float TileX;

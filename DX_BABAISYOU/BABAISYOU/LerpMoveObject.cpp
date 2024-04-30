@@ -42,6 +42,11 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
+	if (Info->MyType == EObjectType::BABA)
+	{
+		int a = 0;
+	}
+
 	// Input이동은 안 되지만 Z는 되어야 하는 경우가 있음. YOU인 경우에만 InputMove
 	if (false == IsMove)
 	{
@@ -64,6 +69,7 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 			return;
 		}
 		
+
 		IsMove = true;
 		ZInputCheck = true;
 		UContentsConstValue::ZInput = true;

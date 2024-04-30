@@ -5,6 +5,7 @@ const FVector UContentsConstValue::StageSelectMapScale = FVector(758, 432);
 const FVector UContentsConstValue::StageSelectMapImgScale = FVector(1280.f * 1.5f, 720.f * 1.5f);
 const FVector UContentsConstValue::Stage1MapScale = FVector(864, 648);
 const FVector UContentsConstValue::Stage3MapScale = FVector(828, 576);
+const FVector UContentsConstValue::Stage4MapScale = FVector(864, 504);
 
 const FVector UContentsConstValue::TileScale = FVector(36, 36, 1);
 const float UContentsConstValue::TileX = 36.f;

@@ -38,6 +38,9 @@ void AStageGameMode::LevelStart(ULevel* _PrevLevel)
 	case 3:
 		Back->SetActorScale3D(UContentsConstValue::Stage3MapScale);
 		break;
+	case 4:
+		Back->SetActorScale3D(UContentsConstValue::Stage4MapScale);
+		break;
 	default:
 		break;
 	}

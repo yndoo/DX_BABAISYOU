@@ -172,10 +172,6 @@ void BABAGameMode::StackUpdate()
 		}
 		else if (false == Obj->EachMoveCheck_ForStack)
 		{
-			if (Obj->Info->MyType == EObjectType::BABATEXT)
-			{
-				int a = 0;
-			}
  			Obj->PushFalseHistory();
 		}
 	}
@@ -239,10 +235,18 @@ void BABAGameMode::DeathCheck()
 				{
 					//Obj와 others를 둘다 파괴
 					--YouCount;
+
 					Obj->Destroyed = true;
 					Obj->RealDeath = true;
 					others->Destroyed = true;
 					others->RealDeath = true;
+					
+					//일단 야매
+					Obj->DeathStack.pop();
+					Obj->PushTrueHistory();
+					others->DeathStack.pop();
+					others->PushFalseHistory();
+
 					Changed = true;
 					continue;
 					//return;

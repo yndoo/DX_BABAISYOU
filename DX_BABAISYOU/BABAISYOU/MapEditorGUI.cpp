@@ -57,6 +57,7 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		// 더블 클릭한 곳 인덱스 얻어옴
 		// (클릭한 곳으로 하면 다른 버튼 눌렀을 때도 들어오기 때문)
 		ClickIndex = MouseIndexTest;
+		MapScale;
 		int a = 0;
 	}
 	ImGui::Text("\n== TileObject ==");
