@@ -25,12 +25,25 @@ void AStage2GameMode::LevelStart(ULevel* _PrevLevel)
 	Super::LevelStart(_PrevLevel);
 
 	Back = GetWorld()->SpawnActor<ABackground>("background");
-	Back->SetActorScale3D(UContentsConstValue::Stage1MapScale);
 	Back->SetActorLocation({ 0, 0, 400 });
-	Back->Stage1Setting();
 	Back->SetOrder(ERenderOrder::Background);
+	Back->BGImageSetting();
 
-	LoadMapFile("Stage2");
+	switch (UContentsConstValue::OpenStageNum)
+	{
+	case 1:
+	case 2:
+		Back->SetActorScale3D(UContentsConstValue::Stage1MapScale);
+		break;
+	case 3:
+		Back->SetActorScale3D(UContentsConstValue::Stage3MapScale);
+		break;
+	default:
+		break;
+	}
+
+
+	LoadMapFile("Stage"+std::to_string(UContentsConstValue::OpenStageNum));
 
 	Update();
 }

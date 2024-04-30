@@ -48,7 +48,7 @@ void AStage1GameMode::LevelStart(ULevel* _PrevLevel)
 	std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");
 	Back->SetActorScale3D(UContentsConstValue::Stage1MapScale);
 	Back->SetActorLocation({ 0, 0, 400 });
-	Back->Stage1Setting();
+	Back->BGImageSetting();
 	Back->SetOrder(ERenderOrder::Background);
 	
 

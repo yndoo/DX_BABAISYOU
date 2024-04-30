@@ -16,6 +16,7 @@ int UContentsConstValue::MaxIndexX = 0;
 int UContentsConstValue::MaxIndexY = 0;
 int UContentsConstValue::InputCount = 0;
 int UContentsConstValue::ClearStage = 1;
+int UContentsConstValue::OpenStageNum = -1;
 bool UContentsConstValue::ZInput = false;
 bool UContentsConstValue::IsMapEditorUpdated = false;
 

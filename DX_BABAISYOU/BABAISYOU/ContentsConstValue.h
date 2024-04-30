@@ -20,6 +20,7 @@ public:
 	static int MaxIndexY;
 	static int InputCount;
 	static int ClearStage;		// 다음 스테이지 번호
+	static int OpenStageNum;	// 입장해야 하는 스테이지 번호
 	static bool ZInput;			// 전역 Z Input 체크
 	static bool IsMapEditorUpdated;
 

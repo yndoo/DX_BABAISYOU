@@ -45,7 +45,6 @@ BABAGameMode::~BABAGameMode()
 
 void BABAGameMode::Update()
 {
-	// ZInput면 StackUpdate하지마
 	if (true == UContentsConstValue::ZInput)
 	{
 		SentenceUpdate();
@@ -86,8 +85,6 @@ void BABAGameMode::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 
 	Update();
-	
-
 }
 
 void BABAGameMode::LoadMapFile(std::string _FileName)
@@ -126,11 +123,6 @@ void BABAGameMode::LevelStart(ULevel* _PrevLevel)
 void BABAGameMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
-
-	//std::list<AObject*> AllObjects;		
-	//std::list<AObject*> Players;		
-	//std::list<AObject*> Texts;			
-	//std::list<AObject*> OnSubjects;		
 	
 	for (AObject* one : AllObjects)
 	{
@@ -205,8 +197,6 @@ void BABAGameMode::DeathCheck()
 		{
 			++YouCount;
 			Index2D YouPos = Obj->Info->CurIndex;
-			
-			//std::list<AObject*> test = GMapManager->Graph[YouPos.X][YouPos.Y];
 
 			bool Changed = false;
 			for (AObject* others : GMapManager->Graph[YouPos.X][YouPos.Y])
@@ -219,10 +209,7 @@ void BABAGameMode::DeathCheck()
 					Changed = true;
 					continue;
 				}
-				if (
-					others->Info->MyObjectiveType[EObjectType::SINK] == true
-					//&& Obj->Info->MyObjectiveType[EObjectType::FLOAT] == false
-					)
+				if (others->Info->MyObjectiveType[EObjectType::SINK] == true)
 				{
 					//Obj와 others를 둘다 파괴
 					--YouCount;
@@ -235,7 +222,7 @@ void BABAGameMode::DeathCheck()
 				if (others->Info->MyObjectiveType[EObjectType::WIN] == true || true == IsPress(VK_F1))
 				{
 					// 게임 승리
-					GetWorld()->GetLastTarget()->AddEffect<FadeOutEffect>();
+					//GetWorld()->GetLastTarget()->AddEffect<FadeOutEffect>();
 					Obj->InputOff();
 					UContentsConstValue::ClearStage += 1;
 					GEngine->ChangeLevel("SelectMapLevel");
@@ -247,12 +234,31 @@ void BABAGameMode::DeathCheck()
 				Obj->Destroyed = false;
 			}
 		}
+		// YOU가 아닌 플레이어객체(그림객체)도 DEFEAT나 SINK 처리 해줘야 함.
+		else if(Obj->Info->TileType != ETileType::Tile)
+		{
+			Index2D RockPos = Obj->Info->CurIndex;	// 꼭 Rock은 아님
+			for (AObject* others : GMapManager->Graph[RockPos.X][RockPos.Y])
+			{
+				if (others->Info->MyObjectiveType[EObjectType::DEFEAT] == true || others->Info->MyObjectiveType[EObjectType::HOT] == true)
+				{
+					Obj->Destroyed = true;
+				}
+				if (true == others->Info->MyObjectiveType[EObjectType::SINK])
+				{
+					Obj->Destroyed = true;
+					others->Destroyed = true;
+				}
+			}
+		}
+		
 	}
 	YouCount;
 	if (0 == YouCount)
 	{
 		// 게임 끝남
 		//GEngine->ChangeLevel("SelectMapLevel");
+		GetWorld()->GetLastTarget()->AddEffect<FadeOutEffect>();
 		int a = 0;
 		return;
 	}
@@ -264,11 +270,12 @@ void BABAGameMode::ClearAllSentence()
 	for (AObject* obj : AllObjects)
 	{
 		obj->SentenceON = false;
+		obj->Info->TextObjective.clear();
+		obj->Destroyed = false;
 		// 그림 오브젝트들은 문장에 의해 ObjectiveType이 결정되므로 초기화해도 괜찮음
 		if (obj->Info->TileType == ETileType::Player)
 		{
 			obj->Info->MyObjectiveType.clear();
-			obj->Destroyed = false;
 		}
 	}
 	
@@ -296,6 +303,10 @@ void BABAGameMode::SentenceUpdate()
 			}
 			
 			// 문장이 맞으면 주어 ON
+			if (sub->Info->MyType == EObjectType::FLAGTEXT)
+			{
+				int a = 0;
+			}
 			sub->SentenceON = true;
 
 			while (!sentenceQ.empty())

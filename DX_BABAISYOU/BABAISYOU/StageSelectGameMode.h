@@ -25,7 +25,7 @@ protected:
 	int IndexToStage(Index2D _index);
 private:
 	std::shared_ptr<AStageSelector> Selector = nullptr;
-	std::vector<std::pair<std::shared_ptr<AStageNumber>, std::shared_ptr<AStageNumber>>> Stages;
+	std::vector<std::pair<std::shared_ptr<AStageNumber>, std::shared_ptr<AStageNumber>>> StageNums;
 
 	int CurStage = -1;
 	int ClearStage = -1;

@@ -42,7 +42,8 @@ void ABackground::SelectStageSetting()
 	Renderer->ChangeAnimation("Back");
 }
 
-void ABackground::Stage1Setting()
+void ABackground::BGImageSetting()
 {
   	Renderer->SetSprite("Back_One.png");
+	
 }

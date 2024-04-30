@@ -4,6 +4,7 @@
 AWaterObject::AWaterObject()
 {
 	Info->MyType = EObjectType::WATER;
+	Info->TileType = ETileType::Tile;
 }
 
 AWaterObject::~AWaterObject()

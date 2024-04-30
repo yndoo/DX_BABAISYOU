@@ -15,7 +15,7 @@ public:
 	ABackground& operator=(ABackground&& _Other) noexcept = delete;
 
 	void SelectStageSetting();
-	void Stage1Setting();
+	void BGImageSetting();
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;

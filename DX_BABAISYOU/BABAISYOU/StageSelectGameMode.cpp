@@ -56,10 +56,11 @@ void AStageSelectGameMode::Tick(float _DeltaTime)
 	{
 		Index2D where = Selector->Info->CurIndex;
 		int StageN = IndexToStage(where);
-		GEngine->ChangeLevel("Stage" + std::to_string(StageN) + "Level");
+		GEngine->ChangeLevel("Stage2Level");
+		UContentsConstValue::OpenStageNum = StageN;
 	}
 
-	Stages;
+	StageNums;
 	int a = 0;
 }
 
@@ -123,7 +124,7 @@ void AStageSelectGameMode::NewStage(int _Num1, int _Num2)
 	StageNum2->SetActorScale3D(UContentsConstValue::TileScale * 2);
 	StageNum2->SetStageNum(_Num2);
 
-	Stages.push_back(std::make_pair(StageNum1, StageNum2));
+	StageNums.push_back(std::make_pair(StageNum1, StageNum2));
 }
 
 void AStageSelectGameMode::LevelStart(ULevel* _PrevLevel)
