@@ -11,6 +11,7 @@ public:
 	static const FVector Stage3MapScale;
 	static const FVector Stage4MapScale;
 	static const FVector Stage5MapScale;
+	static const FVector Stage6MapScale;
 
 	static const FVector TileScale;
 	static const float TileX;

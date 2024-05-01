@@ -42,6 +42,7 @@ void AStageGameMode::LevelStart(ULevel* _PrevLevel)
 		CurMapScale = UContentsConstValue::Stage3MapScale;
 		break;
 	case 4:
+	case 6:
 		Back->SetActorScale3D(UContentsConstValue::Stage4MapScale);
 		CurMapScale = UContentsConstValue::Stage4MapScale;
 		break;

@@ -91,7 +91,7 @@ void BABAGameMode::Tick(float _DeltaTime)
 		if (EffectTime < 0.f)
 		{
 			FadeOut.get()->EffectOff();
-			EffectTime = 3.f;
+			EffectTime = 1.f;
 			GameState = EGameState::CLEARMSG;
 			return;
 		}

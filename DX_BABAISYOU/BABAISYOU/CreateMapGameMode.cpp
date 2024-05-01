@@ -17,7 +17,7 @@ void CreateMapGameMode::BeginPlay()
 	Super::BeginPlay();
 
 	std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");
-	Back->SetActorScale3D(UContentsConstValue::Stage5MapScale);
+	Back->SetActorScale3D(UContentsConstValue::Stage4MapScale);
 	CurMapScale = Back->GetActorScale3D();
 	Back->SetActorLocation({ 0, 0, 400 });
 	Back->BGImageSetting();
