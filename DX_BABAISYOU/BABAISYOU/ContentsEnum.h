@@ -55,6 +55,7 @@ enum class EObjectType
 	SINK,
 	FLOAT,
 	HOT,
+	
 	// 동사들
 	IS,
 	// 주어들
@@ -66,8 +67,11 @@ enum class EObjectType
 	SKULLTEXT,
 	LAVATEXT,
 	GRASSTEXT,	// 필요가 딱히 없어서 아직 안 만듦.
+
+	// 나중에 만들어진 애들은 뒤로 빼야 안 꼬임 ㅇㅅㅇ..
 	// 바닥에 깔리는 애
 	TILE,
+	MELT,
 };
 
 // 게임 진행 상황

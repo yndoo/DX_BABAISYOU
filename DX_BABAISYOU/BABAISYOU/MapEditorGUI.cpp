@@ -21,6 +21,9 @@ void MapEditorGUI::Init()
 	Dir.MoveParent();
 	Dir.Move("ContentsResources");
 	Dir.Move("Save");
+
+	MapScale[0] = UContentsConstValue::Stage5MapScale.iX();
+	MapScale[1] = UContentsConstValue::Stage5MapScale.iY();
 }
 
 void MapEditorGUI::Tick(ULevel* _Level, float _Delta)
@@ -267,6 +270,15 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ObjectNum);
 		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}ImGui::SameLine();
+	if (true == ImGui::Button("MeltText"))
+	{
+		TargetType = EObjectType::MELT;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
+	}ImGui::SameLine();
 	if (true == ImGui::Button("PushText"))
 	{
 		TargetType = EObjectType::PUSH;
@@ -299,7 +311,6 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 
 	if (true == ImGui::Button("Save")) 
 	{
-		UContentsConstValue::IsMapEditorUpdated = true;
 		if (TileData.empty() == true) 
 		{
 			return;

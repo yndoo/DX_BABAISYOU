@@ -17,7 +17,8 @@ void CreateMapGameMode::BeginPlay()
 	Super::BeginPlay();
 
 	std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");
-	Back->SetActorScale3D(UContentsConstValue::Stage1MapScale);
+	Back->SetActorScale3D(UContentsConstValue::Stage5MapScale);
+	CurMapScale = Back->GetActorScale3D();
 	Back->SetActorLocation({ 0, 0, 400 });
 	Back->BGImageSetting();
 	Back->SetOrder(ERenderOrder::Background);
@@ -27,13 +28,6 @@ float UpdateTime = 0.f;
 void CreateMapGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	
-	//if (true == UContentsConstValue::IsMapEditorUpdated)
-	//{
-	//	LoadMapFile("Test1");
-	//	UContentsConstValue::IsMapEditorUpdated = false;
-	//}
-
 }
 
 

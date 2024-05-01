@@ -10,6 +10,7 @@ public:
 	static const FVector Stage1MapScale;
 	static const FVector Stage3MapScale;
 	static const FVector Stage4MapScale;
+	static const FVector Stage5MapScale;
 
 	static const FVector TileScale;
 	static const float TileX;
@@ -23,7 +24,6 @@ public:
 	static int ClearStage;		// 다음 스테이지 번호
 	static int OpenStageNum;	// 입장해야 하는 스테이지 번호
 	static bool ZInput;			// 전역 Z Input 체크
-	static bool IsMapEditorUpdated;
 
 	static std::map<EObjectType, EObjectType> TextToPlayer;
 };

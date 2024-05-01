@@ -30,6 +30,7 @@
 #include "SkullText.h"
 #include "LavaText.h"
 #include "HotText.h"
+#include "MeltText.h"
 
 BABAGameMode::BABAGameMode()
 {
@@ -656,6 +657,19 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 		Texts.push_back(Hot.get());
 	}
 		break;
+	case EObjectType::MELT:
+	{
+		std::shared_ptr<AMeltText> Melt = GetWorld()->SpawnActor<AMeltText>("MeltText");
+		Melt->SetMapScale(_MapScale);
+		Melt->SetMaxIndex();
+		Melt->AddActorLocation(Melt->CalIndexToPos(Index2D(_X, _Y)));
+		Melt->BeginPosSetting();
+		Melt->SetOrder(ERenderOrder::FrontTile);
+		GMapManager->SetObject(Melt.get(), _X, _Y);
+		AllObjects.push_back(Melt.get());
+		Texts.push_back(Melt.get());
+	}
+	break;
 	// VerbObejcts
 	case EObjectType::IS:
 	{
