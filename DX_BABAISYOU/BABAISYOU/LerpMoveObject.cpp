@@ -60,11 +60,12 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 	if (true == IsMove)
 	{
 		LerpMove(_DeltaTime);
+		return;
 	}
 
 	if (true == IsDown('Z') && false == IsMove)
 	{
-		if (true == MoveStack.empty())
+		if (true == MoveStack.empty() || true == DeathStack.empty())
 		{
 			return;
 		}

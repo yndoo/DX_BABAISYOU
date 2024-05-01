@@ -92,6 +92,7 @@ void BABAGameMode::Tick(float _DeltaTime)
 			FadeOut.get()->EffectOff();
 			EffectTime = 3.f;
 			GameState = EGameState::CLEARMSG;
+			return;
 		}
 		else
 		{
@@ -139,6 +140,8 @@ void BABAGameMode::LevelStart(ULevel* _PrevLevel)
 	std::shared_ptr<AFadeInCover> cover = GetWorld()->SpawnActor<AFadeInCover>("cover");
 	cover->SetActorScale3D(FVector(1280, 720));
 	cover->SetActorLocation({ 0, 0, 400 });
+
+	GameState = EGameState::STAGE;
 }
 
 void BABAGameMode::LevelEnd(ULevel* _NextLevel)
@@ -228,10 +231,16 @@ void BABAGameMode::DeathCheck()
 					//Obj를 파괴
 					--YouCount;
 					Obj->Destroyed = true;
+					Obj->RealDeath = true;
 					Changed = true;
+
+					//일단 야매
+					Obj->DeathStack.pop();
+					Obj->DeathStack.push(Obj->Destroyed);
+
 					continue;
 				}
-				if (others->RealDeath != true && others->Info->MyObjectiveType[EObjectType::SINK] == true)
+				if (true == others->RealDeath && others->Info->MyObjectiveType[EObjectType::SINK] == true)
 				{
 					//Obj와 others를 둘다 파괴
 					--YouCount;
@@ -243,18 +252,18 @@ void BABAGameMode::DeathCheck()
 					
 					//일단 야매
 					Obj->DeathStack.pop();
-					Obj->PushTrueHistory();
+					Obj->DeathStack.push(Obj->Destroyed);
 					others->DeathStack.pop();
-					others->PushFalseHistory();
+					others->DeathStack.push(others->Destroyed);
 
 					Changed = true;
 					continue;
 					//return;
 				}
-				if (others->Info->MyObjectiveType[EObjectType::WIN] == true || true == IsPress(VK_F1))
+				if (true == others->Info->MyObjectiveType[EObjectType::WIN] || true == IsPress(VK_F1))
 				{
 					// 게임 WIN
-					if(GameState != EGameState::CLEAR)
+					if(GameState == EGameState::STAGE)
 					{
 						Obj->InputOff();
 						FadeOut = GetWorld()->GetLastTarget()->AddEffect<FadeOutEffect>();
@@ -270,17 +279,26 @@ void BABAGameMode::DeathCheck()
 				Obj->Destroyed = false;
 			}
 		}
-		// YOU가 아닌 플레이어객체(그림객체)도 DEFEAT나 SINK 처리 해줘야 함.
-		else if(Obj->Info->TileType != ETileType::Tile)
+		// YOU가 아닌 플레이어객체(그림객체)도 SINK 처리 해줘야 함.
+		else if(Obj->Info->MyObjectiveType[EObjectType::YOU] == false && Obj->Info->TileType != ETileType::Tile)
 		{
 			Index2D RockPos = Obj->Info->CurIndex;	// 꼭 Rock은 아님
 			for (AObject* others : GMapManager->Graph[RockPos.X][RockPos.Y])
 			{
-				if (others->Info->MyObjectiveType[EObjectType::DEFEAT] == true || others->Info->MyObjectiveType[EObjectType::HOT] == true)
+				if (Obj == others || true == Obj->RealDeath || true == others->RealDeath)
+				{
+					continue;
+				}
+				if (/*others->Info->MyObjectiveType[EObjectType::DEFEAT] == true ||*/ others->Info->MyObjectiveType[EObjectType::HOT] == true)
 				{
 					Obj->Destroyed = true;
+					Obj->RealDeath = true;
+
+					//일단 야매
+					Obj->DeathStack.pop();
+					Obj->DeathStack.push(Obj->Destroyed);
 				}
-				if (others->RealDeath != true && true == others->Info->MyObjectiveType[EObjectType::SINK])
+				if (true == others->Info->MyObjectiveType[EObjectType::SINK])
 				{
 					Obj->Destroyed = true;
 					Obj->RealDeath = true;
@@ -422,6 +440,8 @@ AObject* BABAGameMode::ObjectiveCheck(int _X, int _Y/*동사의 인덱스*/)
 
 void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _MapScale)
 {
+	_MapScale = CurMapScale;
+
 	switch (_ObjectType)
 	{
 	case EObjectType::NONE:

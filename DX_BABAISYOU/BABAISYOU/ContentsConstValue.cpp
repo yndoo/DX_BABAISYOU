@@ -29,4 +29,5 @@ std::map<EObjectType, EObjectType> UContentsConstValue::TextToPlayer = {
 	{EObjectType::ROCKTEXT, EObjectType::ROCK},
 	{EObjectType::LAVATEXT, EObjectType::LAVA},
 	{EObjectType::GRASSTEXT, EObjectType::GRASS},
+	{EObjectType::SKULLTEXT, EObjectType::SKULL},
 };

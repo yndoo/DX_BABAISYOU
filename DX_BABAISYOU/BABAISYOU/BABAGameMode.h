@@ -45,6 +45,7 @@ protected:
 	EGameState GameState = EGameState::SELECTMAP;	// 실행 시 SLECETMAP에서 시작함
 	std::shared_ptr<FadeOutEffect> FadeOut;// = nullptr;
 	float EffectTime = 3.f;
+	FVector CurMapScale = FVector::Zero;
 
 	UEngineDirectory Dir;
 	std::vector<int> TileData;	// X, Y, ObjectNum 순서.

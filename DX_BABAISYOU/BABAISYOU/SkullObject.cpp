@@ -3,6 +3,7 @@
 
 ASkullObject::ASkullObject()
 {
+	Info->MyType = EObjectType::SKULL;
 }
 
 ASkullObject::~ASkullObject()

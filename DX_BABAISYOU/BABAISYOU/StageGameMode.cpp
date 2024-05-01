@@ -29,17 +29,21 @@ void AStageGameMode::LevelStart(ULevel* _PrevLevel)
 	Back->SetOrder(ERenderOrder::Background);
 	Back->BGImageSetting();
 
+	//UContentsConstValue::OpenStageNum = 4;
 	switch (UContentsConstValue::OpenStageNum)
 	{
 	case 1:
 	case 2:
 		Back->SetActorScale3D(UContentsConstValue::Stage1MapScale);
+		CurMapScale = UContentsConstValue::Stage1MapScale;
 		break;
 	case 3:
 		Back->SetActorScale3D(UContentsConstValue::Stage3MapScale);
+		CurMapScale = UContentsConstValue::Stage3MapScale;
 		break;
 	case 4:
 		Back->SetActorScale3D(UContentsConstValue::Stage4MapScale);
+		CurMapScale = UContentsConstValue::Stage4MapScale;
 		break;
 	default:
 		break;
@@ -54,4 +58,6 @@ void AStageGameMode::LevelStart(ULevel* _PrevLevel)
 void AStageGameMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
+	
+	Back.get()->SetActive(false);
 }
