@@ -216,6 +216,9 @@
     <ClInclude Include="StageGameMode.h">
       <Filter>GameMode\StageLevel</Filter>
     </ClInclude>
+    <ClInclude Include="FootPrint.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -358,6 +361,9 @@
     </ClCompile>
     <ClCompile Include="StageGameMode.cpp">
       <Filter>GameMode\StageLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="FootPrint.cpp">
+      <Filter>Actor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

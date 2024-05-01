@@ -77,6 +77,7 @@ enum class EGameState
 	LOBBY,
 	STAGE,
 	CLEAR,
+	FAIL,
 	CLEARMSG,
 	SELECTMAP,
 };

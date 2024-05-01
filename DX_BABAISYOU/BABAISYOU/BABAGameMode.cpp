@@ -289,7 +289,7 @@ void BABAGameMode::DeathCheck()
 				{
 					continue;
 				}
-				if (/*others->Info->MyObjectiveType[EObjectType::DEFEAT] == true ||*/ others->Info->MyObjectiveType[EObjectType::HOT] == true)
+				if (others->Info->MyObjectiveType[EObjectType::HOT] == true)
 				{
 					Obj->Destroyed = true;
 					Obj->RealDeath = true;

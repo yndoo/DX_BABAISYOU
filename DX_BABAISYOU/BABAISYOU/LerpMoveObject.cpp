@@ -3,6 +3,7 @@
 #include "ContentsConstValue.h"
 #include "MapManager.h"
 #include <EngineCore/EngineDebugMsgWindow.h>
+#include "FootPrint.h"
 
 //int ALerpMoveObject::SomeMoveCnt = 0;
 //int ALerpMoveObject::SomeStayCnt = 0;
@@ -164,6 +165,9 @@ void ALerpMoveObject::InputMove(float _DeltaTime)
 			UContentsConstValue::InputCount++;
 			EachMoveCheck_ForStack = true;
 			EachInputCheck = true;
+
+			std::shared_ptr<AFootPrint> footprint = GetWorld()->SpawnActor<AFootPrint>("footprint");
+			footprint->SetActorLocation(GetActorLocation());
 		}
 	}
 	//LerpMove(_DeltaTime);
