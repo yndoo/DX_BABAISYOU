@@ -83,6 +83,10 @@ int AStageSelectGameMode::IndexToStage(Index2D _index)
 	{
 		Result = 4;
 	}
+	else if (Index2D(4, 3) == _index)
+	{
+		Result = 5;
+	}
 	else
 	{
 		MsgBoxAssert("아직 안 만든 스테이지 번호");
@@ -95,7 +99,7 @@ int AStageSelectGameMode::IndexToStage(Index2D _index)
 void AStageSelectGameMode::NewStage(int _Num1, int _Num2)
 {
 	Index2D StageIdx;
-	switch (_Num2)
+ 	switch (_Num2)
 	{
 	case 1:
 		StageIdx = Index2D(4, 1);
@@ -109,7 +113,11 @@ void AStageSelectGameMode::NewStage(int _Num1, int _Num2)
 	case 4:
 		StageIdx = Index2D(5, 2);
 		break;
+	case 5:
+		StageIdx = Index2D(4, 3);
+		break;
 	default:
+		//그만?
 		StageIdx = Index2D(0, 0);
 		break;
 	}

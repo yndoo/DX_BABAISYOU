@@ -56,6 +56,7 @@ public:
 		{EObjectType::FLOAT, false},
 		{EObjectType::HOT, false},
 		{EObjectType::SINK, false},
+		{EObjectType::MELT, false},
 	};
 
 	std::map<EObjectType, bool> TextObjective = 		// TEXT 오브젝트와 문장으로 완성된 목적어. (TEXT에 적용하면 안 됨, TEXT인 객체들에게만 유효한 값)

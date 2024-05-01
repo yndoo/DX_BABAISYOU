@@ -227,7 +227,7 @@ void BABAGameMode::DeathCheck()
 			bool Changed = false;
 			for (AObject* others : GMapManager->Graph[YouPos.X][YouPos.Y])
 			{
-				if (others->Info->MyObjectiveType[EObjectType::DEFEAT] == true || others->Info->MyObjectiveType[EObjectType::HOT] == true)
+				if (others->Info->MyObjectiveType[EObjectType::DEFEAT] == true)
 				{
 					//Obj를 파괴
 					--YouCount;
@@ -241,7 +241,7 @@ void BABAGameMode::DeathCheck()
 
 					continue;
 				}
-				if (true == others->RealDeath && others->Info->MyObjectiveType[EObjectType::SINK] == true)
+				if (false == others->RealDeath && others->Info->MyObjectiveType[EObjectType::SINK] == true)
 				{
 					//Obj와 others를 둘다 파괴
 					--YouCount;
@@ -290,25 +290,49 @@ void BABAGameMode::DeathCheck()
 				{
 					continue;
 				}
-				if (others->Info->MyObjectiveType[EObjectType::HOT] == true)
-				{
-					Obj->Destroyed = true;
-					Obj->RealDeath = true;
+				//if (others->Info->MyObjectiveType[EObjectType::HOT] == true)
+				//{
+				//	Obj->Destroyed = true;
+				//	Obj->RealDeath = true;
 
-					//일단 야매
-					Obj->DeathStack.pop();
-					Obj->DeathStack.push(Obj->Destroyed);
-				}
+				//	//일단 야매
+				//	Obj->DeathStack.pop();
+				//	Obj->DeathStack.push(Obj->Destroyed);
+				//}
 				if (true == others->Info->MyObjectiveType[EObjectType::SINK])
 				{
 					Obj->Destroyed = true;
 					Obj->RealDeath = true;
 					others->Destroyed = true;
 					others->RealDeath = true;
+
+					Obj->DeathStack.pop();
+					Obj->DeathStack.push(Obj->Destroyed);
+					others->DeathStack.pop();
+					others->DeathStack.push(others->Destroyed);
 				}
 			}
 		}
-		
+		// YOU든 아니든 MELT인 객체는 HOT 위에 있으면 녹아야 함.
+		if (Obj->Info->MyObjectiveType[EObjectType::MELT] == true)
+		{
+			Index2D MeltPos = Obj->Info->CurIndex;	
+			for (AObject* others : GMapManager->Graph[MeltPos.X][MeltPos.Y])
+			{
+				if (Obj == others || true == Obj->RealDeath || true == others->RealDeath)
+				{
+					continue;
+				}
+				if (others->Info->MyObjectiveType[EObjectType::HOT] == true)
+				{
+					Obj->Destroyed = true;
+					Obj->RealDeath = true;
+
+					Obj->DeathStack.pop();
+					Obj->DeathStack.push(Obj->Destroyed);
+				}
+			}
+		}
 	}
 	YouCount;
 	if (0 == YouCount)
