@@ -32,6 +32,8 @@
 #include "HotText.h"
 #include "MeltText.h"
 
+std::shared_ptr<KeyUIManager> BABAGameMode::UI = nullptr;
+
 BABAGameMode::BABAGameMode()
 {
 	GMapManager = new MapManager();
@@ -77,6 +79,8 @@ void BABAGameMode::BeginPlay()
 	Dir.MoveParent();
 	Dir.Move("ContentsResources");
 	Dir.Move("Save");
+
+	UI = GetWorld()->SpawnActor<KeyUIManager>("KeyUIManager");
 }
 
 void BABAGameMode::Tick(float _DeltaTime)

@@ -222,6 +222,12 @@
     <ClInclude Include="MeltText.h">
       <Filter>Object\Obj-Level3\3ObjectiveText</Filter>
     </ClInclude>
+    <ClInclude Include="KeyUIManager.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="TextActor.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -370,6 +376,12 @@
     </ClCompile>
     <ClCompile Include="MeltText.cpp">
       <Filter>Object\Obj-Level3\3ObjectiveText</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyUIManager.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="TextActor.cpp">
+      <Filter>Actor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
