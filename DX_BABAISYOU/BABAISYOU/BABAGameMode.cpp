@@ -32,7 +32,6 @@
 #include "HotText.h"
 #include "MeltText.h"
 
-std::shared_ptr<KeyUIManager> BABAGameMode::UI = nullptr;
 
 BABAGameMode::BABAGameMode()
 {
@@ -79,8 +78,9 @@ void BABAGameMode::BeginPlay()
 	Dir.MoveParent();
 	Dir.Move("ContentsResources");
 	Dir.Move("Save");
-
+	
 	UI = GetWorld()->SpawnActor<KeyUIManager>("KeyUIManager");
+	UI->KeyUIOff();
 }
 
 void BABAGameMode::Tick(float _DeltaTime)
@@ -97,7 +97,7 @@ void BABAGameMode::Tick(float _DeltaTime)
 		if (EffectTime < 0.f)
 		{
 			FadeOut.get()->EffectOff();
-			EffectTime = 1.f;
+			EffectTime = 3.f;
 			GameState = EGameState::CLEARMSG;
 			return;
 		}
@@ -155,6 +155,8 @@ void BABAGameMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
 	
+	//UI->Off();
+
 	for (AObject* one : AllObjects)
 	{
 		one->Destroy();
@@ -344,10 +346,13 @@ void BABAGameMode::DeathCheck()
 	if (0 == YouCount)
 	{
 		// 게임 끝남
-		//GEngine->ChangeLevel("SelectMapLevel");
-		//GetWorld()->GetLastTarget()->AddEffect<FadeOutEffect>();
+		UI->KeyUIOn();
 		int a = 0;
 		return;
+	}
+	else
+	{
+		UI->KeyUIOff();
 	}
 }
 

@@ -57,7 +57,7 @@ protected:
 	std::list<AObject*> Texts;			// 모든 TEXT 오브젝트들만
 	std::list<AObject*> OnSubjects;		// 문장 ON 된 주어들 
 
-	static std::shared_ptr<KeyUIManager> UI;
+	std::shared_ptr<KeyUIManager> UI;
 private:
 	int BeforeInputCount = 0;
 
