@@ -114,6 +114,13 @@ void BABAGameMode::Tick(float _DeltaTime)
 	default:
 		break;
 	}
+
+	if (true == UI->GetCurOn() && true == IsDown('R'))
+	{
+		// Àç½ÃÀÛ
+		LevelEnd(GetWorld());
+		LevelStart(GetWorld());
+	}
 }
 
 void BABAGameMode::LoadMapFile(std::string _FileName)
@@ -170,7 +177,6 @@ void BABAGameMode::LevelEnd(ULevel* _NextLevel)
 	OnSubjects.clear();
 
 	GMapManager->ClearGraph();
-	int a = 0;
 }
 
 void BABAGameMode::StackUpdate()
