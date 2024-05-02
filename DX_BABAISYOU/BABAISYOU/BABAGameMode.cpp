@@ -83,6 +83,8 @@ void BABAGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
+	DebugGMM();
+
 	Update();
 
 	switch (GameState) 
@@ -383,10 +385,6 @@ void BABAGameMode::SentenceUpdate()
 			}
 			
 			// 문장이 맞으면 주어 ON
-			if (sub->Info->MyType == EObjectType::FLAGTEXT)
-			{
-				int a = 0;
-			}
 			sub->SentenceON = true;
 
 			while (!sentenceQ.empty())

@@ -166,8 +166,11 @@ void ALerpMoveObject::InputMove(float _DeltaTime)
 			EachMoveCheck_ForStack = true;
 			EachInputCheck = true;
 
-			std::shared_ptr<AFootPrint> footprint = GetWorld()->SpawnActor<AFootPrint>("footprint");
-			footprint->SetActorLocation(GetActorLocation());
+			if(EObjectType::BABA == Info->MyType)
+			{
+				std::shared_ptr<AFootPrint> footprint = GetWorld()->SpawnActor<AFootPrint>("footprint");
+				footprint->SetActorLocation(GetActorLocation());
+			}
 		}
 	}
 	//LerpMove(_DeltaTime);

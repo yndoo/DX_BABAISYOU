@@ -69,6 +69,7 @@ public:
 		{EObjectType::FLOAT, false},
 		{EObjectType::HOT, false},
 		{EObjectType::SINK, false},
+		{EObjectType::MELT, false},
 	};
 
 	Index2D CurIndex = Index2D(-1, -1);
