@@ -30,7 +30,7 @@ void AFootPrint::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 
 	FVector Scale = GetActorScale3D();
-	if (Scale.X > 0)
+	if (Scale.X > 5)
 	{
 		Scale = Scale + FVector((-50.f) * _DeltaTime, (-50.f) * _DeltaTime);
 		SetActorScale3D(Scale);
@@ -38,6 +38,7 @@ void AFootPrint::Tick(float _DeltaTime)
 	}
 	else
 	{
-		SetActive(false);
+		Destroy();
+		//SetActive(false);
 	}
 }

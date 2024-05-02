@@ -67,6 +67,7 @@ void ATileObject::TileDirUpdate()
 		int ny = CurIdx.Y + dy[i];
 		if (nx <0 || ny < 0 || nx > UContentsConstValue::MaxIndexX || ny > UContentsConstValue::MaxIndexY)
 		{
+			DirNum += MyPow(2, i);
 			continue;
 		}
 		// 옆에 같은 타일이 있는지 확인
