@@ -259,13 +259,15 @@ void AObject::PushTrueHistory()
 {
 	MoveStack.push(std::make_pair(NewInputDir, true));
 	AnimationStack.push(std::make_pair((AnimationNumber - 1 + 4) % 4, BeforeDir));
-	DeathStack.push(Destroyed);
+	//DeathStack.push(Destroyed);
+	DeathStack.push(RealDeath);
 }
 
 void AObject::PushFalseHistory()
 {
 	MoveStack.push(std::make_pair(NewInputDir, false));
-	DeathStack.push(Destroyed);
+	//DeathStack.push(Destroyed);
+	DeathStack.push(RealDeath);
 }
 
 bool AObject::DirCheck()

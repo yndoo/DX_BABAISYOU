@@ -77,6 +77,11 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 		UContentsConstValue::ZInput = true;
 		UContentsConstValue::InputCount++;
 
+		if (Info->MyType == EObjectType::ROCK)
+		{
+			int a = 0;
+		}
+
 		// DeathStack은 어캐빼야할까....
 		if (true == DeathStack.top())
 		{

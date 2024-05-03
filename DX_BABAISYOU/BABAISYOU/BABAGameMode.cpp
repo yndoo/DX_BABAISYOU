@@ -231,7 +231,7 @@ void BABAGameMode::FinalUpdate()
 void BABAGameMode::DeathCheck()
 {
 	int YouCount = 0;
-	for (AObject* Obj : Players)
+	for (AObject* Obj : AllObjects)
 	{
 		if (Obj->Info->MyObjectiveType[EObjectType::YOU] == true)
 		{
@@ -321,9 +321,9 @@ void BABAGameMode::DeathCheck()
 					others->RealDeath = true;
 
 					Obj->DeathStack.pop();
-					Obj->DeathStack.push(Obj->Destroyed);
+					Obj->DeathStack.push(Obj->RealDeath);
 					others->DeathStack.pop();
-					others->DeathStack.push(others->Destroyed);
+					others->DeathStack.push(others->RealDeath);
 				}
 			}
 		}

@@ -20,6 +20,6 @@ protected:
 
 	bool ON = false;	// 문장 켜지면 TEXT 애니메이션 ON으로 바꿔야 함.
 private:
-
+	bool MyDestroyed = false;
 };
 
