@@ -31,6 +31,7 @@
 #include "LavaText.h"
 #include "HotText.h"
 #include "MeltText.h"
+#include "GrassText.h"
 
 
 BABAGameMode::BABAGameMode()
@@ -115,7 +116,7 @@ void BABAGameMode::Tick(float _DeltaTime)
 		break;
 	}
 
-	if (true == UI->GetCurOn() && true == IsDown('R'))
+	if (/*true == UI->GetCurOn() && */true == IsDown('R'))
 	{
 		// Àç½ÃÀÛ
 		LevelEnd(GetWorld());
@@ -811,6 +812,19 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 		GMapManager->SetObject(LavaText.get(), _X, _Y);
 		AllObjects.push_back(LavaText.get());
 		Texts.push_back(LavaText.get());
+	}
+	break;
+	case EObjectType::GRASSTEXT:
+	{
+		std::shared_ptr<AGrassText> GrassText = GetWorld()->SpawnActor<AGrassText>("GrassText");
+		GrassText->SetMapScale(_MapScale);
+		GrassText->SetMaxIndex();
+		GrassText->SetActorLocation(GrassText->CalIndexToPos(Index2D(_X, _Y)));
+		GrassText->BeginPosSetting();
+		GrassText->SetOrder(ERenderOrder::FrontTile);
+		GMapManager->SetObject(GrassText.get(), _X, _Y);
+		AllObjects.push_back(GrassText.get());
+		Texts.push_back(GrassText.get());
 	}
 	break;
 	default:

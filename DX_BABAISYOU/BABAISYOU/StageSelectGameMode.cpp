@@ -60,7 +60,7 @@ void AStageSelectGameMode::Tick(float _DeltaTime)
 		UContentsConstValue::OpenStageNum = StageN;
 	}
 
-	StageNums;
+	Index2D Idx = Selector->Info->CurIndex;
 	int a = 0;
 }
 
@@ -90,6 +90,10 @@ int AStageSelectGameMode::IndexToStage(Index2D _index)
 	else if (Index2D(6, 2) == _index)
 	{
 		Result = 6;
+	}
+	else if (Index2D(5, 3) == _index)
+	{
+		Result = 7;
 	}
 	else
 	{
@@ -122,6 +126,9 @@ void AStageSelectGameMode::NewStage(int _Num1, int _Num2)
 		break;
 	case 6:
 		StageIdx = Index2D(6, 2);
+		break;
+	case 7:
+		StageIdx = Index2D(5, 3);
 		break;
 	default:
 		//±×¸¸?

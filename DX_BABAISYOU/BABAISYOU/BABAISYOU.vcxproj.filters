@@ -228,6 +228,9 @@
     <ClInclude Include="TextActor.h">
       <Filter>Actor</Filter>
     </ClInclude>
+    <ClInclude Include="GrassText.h">
+      <Filter>Object\Obj-Level3\1SubjectText</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -382,6 +385,9 @@
     </ClCompile>
     <ClCompile Include="TextActor.cpp">
       <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="GrassText.cpp">
+      <Filter>Object\Obj-Level3\1SubjectText</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

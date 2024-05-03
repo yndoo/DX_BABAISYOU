@@ -3,6 +3,8 @@
 
 AGrassObject::AGrassObject()
 {
+	Info->MyType = EObjectType::GRASS;
+	Info->TileType = ETileType::Player;
 }
 
 AGrassObject::~AGrassObject()

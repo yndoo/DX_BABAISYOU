@@ -213,6 +213,15 @@ void MapEditorGUI::OnGui(ULevel* _Level, float _Delta)
 		TileData.push_back(ClickIndex.iY());
 		TileData.push_back(ObjectNum);
 		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
+	}ImGui::SameLine();
+	if (true == ImGui::Button("GrassText"))
+	{
+		TargetType = EObjectType::GRASSTEXT;
+		ObjectNum = static_cast<int>(TargetType);
+		TileData.push_back(ClickIndex.iX());
+		TileData.push_back(ClickIndex.iY());
+		TileData.push_back(ObjectNum);
+		GameMode->AutoCreate(TargetType, ClickIndex.iX(), ClickIndex.iY(), FVector(MapScale[0], MapScale[1]));
 	}
 
 	ImGui::Text("Verb");

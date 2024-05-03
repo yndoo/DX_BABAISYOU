@@ -111,8 +111,6 @@ void UBABAISYOUCore::Initialize()
 	UEngineEditorGUI::CreateEditorWindow<MapEditorGUI>("MapEditor");
 
 	// Level
-	//GEngine->CreateLevel<APlayGameMode>("PlayLevel");
-	GEngine->CreateLevel<AStage1GameMode>("Stage1Level");
 	GEngine->CreateLevel<AStageGameMode>("StageLevel");
 	GEngine->CreateLevel<AStageSelectGameMode>("SelectMapLevel");
 	GEngine->CreateLevel<CreateMapGameMode>("CreateMapLevel");

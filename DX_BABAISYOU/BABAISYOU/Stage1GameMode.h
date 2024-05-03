@@ -3,6 +3,7 @@
 #include "MapManager.h"
 #include "BABAGameMode.h"
 
+// 맨 처음 했던 방식
 class AStage1GameMode : public BABAGameMode
 {
 	GENERATED_BODY(BABAGameMode)
