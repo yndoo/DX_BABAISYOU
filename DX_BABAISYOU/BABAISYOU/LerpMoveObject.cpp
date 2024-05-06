@@ -66,7 +66,7 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 
 	if (true == IsDown('Z') && false == IsMove)
 	{
-		if (true == MoveStack.empty() || true == DeathStack.empty())
+		if (true == MoveStack.empty())
 		{
 			return;
 		}
@@ -76,18 +76,6 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 		ZInputCheck = true;
 		UContentsConstValue::ZInput = true;
 		UContentsConstValue::InputCount++;
-
-		if (Info->MyType == EObjectType::ROCK)
-		{
-			int a = 0;
-		}
-
-		// DeathStack은 어캐빼야할까....
-		if (true == DeathStack.top())
-		{
-			RealDeath = false;
-			Destroyed = false;
-		}
 
 		bool CanGoBack = MoveStack.top().second;
 		if (false == CanGoBack)
@@ -110,7 +98,6 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 
 		MoveStack.pop();
 		AnimationStack.pop();
-		DeathStack.pop();
 
 		return;
 	}

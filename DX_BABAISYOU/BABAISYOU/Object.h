@@ -114,9 +114,7 @@ public:
 	bool EachMoveCheck_ForStack = false;		// 이동 있었으면 스택에 true로, 없었으면 false로 들어가기 위한 변수
 	bool SentenceON = false;					// 문장이 만들어지면 켜져야 함.
 	bool Destroyed = false;						// 파괴됐으면 ON 돼야 함. (눈에 보이냐 마냐에만 관여함. 실제로 지워지게하는 변수 X)
-	bool RealDeath = false;						// 진짜 죽이는 변수.
 	
-	std::stack<bool> DeathStack;
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;

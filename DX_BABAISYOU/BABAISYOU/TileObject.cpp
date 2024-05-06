@@ -74,7 +74,7 @@ void ATileObject::TileDirUpdate()
 		for (AObject* obj : *(GMapManager->GetObjectList(nx, ny)))		
 		{
 			GMapManager->Graph;
-			if (false == obj->RealDeath && obj->Info->MyType == Info->MyType)
+			if (false == obj->Destroyed && obj->Info->MyType == Info->MyType)
 			{
 				DirNum += MyPow(2, i);	// 2ÀÇ i Á¦°ö
 			}

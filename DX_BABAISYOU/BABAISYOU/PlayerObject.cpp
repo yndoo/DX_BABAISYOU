@@ -27,22 +27,10 @@ void APlayerObject::Tick(float _DeltaTime)
 		AnimationNumber = (AnimationNumber + 1) % 4;
 	}
 
-	if (false == SentenceON)
-	{
-		//Info->ObjectiveType = EObjectType::NONE;
-	}
-
-	if (false == RealDeath)
-	{
-		Renderer->SetActive(true);
-		Destroyed = false;
-		MyDestroyed = Destroyed;
-		return;
-	}
 
 	if (MyDestroyed != Destroyed)
 	{
-		if (true == Destroyed || true == RealDeath)
+		if (true == Destroyed)
 		{
 			Renderer->SetActive(false);
 			MyDestroyed = Destroyed;

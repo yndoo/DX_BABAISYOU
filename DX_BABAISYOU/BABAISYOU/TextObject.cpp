@@ -30,17 +30,9 @@ void ATextObject::Tick(float _DeltaTime)
 		AniONOFF();
 	}
 
-	if (false == RealDeath)
-	{
-		Renderer->SetActive(true);
-		Destroyed = false;
-		MyDestroyed = Destroyed;
-		return;
-	}
-
 	if (MyDestroyed != Destroyed)
 	{
-		if (true == Destroyed || true == RealDeath)
+		if (true == Destroyed)
 		{
 			Renderer->SetActive(false);
 			MyDestroyed = Destroyed;

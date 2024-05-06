@@ -208,11 +208,6 @@ void BABAGameMode::FinalUpdate()
 		{
 			if (player->Info->MyType == PlayerType)
 			{
-				// 진짜 죽어야 하는 상태면 XX
-				if (player->RealDeath == true)
-				{
-					continue;
-				}
 				// 주어 텍스트의 오브젝티브를 다 넘겨줌
 				for (auto m : sub->Info->TextObjective)
 				{
@@ -234,6 +229,31 @@ void BABAGameMode::DeathCheck()
 	int YouCount = 0;
 	for (AObject* Obj : AllObjects)
 	{
+		if (true == Obj->Info->MyObjectiveType[EObjectType::SINK])
+		{
+			Index2D SinkPos = Obj->Info->CurIndex;
+			if (GMapManager->Graph[SinkPos.X][SinkPos.Y].size() >=  3)
+			{
+				for (AObject* OnSink : GMapManager->Graph[SinkPos.X][SinkPos.Y])
+				{
+					if (OnSink->Info->MyObjectiveType[EObjectType::YOU] == true)
+					{
+						continue;
+					}
+					OnSink->Destroyed = true;
+					OnSink->Info->MyObjectiveType.clear();
+				}
+			}
+			else if (GMapManager->Graph[SinkPos.X][SinkPos.Y].size() > 1) // 2개일 때
+			{
+				for (AObject* OnSink : GMapManager->Graph[SinkPos.X][SinkPos.Y])
+				{
+					OnSink->Destroyed = true;
+					OnSink->Info->MyObjectiveType.clear();
+				}
+			}
+		}
+
 		if (Obj->Info->MyObjectiveType[EObjectType::YOU] == true)
 		{
 			++YouCount;
@@ -247,34 +267,9 @@ void BABAGameMode::DeathCheck()
 					//Obj를 파괴
 					--YouCount;
 					Obj->Destroyed = true;
-					Obj->RealDeath = true;
 					Changed = true;
 
-					//일단 야매
-					Obj->DeathStack.pop();
-					Obj->DeathStack.push(Obj->Destroyed);
-
 					continue;
-				}
-				if (false == others->RealDeath && others->Info->MyObjectiveType[EObjectType::SINK] == true)
-				{
-					//Obj와 others를 둘다 파괴
-					--YouCount;
-
-					Obj->Destroyed = true;
-					Obj->RealDeath = true;
-					others->Destroyed = true;
-					others->RealDeath = true;
-					
-					//일단 야매
-					Obj->DeathStack.pop();
-					Obj->DeathStack.push(Obj->Destroyed);
-					others->DeathStack.pop();
-					others->DeathStack.push(others->Destroyed);
-
-					Changed = true;
-					continue;
-					//return;
 				}
 				if (true == others->Info->MyObjectiveType[EObjectType::WIN] || true == IsPress(VK_F1))
 				{
@@ -295,56 +290,19 @@ void BABAGameMode::DeathCheck()
 				Obj->Destroyed = false;
 			}
 		}
-		// YOU가 아닌 플레이어객체(그림객체)도 SINK 처리 해줘야 함.
-		else if(Obj->Info->MyObjectiveType[EObjectType::YOU] == false && Obj->Info->TileType != ETileType::Tile)
-		{
-			Index2D RockPos = Obj->Info->CurIndex;	// 꼭 Rock은 아님
-			for (AObject* others : GMapManager->Graph[RockPos.X][RockPos.Y])
-			{
-				if (Obj == others || true == Obj->RealDeath || true == others->RealDeath)
-				{
-					continue;
-				}
-				//if (others->Info->MyObjectiveType[EObjectType::HOT] == true)
-				//{
-				//	Obj->Destroyed = true;
-				//	Obj->RealDeath = true;
-
-				//	//일단 야매
-				//	Obj->DeathStack.pop();
-				//	Obj->DeathStack.push(Obj->Destroyed);
-				//}
-				if (true == others->Info->MyObjectiveType[EObjectType::SINK])
-				{
-					Obj->Destroyed = true;
-					Obj->RealDeath = true;
-					others->Destroyed = true;
-					others->RealDeath = true;
-
-					Obj->DeathStack.pop();
-					Obj->DeathStack.push(Obj->RealDeath);
-					others->DeathStack.pop();
-					others->DeathStack.push(others->RealDeath);
-				}
-			}
-		}
 		// YOU든 아니든 MELT인 객체는 HOT 위에 있으면 녹아야 함.
 		if (Obj->Info->MyObjectiveType[EObjectType::MELT] == true)
 		{
 			Index2D MeltPos = Obj->Info->CurIndex;	
 			for (AObject* others : GMapManager->Graph[MeltPos.X][MeltPos.Y])
 			{
-				if (Obj == others || true == Obj->RealDeath || true == others->RealDeath)
+				if (Obj == others)
 				{
 					continue;
 				}
 				if (others->Info->MyObjectiveType[EObjectType::HOT] == true)
 				{
 					Obj->Destroyed = true;
-					Obj->RealDeath = true;
-
-					Obj->DeathStack.pop();
-					Obj->DeathStack.push(Obj->Destroyed);
 				}
 			}
 		}
