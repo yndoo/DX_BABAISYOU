@@ -232,7 +232,9 @@ void BABAGameMode::DeathCheck()
 		if (true == Obj->Info->MyObjectiveType[EObjectType::SINK])
 		{
 			Index2D SinkPos = Obj->Info->CurIndex;
-			if (GMapManager->Graph[SinkPos.X][SinkPos.Y].size() >=  3)
+			int turn = GMapManager->Graph[SinkPos.X][SinkPos.Y].size();
+			int  i = 0;
+			if (turn >=  3)
 			{
 				for (AObject* OnSink : GMapManager->Graph[SinkPos.X][SinkPos.Y])
 				{
@@ -240,11 +242,16 @@ void BABAGameMode::DeathCheck()
 					{
 						continue;
 					}
+					++i;
 					OnSink->Destroyed = true;
 					OnSink->Info->MyObjectiveType.clear();
+					if (turn - 1 == i)
+					{
+						break;
+					}
 				}
 			}
-			else if (GMapManager->Graph[SinkPos.X][SinkPos.Y].size() > 1) // 2개일 때
+			else if (turn > 1) // 2개일 때
 			{
 				for (AObject* OnSink : GMapManager->Graph[SinkPos.X][SinkPos.Y])
 				{
