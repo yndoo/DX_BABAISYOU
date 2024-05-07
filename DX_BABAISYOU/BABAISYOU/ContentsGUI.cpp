@@ -30,4 +30,8 @@ void ContentsGUI::OnGui(ULevel* _Level, float _Delta)
 	{
 		GEngine->ChangeLevel("CreateMapLevel");
 	}
+	if (true == ImGui::Button("TitleLevel"))
+	{
+		GEngine->ChangeLevel("TitleLevel");
+	}
 }

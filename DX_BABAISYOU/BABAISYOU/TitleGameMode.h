@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/GameMode.h>
+#include "EngineCore/Image.h"
 
 class ATitleGameMode : public AGameMode
 {
@@ -18,6 +19,9 @@ protected:
 	void LevelStart(ULevel* _PrevLevel) override;
 	//void LevelEnd(ULevel* _NextLevel) override;
 
+	UImage* StartBtn = nullptr;
+	UImage* ExitBtn = nullptr;
+	UImage* Cursor = nullptr;
 private:
 
 };

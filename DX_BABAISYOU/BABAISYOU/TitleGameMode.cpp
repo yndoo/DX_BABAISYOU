@@ -1,9 +1,11 @@
 #include "PreCompile.h"
 #include "TitleGameMode.h"
 #include "TextActor.h"
+#include <EngineCore/EngineCore.h>
 
 ATitleGameMode::ATitleGameMode()
 {
+	InputOn();
 }
 
 ATitleGameMode::~ATitleGameMode()
@@ -21,6 +23,27 @@ void ATitleGameMode::BeginPlay()
 void ATitleGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	if (true == IsPress(VK_UP))
+	{
+		Cursor->SetPosition(FVector(-330, -100));
+	}
+	if (true == IsPress(VK_DOWN))
+	{
+		Cursor->SetPosition(FVector(-330, -200));
+	}
+	if (true == IsDown(VK_SPACE))
+	{
+		FVector Pos = Cursor->GetLocalPosition();
+		if (Pos.Y == -100)
+		{
+			GEngine->ChangeLevel("SelectMapLevel");
+		}
+		else if (Pos.Y == -200)
+		{
+			// 게임종료
+		}
+	}
 }
 
 void ATitleGameMode::LevelStart(ULevel* _PrevLevel)
@@ -89,4 +112,24 @@ void ATitleGameMode::LevelStart(ULevel* _PrevLevel)
 	U->SetActorLocation(Pos);
 	U->SetRendererScale(TitleScale);
 	U->SetRendererMulColor(FVector(217, 57, 106));
+
+	StartBtn = CreateWidget<UImage>(GetWorld(), "StartBtn");
+	StartBtn->AddToViewPort(1);
+	StartBtn->SetSprite("StartTheGameBtn.png");
+	StartBtn->SetScale({ 589,76 });
+	StartBtn->SetPosition(FVector(0, -100));
+
+
+	ExitBtn = CreateWidget<UImage>(GetWorld(), "ExitBtn");
+	ExitBtn->AddToViewPort(1);
+	ExitBtn->SetSprite("ExitTheGameBtn.png");
+	ExitBtn->SetScale({ 589,76 });
+	ExitBtn->SetPosition(FVector(0, -200));
+
+	Cursor = CreateWidget<UImage>(GetWorld(), "Cursor");
+	Cursor->AddToViewPort(1);
+	Cursor->CreateAnimation("BabaCursor", "BABA.png", { 0.2f, 0.2f, 0.2f }, { 1, 18, 35 }, true);
+	Cursor->ChangeAnimation("BabaCursor");
+	Cursor->SetScale({ 54, 54 });
+	Cursor->SetPosition(FVector(-330, -100));
 }
