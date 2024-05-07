@@ -1,17 +1,17 @@
 #pragma once
 #include "BABAGameMode.h"
 
-class CreateMapGameMode : public BABAGameMode
+class ACreateMapGameMode : public BABAGameMode
 {
 	GENERATED_BODY(BABAGameMode)
 public:
-	CreateMapGameMode();
-	~CreateMapGameMode();
+	ACreateMapGameMode();
+	~ACreateMapGameMode();
 
-	CreateMapGameMode(const CreateMapGameMode& _Other) = delete;
-	CreateMapGameMode(CreateMapGameMode&& _Other) noexcept = delete;
-	CreateMapGameMode& operator=(const CreateMapGameMode& _Other) = delete;
-	CreateMapGameMode& operator=(CreateMapGameMode&& _Other) noexcept = delete;
+	ACreateMapGameMode(const ACreateMapGameMode& _Other) = delete;
+	ACreateMapGameMode(ACreateMapGameMode&& _Other) noexcept = delete;
+	ACreateMapGameMode& operator=(const ACreateMapGameMode& _Other) = delete;
+	ACreateMapGameMode& operator=(ACreateMapGameMode&& _Other) noexcept = delete;
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;

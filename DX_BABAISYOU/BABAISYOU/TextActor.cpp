@@ -45,4 +45,21 @@ void TextActor::CreateAlphaAnimation()
 	Renderer->CreateAnimation("S", "S.png", AnimationInterVec, { 0,1,2 }, true);
 	Renderer->CreateAnimation("T", "T.png", AnimationInterVec, { 0,1,2 }, true);
 	Renderer->CreateAnimation("A", "A.png", AnimationInterVec, { 0,1,2 }, true);
+
+	Renderer->CreateAnimation("B", "B.png", AnimationInterVec, { 0,1,2 }, true);
+	Renderer->CreateAnimation("I", "I.png", AnimationInterVec, { 0,1,2 }, true);
+	Renderer->CreateAnimation("Y", "Y.png", AnimationInterVec, { 0,1,2 }, true);
+}
+
+void TextActor::SetRendererScale(FVector _Scale)
+{
+	Renderer->SetScale(_Scale);
+}
+
+void TextActor::SetRendererMulColor(FVector _Color)
+{
+	_Color.X = _Color.X / 255;
+	_Color.Y = _Color.Y / 255;
+	_Color.Z = _Color.Z / 255;
+	Renderer->SetMulColor(_Color);
 }

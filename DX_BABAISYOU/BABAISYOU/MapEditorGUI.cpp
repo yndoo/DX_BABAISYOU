@@ -36,7 +36,7 @@ void MapEditorGUI::Tick(ULevel* _Level, float _Delta)
 		On();
 		if (GameMode == nullptr)
 		{
-			GameMode = dynamic_cast<CreateMapGameMode*>(_Level->GetGameMode().get());
+			GameMode = dynamic_cast<ACreateMapGameMode*>(_Level->GetGameMode().get());
 		}
 	}
 	else

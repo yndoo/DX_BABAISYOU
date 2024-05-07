@@ -4,7 +4,7 @@
 
 #include "ContentsConstValue.h"
 
-class CreateMapGameMode;
+class ACreateMapGameMode;
 class MapEditorGUI : public UEngineDebugMsgWindow
 {
 public:
@@ -20,7 +20,7 @@ protected:
 	void Tick(ULevel* Level, float _Delta) override;
 	void OnGui(ULevel* Level, float _Delta) override;
 
-	CreateMapGameMode* GameMode = nullptr;
+	ACreateMapGameMode* GameMode = nullptr;
 private:
 	FVector CalPosToIndex(FVector _Pos);
 

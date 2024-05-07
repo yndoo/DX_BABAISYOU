@@ -34,12 +34,6 @@
     <Filter Include="GameMode\StageSelectLevel">
       <UniqueIdentifier>{395f495a-7038-4bfd-ab60-858276009d86}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameMode\TestLevel">
-      <UniqueIdentifier>{f6d92700-15ec-4d18-8fcc-ad93605824a9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameMode\TestLevel\Object">
-      <UniqueIdentifier>{13a21790-db3d-4334-9437-37da387cf452}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GUI">
       <UniqueIdentifier>{e8f83a64-3989-4219-af05-f65656e603c9}</UniqueIdentifier>
     </Filter>
@@ -70,6 +64,9 @@
     <Filter Include="GameMode\StageLevel">
       <UniqueIdentifier>{f77e2612-9404-4c62-af24-af6690cbca16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameMode\TitleLevel">
+      <UniqueIdentifier>{b4fe07f4-7f37-4d80-8ecd-411e8cc8ddfa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BABAISYOUCore.h">
@@ -77,12 +74,6 @@
     </ClInclude>
     <ClInclude Include="PreCompile.h">
       <Filter>PreComplie</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayGameMode.h">
-      <Filter>GameMode\TestLevel</Filter>
-    </ClInclude>
-    <ClInclude Include="TestObject.h">
-      <Filter>GameMode\TestLevel\Object</Filter>
     </ClInclude>
     <ClInclude Include="Stage1GameMode.h">
       <Filter>GameMode\StageLevel</Filter>
@@ -231,6 +222,9 @@
     <ClInclude Include="GrassText.h">
       <Filter>Object\Obj-Level3\1SubjectText</Filter>
     </ClInclude>
+    <ClInclude Include="TitleGameMode.h">
+      <Filter>GameMode\TitleLevel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -238,12 +232,6 @@
     </ClCompile>
     <ClCompile Include="PreCompile.cpp">
       <Filter>PreComplie</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayGameMode.cpp">
-      <Filter>GameMode\TestLevel</Filter>
-    </ClCompile>
-    <ClCompile Include="TestObject.cpp">
-      <Filter>GameMode\TestLevel\Object</Filter>
     </ClCompile>
     <ClCompile Include="Stage1GameMode.cpp">
       <Filter>GameMode\StageLevel</Filter>
@@ -388,6 +376,9 @@
     </ClCompile>
     <ClCompile Include="GrassText.cpp">
       <Filter>Object\Obj-Level3\1SubjectText</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleGameMode.cpp">
+      <Filter>GameMode\TitleLevel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

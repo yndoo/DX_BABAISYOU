@@ -4,15 +4,15 @@
 #include "Background.h"
 #include "ContentsConstValue.h"
 
-CreateMapGameMode::CreateMapGameMode()
+ACreateMapGameMode::ACreateMapGameMode()
 {
 }
 
-CreateMapGameMode::~CreateMapGameMode()
+ACreateMapGameMode::~ACreateMapGameMode()
 {
 }
 
-void CreateMapGameMode::BeginPlay()
+void ACreateMapGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -25,18 +25,18 @@ void CreateMapGameMode::BeginPlay()
 }
 
 float UpdateTime = 0.f;
-void CreateMapGameMode::Tick(float _DeltaTime)
+void ACreateMapGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 }
 
 
-void CreateMapGameMode::LevelStart(ULevel* _PrevLevel)
+void ACreateMapGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 }
 
-void CreateMapGameMode::LevelEnd(ULevel* _NextLevel)
+void ACreateMapGameMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
 }

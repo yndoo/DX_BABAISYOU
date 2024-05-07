@@ -16,7 +16,8 @@ public:
 	TextActor& operator=(TextActor&& _Other) noexcept = delete;
 
 	void SetAnimation(std::string_view _Alpha);
-
+	void SetRendererScale(FVector _Scale);
+	void SetRendererMulColor(FVector _Color);
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;

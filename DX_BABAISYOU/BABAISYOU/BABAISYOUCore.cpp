@@ -10,6 +10,7 @@
 #include "StageGameMode.h"
 #include "StageSelectGameMode.h"
 #include "CreateMapGameMode.h"
+#include "TitleGameMode.h"
 
 UBABAISYOUCore::UBABAISYOUCore() 
 {
@@ -87,6 +88,9 @@ void UBABAISYOUCore::Initialize()
 		UEngineSprite::CreateCutting("S.png", 1, 3);
 		UEngineSprite::CreateCutting("T.png", 1, 3);
 		UEngineSprite::CreateCutting("A.png", 1, 3);
+		UEngineSprite::CreateCutting("B.png", 1, 3);
+		UEngineSprite::CreateCutting("I.png", 1, 3);
+		UEngineSprite::CreateCutting("Y.png", 1, 3);
 	
 	}
 
@@ -113,8 +117,9 @@ void UBABAISYOUCore::Initialize()
 	// Level
 	GEngine->CreateLevel<AStageGameMode>("StageLevel");
 	GEngine->CreateLevel<AStageSelectGameMode>("SelectMapLevel");
-	GEngine->CreateLevel<CreateMapGameMode>("CreateMapLevel");
-	GEngine->ChangeLevel("SelectMapLevel");
+	GEngine->CreateLevel<ACreateMapGameMode>("CreateMapLevel");
+	GEngine->CreateLevel<ATitleGameMode>("TitleLevel");
+	GEngine->ChangeLevel("TitleLevel");
 
 	int a = 0;
 }
