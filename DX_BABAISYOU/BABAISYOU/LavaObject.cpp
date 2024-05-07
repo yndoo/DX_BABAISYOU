@@ -4,6 +4,7 @@
 ALavaObject::ALavaObject()
 {
 	Info->MyType = EObjectType::LAVA;
+	Info->MyColor = FVector(228, 153, 80);
 }
 
 ALavaObject::~ALavaObject()

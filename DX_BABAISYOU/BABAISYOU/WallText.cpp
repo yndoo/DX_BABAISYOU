@@ -37,9 +37,11 @@ void AWallText::AniONOFF()
 	if (ON)
 	{
 		Renderer->ChangeAnimation("WALLTEXT_ON");
+		Info->MyColor = FVector(115, 115, 115);
 	}
 	else 
 	{
 		Renderer->ChangeAnimation("WALLTEXT_OFF");
+		Info->MyColor = FVector(41, 49, 65);
 	}
 }

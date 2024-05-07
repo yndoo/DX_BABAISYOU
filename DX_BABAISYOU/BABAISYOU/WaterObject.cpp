@@ -5,6 +5,7 @@ AWaterObject::AWaterObject()
 {
 	Info->MyType = EObjectType::WATER;
 	Info->TileType = ETileType::Tile;
+	Info->MyColor = FVector(95, 157, 209);
 }
 
 AWaterObject::~AWaterObject()

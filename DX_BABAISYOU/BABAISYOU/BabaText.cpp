@@ -35,9 +35,11 @@ void ABabaText::AniONOFF()
 	if (ON)
 	{
 		Renderer->ChangeAnimation("BABATEXT_On");
+		Info->MyColor = FVector(217, 57, 106);
 	}
 	else
 	{
 		Renderer->ChangeAnimation("BABATEXT_Off");
+		Info->MyColor = FVector(104, 46, 76);
 	}
 }

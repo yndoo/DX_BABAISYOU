@@ -37,9 +37,11 @@ void ALavaText::AniONOFF()
 	if (ON)
 	{
 		Renderer->ChangeAnimation("LAVATEXT_ON");
+		Info->MyColor = FVector(228, 153, 80);
 	}
 	else
 	{
 		Renderer->ChangeAnimation("LAVATEXT_OFF");
+		Info->MyColor = FVector(229, 83, 59);
 	}
 }

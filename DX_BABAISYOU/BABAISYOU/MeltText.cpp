@@ -5,6 +5,7 @@ AMeltText::AMeltText()
 {
 	Info->MyType = EObjectType::MELT;
 	Info->TileType = ETileType::Objective;
+	Info->MyColor = FVector(95, 157, 209);
 }
 
 AMeltText::~AMeltText()
@@ -31,9 +32,11 @@ void AMeltText::AniONOFF()
 	if (ON)
 	{
 		Renderer->ChangeAnimation("MELT_On");
+		Info->MyColor = FVector(95, 157, 209);
 	}
 	else
 	{
 		Renderer->ChangeAnimation("MELT_Off");
+		Info->MyColor = FVector(62, 118, 136);
 	}
 }

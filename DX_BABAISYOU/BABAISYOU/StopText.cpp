@@ -31,9 +31,11 @@ void AStopText::AniONOFF()
 	if (ON)
 	{
 		Renderer->ChangeAnimation("STOP_On");
+		Info->MyColor = FVector(75, 92, 28);
 	}
 	else
 	{
 		Renderer->ChangeAnimation("STOP_Off");
+		Info->MyColor = FVector(48, 56, 36);
 	}
 }

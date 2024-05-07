@@ -31,9 +31,11 @@ void ASinkText::AniONOFF()
 	if (ON)
 	{
 		Renderer->ChangeAnimation("SINK_On");
+		Info->MyColor = FVector(95, 157, 209);
 	}
 	else
 	{
 		Renderer->ChangeAnimation("SINK_Off");
+		Info->MyColor = FVector(62, 118, 136);
 	}
 }

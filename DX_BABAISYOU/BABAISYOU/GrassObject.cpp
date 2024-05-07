@@ -5,6 +5,7 @@ AGrassObject::AGrassObject()
 {
 	Info->MyType = EObjectType::GRASS;
 	Info->TileType = ETileType::Player;
+	Info->MyColor = FVector(48, 56, 36);
 }
 
 AGrassObject::~AGrassObject()

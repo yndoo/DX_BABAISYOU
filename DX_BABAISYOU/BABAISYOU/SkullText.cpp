@@ -37,9 +37,11 @@ void ASkullText::AniONOFF()
 	if (ON)
 	{
 		Renderer->ChangeAnimation("SKULLTEXT_ON");
+		Info->MyColor = FVector(130, 38, 28);
 	}
 	else
 	{
 		Renderer->ChangeAnimation("SKULLTEXT_OFF");
+		Info->MyColor = FVector(66, 25, 16);
 	}
 }

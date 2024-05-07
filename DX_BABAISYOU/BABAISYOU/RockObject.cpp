@@ -4,6 +4,7 @@
 ARockObject::ARockObject()
 {
 	Info->MyType = EObjectType::ROCK;
+	Info->MyColor = FVector(194, 158, 70);
 }
 
 ARockObject::~ARockObject()

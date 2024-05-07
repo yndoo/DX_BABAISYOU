@@ -13,6 +13,8 @@ public:
 	AFootPrint(AFootPrint&& _Other) noexcept = delete;
 	AFootPrint& operator=(const AFootPrint& _Other) = delete;
 	AFootPrint& operator=(AFootPrint&& _Other) noexcept = delete;
+
+	void SetRendererMulColor(FVector _Color);
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;

@@ -37,9 +37,11 @@ void AIsText::AniONOFF()
 	if (ON)
 	{
 		Renderer->ChangeAnimation("IS_ON");
+		Info->MyColor = FVector(255, 255, 255);
 	}
 	else
 	{
 		Renderer->ChangeAnimation("IS_OFF");
+		Info->MyColor = FVector(115, 115, 115);
 	}
 }

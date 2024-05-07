@@ -37,9 +37,11 @@ void AWaterText::AniONOFF()
 	if (ON)
 	{
 		Renderer->ChangeAnimation("WATERTEXT_ON");
+		Info->MyColor = FVector(95, 157, 209);
 	}
 	else
 	{
 		Renderer->ChangeAnimation("WATERTEXT_OFF");
+		Info->MyColor = FVector(62, 118, 136);
 	}
 }

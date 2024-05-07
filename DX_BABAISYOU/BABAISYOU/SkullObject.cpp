@@ -4,6 +4,7 @@
 ASkullObject::ASkullObject()
 {
 	Info->MyType = EObjectType::SKULL;
+	Info->MyColor = FVector(130,38,28);
 }
 
 ASkullObject::~ASkullObject()

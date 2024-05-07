@@ -31,9 +31,11 @@ void AYouText::AniONOFF()
 	if (ON)
 	{
 		Renderer->ChangeAnimation("YOU_On");
+		Info->MyColor = FVector(217, 57, 106);
 	}
 	else
 	{
 		Renderer->ChangeAnimation("YOU_Off");
+		Info->MyColor = FVector(104, 46, 76);
 	}
 }

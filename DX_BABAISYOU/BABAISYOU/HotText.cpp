@@ -31,9 +31,11 @@ void AHotText::AniONOFF()
 	if (ON)
 	{
 		Renderer->ChangeAnimation("HOT_On");
+		Info->MyColor = FVector(228, 153, 80);
 	}
 	else
 	{
 		Renderer->ChangeAnimation("HOT_Off");
+		Info->MyColor = FVector(229, 83, 59);
 	}
 }

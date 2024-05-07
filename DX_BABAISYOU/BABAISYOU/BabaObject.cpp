@@ -8,6 +8,7 @@ ABabaObject::ABabaObject()
 {
 	InputOn();	// ÀÏ´Ü ÄÑµÒ
 	Info->MyType = EObjectType::BABA;
+	Info->MyColor = FVector(255, 255, 255);
 }
 
 ABabaObject::~ABabaObject()

@@ -31,9 +31,11 @@ void ADefeatText::AniONOFF()
 	if (ON)
 	{
 		Renderer->ChangeAnimation("DEFEAT_On");
+		Info->MyColor = FVector(130, 38, 28);
 	}
 	else
 	{
 		Renderer->ChangeAnimation("DEFEAT_Off");
+		Info->MyColor = FVector(66, 25, 16);
 	}
 }

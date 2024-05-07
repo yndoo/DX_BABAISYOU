@@ -3,7 +3,7 @@
 #include "ContentsConstValue.h"
 #include "MapManager.h"
 #include <EngineCore/EngineDebugMsgWindow.h>
-#include "FootPrint.h"
+
 
 //int ALerpMoveObject::SomeMoveCnt = 0;
 //int ALerpMoveObject::SomeStayCnt = 0;
@@ -32,6 +32,7 @@ void ALerpMoveObject::PushedUpdate(float _DeltaTime)
 		Index2D Before = CalPosToIndex(GetActorLocation());
 		if (Cur != Before)
 		{
+			Hasfootprint = false;
 			IsMove = true;
 			EachMoveCheck_ForStack = true;
 			AddNextActorLocation(CalIndexToPos(Cur) - CalIndexToPos(Before));
@@ -60,6 +61,14 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 
 	if (true == IsMove)
 	{
+		if (false == Hasfootprint)
+		{
+			footprint = GetWorld()->SpawnActor<AFootPrint>("footprint");
+			footprint->SetActorLocation(GetActorLocation());
+			footprint->SetRendererMulColor(Info->MyColor);
+
+			Hasfootprint = true;
+		}
 		LerpMove(_DeltaTime);
 		return;
 	}
@@ -154,15 +163,10 @@ void ALerpMoveObject::InputMove(float _DeltaTime)
 			}
 
 			// 입력 적용 OK
+			Hasfootprint = false;
 			UContentsConstValue::InputCount++;
 			EachMoveCheck_ForStack = true;
 			EachInputCheck = true;
-
-			if(EObjectType::BABA == Info->MyType)
-			{
-				std::shared_ptr<AFootPrint> footprint = GetWorld()->SpawnActor<AFootPrint>("footprint");
-				footprint->SetActorLocation(GetActorLocation());
-			}
 		}
 	}
 	//LerpMove(_DeltaTime);
@@ -202,7 +206,7 @@ FVector ALerpMoveObject::LerpCal(float _Time)
 void ALerpMoveObject::ReverseMoveSetting(EInputDir _Dir, float _DeltaTime, bool _CanMove)
 {
 	IsMove = true;
-
+	 
 	if (false == _CanMove)
 	{
 		AddNextActorLocation(FVector::Zero);

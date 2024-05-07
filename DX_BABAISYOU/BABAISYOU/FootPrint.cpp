@@ -11,7 +11,7 @@ AFootPrint::AFootPrint()
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
 	Renderer->SetupAttachment(Root);
 
-	Renderer->SetOrder(ERenderOrder::Player);
+	Renderer->SetOrder(ERenderOrder::UI);
 }
 
 AFootPrint::~AFootPrint()
@@ -25,6 +25,12 @@ void AFootPrint::BeginPlay()
 	SetActorScale3D(FVector(24, 24));
 }
 
+void AFootPrint::SetRendererMulColor(FVector _Color)
+{
+	_Color /= 255;
+	Renderer->SetMulColor(_Color);
+}
+
 void AFootPrint::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
@@ -34,11 +40,9 @@ void AFootPrint::Tick(float _DeltaTime)
 	{
 		Scale = Scale + FVector((-50.f) * _DeltaTime, (-50.f) * _DeltaTime);
 		SetActorScale3D(Scale);
-		//AddActorScale3D(FVector((-50.f) * _DeltaTime, (-50.f) * _DeltaTime));
 	}
 	else
 	{
 		Destroy();
-		//SetActive(false);
 	}
 }

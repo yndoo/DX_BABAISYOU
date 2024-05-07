@@ -32,9 +32,11 @@ void AFlagText::AniONOFF()
 	if (ON)
 	{
 		Renderer->ChangeAnimation("FLAGTEXT_On");
+		Info->MyColor = FVector(237, 226, 133);
 	}
 	else
 	{
 		Renderer->ChangeAnimation("FLAGTEXT_Off");
+		Info->MyColor = FVector(144, 103, 62);
 	}
 }

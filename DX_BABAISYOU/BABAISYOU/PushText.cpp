@@ -32,9 +32,11 @@ void APushText::AniONOFF()
 	if (ON)
 	{
 		Renderer->ChangeAnimation("PUSH_On");
+		Info->MyColor = FVector(144, 103, 62);
 	}
 	else
 	{
 		Renderer->ChangeAnimation("PUSH_Off");
+		Info->MyColor = FVector(80, 63, 36);
 	}
 }

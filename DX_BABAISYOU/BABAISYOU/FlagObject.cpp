@@ -4,6 +4,7 @@
 AFlagObject::AFlagObject()
 {
 	Info->MyType = EObjectType::FLAG;
+	Info->MyColor = FVector(237, 226, 133);
 }
 
 AFlagObject::~AFlagObject()

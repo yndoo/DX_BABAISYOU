@@ -6,6 +6,7 @@ AWallObject::AWallObject()
 {
 	Info->MyType = EObjectType::WALL;
 	Info->TileType = ETileType::Player;
+	Info->MyColor = FVector(41, 49, 65);
 }
 
 AWallObject::~AWallObject()

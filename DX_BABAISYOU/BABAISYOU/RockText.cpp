@@ -31,9 +31,11 @@ void ARockText::AniONOFF()
 	if (ON)
 	{
 		Renderer->ChangeAnimation("ROCKTEXT_On");
+		Info->MyColor = FVector(144, 103, 62);
 	}
 	else
 	{
 		Renderer->ChangeAnimation("ROCKTEXT_Off");
+		Info->MyColor = FVector(80, 63, 36);
 	}
 }

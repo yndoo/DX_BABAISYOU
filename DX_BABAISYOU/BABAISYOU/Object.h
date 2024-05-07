@@ -73,6 +73,7 @@ public:
 	};
 
 	Index2D CurIndex = Index2D(-1, -1);
+	FVector MyColor = FVector::Zero;
 };
 
 // 맵에 표시되는 모든 오브젝트

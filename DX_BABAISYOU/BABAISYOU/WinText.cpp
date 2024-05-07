@@ -31,9 +31,11 @@ void AWinText::AniONOFF()
 	if (ON)
 	{
 		Renderer->ChangeAnimation("WIN_On");
+		Info->MyColor = FVector(237, 226, 133);
 	}
 	else
 	{
 		Renderer->ChangeAnimation("WIN_Off");
+		Info->MyColor = FVector(144, 103, 62);
 	}
 }
