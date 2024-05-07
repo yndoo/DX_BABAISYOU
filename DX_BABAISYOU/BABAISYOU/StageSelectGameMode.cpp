@@ -7,7 +7,7 @@
 #include "ContentsConstValue.h"
 #include "Object.h"
 #include "MapManager.h"
-
+#include <EngineCore/Image.h>
 
 AStageSelectGameMode::AStageSelectGameMode()
 {
@@ -39,8 +39,6 @@ void AStageSelectGameMode::BeginPlay()
 
 	CurStage = UContentsConstValue::ClearStage;
 	NewStage(0, 1);
-	//NewStage(0, 2);
-	//NewStage(0, 3);
 }
 
 void AStageSelectGameMode::Tick(float _DeltaTime)
@@ -49,7 +47,35 @@ void AStageSelectGameMode::Tick(float _DeltaTime)
 	if (UContentsConstValue::ClearStage != CurStage)
 	{
 		CurStage = UContentsConstValue::ClearStage;
-		NewStage(0, CurStage);
+
+		switch (CurStage)
+		{
+		case 2:
+			NewStage(0, 2);
+			NewStage(0, 3);
+			break;
+		case 3:
+			NewStage(0, 4);
+			NewStage(0, 5);
+			break;
+		case 4:
+			NewStage(0, 4);
+			break;
+		case 5:
+			NewStage(0, 6);
+			NewStage(0, 7);
+			break;
+		case 6:
+			NewStage(0, 7);
+			break;
+		case 8:
+			NewStage(0, 5);
+			NewStage(0, 8);
+			break;
+		default:
+			break;
+		}
+		//NewStage(0, CurStage);
 	}
 
 	if (true == IsDown(VK_SPACE))
@@ -59,9 +85,6 @@ void AStageSelectGameMode::Tick(float _DeltaTime)
 		GEngine->ChangeLevel("StageLevel");
 		UContentsConstValue::OpenStageNum = StageN;
 	}
-
-	Index2D Idx = Selector->Info->CurIndex;
-	int a = 0;
 }
 
 int AStageSelectGameMode::IndexToStage(Index2D _index)
@@ -94,6 +117,10 @@ int AStageSelectGameMode::IndexToStage(Index2D _index)
 	else if (Index2D(5, 3) == _index)
 	{
 		Result = 7;
+	}
+	else if (Index2D(11, 6) == _index)
+	{
+		Result = 8;
 	}
 	else
 	{
@@ -130,12 +157,27 @@ void AStageSelectGameMode::NewStage(int _Num1, int _Num2)
 	case 7:
 		StageIdx = Index2D(5, 3);
 		break;
+	case 8:
+		{
+			StageIdx = Index2D(11, 6);
+
+			UImage* Bridge = CreateWidget<UImage>(GetWorld(), "bridge");
+			Bridge->AddToViewPort(2);
+			Bridge->SetSprite("bridge.png");
+			Bridge->SetScale(FVector(203, 113));
+			Bridge->SetPosition(FVector(-60, -50));
+		}
+		break;
 	default:
 		//±×¸¸?
 		StageIdx = Index2D(0, 0);
 		break;
 	}
-
+	if (true == MadeStages[_Num2])
+	{
+		return;
+	}
+	MadeStages[_Num2] = true;
 
 	std::shared_ptr<AStageNumber> StageNum1 = GetWorld()->SpawnActor<AStageNumber>("StageNum1");
 	StageNum1->SetMapScale(UContentsConstValue::StageSelectMapScale);

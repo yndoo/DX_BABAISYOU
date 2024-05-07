@@ -20,6 +20,7 @@ void AStageSelector::BeginPlay()
 	Renderer->SetSprite("Selector.png");
 	Renderer->CreateAnimation("Selector", "Selector.png", 0.2f);
 	Renderer->ChangeAnimation("Selector");
+	Renderer->SetOrder(ERenderOrder::UI);
 }
 
 void AStageSelector::Tick(float _DeltaTime)

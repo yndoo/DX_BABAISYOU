@@ -287,7 +287,7 @@ void BABAGameMode::DeathCheck()
 						FadeOut = GetWorld()->GetLastTarget()->AddEffect<FadeOutEffect>();
 						FadeOut.get()->EffectON();
 
-						UContentsConstValue::ClearStage += 1;
+						UContentsConstValue::ClearStage = UContentsConstValue::OpenStageNum + 1;
 						GameState = EGameState::CLEAR;
 					}
 				}

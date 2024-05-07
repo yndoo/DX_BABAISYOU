@@ -29,5 +29,7 @@ private:
 
 	int CurStage = -1;
 	int ClearStage = -1;
+
+	bool MadeStages[8] = { false, };
 };
 
