@@ -23,7 +23,7 @@ void ABridge::BeginPlay()
 void ABridge::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	if (Info->CurIndex == Index2D(3,1) && true == Renderer->IsActive())
+	if ((Info->CurIndex == Index2D(3,1) || Info->CurIndex == Index2D(4, 3)) && true == Renderer->IsActive())
 	{
 		Renderer->SetActive(false);
 	}

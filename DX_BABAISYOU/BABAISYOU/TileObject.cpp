@@ -73,7 +73,6 @@ void ATileObject::TileDirUpdate()
 		// 옆에 같은 타일이 있는지 확인
 		for (AObject* obj : *(GMapManager->GetObjectList(nx, ny)))		
 		{
-			GMapManager->Graph;
 			if (false == obj->Destroyed && obj->Info->MyType == Info->MyType)
 			{
 				DirNum += MyPow(2, i);	// 2의 i 제곱

@@ -26,4 +26,6 @@ void AStageSelector::BeginPlay()
 void AStageSelector::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+
 }

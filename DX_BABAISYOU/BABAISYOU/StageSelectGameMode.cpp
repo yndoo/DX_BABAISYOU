@@ -51,6 +51,7 @@ void AStageSelectGameMode::Tick(float _DeltaTime)
 {
 	//Super::Tick(_DeltaTime);
 	Selector->Info->CurIndex;
+	GMapManager->Graph;
 	int a = 0;
 	 
 	if (UContentsConstValue::ClearStage != CurStage)
@@ -156,6 +157,7 @@ int AStageSelectGameMode::IndexToStage(Index2D _index)
 void AStageSelectGameMode::NewStage(int _Num1, int _Num2)
 {
 	Index2D StageIdx;
+
  	switch (_Num2)
 	{
 	case 0:
@@ -163,9 +165,6 @@ void AStageSelectGameMode::NewStage(int _Num1, int _Num2)
 		break;
 	case 1:
 		StageIdx = Index2D(4, 3);
-		AutoCreate(EObjectType::LINE, 3, 1, UContentsConstValue::StageSelectMapScale);
-		AutoCreate(EObjectType::LINE, 4, 1, UContentsConstValue::StageSelectMapScale);
-		AutoCreate(EObjectType::LINE, 4, 2, UContentsConstValue::StageSelectMapScale);
 		break;
 	case 2:
 		StageIdx = Index2D(4, 4);
@@ -188,13 +187,12 @@ void AStageSelectGameMode::NewStage(int _Num1, int _Num2)
 	case 8:
 		{
 			StageIdx = Index2D(11, 8);
-
 			AutoCreate(EObjectType::LINE, 6, 5, UContentsConstValue::StageSelectMapScale);
 			AutoCreate(EObjectType::LINE, 7, 5, UContentsConstValue::StageSelectMapScale);
 			AutoCreate(EObjectType::LINE, 8, 5, UContentsConstValue::StageSelectMapScale);
 			AutoCreate(EObjectType::LINE, 9, 5, UContentsConstValue::StageSelectMapScale);
 			AutoCreate(EObjectType::LINE, 10, 5, UContentsConstValue::StageSelectMapScale);
-			AutoCreate(EObjectType::LINE, 11, 6, UContentsConstValue::StageSelectMapScale);
+			AutoCreate(EObjectType::LINE, 11, 5, UContentsConstValue::StageSelectMapScale);
 			AutoCreate(EObjectType::LINE, 11, 6, UContentsConstValue::StageSelectMapScale);
 			AutoCreate(EObjectType::LINE, 11, 7, UContentsConstValue::StageSelectMapScale);
 		}
@@ -213,7 +211,7 @@ void AStageSelectGameMode::NewStage(int _Num1, int _Num2)
 	std::shared_ptr<AStageNumber> StageNum1 = GetWorld()->SpawnActor<AStageNumber>("StageNum1");
 	StageNum1->SetMapScale(UContentsConstValue::StageSelectMapScale);
 	StageNum1->AddActorLocation(StageNum1->CalIndexToPos(StageIdx));
-	StageNum1->AddActorLocation(FVector(-6, -12));
+	StageNum1->AddActorLocation(FVector(-6, -10));
 	StageNum1->BeginPosSetting();
 	StageNum1->SetActorScale3D(UContentsConstValue::TileScale * 2);
 	StageNum1->SetStageNum(_Num1);
@@ -221,7 +219,7 @@ void AStageSelectGameMode::NewStage(int _Num1, int _Num2)
 	std::shared_ptr<AStageNumber> StageNum2 = GetWorld()->SpawnActor<AStageNumber>("StageNum2");
 	StageNum2->SetMapScale(UContentsConstValue::StageSelectMapScale);
 	StageNum2->AddActorLocation(StageNum2->CalIndexToPos(StageIdx));
-	StageNum2->AddActorLocation(FVector(6, -12));
+	StageNum2->AddActorLocation(FVector(6, -10));
 	StageNum2->BeginPosSetting();
 	StageNum2->SetActorScale3D(UContentsConstValue::TileScale * 2);
 	StageNum2->SetStageNum(_Num2);
@@ -232,9 +230,17 @@ void AStageSelectGameMode::NewStage(int _Num1, int _Num2)
 void AStageSelectGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
+
+	if (UContentsConstValue::ClearStage >= 1)
+	{
+		AutoCreate(EObjectType::LINE, 3, 1, UContentsConstValue::StageSelectMapScale);
+		AutoCreate(EObjectType::LINE, 4, 1, UContentsConstValue::StageSelectMapScale);
+		AutoCreate(EObjectType::LINE, 4, 2, UContentsConstValue::StageSelectMapScale);
+		AutoCreate(EObjectType::LINE, 4, 3, UContentsConstValue::StageSelectMapScale);
+	}
 }
 
 void AStageSelectGameMode::LevelEnd(ULevel* _NextLevel)
 {
-	//Super::LevelEnd(_NextLevel);
+	Super::LevelEnd(_NextLevel);
 }
