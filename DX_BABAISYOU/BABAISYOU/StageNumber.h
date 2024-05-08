@@ -20,6 +20,8 @@ public:
 		Renderer->ChangeAnimation(std::to_string(StageNum) + "_White");
 	}
 
+	void SetRendererMulColor(FVector _Color);
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;

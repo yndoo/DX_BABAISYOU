@@ -14,6 +14,8 @@ const float UContentsConstValue::TileY = 36.f;
 const int UContentsConstValue::ITileX = 36;
 const int UContentsConstValue::ITileY = 36;
 
+bool UContentsConstValue::StageCleared[10] = { false, };
+
 int UContentsConstValue::MaxIndexX = 0;
 int UContentsConstValue::MaxIndexY = 0;
 int UContentsConstValue::InputCount = 0;

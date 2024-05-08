@@ -225,6 +225,9 @@
     <ClInclude Include="TitleGameMode.h">
       <Filter>GameMode\TitleLevel</Filter>
     </ClInclude>
+    <ClInclude Include="Bridge.h">
+      <Filter>Object\Obj-Level3\0PlayerObject - Tile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -379,6 +382,9 @@
     </ClCompile>
     <ClCompile Include="TitleGameMode.cpp">
       <Filter>GameMode\TitleLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="Bridge.cpp">
+      <Filter>Object\Obj-Level3\0PlayerObject - Tile</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

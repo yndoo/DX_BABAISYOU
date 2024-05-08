@@ -14,6 +14,7 @@
 #include "LavaObject.h"
 #include "GrassObject.h"
 #include "BackTileObject.h"
+#include "Bridge.h"
 
 #include "IsText.h"
 #include "BabaText.h"
@@ -82,6 +83,48 @@ void BABAGameMode::BeginPlay()
 	
 	UI = GetWorld()->SpawnActor<KeyUIManager>("KeyUIManager");
 	UI->KeyUIOff();
+
+	CongratulationsInit();
+}
+
+void BABAGameMode::CongratulationsSwitch(bool _IsOn)
+{
+	for (int i = 0; i < 15; i++)
+	{
+		Congratulations[i]->SetActive(_IsOn);
+	}
+}
+
+void BABAGameMode::CongratulationsInit()
+{
+	FVector CPos = FVector(-100, 0);
+	FVector Scale = FVector(36, 54);
+
+	for (int i = 0; i < 15; i++)
+	{
+		Congratulations[i] = GetWorld()->SpawnActor<TextActor>("congrat");
+		Congratulations[i]->SetActorLocation(CPos);
+		Congratulations[i]->SetRendererScale(Scale);
+		CPos += FVector(18, 0);
+	}
+
+	Congratulations[0]->SetAnimation("C");
+	Congratulations[1]->SetAnimation("O");
+	Congratulations[2]->SetAnimation("N");
+	Congratulations[3]->SetAnimation("G");
+	Congratulations[4]->SetAnimation("R");
+	Congratulations[5]->SetAnimation("A");
+	Congratulations[6]->SetAnimation("T");
+	Congratulations[7]->SetAnimation("U");
+	Congratulations[8]->SetAnimation("L");
+	Congratulations[9]->SetAnimation("A");
+	Congratulations[10]->SetAnimation("T");
+	Congratulations[11]->SetAnimation("I");
+	Congratulations[12]->SetAnimation("O");
+	Congratulations[13]->SetAnimation("N");
+	Congratulations[14]->SetAnimation("S");
+
+	CongratulationsSwitch(false);
 }
 
 void BABAGameMode::Tick(float _DeltaTime)
@@ -99,6 +142,7 @@ void BABAGameMode::Tick(float _DeltaTime)
 		{
 			FadeOut.get()->EffectOff();
 			EffectTime = 3.f;
+			CongratulationsSwitch(false);
 			GameState = EGameState::CLEARMSG;
 			return;
 		}
@@ -116,7 +160,7 @@ void BABAGameMode::Tick(float _DeltaTime)
 		break;
 	}
 
-	if (/*true == UI->GetCurOn() && */true == IsDown('R'))
+	if (true == IsDown('R'))
 	{
 		// 재시작
 		LevelEnd(GetWorld());
@@ -162,8 +206,6 @@ void BABAGameMode::LevelStart(ULevel* _PrevLevel)
 void BABAGameMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
-	
-	//UI->Off();
 
 	for (AObject* one : AllObjects)
 	{
@@ -287,6 +329,9 @@ void BABAGameMode::DeathCheck()
 						FadeOut = GetWorld()->GetLastTarget()->AddEffect<FadeOutEffect>();
 						FadeOut.get()->EffectON();
 
+						CongratulationsSwitch(true);
+
+						UContentsConstValue::StageCleared[UContentsConstValue::OpenStageNum] = true;
 						UContentsConstValue::ClearStage = UContentsConstValue::OpenStageNum + 1;
 						GameState = EGameState::CLEAR;
 					}
@@ -442,7 +487,7 @@ AObject* BABAGameMode::ObjectiveCheck(int _X, int _Y/*동사의 인덱스*/)
 	return nullptr;
 }
 
-void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _MapScale)
+void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _MapScale = FVector::Zero)
 {
 	_MapScale = CurMapScale;
 
@@ -516,6 +561,19 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 		Players.push_back(Grass.get());
 	}
 		break;
+	case EObjectType::LINE:
+	{
+		std::shared_ptr<ABridge> Line = GetWorld()->SpawnActor<ABridge>("Line");
+		Line->SetMapScale(_MapScale);
+		Line->SetMaxIndex();
+		Line->SetActorLocation(Line->CalIndexToPos(Index2D(_X, _Y)));
+		Line->BeginPosSetting();
+		Line->SetOrder(ERenderOrder::BackTile);
+		GMapManager->SetObject(Line.get(), _X, _Y);
+		AllObjects.push_back(Line.get());
+		Players.push_back(Line.get());
+	}
+	break;
 	case EObjectType::FLAG:
 	{
 		std::shared_ptr<AFlagObject> Flag = GetWorld()->SpawnActor<AFlagObject>("Flag");

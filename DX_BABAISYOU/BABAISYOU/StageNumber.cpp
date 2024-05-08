@@ -34,6 +34,12 @@ void AStageNumber::LevelStart(ULevel* _PrevLevel)
 	Renderer->ChangeAnimation(std::to_string(StageNum) + "_White");
 }
 
+void AStageNumber::SetRendererMulColor(FVector _Color)
+{
+	_Color /= 255;
+	Renderer->SetMulColor(_Color);
+}
+
 void AStageNumber::CreateNumAni()
 {
 	// 0~4 애니메이션

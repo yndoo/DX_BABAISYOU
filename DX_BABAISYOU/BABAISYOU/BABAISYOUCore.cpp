@@ -52,6 +52,7 @@ void UBABAISYOUCore::Initialize()
 		UEngineSprite::CreateCutting("WATER.png", 18, 3);
 		UEngineSprite::CreateCutting("LAVA.png", 18, 3);
 		UEngineSprite::CreateCutting("GRASS.png", 18, 3);
+		UEngineSprite::CreateCutting("LINE.png", 18, 3);
 
 		UEngineSprite::CreateCutting("FLAG.png", 2, 3);
 		UEngineSprite::CreateCutting("ROCK.png", 1, 3);
@@ -79,6 +80,7 @@ void UBABAISYOUCore::Initialize()
 		UEngineSprite::CreateCutting("SelectMap_background.png", 3, 1);
 		UEngineSprite::CreateCutting("Selector.png", 3, 1);
 		UEngineSprite::CreateCutting("NumberFont.png", 10, 6);
+		UEngineSprite::CreateCutting("Alphabet.png", 14, 12);
 		UEngineSprite::CreateCutting("U.png", 1, 3);
 		UEngineSprite::CreateCutting("N.png", 1, 3);
 		UEngineSprite::CreateCutting("D.png", 1, 3);

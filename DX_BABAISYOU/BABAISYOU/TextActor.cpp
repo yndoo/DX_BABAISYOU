@@ -49,6 +49,10 @@ void TextActor::CreateAlphaAnimation()
 	Renderer->CreateAnimation("B", "B.png", AnimationInterVec, { 0,1,2 }, true);
 	Renderer->CreateAnimation("I", "I.png", AnimationInterVec, { 0,1,2 }, true);
 	Renderer->CreateAnimation("Y", "Y.png", AnimationInterVec, { 0,1,2 }, true);
+
+	Renderer->CreateAnimation("C", "Alphabet.png", AnimationInterVec, { 4, 4 + 14, 4 + 14 * 2 }, true);
+	Renderer->CreateAnimation("G", "Alphabet.png", AnimationInterVec, { 12, 12 + 14, 12 + 14 * 2 }, true);
+	Renderer->CreateAnimation("L", "Alphabet.png", AnimationInterVec, { 50, 50 + 14, 50 + 14 * 2 }, true);
 }
 
 void TextActor::SetRendererScale(FVector _Scale)

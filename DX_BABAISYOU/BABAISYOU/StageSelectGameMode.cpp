@@ -2,12 +2,13 @@
 #include "StageSelectGameMode.h"
 #include <EngineCore/Camera.h>
 #include <EngineCore/EngineCore.h>
+#include <EngineCore/Image.h>
 #include "Background.h"
 #include "ContentsEnum.h"
 #include "ContentsConstValue.h"
 #include "Object.h"
 #include "MapManager.h"
-#include <EngineCore/Image.h>
+#include "Bridge.h"
 
 AStageSelectGameMode::AStageSelectGameMode()
 {
@@ -22,6 +23,10 @@ void AStageSelectGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 
+	CurMapScale = UContentsConstValue::StageSelectMapScale;
+	StageNums.resize(9);
+	UI->KeyUIOff();
+
 	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, -100.0f));
 
@@ -30,6 +35,7 @@ void AStageSelectGameMode::BeginPlay()
 	Selector->AddActorLocation(Selector->CalIndexToPos(Index2D(4, 1)));
 	Selector->BeginPosSetting();
 	Selector->SetActorScale3D(UContentsConstValue::TileScale * 1.5);
+	Selector->SetOrder(ERenderOrder::UI);
 
 	std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");
 	Back->SetActorScale3D(UContentsConstValue::StageSelectMapImgScale);
@@ -43,10 +49,16 @@ void AStageSelectGameMode::BeginPlay()
 
 void AStageSelectGameMode::Tick(float _DeltaTime)
 {
-	Super::Tick(_DeltaTime);
+	//Super::Tick(_DeltaTime);
 	if (UContentsConstValue::ClearStage != CurStage)
 	{
 		CurStage = UContentsConstValue::ClearStage;
+
+		if (true == UContentsConstValue::StageCleared[UContentsConstValue::ClearStage - 1])
+		{
+			StageNums[UContentsConstValue::ClearStage - 1].first->SetRendererMulColor(FVector(237, 226, 133));
+			StageNums[UContentsConstValue::ClearStage - 1].second->SetRendererMulColor(FVector(237, 226, 133));
+		}
 
 		switch (CurStage)
 		{
@@ -161,11 +173,14 @@ void AStageSelectGameMode::NewStage(int _Num1, int _Num2)
 		{
 			StageIdx = Index2D(11, 6);
 
-			UImage* Bridge = CreateWidget<UImage>(GetWorld(), "bridge");
-			Bridge->AddToViewPort(2);
-			Bridge->SetSprite("bridge.png");
-			Bridge->SetScale(FVector(203, 113));
-			Bridge->SetPosition(FVector(-60, -50));
+			AutoCreate(EObjectType::LINE, 6, 3, UContentsConstValue::StageSelectMapScale);
+			AutoCreate(EObjectType::LINE, 7, 3, UContentsConstValue::StageSelectMapScale);
+			AutoCreate(EObjectType::LINE, 8, 3, UContentsConstValue::StageSelectMapScale);
+			AutoCreate(EObjectType::LINE, 9, 3, UContentsConstValue::StageSelectMapScale);
+			AutoCreate(EObjectType::LINE, 10, 3, UContentsConstValue::StageSelectMapScale);
+			AutoCreate(EObjectType::LINE, 11, 3, UContentsConstValue::StageSelectMapScale);
+			AutoCreate(EObjectType::LINE, 11, 4, UContentsConstValue::StageSelectMapScale);
+			AutoCreate(EObjectType::LINE, 11, 5, UContentsConstValue::StageSelectMapScale);
 		}
 		break;
 	default:
@@ -195,7 +210,7 @@ void AStageSelectGameMode::NewStage(int _Num1, int _Num2)
 	StageNum2->SetActorScale3D(UContentsConstValue::TileScale * 2);
 	StageNum2->SetStageNum(_Num2);
 
-	StageNums.push_back(std::make_pair(StageNum1, StageNum2));
+	StageNums[_Num2] = std::make_pair(StageNum1, StageNum2);
 }
 
 void AStageSelectGameMode::LevelStart(ULevel* _PrevLevel)

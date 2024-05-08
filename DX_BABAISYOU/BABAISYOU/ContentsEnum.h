@@ -17,6 +17,7 @@ enum class ERenderOrder
 	FrontTile,
 	Text,
 	Player,
+	Foot,
 	UI,
 	Cover,
 };
@@ -73,6 +74,7 @@ enum class EObjectType
 	// 바닥에 깔리는 애
 	TILE,
 	MELT,
+	LINE,
 };
 
 // 게임 진행 상황

@@ -11,7 +11,7 @@ AFootPrint::AFootPrint()
 	Renderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
 	Renderer->SetupAttachment(Root);
 
-	Renderer->SetOrder(ERenderOrder::UI);
+	Renderer->SetOrder(ERenderOrder::Foot);
 }
 
 AFootPrint::~AFootPrint()

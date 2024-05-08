@@ -10,6 +10,8 @@
 #include "FadeInCover.h"
 #include "FadeOUTEffect.h"
 
+#include "TextActor.h"
+
 class BABAGameMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -41,6 +43,8 @@ protected:
 	void VerbCheck(int _X, int _Y);
 	AObject* ObjectiveCheck(int _X, int _Y);
 	void ClearAllSentence();
+	void CongratulationsInit();
+	void CongratulationsSwitch(bool _IsOn);
 
 	int SentenceDir = -1;	// 0, 1, 2, 3
 	std::queue<AObject*> sentenceQ;
@@ -58,6 +62,7 @@ protected:
 	std::list<AObject*> OnSubjects;		// 문장 ON 된 주어들 
 
 	std::shared_ptr<KeyUIManager> UI;
+	std::shared_ptr<TextActor> Congratulations[15] = { nullptr, };
 private:
 	int BeforeInputCount = 0;
 
