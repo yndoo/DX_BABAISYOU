@@ -17,11 +17,12 @@ void ACreateMapGameMode::BeginPlay()
 	Super::BeginPlay();
 
 	std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");
-	Back->SetActorScale3D(UContentsConstValue::Stage4MapScale);
+	Back->SetActorScale3D(UContentsConstValue::Stage0MapScale);
 	CurMapScale = Back->GetActorScale3D();
 	Back->SetActorLocation({ 0, 0, 400 });
 	Back->BGImageSetting();
 	Back->SetOrder(ERenderOrder::Background);
+
 }
 
 float UpdateTime = 0.f;

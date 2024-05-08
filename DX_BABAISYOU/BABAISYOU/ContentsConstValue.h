@@ -7,6 +7,7 @@ class UContentsConstValue
 public:
 	static const FVector StageSelectMapScale;
 	static const FVector StageSelectMapImgScale;
+	static const FVector Stage0MapScale;
 	static const FVector Stage1MapScale;
 	static const FVector Stage3MapScale;
 	static const FVector Stage4MapScale;

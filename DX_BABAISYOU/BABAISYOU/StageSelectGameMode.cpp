@@ -24,7 +24,7 @@ void AStageSelectGameMode::BeginPlay()
 	Super::BeginPlay();
 
 	CurMapScale = UContentsConstValue::StageSelectMapScale;
-	StageNums.resize(9);
+	StageNums.resize(10);
 	UI->KeyUIOff();
 
 	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
@@ -32,7 +32,7 @@ void AStageSelectGameMode::BeginPlay()
 
 	Selector = GetWorld()->SpawnActor<AStageSelector>("Selector");
 	Selector->SetMapScale(UContentsConstValue::StageSelectMapScale);
-	Selector->AddActorLocation(Selector->CalIndexToPos(Index2D(4, 1)));
+	Selector->AddActorLocation(Selector->CalIndexToPos(Index2D(3, 1)));
 	Selector->BeginPosSetting();
 	Selector->SetActorScale3D(UContentsConstValue::TileScale * 1.5);
 	Selector->SetOrder(ERenderOrder::UI);
@@ -44,12 +44,15 @@ void AStageSelectGameMode::BeginPlay()
 	Back->SetOrder(ERenderOrder::Background);
 
 	CurStage = UContentsConstValue::ClearStage;
-	NewStage(0, 1);
+	NewStage(0, 0);
 }
 
 void AStageSelectGameMode::Tick(float _DeltaTime)
 {
 	//Super::Tick(_DeltaTime);
+	Selector->Info->CurIndex;
+	int a = 0;
+	 
 	if (UContentsConstValue::ClearStage != CurStage)
 	{
 		CurStage = UContentsConstValue::ClearStage;
@@ -62,6 +65,9 @@ void AStageSelectGameMode::Tick(float _DeltaTime)
 
 		switch (CurStage)
 		{
+		case 1:
+			NewStage(0, 1);
+			break;
 		case 2:
 			NewStage(0, 2);
 			NewStage(0, 3);
@@ -102,41 +108,45 @@ void AStageSelectGameMode::Tick(float _DeltaTime)
 int AStageSelectGameMode::IndexToStage(Index2D _index)
 {
 	int Result = -1;
-	if (Index2D(4, 1) == _index)
+	if (Index2D(3, 1) == _index)
 	{
-		Result = 1;
-	} 
-	else if (Index2D(4, 2) == _index)
-	{
-		Result = 2;
-	}
-	else if (Index2D(5, 1) == _index)
-	{
-		Result = 3;
-	}
-	else if (Index2D(5, 2) == _index)
-	{
-		Result = 4;
+		Result = 0;
 	}
 	else if (Index2D(4, 3) == _index)
 	{
-		Result = 5;
-	}
-	else if (Index2D(6, 2) == _index)
+		Result = 1;
+	} 
+	else if (Index2D(4, 4) == _index)
 	{
-		Result = 6;
+		Result = 2;
 	}
 	else if (Index2D(5, 3) == _index)
 	{
+		Result = 3;
+	}
+	else if (Index2D(5, 4) == _index)
+	{
+		Result = 4;
+	}
+	else if (Index2D(4, 5) == _index)
+	{
+		Result = 5;
+	}
+	else if (Index2D(6, 4) == _index)
+	{
+		Result = 6;
+	}
+	else if (Index2D(5, 5) == _index)
+	{
 		Result = 7;
 	}
-	else if (Index2D(11, 6) == _index)
+	else if (Index2D(11, 8) == _index)
 	{
 		Result = 8;
 	}
 	else
 	{
-		MsgBoxAssert("아직 안 만든 스테이지 번호");
+	//	MsgBoxAssert("아직 안 만든 스테이지 번호");
 		return -1;
 	}
 
@@ -148,39 +158,45 @@ void AStageSelectGameMode::NewStage(int _Num1, int _Num2)
 	Index2D StageIdx;
  	switch (_Num2)
 	{
+	case 0:
+		StageIdx = Index2D(3, 1);
+		break;
 	case 1:
-		StageIdx = Index2D(4, 1);
+		StageIdx = Index2D(4, 3);
+		AutoCreate(EObjectType::LINE, 3, 1, UContentsConstValue::StageSelectMapScale);
+		AutoCreate(EObjectType::LINE, 4, 1, UContentsConstValue::StageSelectMapScale);
+		AutoCreate(EObjectType::LINE, 4, 2, UContentsConstValue::StageSelectMapScale);
 		break;
 	case 2:
-		StageIdx = Index2D(4, 2);
+		StageIdx = Index2D(4, 4);
 		break;
 	case 3:
-		StageIdx = Index2D(5, 1);
+		StageIdx = Index2D(5, 3);
 		break;
 	case 4:
-		StageIdx = Index2D(5, 2);
+		StageIdx = Index2D(5, 4);
 		break;
 	case 5:
-		StageIdx = Index2D(4, 3);
+		StageIdx = Index2D(4, 5);
 		break;
 	case 6:
-		StageIdx = Index2D(6, 2);
+		StageIdx = Index2D(6, 4);
 		break;
 	case 7:
-		StageIdx = Index2D(5, 3);
+		StageIdx = Index2D(5, 5);
 		break;
 	case 8:
 		{
-			StageIdx = Index2D(11, 6);
+			StageIdx = Index2D(11, 8);
 
-			AutoCreate(EObjectType::LINE, 6, 3, UContentsConstValue::StageSelectMapScale);
-			AutoCreate(EObjectType::LINE, 7, 3, UContentsConstValue::StageSelectMapScale);
-			AutoCreate(EObjectType::LINE, 8, 3, UContentsConstValue::StageSelectMapScale);
-			AutoCreate(EObjectType::LINE, 9, 3, UContentsConstValue::StageSelectMapScale);
-			AutoCreate(EObjectType::LINE, 10, 3, UContentsConstValue::StageSelectMapScale);
-			AutoCreate(EObjectType::LINE, 11, 3, UContentsConstValue::StageSelectMapScale);
-			AutoCreate(EObjectType::LINE, 11, 4, UContentsConstValue::StageSelectMapScale);
-			AutoCreate(EObjectType::LINE, 11, 5, UContentsConstValue::StageSelectMapScale);
+			AutoCreate(EObjectType::LINE, 6, 5, UContentsConstValue::StageSelectMapScale);
+			AutoCreate(EObjectType::LINE, 7, 5, UContentsConstValue::StageSelectMapScale);
+			AutoCreate(EObjectType::LINE, 8, 5, UContentsConstValue::StageSelectMapScale);
+			AutoCreate(EObjectType::LINE, 9, 5, UContentsConstValue::StageSelectMapScale);
+			AutoCreate(EObjectType::LINE, 10, 5, UContentsConstValue::StageSelectMapScale);
+			AutoCreate(EObjectType::LINE, 11, 6, UContentsConstValue::StageSelectMapScale);
+			AutoCreate(EObjectType::LINE, 11, 6, UContentsConstValue::StageSelectMapScale);
+			AutoCreate(EObjectType::LINE, 11, 7, UContentsConstValue::StageSelectMapScale);
 		}
 		break;
 	default:
@@ -197,7 +213,7 @@ void AStageSelectGameMode::NewStage(int _Num1, int _Num2)
 	std::shared_ptr<AStageNumber> StageNum1 = GetWorld()->SpawnActor<AStageNumber>("StageNum1");
 	StageNum1->SetMapScale(UContentsConstValue::StageSelectMapScale);
 	StageNum1->AddActorLocation(StageNum1->CalIndexToPos(StageIdx));
-	StageNum1->AddActorLocation(FVector(-6, -9));
+	StageNum1->AddActorLocation(FVector(-6, -12));
 	StageNum1->BeginPosSetting();
 	StageNum1->SetActorScale3D(UContentsConstValue::TileScale * 2);
 	StageNum1->SetStageNum(_Num1);
@@ -205,7 +221,7 @@ void AStageSelectGameMode::NewStage(int _Num1, int _Num2)
 	std::shared_ptr<AStageNumber> StageNum2 = GetWorld()->SpawnActor<AStageNumber>("StageNum2");
 	StageNum2->SetMapScale(UContentsConstValue::StageSelectMapScale);
 	StageNum2->AddActorLocation(StageNum2->CalIndexToPos(StageIdx));
-	StageNum2->AddActorLocation(FVector(6, -9));
+	StageNum2->AddActorLocation(FVector(6, -12));
 	StageNum2->BeginPosSetting();
 	StageNum2->SetActorScale3D(UContentsConstValue::TileScale * 2);
 	StageNum2->SetStageNum(_Num2);
@@ -220,5 +236,5 @@ void AStageSelectGameMode::LevelStart(ULevel* _PrevLevel)
 
 void AStageSelectGameMode::LevelEnd(ULevel* _NextLevel)
 {
-	Super::LevelEnd(_NextLevel);
+	//Super::LevelEnd(_NextLevel);
 }

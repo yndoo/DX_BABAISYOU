@@ -16,11 +16,6 @@ void ContentsGUI::Init()
 
 void ContentsGUI::OnGui(ULevel* _Level, float _Delta)
 {
-	if (true == ImGui::Button("Stage1Level"))
-	{
-		GEngine->ChangeLevel("Stage1Level");
-	}
-
 	if (true == ImGui::Button("SelectMapLevel"))
 	{
 		GEngine->ChangeLevel("SelectMapLevel");

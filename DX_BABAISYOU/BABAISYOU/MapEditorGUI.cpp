@@ -23,8 +23,8 @@ void MapEditorGUI::Init()
 	Dir.Move("Save");
 
 	// ÀÎµ¦½º ¸ÂÃç¼­ ¸¸µé·Á¸é MapScale ¹Ù²ã¾ß ÇÔ.
-	MapScale[0] = UContentsConstValue::Stage4MapScale.iX();
-	MapScale[1] = UContentsConstValue::Stage4MapScale.iY();
+	MapScale[0] = UContentsConstValue::Stage0MapScale.iX();
+	MapScale[1] = UContentsConstValue::Stage0MapScale.iY();
 }
 
 void MapEditorGUI::Tick(ULevel* _Level, float _Delta)
