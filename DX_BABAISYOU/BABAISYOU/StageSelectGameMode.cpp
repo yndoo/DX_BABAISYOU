@@ -187,14 +187,6 @@ void AStageSelectGameMode::NewStage(int _Num1, int _Num2)
 	case 8:
 		{
 			StageIdx = Index2D(11, 8);
-			AutoCreate(EObjectType::LINE, 6, 5, UContentsConstValue::StageSelectMapScale);
-			AutoCreate(EObjectType::LINE, 7, 5, UContentsConstValue::StageSelectMapScale);
-			AutoCreate(EObjectType::LINE, 8, 5, UContentsConstValue::StageSelectMapScale);
-			AutoCreate(EObjectType::LINE, 9, 5, UContentsConstValue::StageSelectMapScale);
-			AutoCreate(EObjectType::LINE, 10, 5, UContentsConstValue::StageSelectMapScale);
-			AutoCreate(EObjectType::LINE, 11, 5, UContentsConstValue::StageSelectMapScale);
-			AutoCreate(EObjectType::LINE, 11, 6, UContentsConstValue::StageSelectMapScale);
-			AutoCreate(EObjectType::LINE, 11, 7, UContentsConstValue::StageSelectMapScale);
 		}
 		break;
 	default:
@@ -237,6 +229,23 @@ void AStageSelectGameMode::LevelStart(ULevel* _PrevLevel)
 		AutoCreate(EObjectType::LINE, 4, 1, UContentsConstValue::StageSelectMapScale);
 		AutoCreate(EObjectType::LINE, 4, 2, UContentsConstValue::StageSelectMapScale);
 		AutoCreate(EObjectType::LINE, 4, 3, UContentsConstValue::StageSelectMapScale);
+	}
+
+	if (UContentsConstValue::ClearStage >= 8)
+	{
+		AutoCreate(EObjectType::LINE, 6, 5, UContentsConstValue::StageSelectMapScale);
+		AutoCreate(EObjectType::LINE, 7, 5, UContentsConstValue::StageSelectMapScale);
+		AutoCreate(EObjectType::LINE, 8, 5, UContentsConstValue::StageSelectMapScale);
+		AutoCreate(EObjectType::LINE, 9, 5, UContentsConstValue::StageSelectMapScale);
+		AutoCreate(EObjectType::LINE, 10, 5, UContentsConstValue::StageSelectMapScale);
+		AutoCreate(EObjectType::LINE, 11, 5, UContentsConstValue::StageSelectMapScale);
+		AutoCreate(EObjectType::LINE, 11, 6, UContentsConstValue::StageSelectMapScale);
+		AutoCreate(EObjectType::LINE, 11, 7, UContentsConstValue::StageSelectMapScale);
+	}
+
+	if (UContentsConstValue::ClearStage == 9)
+	{
+		// 게임 아예 끝
 	}
 }
 

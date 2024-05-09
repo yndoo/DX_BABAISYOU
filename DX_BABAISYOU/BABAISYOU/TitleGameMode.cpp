@@ -42,6 +42,7 @@ void ATitleGameMode::Tick(float _DeltaTime)
 		else if (Pos.Y == -200)
 		{
 			// 게임종료
+			GEngine->EngineWindow.Off();
 		}
 	}
 }

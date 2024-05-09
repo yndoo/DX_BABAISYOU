@@ -33,6 +33,7 @@ void AStageGameMode::LevelStart(ULevel* _PrevLevel)
 	switch (UContentsConstValue::OpenStageNum)
 	{
 	case 0:
+	case 8:
 		Back->SetActorScale3D(UContentsConstValue::Stage0MapScale);
 		CurMapScale = UContentsConstValue::Stage0MapScale;
 		break;
