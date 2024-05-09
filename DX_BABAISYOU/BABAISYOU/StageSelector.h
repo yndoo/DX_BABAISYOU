@@ -15,8 +15,8 @@ public:
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
-
+	bool CanGoNextAll(Index2D _Next, EInputDir _Dir) override;
 private:
-
+	int IndexToStage(Index2D _index);
 };
 

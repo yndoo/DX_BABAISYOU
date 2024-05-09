@@ -30,6 +30,6 @@ private:
 	int CurStage = -1;
 	int ClearStage = -1;
 
-	bool MadeStages[10] = { false, };
+	//bool MadeStages[10] = { false, };
 };
 

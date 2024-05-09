@@ -103,7 +103,7 @@ public:
 	void SetMaxIndex();
 	void CurToNext(FVector _Cur, FVector _Next);
 	bool IsNextPUSH(Index2D _Next);
-	bool CanGoNextAll(Index2D _Next, EInputDir _Dir);		// _Dir 방향의 _Next칸에 쭉 갈 수 있는지 체크하는 함수
+	virtual bool CanGoNextAll(Index2D _Next, EInputDir _Dir);		// _Dir 방향의 _Next칸에 쭉 갈 수 있는지 체크하는 함수
 	void AllPushNextTile(Index2D _Next, EInputDir _Dir);	// _Dir 방향의 _Next칸에 밀기
 
 	void PushTrueHistory();

@@ -202,11 +202,11 @@ void AStageSelectGameMode::NewStage(int _Num1, int _Num2)
 		StageIdx = Index2D(0, 0);
 		break;
 	}
-	if (true == MadeStages[_Num2])
+	if (true == UContentsConstValue::MadeStages[_Num2])
 	{
 		return;
 	}
-	MadeStages[_Num2] = true;
+	UContentsConstValue::MadeStages[_Num2] = true;
 
 	std::shared_ptr<AStageNumber> StageNum1 = GetWorld()->SpawnActor<AStageNumber>("StageNum1");
 	StageNum1->SetMapScale(UContentsConstValue::StageSelectMapScale);

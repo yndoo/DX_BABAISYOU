@@ -20,6 +20,7 @@ public:
 	static const int ITileY;
 
 	static bool StageCleared[10];
+	static bool MadeStages[10];
 	static int MaxIndexX;
 	static int MaxIndexY;
 	static int InputCount;
