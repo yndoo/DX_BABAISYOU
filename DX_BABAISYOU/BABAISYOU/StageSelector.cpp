@@ -21,14 +21,36 @@ void AStageSelector::BeginPlay()
 
 	Renderer->CreateAnimation("Selector", "Selector.png", 0.2f);
 	Renderer->ChangeAnimation("Selector");
-	Renderer->SetOrder(ERenderOrder::UI);
+	Renderer->SetOrder(ERenderOrder::Player);
 }
 
 void AStageSelector::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
+	int CurStageNum = IndexToStage(Info->CurIndex);
+	if(MyCurStageNum != CurStageNum)
+	{
+		switch (CurStageNum)
+		{
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+		case 6:
+		case 7:
+		case 8:
+			MakeTitle(CurStageNum);
+			break;
+		default:
+			Title->SetActive(false);
+			break;
+		}
 
+		MyCurStageNum = CurStageNum;
+	}
 }
 
 bool AStageSelector::CanGoNextAll(Index2D _Next, EInputDir _Dir)
@@ -109,4 +131,20 @@ int AStageSelector::IndexToStage(Index2D _index)
 	}
 
 	return Result;
+}
+
+void AStageSelector::MakeTitle(int StageNum)
+{
+	if (nullptr != Title)
+	{
+		Title->SetActive(false);
+	}
+	Title = CreateWidget<UImage>(GetWorld(), "Title");
+	Title->AddToViewPort(1);
+	std::string str = "Title0" + std::to_string(StageNum) + ".png";
+	Title->SetSprite(str);
+	Title->SetAutoSize(0.85f, true);
+	Title->SetPosition(FVector(-610, 355));
+	FVector HalfDown = FVector(Title->GetLocalScale().hX(), -Title->GetLocalScale().hY());
+	Title->AddPosition(HalfDown);
 }
