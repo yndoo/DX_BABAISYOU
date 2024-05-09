@@ -24,6 +24,11 @@ void ARockText::BeginPlay()
 void ARockText::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	if (ON != SentenceON)
+	{
+		ON = SentenceON;
+		AniONOFF();
+	}
 }
 
 void ARockText::AniONOFF()

@@ -65,6 +65,7 @@ protected:
 	std::shared_ptr<TextActor> Congratulations[15] = { nullptr, };
 private:
 	int BeforeInputCount = 0;
+	void AllPlayerInputOff();
 
 	// Right, Left, Up, Down 
 	int dx[4] = { 1, -1, 0, 0 };

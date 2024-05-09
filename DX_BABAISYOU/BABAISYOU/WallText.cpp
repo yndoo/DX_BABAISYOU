@@ -17,7 +17,7 @@ void AWallText::BeginPlay()
 	Renderer->CreateAnimation("WALLTEXT_OFF", "WALL.png", AnimationInterVec, { 0, 18, 36 }, true);
 	Renderer->CreateAnimation("WALLTEXT_ON", "WALL.png", AnimationInterVec, { 1, 19, 37 }, true);
 
-	Renderer->ChangeAnimation("WALLTEXT_OFF");
+	AniONOFF();
 }
 
 void AWallText::Tick(float _DeltaTime)

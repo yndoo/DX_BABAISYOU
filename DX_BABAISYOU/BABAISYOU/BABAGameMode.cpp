@@ -97,7 +97,7 @@ void BABAGameMode::CongratulationsSwitch(bool _IsOn)
 
 void BABAGameMode::CongratulationsInit()
 {
-	FVector CPos = FVector(-100, 0);
+	FVector CPos = FVector(-117, 0);
 	FVector Scale = FVector(36, 54);
 
 	for (int i = 0; i < 15; i++)
@@ -325,7 +325,9 @@ void BABAGameMode::DeathCheck()
 					// 게임 WIN
 					if(GameState == EGameState::STAGE)
 					{
-						Obj->InputOff();
+						// 모든 오브젝트 InputOff()돼야 함
+						//Obj->InputOff();
+						AllPlayerInputOff();
 						FadeOut = GetWorld()->GetLastTarget()->AddEffect<FadeOutEffect>();
 						FadeOut.get()->EffectON();
 
@@ -852,6 +854,14 @@ void BABAGameMode::AutoCreate(EObjectType _ObjectType, int _X, int _Y, FVector _
 	break;
 	default:
 		break;
+	}
+}
+
+void BABAGameMode::AllPlayerInputOff()
+{
+	for (auto pl : Players)
+	{
+		pl->InputOff();
 	}
 }
 
