@@ -223,7 +223,17 @@ void AStageSelectGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 
-	if (UContentsConstValue::ClearStage >= 1)
+	int MaxClearedStage = -1;
+	for(int i = 9; i>=0; i--)
+	{
+		if (true == UContentsConstValue::StageCleared[i])
+		{
+			MaxClearedStage = i;
+			break;
+		}
+	}
+
+	if (MaxClearedStage >= 0)
 	{
 		AutoCreate(EObjectType::LINE, 3, 1, UContentsConstValue::StageSelectMapScale);
 		AutoCreate(EObjectType::LINE, 4, 1, UContentsConstValue::StageSelectMapScale);
@@ -231,7 +241,7 @@ void AStageSelectGameMode::LevelStart(ULevel* _PrevLevel)
 		AutoCreate(EObjectType::LINE, 4, 3, UContentsConstValue::StageSelectMapScale);
 	}
 
-	if (UContentsConstValue::ClearStage >= 8)
+	if (MaxClearedStage >= 7)
 	{
 		AutoCreate(EObjectType::LINE, 6, 5, UContentsConstValue::StageSelectMapScale);
 		AutoCreate(EObjectType::LINE, 7, 5, UContentsConstValue::StageSelectMapScale);
