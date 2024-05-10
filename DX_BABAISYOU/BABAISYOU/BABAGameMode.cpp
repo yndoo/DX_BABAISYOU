@@ -206,6 +206,7 @@ void BABAGameMode::LevelStart(ULevel* _PrevLevel)
 void BABAGameMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
+	BGMPlayer.Off();
 
 	for (AObject* one : AllObjects)
 	{
@@ -315,6 +316,7 @@ void BABAGameMode::DeathCheck()
 				{
 					//Obj¸¦ ÆÄ±«
 					--YouCount;
+					Obj->DeathType = EObjectType::DEFEAT;
 					Obj->Destroyed = true;
 					Changed = true;
 
@@ -336,6 +338,8 @@ void BABAGameMode::DeathCheck()
 						UContentsConstValue::StageCleared[UContentsConstValue::OpenStageNum] = true;
 						UContentsConstValue::ClearStage = UContentsConstValue::OpenStageNum + 1;
 						GameState = EGameState::CLEAR;
+
+						UEngineSound::SoundPlay("Win.ogg");
 					}
 				}
 			}
@@ -356,6 +360,7 @@ void BABAGameMode::DeathCheck()
 				}
 				if (others->Info->MyObjectiveType[EObjectType::HOT] == true)
 				{
+					Obj->DeathType = EObjectType::HOT;
 					Obj->Destroyed = true;
 				}
 			}

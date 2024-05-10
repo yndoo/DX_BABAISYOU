@@ -45,7 +45,6 @@ public:
 
 	ETileType TileType = ETileType::None;
 	EObjectType MyType = EObjectType::NONE;				// 내가 뭔지	
-	//EObjectType MyObjectiveType = EObjectType::NONE;	// 나한테 걸려있는 목적어 타입(원래는 복수 목적어가 가능해야 함. 복수는 일단 보류..)
 	std::map<EObjectType, bool> MyObjectiveType =
 	{
 		{EObjectType::YOU, false},
@@ -115,7 +114,7 @@ public:
 	bool EachMoveCheck_ForStack = false;		// 이동 있었으면 스택에 true로, 없었으면 false로 들어가기 위한 변수
 	bool SentenceON = false;					// 문장이 만들어지면 켜져야 함.
 	bool Destroyed = false;						// 파괴됐으면 ON 돼야 함. (눈에 보이냐 마냐에만 관여함. 실제로 지워지게하는 변수 X)
-	
+	EObjectType DeathType = EObjectType::NONE;	// 죽은 이유
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;

@@ -23,6 +23,8 @@ void AStageGameMode::Tick(float _DeltaTime)
 void AStageGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
+	BGMPlayer = UEngineSound::SoundPlay("StageBGM.mp3");
+	BGMPlayer.Loop(100);
 
 	Back = GetWorld()->SpawnActor<ABackground>("background");
 	Back->SetActorLocation({ 0, 0, 400 });
@@ -70,5 +72,6 @@ void AStageGameMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
 	
+	BGMPlayer.Off();
 	Back.get()->SetActive(false);
 }

@@ -98,14 +98,14 @@ void UBABAISYOUCore::Initialize()
 
 
 	{
-		//UEngineDirectory Dir;
-		//Dir.MoveToSearchChild("ContentsResources");
-		//Dir.Move("Sound");
-		//std::vector<UEngineFile> Files = Dir.GetAllFile({ ".wav" });
-		//for (UEngineFile& File : Files)
-		//{
-		//	UEngineSound::Load(File.GetFullPath());
-		//}
+		UEngineDirectory Dir;
+		Dir.MoveToSearchChild("ContentsResources");
+		Dir.Move("Sound");
+		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".ogg", ".mp3"});
+		for (UEngineFile& File : Files)
+		{
+			UEngineSound::Load(File.GetFullPath());
+		}
 	}
 	// Material
 	std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("CirCleFadeOUT");

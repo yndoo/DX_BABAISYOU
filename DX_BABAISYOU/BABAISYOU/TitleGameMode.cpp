@@ -50,6 +50,8 @@ void ATitleGameMode::Tick(float _DeltaTime)
 void ATitleGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
+	BGMPlayer = UEngineSound::SoundPlay("TitleBGM.mp3");
+	BGMPlayer.Loop(100);
 
 	FVector Pos = FVector(-135, 108);
 	FVector TitleScale = FVector(54, 162);

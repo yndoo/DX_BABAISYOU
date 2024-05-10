@@ -30,19 +30,19 @@ void ATextObject::Tick(float _DeltaTime)
 		AniONOFF();
 	}
 
-	if (MyDestroyed != Destroyed)
-	{
-		if (true == Destroyed)
-		{
-			Renderer->SetActive(false);
-			MyDestroyed = Destroyed;
-		}
-		else
-		{
-			Renderer->SetActive(true);
-			MyDestroyed = Destroyed;
-		}
-	}
+	//if (MyDestroyed != Destroyed)
+	//{
+	//	if (true == Destroyed)
+	//	{
+	//		Renderer->SetActive(false);
+	//		MyDestroyed = Destroyed;
+	//	}
+	//	else
+	//	{
+	//		Renderer->SetActive(true);
+	//		MyDestroyed = Destroyed;
+	//	}
+	//}
 }
 
 void ATextObject::AniONOFF()

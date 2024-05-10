@@ -54,6 +54,7 @@ protected:
 	FVector CurMapScale = FVector::Zero;
 
 	UEngineDirectory Dir;
+	UEngineSoundPlayer BGMPlayer;
 	std::vector<int> TileData;	// X, Y, ObjectNum 순서.
 
 	std::list<AObject*> AllObjects;		// 해당 레벨 모든 오브젝트 들고있음. 이거로 Update 하자..

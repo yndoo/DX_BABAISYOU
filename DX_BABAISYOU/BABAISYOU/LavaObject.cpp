@@ -21,4 +21,6 @@ void ALavaObject::BeginPlay()
 void ALavaObject::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	//UEngineSound::SoundPlay("LavaMeltSound.ogg");
 }

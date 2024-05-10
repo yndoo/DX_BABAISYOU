@@ -32,6 +32,17 @@ void APlayerObject::Tick(float _DeltaTime)
 	{
 		if (true == Destroyed)
 		{
+			switch (DeathType)
+			{
+			case EObjectType::HOT:
+				UEngineSound::SoundPlay("LavaMeltSound.ogg");
+				break;
+			case EObjectType::DEFEAT:
+				UEngineSound::SoundPlay("DefeatDeadSound.ogg");
+				break;
+			default:
+				break;
+			}
 			Renderer->SetActive(false);
 			MyDestroyed = Destroyed;
 		}

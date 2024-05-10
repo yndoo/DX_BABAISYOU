@@ -1,8 +1,8 @@
 #pragma once
-#include <EngineCore/GameMode.h>
+#include "BABAGameMode.h"
 #include "EngineCore/Image.h"
 
-class ATitleGameMode : public AGameMode
+class ATitleGameMode : public BABAGameMode
 {
 	GENERATED_BODY(AGameMode)
 public:

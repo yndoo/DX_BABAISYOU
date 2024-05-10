@@ -33,5 +33,6 @@ protected:
 	bool CurOn = true;
 
 	std::vector<TextActor*> TextActors;
+	UEngineSoundPlayer SP;
 };
 

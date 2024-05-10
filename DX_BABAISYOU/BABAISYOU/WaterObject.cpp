@@ -22,4 +22,13 @@ void AWaterObject::BeginPlay()
 void AWaterObject::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	if (Destroyed != MyLife)
+	{
+		MyLife = Destroyed;
+		if(true == Destroyed)
+		{
+			UEngineSound::SoundPlay("WaterSinkDead.ogg");
+		}
+	}
 }

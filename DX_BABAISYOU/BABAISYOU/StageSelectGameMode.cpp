@@ -99,6 +99,7 @@ void AStageSelectGameMode::Tick(float _DeltaTime)
 
 	if (true == IsDown(VK_SPACE))
 	{
+		UEngineSound::SoundPlay("StageEnterSound.ogg");
 		Index2D where = Selector->Info->CurIndex;
 		int StageN = IndexToStage(where);
 		GEngine->ChangeLevel("StageLevel");
@@ -222,6 +223,8 @@ void AStageSelectGameMode::NewStage(int _Num1, int _Num2)
 void AStageSelectGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
+	BGMPlayer = UEngineSound::SoundPlay("SelectMapBGM.mp3");
+	BGMPlayer.Loop(100);
 
 	int MaxClearedStage = -1;
 	for(int i = 9; i>=0; i--)

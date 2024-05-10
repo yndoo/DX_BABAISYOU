@@ -80,7 +80,9 @@ void ALerpMoveObject::Tick(float _DeltaTime)
 			return;
 		}
 		
-
+		UEngineSound::SetGlobalVolume(0.05f);
+		UEngineSound::SoundPlay("MoveBackSound.ogg");
+		UEngineSound::SetGlobalVolume(1.f);
 		IsMove = true;
 		ZInputCheck = true;
 		UContentsConstValue::ZInput = true;
@@ -163,6 +165,7 @@ void ALerpMoveObject::InputMove(float _DeltaTime)
 			}
 
 			// 입력 적용 OK
+			UEngineSound::SoundPlay("Move.ogg");
 			Hasfootprint = false;
 			UContentsConstValue::InputCount++;
 			EachMoveCheck_ForStack = true;
