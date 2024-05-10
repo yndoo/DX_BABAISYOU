@@ -370,12 +370,14 @@ void BABAGameMode::DeathCheck()
 	if (0 == YouCount)
 	{
 		// 게임 끝남
+		BGMPlayer.Off();
 		UI->KeyUIOn();
 		int a = 0;
 		return;
 	}
 	else
 	{
+		BGMPlayer.On();
 		UI->KeyUIOff();
 	}
 }
