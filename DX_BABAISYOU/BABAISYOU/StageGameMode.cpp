@@ -13,6 +13,7 @@ AStageGameMode::~AStageGameMode()
 void AStageGameMode::BeginPlay()
 {
 	Super::BeginPlay();
+
 }
 
 void AStageGameMode::Tick(float _DeltaTime)
@@ -32,11 +33,10 @@ void AStageGameMode::LevelStart(ULevel* _PrevLevel)
 	Back->SetOrder(ERenderOrder::Background);
 	Back->BGImageSetting();
 
-	//UContentsConstValue::OpenStageNum = 4;
+	//UContentsConstValue::OpenStageNum = 8;
 	switch (UContentsConstValue::OpenStageNum)
 	{
 	case 0:
-	case 8:
 		Back->SetActorScale3D(UContentsConstValue::Stage0MapScale);
 		CurMapScale = UContentsConstValue::Stage0MapScale;
 		break;
@@ -59,6 +59,18 @@ void AStageGameMode::LevelStart(ULevel* _PrevLevel)
 		Back->SetActorScale3D(UContentsConstValue::Stage5MapScale);
 		CurMapScale = UContentsConstValue::Stage5MapScale;
 		break;
+	case 8:
+		Back->SetActorScale3D(UContentsConstValue::Stage8MapScale);
+		CurMapScale = UContentsConstValue::Stage8MapScale;
+		UContentsConstValue::ITileX = 72;
+		UContentsConstValue::ITileY = 72;
+		LoadMapFile("Stage8");
+		for (AObject* obj : AllObjects)
+		{
+			obj->SetRootScale(FVector(108, 108));
+		}
+		Update();
+		return;
 	default:
 		break;
 	}

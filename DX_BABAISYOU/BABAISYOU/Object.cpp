@@ -15,8 +15,14 @@ AObject::AObject()
 	Info = new ObjectInfo();
 }
 
+
 AObject::~AObject()
 {
+}
+
+void AObject::SetRootScale(FVector _scale)
+{
+	Root->SetScale(_scale);
 }
 
 void AObject::BeginPlay()

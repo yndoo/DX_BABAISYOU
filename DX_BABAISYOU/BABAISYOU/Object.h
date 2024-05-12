@@ -115,6 +115,8 @@ public:
 	bool SentenceON = false;					// 문장이 만들어지면 켜져야 함.
 	bool Destroyed = false;						// 파괴됐으면 ON 돼야 함. (눈에 보이냐 마냐에만 관여함. 실제로 지워지게하는 변수 X)
 	EObjectType DeathType = EObjectType::NONE;	// 죽은 이유
+
+	void SetRootScale(FVector _scale);
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;

@@ -76,6 +76,7 @@ void ATileObject::TileDirUpdate()
 			if (false == obj->Destroyed && obj->Info->MyType == Info->MyType)
 			{
 				DirNum += MyPow(2, i);	// 2ÀÇ i Á¦°ö
+				break;
 			}
 		}
 	}

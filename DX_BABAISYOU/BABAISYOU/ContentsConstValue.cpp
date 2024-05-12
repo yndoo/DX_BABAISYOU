@@ -9,12 +9,13 @@ const FVector UContentsConstValue::Stage1MapScale = FVector(864, 648);	// 24 X 1
 const FVector UContentsConstValue::Stage3MapScale = FVector(828, 576);
 const FVector UContentsConstValue::Stage4MapScale = FVector(864, 504);	// 24 X 14
 const FVector UContentsConstValue::Stage5MapScale = FVector(1188, 648);	// 33 X 18
+const FVector UContentsConstValue::Stage8MapScale = FVector(1080, 576);	// 15 X 8 (ÇÑ Ä­¿¡ 72)
 
 const FVector UContentsConstValue::TileScale = FVector(36, 36, 1);
 const float UContentsConstValue::TileX = 36.f;
 const float UContentsConstValue::TileY = 36.f;
-const int UContentsConstValue::ITileX = 36;
-const int UContentsConstValue::ITileY = 36;
+int UContentsConstValue::ITileX = 36;
+int UContentsConstValue::ITileY = 36;
 
 bool UContentsConstValue::StageCleared[10] = { false, };
 bool UContentsConstValue::MadeStages[10] = { false, };

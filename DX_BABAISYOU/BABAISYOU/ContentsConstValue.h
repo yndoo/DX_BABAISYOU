@@ -12,12 +12,13 @@ public:
 	static const FVector Stage3MapScale;
 	static const FVector Stage4MapScale;
 	static const FVector Stage5MapScale;
+	static const FVector Stage8MapScale;
 
 	static const FVector TileScale;
 	static const float TileX;
 	static const float TileY;
-	static const int ITileX;
-	static const int ITileY;
+	static int ITileX;
+	static int ITileY;
 
 	static bool StageCleared[10];
 	static bool MadeStages[10];
