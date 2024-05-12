@@ -51,6 +51,7 @@ void ATitleGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 	BGMPlayer = UEngineSound::SoundPlay("TitleBGM.mp3");
+	BGMPlayer.SetVolume(0.3f);
 	BGMPlayer.Loop(100);
 
 	FVector Pos = FVector(-135, 108);

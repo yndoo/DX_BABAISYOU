@@ -28,6 +28,7 @@ void KeyUIManager::KeyUIOn()
 	if(false == CurOn)
 	{
 		SP = UEngineSound::SoundPlay("GameOver.ogg");
+		SP.Loop(100);
 		UndoKey->SetActive(true);
 		RestartKey->SetActive(true);
 		for (int i = 0; i < TextActors.size(); i++)

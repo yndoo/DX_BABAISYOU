@@ -24,6 +24,7 @@ void AStageGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 	BGMPlayer = UEngineSound::SoundPlay("StageBGM.mp3");
+	BGMPlayer.SetVolume(0.3f);
 	BGMPlayer.Loop(100);
 
 	Back = GetWorld()->SpawnActor<ABackground>("background");

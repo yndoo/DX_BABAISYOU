@@ -224,6 +224,7 @@ void AStageSelectGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 	BGMPlayer = UEngineSound::SoundPlay("SelectMapBGM.mp3");
+	BGMPlayer.SetVolume(0.3f);
 	BGMPlayer.Loop(100);
 
 	int MaxClearedStage = -1;
@@ -244,8 +245,16 @@ void AStageSelectGameMode::LevelStart(ULevel* _PrevLevel)
 		AutoCreate(EObjectType::LINE, 4, 3, UContentsConstValue::StageSelectMapScale);
 	}
 
+	if (MaxClearedStage >= 4)
+	{
+		AutoCreate(EObjectType::LINE, 5, 3, UContentsConstValue::StageSelectMapScale);
+		AutoCreate(EObjectType::LINE, 6, 3, UContentsConstValue::StageSelectMapScale);
+		AutoCreate(EObjectType::LINE, 6, 4, UContentsConstValue::StageSelectMapScale);
+	}
+
 	if (MaxClearedStage >= 7)
 	{
+		AutoCreate(EObjectType::LINE, 5, 5, UContentsConstValue::StageSelectMapScale);
 		AutoCreate(EObjectType::LINE, 6, 5, UContentsConstValue::StageSelectMapScale);
 		AutoCreate(EObjectType::LINE, 7, 5, UContentsConstValue::StageSelectMapScale);
 		AutoCreate(EObjectType::LINE, 8, 5, UContentsConstValue::StageSelectMapScale);

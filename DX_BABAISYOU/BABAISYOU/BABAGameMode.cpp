@@ -49,6 +49,8 @@ void BABAGameMode::Update()
 {
 	if (true == UContentsConstValue::ZInput)
 	{
+		UEngineSound::SoundPlay("MoveBackSound.ogg");
+
 		SentenceUpdate();
 		FinalUpdate();
 		DeathCheck();
@@ -63,6 +65,7 @@ void BABAGameMode::Update()
 		DeathCheck();
 		if (BeforeInputCount != UContentsConstValue::InputCount)
 		{
+			UEngineSound::SoundPlay("Move.ogg");
 			StackUpdate();
 			BeforeInputCount = UContentsConstValue::InputCount;
 		}
@@ -378,6 +381,7 @@ void BABAGameMode::DeathCheck()
 	else
 	{
 		BGMPlayer.On();
+		BGMPlayer.SetVolume(0.3f);
 		UI->KeyUIOff();
 	}
 }
