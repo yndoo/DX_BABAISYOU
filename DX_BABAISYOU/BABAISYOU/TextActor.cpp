@@ -52,6 +52,7 @@ void TextActor::CreateAlphaAnimation()
 
 	Renderer->CreateAnimation("C", "Alphabet.png", AnimationInterVec, { 4, 4 + 14, 4 + 14 * 2 }, true);
 	Renderer->CreateAnimation("G", "Alphabet.png", AnimationInterVec, { 12, 12 + 14, 12 + 14 * 2 }, true);
+	Renderer->CreateAnimation("H", "Alphabet.png", AnimationInterVec, { 42, 42 + 14, 42 + 14 * 2 }, true);
 	Renderer->CreateAnimation("L", "Alphabet.png", AnimationInterVec, { 50, 50 + 14, 50 + 14 * 2 }, true);
 }
 

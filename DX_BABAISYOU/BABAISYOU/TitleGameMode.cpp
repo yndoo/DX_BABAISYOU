@@ -24,16 +24,19 @@ void ATitleGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	if (true == IsPress(VK_UP))
+	if (true == IsDown(VK_UP))
 	{
+		UEngineSound::SoundPlay("OptionCursorSound.ogg");
 		Cursor->SetPosition(FVector(-330, -100));
 	}
-	if (true == IsPress(VK_DOWN))
+	if (true == IsDown(VK_DOWN))
 	{
+		UEngineSound::SoundPlay("OptionCursorSound.ogg");
 		Cursor->SetPosition(FVector(-330, -200));
 	}
 	if (true == IsDown(VK_SPACE))
 	{
+		UEngineSound::SoundPlay("OptionSelect.ogg");
 		FVector Pos = Cursor->GetLocalPosition();
 		if (Pos.Y == -100)
 		{

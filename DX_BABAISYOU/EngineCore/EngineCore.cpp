@@ -13,6 +13,8 @@
 
 #include "EngineVertexBuffer.h"
 
+ULevel* UEngineCore::CurCreateLevel;
+
 UEngineCore::UEngineCore() 
 {
 }
@@ -106,7 +108,10 @@ void UEngineCore::EngineFrameUpdate()
 
 	DeltaTime *= GlobalTimeScale;
 
-	UEngineInput::KeyCheckTick(DeltaTime);
+	if (true == EngineWindow.IsFocus())
+	{
+		UEngineInput::KeyCheckTick(DeltaTime);
+	}
 
 	GEngine->EngineWindow.CalculateMouseUpdate(DeltaTime);
 
@@ -168,9 +173,11 @@ std::shared_ptr<ULevel> UEngineCore::NewLevelCreate(std::string_view _Name, std:
 	}
 
 	std::shared_ptr<ULevel> Level = std::make_shared<ULevel>();
+	CurCreateLevel = Level.get();
 	Level->SetGameMode(GameModePtr);
 	Level->SetName(_Name);
 	Level->PushActor(_GameMode);
 	Levels[UpperName] = Level;
+	CurCreateLevel = nullptr;
 	return Level;
 }

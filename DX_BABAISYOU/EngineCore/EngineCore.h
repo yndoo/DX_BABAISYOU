@@ -92,11 +92,13 @@ public:
 			return;
 		}
 
+
+
 		std::shared_ptr<GameModeType> NewGameMode = std::make_shared<GameModeType>();
+		std::shared_ptr<ULevel> Level = NewLevelCreate(_Name, NewGameMode);
 
 		NewGameMode->SetOrder(INT_MIN);
 
-		std::shared_ptr<ULevel> Level = NewLevelCreate(_Name, NewGameMode);
 	}
 
 	void DestroyLevel(std::string_view _Name)
@@ -136,9 +138,16 @@ public:
 
 	UThreadPool JobWorker;
 
+	static ULevel* GetCurCreateLevel()
+	{
+		return CurCreateLevel;
+	}
+
 protected:
 
 private:
+	static ULevel* CurCreateLevel;
+
 	FEngineOption EngineOption;
 
 	UEngineTime MainTimer;

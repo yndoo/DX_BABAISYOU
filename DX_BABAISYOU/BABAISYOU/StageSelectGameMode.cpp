@@ -36,6 +36,7 @@ void AStageSelectGameMode::BeginPlay()
 	Selector->BeginPosSetting();
 	Selector->SetActorScale3D(UContentsConstValue::TileScale * 1.5);
 	Selector->SetOrder(ERenderOrder::UI);
+	//AllObjects.push_back(Selector.get());
 
 	std::shared_ptr<ABackground> Back = GetWorld()->SpawnActor<ABackground>("background");
 	Back->SetActorScale3D(UContentsConstValue::StageSelectMapImgScale);
@@ -50,9 +51,12 @@ void AStageSelectGameMode::BeginPlay()
 void AStageSelectGameMode::Tick(float _DeltaTime)
 {
 	//Super::Tick(_DeltaTime);
-	Selector->Info->CurIndex;
-	GMapManager->Graph;
-	int a = 0;
+
+	if (BeforeInputCount != UContentsConstValue::InputCount)
+	{
+		UEngineSound::SoundPlay("Move.ogg");
+		BeforeInputCount = UContentsConstValue::InputCount;
+	}
 	 
 	if (UContentsConstValue::ClearStage != CurStage)
 	{
@@ -268,6 +272,7 @@ void AStageSelectGameMode::LevelStart(ULevel* _PrevLevel)
 	if (UContentsConstValue::ClearStage == 9)
 	{
 		// 게임 아예 끝
+		//GEngine->ChangeLevel("EndingLevel");
 	}
 }
 

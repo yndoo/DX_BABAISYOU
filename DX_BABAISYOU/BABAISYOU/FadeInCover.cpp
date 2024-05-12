@@ -24,6 +24,7 @@ void AFadeInCover::BeginPlay()
 {
 	Super::BeginPlay();
 	Renderer->SetSprite("EndCover.png");	
+	
 }
 
 void AFadeInCover::Tick(float _DeltaTime)

@@ -56,6 +56,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EndingGameMode.h" />
     <ClInclude Include="FadeInCover.h">
       <SubType>
       </SubType>
@@ -263,6 +264,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EndingGameMode.cpp" />
     <ClCompile Include="FadeInCover.cpp">
       <SubType>
       </SubType>

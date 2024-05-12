@@ -67,6 +67,9 @@
     <Filter Include="GameMode\TitleLevel">
       <UniqueIdentifier>{b4fe07f4-7f37-4d80-8ecd-411e8cc8ddfa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameMode\EndingLevel">
+      <UniqueIdentifier>{4867c20b-3ad3-4c34-9dad-0c48e0c2b5f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BABAISYOUCore.h">
@@ -228,6 +231,9 @@
     <ClInclude Include="Bridge.h">
       <Filter>Object\Obj-Level3\0PlayerObject - Tile</Filter>
     </ClInclude>
+    <ClInclude Include="EndingGameMode.h">
+      <Filter>GameMode\EndingLevel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -385,6 +391,9 @@
     </ClCompile>
     <ClCompile Include="Bridge.cpp">
       <Filter>Object\Obj-Level3\0PlayerObject - Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="EndingGameMode.cpp">
+      <Filter>GameMode\EndingLevel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

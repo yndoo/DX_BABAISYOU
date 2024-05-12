@@ -52,6 +52,7 @@ protected:
 	std::shared_ptr<FadeOutEffect> FadeOut;// = nullptr;
 	float EffectTime = 3.f;
 	FVector CurMapScale = FVector::Zero;
+	int BeforeInputCount = 0;
 
 	UEngineDirectory Dir;
 	UEngineSoundPlayer BGMPlayer;
@@ -65,7 +66,6 @@ protected:
 	std::shared_ptr<KeyUIManager> UI;
 	std::shared_ptr<TextActor> Congratulations[15] = { nullptr, };
 private:
-	int BeforeInputCount = 0;
 	void AllPlayerInputOff();
 
 	// Right, Left, Up, Down 
