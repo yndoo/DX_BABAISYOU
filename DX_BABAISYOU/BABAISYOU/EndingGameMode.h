@@ -2,21 +2,21 @@
 #include "BABAGameMode.h"
 #include "EngineCore/Image.h"
 
-class EndingGameMode : public BABAGameMode
+class AEndingGameMode : public BABAGameMode
 {
-	GENERATED_BODY(AGameMode)
+	GENERATED_BODY(BABAGameMode)
 public:
-	EndingGameMode();
-	~EndingGameMode();
+	AEndingGameMode();
+	~AEndingGameMode();
 
-	EndingGameMode(const EndingGameMode& _Other) = delete;
-	EndingGameMode(EndingGameMode&& _Other) noexcept = delete;
-	EndingGameMode& operator=(const EndingGameMode& _Other) = delete;
-	EndingGameMode& operator=(EndingGameMode&& _Other) noexcept = delete;
+	AEndingGameMode(const AEndingGameMode& _Other) = delete;
+	AEndingGameMode(AEndingGameMode&& _Other) noexcept = delete;
+	AEndingGameMode& operator=(const AEndingGameMode& _Other) = delete;
+	AEndingGameMode& operator=(AEndingGameMode&& _Other) noexcept = delete;
 protected:
-	//void BeginPlay() override;
-	//void Tick(float _DeltaTime) override;
-	//void LevelStart(ULevel* _PrevLevel) override;
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
+	void LevelStart(ULevel* _PrevLevel) override;
 	//void LevelEnd(ULevel* _NextLevel) override;
 
 private:

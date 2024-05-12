@@ -70,6 +70,9 @@
     <Filter Include="GameMode\EndingLevel">
       <UniqueIdentifier>{4867c20b-3ad3-4c34-9dad-0c48e0c2b5f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameMode\ChangingLevel">
+      <UniqueIdentifier>{c9846252-797b-4a00-9074-cdee6da6c1c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BABAISYOUCore.h">
@@ -77,9 +80,6 @@
     </ClInclude>
     <ClInclude Include="PreCompile.h">
       <Filter>PreComplie</Filter>
-    </ClInclude>
-    <ClInclude Include="Stage1GameMode.h">
-      <Filter>GameMode\StageLevel</Filter>
     </ClInclude>
     <ClInclude Include="StageSelectGameMode.h">
       <Filter>GameMode\StageSelectLevel</Filter>
@@ -234,6 +234,9 @@
     <ClInclude Include="EndingGameMode.h">
       <Filter>GameMode\EndingLevel</Filter>
     </ClInclude>
+    <ClInclude Include="ChangingGameMode.h">
+      <Filter>GameMode\ChangingLevel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BABAISYOUCore.cpp">
@@ -241,9 +244,6 @@
     </ClCompile>
     <ClCompile Include="PreCompile.cpp">
       <Filter>PreComplie</Filter>
-    </ClCompile>
-    <ClCompile Include="Stage1GameMode.cpp">
-      <Filter>GameMode\StageLevel</Filter>
     </ClCompile>
     <ClCompile Include="StageSelectGameMode.cpp">
       <Filter>GameMode\StageSelectLevel</Filter>
@@ -394,6 +394,9 @@
     </ClCompile>
     <ClCompile Include="EndingGameMode.cpp">
       <Filter>GameMode\EndingLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="ChangingGameMode.cpp">
+      <Filter>GameMode\ChangingLevel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

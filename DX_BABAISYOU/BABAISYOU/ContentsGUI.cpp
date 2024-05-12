@@ -29,4 +29,8 @@ void ContentsGUI::OnGui(ULevel* _Level, float _Delta)
 	{
 		GEngine->ChangeLevel("TitleLevel");
 	}
+	if (true == ImGui::Button("EndingLevel"))
+	{
+		GEngine->ChangeLevel("EndingLevel");
+	}
 }

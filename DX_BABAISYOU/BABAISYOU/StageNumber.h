@@ -20,6 +20,8 @@ public:
 		Renderer->ChangeAnimation(std::to_string(StageNum) + "_White");
 	}
 
+	void SetRendererScale(FVector _Scale);
+
 	void SetRendererMulColor(FVector _Color);
 
 protected:

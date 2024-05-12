@@ -20,8 +20,6 @@ void AStageNumber::BeginPlay()
 void AStageNumber::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	FVector Pos = GetActorLocation();
-	int a = 0;
 }
 
 void AStageNumber::LevelEnd(ULevel* _NextLevel)
@@ -55,4 +53,9 @@ void AStageNumber::CreateNumAni()
 		Renderer->CreateAnimation(std::to_string(i + 5) + "_White", "NumberFont.png", AnimationInterVec, { j + 0, j + 10, j + 20 }, true);
 		Renderer->CreateAnimation(std::to_string(i + 5) + "_Gray", "NumberFont.png", AnimationInterVec, { j + 1, j + 11, j + 21 }, true);
 	}
+}
+
+void AStageNumber::SetRendererScale(FVector _Scale)
+{
+	Renderer->SetScale(_Scale);
 }

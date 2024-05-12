@@ -31,6 +31,7 @@ protected:
 	UImage* UndoKey = nullptr;
 	UImage* RestartKey = nullptr;
 	bool CurOn = true;
+	FVector AddUndoRotation = FVector(0, 0, 10);
 
 	std::vector<TextActor*> TextActors;
 	UEngineSoundPlayer SP;

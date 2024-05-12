@@ -10,7 +10,7 @@ AObject::AObject()
 	Root = CreateDefaultSubObject<UDefaultSceneComponent>("RendererRoot");
 	SetRoot(Root);
 
-	Root->AddScale(FVector(54, 54, 1));
+	Root->SetScale(FVector(54, 54, 1));
 
 	Info = new ObjectInfo();
 }

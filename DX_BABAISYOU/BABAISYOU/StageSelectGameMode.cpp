@@ -106,8 +106,9 @@ void AStageSelectGameMode::Tick(float _DeltaTime)
 		UEngineSound::SoundPlay("StageEnterSound.ogg");
 		Index2D where = Selector->Info->CurIndex;
 		int StageN = IndexToStage(where);
-		GEngine->ChangeLevel("StageLevel");
 		UContentsConstValue::OpenStageNum = StageN;
+		GEngine->ChangeLevel("ChangingLevel");
+		//GEngine->ChangeLevel("StageLevel");
 	}
 }
 
@@ -272,7 +273,8 @@ void AStageSelectGameMode::LevelStart(ULevel* _PrevLevel)
 	if (UContentsConstValue::ClearStage == 9)
 	{
 		// 게임 아예 끝
-		//GEngine->ChangeLevel("EndingLevel");
+		BGMPlayer.Off();
+		GEngine->ChangeLevel("EndingLevel");
 	}
 }
 

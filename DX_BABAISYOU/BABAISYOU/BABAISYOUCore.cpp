@@ -6,11 +6,13 @@
 #include "ContentsGUI.h"
 #include "MapEditorGUI.h"
 
-#include "Stage1GameMode.h"
 #include "StageGameMode.h"
 #include "StageSelectGameMode.h"
 #include "CreateMapGameMode.h"
 #include "TitleGameMode.h"
+#include "EndingGameMode.h"
+#include "ChangingGameMode.h"
+
 
 UBABAISYOUCore::UBABAISYOUCore() 
 {
@@ -121,6 +123,8 @@ void UBABAISYOUCore::Initialize()
 	GEngine->CreateLevel<AStageSelectGameMode>("SelectMapLevel");
 	GEngine->CreateLevel<ACreateMapGameMode>("CreateMapLevel");
 	GEngine->CreateLevel<ATitleGameMode>("TitleLevel");
+	GEngine->CreateLevel<AEndingGameMode>("EndingLevel");
+	GEngine->CreateLevel<AChangingGameMode>("ChangingLevel");
 	GEngine->ChangeLevel("TitleLevel");
 
 	int a = 0;

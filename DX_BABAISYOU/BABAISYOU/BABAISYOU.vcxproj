@@ -47,6 +47,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ChangingGameMode.h" />
     <ClInclude Include="ContentsConstValue.h">
       <SubType>
       </SubType>
@@ -178,10 +179,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Stage1GameMode.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="StopText.h">
       <SubType>
       </SubType>
@@ -256,6 +253,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="ChangingGameMode.cpp" />
     <ClCompile Include="ContentsConstValue.cpp">
       <SubType>
       </SubType>
@@ -388,10 +386,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="StageSelectGameMode.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Stage1GameMode.cpp">
       <SubType>
       </SubType>
     </ClCompile>

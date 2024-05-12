@@ -19,8 +19,17 @@ void KeyUIManager::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	CurOn;
-	int a = 0;
+	FVector UndoRot = UndoKey->GetLocalRotation();
+	if (UndoRot.Z > 30)
+	{
+		AddUndoRotation = FVector(0, 0, -10);
+	}
+	else if(UndoRot.Z < -30)
+	{
+		AddUndoRotation = FVector(0, 0, 10);
+	}
+ 	UndoKey->AddWidgetRotation(AddUndoRotation * _DeltaTime);
+	RestartKey->AddWidgetRotation(-AddUndoRotation * _DeltaTime);
 }
 
 void KeyUIManager::KeyUIOn()
