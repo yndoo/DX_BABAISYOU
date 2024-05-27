@@ -95,6 +95,8 @@ void AChangingGameMode::LevelStart(ULevel* _PrevLevel)
 void AChangingGameMode::LevelEnd(ULevel* _NextLevel)
 {
 	StageNum2->Destroy();
+
+	Title->SetActive(false);
 }
 
 void AChangingGameMode::MakeTitle(int StageNum)

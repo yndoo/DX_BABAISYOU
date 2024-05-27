@@ -12,4 +12,5 @@ MapManager::MapManager()
 
 MapManager::~MapManager()
 {
+	//delete GMapManager;
 }

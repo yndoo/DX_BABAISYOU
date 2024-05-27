@@ -37,12 +37,20 @@
 
 BABAGameMode::BABAGameMode()
 {
-	GMapManager = new MapManager();
+	if(GMapManager == nullptr)
+	{
+		GMapManager = new MapManager();
+	}
 	InputOn();
 }
 
 BABAGameMode::~BABAGameMode()
 {
+	if (GMapManager != nullptr)
+	{
+		delete GMapManager;
+		GMapManager = nullptr;
+	}
 }
 
 void BABAGameMode::Update()
@@ -214,6 +222,8 @@ void BABAGameMode::LevelEnd(ULevel* _NextLevel)
 	for (AObject* one : AllObjects)
 	{
 		one->Destroy();
+		//delete one;
+		//one = nullptr;
 	}
 
 	AllObjects;

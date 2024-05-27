@@ -18,6 +18,7 @@ AObject::AObject()
 
 AObject::~AObject()
 {
+	delete Info;
 }
 
 void AObject::SetRootScale(FVector _scale)

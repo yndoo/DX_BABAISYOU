@@ -32,6 +32,11 @@ public:
 		{
 			for (int j = 0; j < 20; j++)
 			{
+				/*for (auto one : Graph[i][j])
+				{
+					one->Destroy();
+					delete one;
+				}*/
 				Graph[i][j].clear();
 			}
 		}
