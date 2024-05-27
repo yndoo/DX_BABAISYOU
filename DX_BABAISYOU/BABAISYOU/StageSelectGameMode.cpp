@@ -281,10 +281,4 @@ void AStageSelectGameMode::LevelStart(ULevel* _PrevLevel)
 void AStageSelectGameMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
-	Selector->Destroy();
-	for (int i = 0; i < StageNums.size(); i++)
-	{
-		StageNums[i].first->Destroy();
-		StageNums[i].second->Destroy();
-	}
 }
