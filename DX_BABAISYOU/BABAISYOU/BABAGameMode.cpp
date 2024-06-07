@@ -373,6 +373,7 @@ void BABAGameMode::DeathCheck()
 				}
 				if (others->Info->MyObjectiveType[EObjectType::HOT] == true)
 				{
+					--YouCount;
 					Obj->DeathType = EObjectType::HOT;
 					Obj->Destroyed = true;
 				}
